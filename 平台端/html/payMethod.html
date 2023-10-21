@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>在线缴费</title>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<style type="text/css">
+			.publice-frame{
+				width: 1200px;
+				overflow: hidden;
+				margin: 0 auto;
+			}
+			.publice-image-top,.publice-image-top img{
+				width: 1200px;
+				height: 225px;
+			}
+			.publice-nav-left,.publice-content-right{
+				margin-top: 20px;
+			}
+			.ico{
+				display: inline-block;
+				border-top: 5px solid transparent;
+				border-left: 10px solid #fff;
+				border-bottom: 5px solid transparent;
+				margin-left: 90px;				
+			}
+			.publice-nav-top,.publice-nav-top li,.publice-nav-top>img,.publice-nav-top p,.publice-nav-down,.publice-nav-down>img,.publice-nav-down li{
+				width: 210px;
+			}
+			.publice-nav-down{
+				margin-top: 10px;
+			}
+			.publice-nav-top>img,.publice-nav-down>img{
+				height: 39px;
+			}
+			.publice-nav-top li,.publice-nav-down li{
+				line-height:50px ;
+				background: #eee;
+				border: #fff solid 1px;
+			}
+			.publice-nav-top span ,.publice-nav-down span{
+				font-size: 16px;
+				display: inline-block;
+				margin-left: 20px;
+			}
+			.publice-nav-down span,.publice-nav-down i{
+				color: #fff;
+			}
+			.publice-nav-top p{
+				height: 5px;
+				background: #f43a01;
+			}
+			.publice-nav-down i{
+				font-size: 30px;
+				margin-left: 30px;
+			}
+			.publice-nav-down ul li:nth-child(1){
+				background: #78d332;
+			}
+			.publice-nav-down ul li:nth-child(2){
+				background: #e9714f;
+			}
+			.publice-nav-down ul li:nth-child(3){
+				background: #f59c0a;
+			}
+			.publice-nav-down ul li:nth-child(4){
+				background: #67c4eb;
+			}
+			.publice-nav-down ul li:nth-child(5){
+				background: #00b3c7;
+			}
+			.publice-content-right,.publice-nav-all,.publice-nav-news,.publice-page,.publice-nav-news li,.publice-water-price,.publice-water-price p,.publice-web-protect{
+				width: 980px;
+			}
+			.publice-content-right{
+				margin-left: 10px;
+				overflow: hidden;
+			}
+			.publice-nav-all{
+				height: 38px;
+				border-bottom: 2px solid #0052a6;
+				background: #eee;
+				line-height: 38px;
+				text-align: right;
+			}
+			.publice-nav-all p{
+				margin-right: 30px;
+			}
+			.publice-nav-all p span:nth-child(n+2){
+				margin-right: 5px;
+			}
+			.publice-web-protect{
+				overflow: hidden;
+				background: url(./images/companyNews/jbian1.jpg) no-repeat;
+			}
+			.publice-content-ban{
+				width: 850px;
+				height: 600px;
+				margin: 65px auto;
+				border: 1px solid #dbdbdb;
+				background: rgba(255,255,255,.7);
+			}
+			.publice-content-top{
+				width: 770px;
+				height: 50px;
+				line-height: 70px;
+				border-bottom: 1px solid #dbdbdb;
+				margin: 0 auto;
+				text-align: left;
+				color: #0052a6;
+			}
+			.publice-content-top i{
+				font-size: 28px;
+				color: #0052a6;
+			}
+			.publice-content-top span{
+				font-size: 16px;
+			}
+			.a-main {
+				width: 65%;
+				margin:30px auto;
+			}
+			
+			.a-inpt-lay {
+				margin-top: 20px;
+			}
+			
+			.a-inpt-titl {
+				width: 100px;
+				line-height: 31px;
+				font-size: 14px;
+			}
+			
+			.a-inpt-titl i {
+				color: #0096ff;
+				font-size: 20px;
+				margin-right: 5px;
+			}
+			
+			.a-inpt {
+				width: 375px;
+				height: 35px;
+				border: 1px solid #dfdfdf;
+				border-radius: 4px;
+				background-color: #fff;
+				padding: 5px;
+				color: #999;
+			}
+			
+			.a-select {
+				width: 390px;
+				height: 45px;
+				border: 1px solid #dfdfdf;
+				border-radius: 4px;
+				background-color: #fff;
+				padding: 5px;
+			}
+			
+			.a-textarea {
+				line-height: 20px;
+				width: 375px;
+				height: 150px;
+				border: 1px solid #dfdfdf;
+				border-radius: 4px;
+				background-color: #fff;
+				padding: 5px;
+				color: #999;
+			}
+			/*公共按钮*/
+			.submit-btn{
+			  width: 290px;
+			  height: 36px;
+			  line-height: 36px;
+			  text-align: center;
+			  border-radius: 5px;
+			  background-color: #1f75ce;
+			  display: block;
+			  margin: 70px auto;
+			  font-size: 18px;
+			  color: #fff;
+			  border: 1px solid #46a3ff;
+			}
+			.submit-btn:active{
+			  border: 1px solid #46a3ff;
+			  background-color: #46a3ff;
+			}
+			/*=-------------------------------------*/
+			.pay-money{
+				margin-left:70px ;
+				font-size: 14px;
+				margin-top: 20px;
+			}
+			.pay-money strong{
+				font-size: 25px;
+				color: #f43a01;
+			}
+			.method{
+				font-size: 14px;
+				top: 180px;
+				left: 70px;
+			}
+			.pay-select{
+			  width: 500px;
+			  margin: 30px auto;
+			  padding: 0 20px;
+			  background-color: #fff;
+			}
+			.pay-select li{
+			  height: 50px;
+			  line-height: 80px;
+			  display: block;
+			  border-bottom: 1px dashed #dfdfdf;
+			  padding: 20px 0;
+			  font-size: 16px;
+			}
+			.pay-select li > img{
+			  width: 36px;
+			  height: 36px;
+			  display: block;
+			  margin-right: 20px;
+			  margin-top: 20px;
+			}
+			.check-icons i{
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="publice-frame">
+			<div class="publice-image-top">
+				<img src="./images/companyNews/erbanner.jpg"/>
+			</div>
+			<div class="publice-nav-left fl">
+				<div class="publice-nav-top">
+					<img src="./images/companyNews/news_title.jpg"/>
+					<ul>
+						<li><span>公司新闻</span><i class="ico"></i></li>
+						<li><span>行业动态</span><i class="ico"></i></li>
+						<li><span>信息公告</span><i class="ico"></i></li>
+						<li><span>供水信息</span><i class="ico"></i></li>
+					</ul>
+					<p></p>
+				</div>
+				<div class="publice-nav-down">
+					<img src="./images/companyNews/server_title.jpg"/>
+					<ul>
+						<li><i class="iconfont">&#xe6b1;</i><span>在线缴费</span></li>
+						<li><i class="iconfont">&#xe7bb;</i><span>水费查询</span></li>
+						<li><i class="iconfont">&#xe631;</i><span>网上报修</span></li>
+						<li><i class="iconfont">&#xe66e;</i><span>投诉建议</span></li>
+						<li><i class="iconfont">&#xe603;</i><span>问题咨询</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="publice-content-right fl">
+				<div class="publice-nav-all">
+					<p><span>您当前的位置 ： </span><span>首页</span><span>></span><span>水务要闻</span></p>
+				</div>
+				<div class="publice-web-protect">
+					<div class="publice-content-ban pr">
+						<div class="publice-content-top">
+							<i class="iconfont">&#xe617;</i>
+							<span>在线缴费</span>
+						</div>
+						<p class="pay-money">
+							<span>应缴金额 ：</span>
+							<strong>58.80</strong>
+							<span>元</span>
+						</p>
+						<span class="pa method">应缴方式 ：</span>
+						<ul class="pay-select">
+						    <li>
+						      <img class="fl" src="./images/companyNews/wxzf.png" alt="">
+						      <em class="fl">微信支付</em>
+						      <span class="fr">
+						        <label for="print1" class="form-check" data-scheck>
+						          <input type="radio" id="print1" checked="checked" name="print" value="1">
+						          <span class="check-icons">
+						              <i class="iconfont icon-check">&#xe62e;</i>
+						              <i class="iconfont icon-uncheck">&#xe67e;</i>
+						          </span>
+						        </label>
+						      </span>
+						    </li>
+						    <li>
+						      <img class="fl" src="./images/companyNews/zhifubao-pay.png" alt="">
+						      <em class="fl">支付宝支付</em>
+						      <span class="fr">
+						        <label for="print2" class="form-check" data-scheck>
+						          <input type="radio" id="print2"  name="print" value="2">
+						          <span class="check-icons">
+						             <i class="iconfont icon-check">&#xe62e;</i>
+						              <i class="iconfont icon-uncheck">&#xe67e;</i>
+						          </span>
+						        </label>
+						      </span>
+						    </li>
+						    <li>
+						      <img class="fl" src="./images/companyNews/u-pay.png" alt="">
+						      <em class="fl">银联支付</em>
+						      <span class="fr">
+						        <label for="print3" class="form-check" data-scheck>
+						          <input type="radio" id="print3" name="print" value="3">
+						          <span class="check-icons">
+						             <i class="iconfont icon-check">&#xe62e;</i>
+						              <i class="iconfont icon-uncheck">&#xe67e;</i>
+						        </label>
+						      </span>
+						    </li>
+						  </ul>
+						 <section class="mrs-main mt40">
+						    <button class="submit-btn" type="button">缴费</button>
+						 </section>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

@@ -1,0 +1,9 @@
+{
+    "baseUrl": "http://192.168.2.208:60028/",
+    "baseNeiUrl": "http://192.168.2.208:60028/",
+    "ythUrl": "http://192.168.2.208:60001/",
+    "imageUrl": "http://192.168.2.208:60028/JavaInstall/upload/imgs/",
+    "fileUrl": "http://192.168.2.208:60028/JavaInstall/upload/files/",
+    "videoUrl": "http://192.168.2.208:60028/JavaInstall/upload/video/",
+    "layout": true
+}

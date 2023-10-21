@@ -1,0 +1,748 @@
+// 地图
+#viewDiv > div:first-child > div:first-child {
+  z-index: 0 !important;
+}
+div.smMap {
+  border: none !important;
+}
+#viewDiv {
+  width: 100%;
+  height: 100%;
+}
+#viewDiv3D {
+  width: 100%;
+  height: 100%;
+}
+// 地图工具
+.map-tool {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  top: 0px;
+
+  .map-tool-base {
+    width: 40px;
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.09);
+    position: absolute;
+    right: 0;
+
+    .el-button {
+      color: #344563;
+      background-color: #fff;
+      border-color: #f5f4f4;
+      padding: 10px;
+      margin: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid #f3f3f3;
+
+      .tool-icon {
+        font-size: 16px;
+      }
+      &:hover {
+        background: #1fa1fd;
+        color: #fff !important;
+      }
+    }
+
+    .el-button:last-child {
+      border: none;
+    }
+  }
+
+  .map-tool-switch {
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+    height: 82px;
+    padding: 10px;
+    border-radius: 2px;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transition: 0.3s;
+
+    .vector {
+      background: url(../assets/basemap/vector.png) no-repeat 0 0;
+      left: 238px;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .img {
+      background: url(../assets/basemap/img.png) no-repeat 0 0;
+      left: 238px;
+      z-index: 9;
+      cursor: pointer;
+    }
+
+    .topo {
+      background: url(../assets/basemap/topo.png) no-repeat 0 0;
+      left: 238px;
+      z-index: 9;
+      cursor: pointer;
+    }
+    .purecolor {
+      background: url(../assets/basemap/sl_2.png) no-repeat 0 0;
+      left: 238px;
+      z-index: 9;
+      cursor: pointer;
+      .el-color-picker {
+        float: right;
+        .el-color-picker__trigger {
+          padding: 0;
+          width: 25px;
+          height: 25px;
+          .el-color-picker__icon {
+            color: #000;
+          }
+        }
+      }
+    }
+    .showdows {
+      width: 110px;
+      height: 60px;
+      display: inline-block;
+      position: absolute;
+      border-radius: 2px;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      transition: 0.3s;
+      cursor: pointer;
+      border: 1px solid rgba(153, 153, 153, 0.19);
+    }
+
+    .showdow-middle {
+      top: 11px;
+      background: url(../assets/basemap/shadow_3a100ef.png) no-repeat 0 0;
+      background-position: 0px -61px;
+      background-size: 86px 240px;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      transition: 0.3s;
+    }
+
+    .showdow-last {
+      top: 11px;
+      background: url(../assets/basemap/shadow_3a100ef.png) no-repeat 0 0;
+      background-position: 0 -181px;
+      background-size: 86px 240px;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      transition: 0.3s;
+    }
+
+    .map-tool-switch-type {
+      width: 110px;
+      height: 62px;
+      background-size: 100% 100%;
+      display: inline-block;
+      position: absolute;
+      border-radius: 2px;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      transition: 0.3s;
+      border: 1px solid rgba(153, 153, 153, 0.19);
+
+      .basemap-label {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: #409eff;
+        padding: 3px 3px 2px 4px;
+        font-size: 12px;
+        line-height: 12px;
+        color: #fff;
+        border-top-left-radius: 2px;
+      }
+    }
+  }
+
+  .map-tool-search {
+    position: absolute;
+    right: 25px;
+    top: 10px;
+
+    #widget-search {
+      width: 290px;
+      height: 40px;
+
+      .esri-widget--button {
+        height: 40px;
+      }
+
+      .esri-input {
+        height: 40px;
+      }
+      .input-with-select {
+        box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.1);
+        .el-select {
+          .el-input {
+            width: 75px;
+          }
+        }
+        .el-input-group__append {
+          padding: 0 8px;
+          .el-button {
+            margin: 0;
+            padding: 10px 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.map-widget-left {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  top: 0px;
+  #overviewDiv {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 12px;
+    width: 31px;
+    height: 31px;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    .overview-btn {
+      position: absolute;
+      width: 31px;
+      height: 31px;
+      right: 0;
+      top: 0;
+      border-radius: 0;
+      background: #272727;
+      padding: 1px 2px;
+      font-size: 18px;
+      z-index: 3;
+    }
+    #extentDiv {
+      background-color: rgba(255, 0, 0, 0.3);
+      border: 1px solid #ff0000;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+  #overviewDiv.overview-open {
+    border: 2px solid black;
+    bottom: 0px;
+    width: 200px;
+    height: 170px;
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    .overview-btn {
+      width: 27px;
+      height: 25px;
+    }
+  }
+
+  #widget-scale {
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    font-size: xx-small;
+  }
+  #widget-scale.overview-open {
+    left: 210px;
+    transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+// 右侧组件以及底部组件
+.right-draw-btn {
+  width: 28px;
+  height: 35px;
+  position: absolute;
+  color: #010101;
+  left: -28px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  &:hover {
+    background: #1c81c9;
+    color: #fff;
+  }
+}
+.bottom-draw-btn {
+  width: 35px;
+  height: 28px;
+  position: absolute;
+  color: #010101;
+  top: -28px;
+  left: 0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  i {
+    transform: rotate(90deg);
+  }
+  &:hover {
+    background: #1c81c9;
+    color: #fff;
+  }
+}
+
+.right-draw {
+  position: absolute;
+  z-index: 201;
+  background: #fff;
+  right: -800px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  .right-draw-content {
+    height: 100%;
+  }
+}
+.map-contain {
+  height: 100%;
+  .el-card {
+    border-radius: 0px;
+    height: 100%;
+    width: 100%;
+    border: none;
+
+    .el-card__header {
+      padding: 9px 20px;
+      @include background_color("card-header");
+      border: none;
+      color: #fff;
+      line-height: 17px;
+      .right-close-btn {
+        display: block;
+        float: right;
+        &:hover {
+          background: #43aefe;
+        }
+      }
+      .right-event-btn {
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        padding: 6px 10px;
+        background: #f1f5f9;
+        &:hover,
+        &:focus {
+          color: #1890ff;
+          background: #e8f4ff;
+          border-color: #a3d3ff;
+        }
+      }
+    }
+
+    .el-card__body {
+      height: calc(100% - 38px);
+      padding: 0;
+    }
+
+    .bottom {
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      border-top: 1px solid;
+      @include border_color("borderColor");
+    }
+
+    .map-content {
+      height: calc(100% - 60px);
+      overflow: auto;
+      background: none;
+      padding: 10px;
+
+      .content-title {
+        margin: 10px 0;
+        padding: 5px;
+      }
+      .content-text {
+        line-height: 24px;
+        font-size: 14px;
+        color: #606266;
+      }
+
+      .el-checkbox {
+        margin-right: 10px;
+      }
+
+      .el-tree-node__content {
+        height: 32px;
+      }
+
+      .el-tree-node__label {
+        font-size: 15px;
+      }
+
+      .draw-Div {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+}
+
+.bottom-draw {
+  position: absolute;
+  z-index: 200;
+  background: #fff;
+  bottom: -100vh;
+  border-right: 1px solid;
+  @include border_color("borderColor");
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  .bottom-draw-content {
+    height: 100%;
+  }
+  .query-result-table,
+  .map-result-table {
+    .head {
+      padding-right: 30px;
+      height: 35px;
+      line-height: 35px;
+      @include background_color("card-header");
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+
+      .title {
+        font-size: 15px;
+        text-indent: 10px;
+      }
+      .tool-span {
+        display: inline-block;
+        width: 36px;
+        height: 34px;
+        text-align: center;
+        cursor: pointer;
+        &:hover {
+          background: #43aefe;
+        }
+      }
+      .el-dropdown {
+        font-size: 18px;
+        text-indent: 0;
+        text-align: center;
+        color: #fff;
+      }
+    }
+  }
+}
+
+.right-draw.open-right-draw {
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+.right-draw.open-right-draw.shrink-right-draw {
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.bottom-draw.open-bottom-draw {
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+.bottom-draw.open-bottom-draw.shrink-bottom-draw {
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tool-icon-box {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background: rgb(249, 249, 249);
+    color: #1fa1fd;
+  }
+}
+.tool-icon-box.active {
+  background: rgb(249, 249, 249);
+  color: #1fa1fd;
+}
+/* arcgis微件  start*/
+.esri-ui {
+  // 弹出框
+  .esri-popup {
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.09);
+    border-radius: 6px;
+    .esri-popup__main-container {
+      width: 330px;
+      max-height: 330px;
+      background: rgba(0, 0, 0, 0);
+      @media screen and (max-width: 1350px) {
+        width: 280px;
+        max-height: 280px;
+      }
+
+      .esri-popup__header {
+        color: #fff;
+        background-color: #1fa1fd !important;
+        border-radius: 5px 5px 0 0;
+        height: 34px;
+        .esri-popup__header-container {
+          outline: none !important;
+          .esri-popup__header-title {
+            outline: none !important;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 8px;
+            height: 34px;
+            line-height: 34px;
+          }
+          .esri-popup__header-title:hover {
+            background-color: #46a6ff !important;
+          }
+        }
+        .esri-popup__button {
+          color: #fff !important;
+        }
+        .esri-popup__button:hover {
+          background-color: #46a6ff !important;
+        }
+        .esri-popup__button.esri-popup__button--dock {
+          display: none;
+        }
+      }
+      .esri-popup__content {
+        padding: 8px;
+        margin: 0;
+        background: #fff;
+        .popup-tabs-title {
+          height: 25px;
+          line-height: 25px;
+          margin: 5px 0;
+          padding-left: 10px;
+          font-weight: bolder;
+          font-size: 15px;
+          border-left: 5px solid #1fa1fd;
+        }
+        .popup-block {
+          height: 33px;
+          line-height: 32px;
+          font-size: 13px;
+          border-top: 1px solid #e2e2e2;
+          @media screen and (max-width: 1350px) {
+            height: 28px;
+            line-height: 27px;
+            font-size: 12px;
+          }
+
+          .popup-label {
+            text-align: center;
+            background: #f4f7fc;
+            border-left: 1px solid #e2e2e2;
+            color: #969696;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .popup-value {
+            text-align: center;
+            border-left: 1px solid #e2e2e2;
+            border-right: 1px solid #e2e2e2;
+            padding: 0 10px;
+            color: #1fa1fd;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .popup-block:nth-last-child(1) {
+          line-height: 31px;
+          border-bottom: 1px solid #e2e2e2;
+          @media screen and (max-width: 1350px) {
+            line-height: 26px;
+          }
+        }
+        ul {
+          padding: 0 10px;
+          margin: 0;
+          li {
+            list-style: none;
+            line-height: 26px;
+            font-size: 14px;
+            font-family: Microsoft YaHei;
+            font-weight: 400;
+            color: rgba(52, 69, 99, 1);
+            span {
+              color: rgba(46, 108, 253, 1);
+            }
+          }
+        }
+
+        .data_null {
+          width: 100%;
+          height: 100px;
+          background: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .sp_data_null {
+            color: #909399 !important;
+            font-size: 14px;
+          }
+        }
+      }
+      .esri-popup__footer {
+        margin-top: 0px !important;
+        background: #fff;
+      }
+    }
+    // &.esri-popup--aligned-top-center .esri-popup__pointer {
+    //   display: none;
+    // }
+  }
+}
+// 打印
+.esri-print__advanced-options-section {
+  display: none;
+}
+/* arcgis微件  end*/
+
+/* supermap弹出框 start*/
+.pop-container {
+  box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.09);
+  border-radius: 6px;
+  width: 330px;
+  // max-height: 330px !important;
+  background: rgba(0, 0, 0, 0);
+  @media screen and (max-width: 1350px) {
+    width: 280px;
+    // max-height: 280px !important;
+  }
+  .pop-header {
+    color: #fff;
+    background-color: #1fa1fd !important;
+    border-radius: 5px 5px 0 0;
+    height: 34px;
+    .pop-titlename {
+      font-weight: bold;
+      margin: 0;
+      padding: 0 8px;
+      height: 34px;
+      line-height: 34px;
+    }
+    .pop-titlename:hover {
+      background-color: #46a6ff !important;
+    }
+    .pop-hide {
+      color: #fff !important;
+    }
+    .pop-hide:hover {
+      background-color: #46a6ff !important;
+    }
+  }
+  #marker_contentDiv {
+    width: 100% !important;
+    top: 34px !important;
+    overflow: hidden !important;
+    // max-height: 293px !important;
+    // @media screen and (max-width: 1350px) {
+    //   max-height: 243px !important;
+    // }
+    #marker_groupDiv {
+      width: 100%;
+      height: 100%;
+      padding: 8px;
+      margin: 0;
+      background: #fff;
+      overflow: auto !important;
+      .popup-tabs-title {
+        height: 25px;
+        line-height: 25px;
+        margin: 5px 0;
+        padding-left: 10px;
+        font-weight: bolder;
+        font-size: 15px;
+        border-left: 5px solid #1fa1fd;
+      }
+      .popup-block {
+        height: 33px;
+        line-height: 32px;
+        font-size: 13px;
+        border-top: 1px solid #e2e2e2;
+
+        .popup-label {
+          text-align: center;
+          background: #f4f7fc;
+          border-left: 1px solid #e2e2e2;
+          color: #969696;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .popup-value {
+          text-align: center;
+          border-left: 1px solid #e2e2e2;
+          border-right: 1px solid #e2e2e2;
+          padding: 0 10px;
+          color: #1fa1fd;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .popup-block:nth-last-child(1) {
+        line-height: 31px;
+        border-bottom: 1px solid #e2e2e2;
+      }
+      ul {
+        padding: 0 10px;
+        margin: 0;
+        li {
+          list-style: none;
+          line-height: 26px;
+          font-size: 14px;
+          font-family: Microsoft YaHei;
+          font-weight: 400;
+          color: rgba(52, 69, 99, 1);
+          span {
+            color: rgba(46, 108, 253, 1);
+          }
+        }
+      }
+
+      .data_null {
+        width: 100%;
+        height: 100px;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .sp_data_null {
+          color: #909399 !important;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+/* supermap弹出框 end*/
+.middle-content {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  z-index: 1500;
+}

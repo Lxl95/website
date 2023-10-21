@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>申请入口</title>
+  <link href="../css/entry.css" type="text/css" rel="stylesheet"></link>
+	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/vue-resource.js"></script>
+	<style type="text/css">
+		#contentBox{
+			width: 100%;
+			height: 100%;
+		}
+		html,body {
+		  width: 100%;
+		  height: 100%;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		}
+		main{
+			position: relative;
+			min-width: 1300px;
+		}
+		.lineLo{
+			position: absolute;
+			top: 20px;
+			margin-left: calc(50% - 142.5px);
+		}
+	</style>
+</head>
+<body >
+	<div id="contentBox">
+  <header class="head-nav-up">
+	<div class="head-logo">
+	  	<img src="../images/xingcheng.png" />
+	</div>   
+  </header>
+  <main>
+		<img src="../images/lineLo.png" class="lineLo"/>
+    <section>
+      <div>
+        <div class="img-box xzjs" @click="jump('1','sure')"></div>
+        个人报装
+      </div>
+			<div>
+			  <div class="img-box sgls" @click="jump('2','sure')"></div>
+			  小区报装
+			</div>
+			<div>
+			  <div class="img-box lhys" @click="jump('3','sure')"></div>
+			  企业报装
+			</div>
+      <div>
+				<div class="img-box fhgz" @click="jump('4','sure')"></div>
+				水表扩径
+      </div>
+      <div>
+				<div class="img-box bzcx" @click="jump('5','search')"></div>
+				报装查询
+      </div>
+      <!-- <div>
+				<div class="img-box bzfd" @click="jump('6','coach')"></div>
+				报装辅导
+      </div> -->
+    </section>
+  </main>
+  <footer>
+    <section>
+    	<img src="../images/logo1.png" style="float: left;padding-right: 20px;margin-top: 20px;width:92px;"/>
+    	<br><br>
+    	<p>版权所有 兴城市水务集团有限公司 Copyright @ 2019-{{dateYear}} All Rights Reserved.</p>
+    	<p>地址：辽宁省兴城市兴海南街93号 联系电话：0429-5895555</p>
+    	<p><span style="color:#F7EB27;">新天科技股份有限公司</span>提供技术支持</p>
+    </section>
+  </footer>
+	</div>
+</body>
+ <script type="text/javascript">
+		var vuedata = new Vue({
+		  el: '#contentBox',
+			data:{
+				dateYear: 2020
+			},
+			created: function() {
+				var date=new Date;
+				var y = date.getFullYear();
+				this.dateYear = y;
+			},
+			methods: {
+				jump:function jump(ind , mes) {
+					if(mes == 'sure'){
+						//window.location.href = "agreement.html?type=" + ind;  //跳转同意用户须知
+						if(ind == '1'){
+							window.location.href = "gerenbaozhuang.html";
+						}else if(ind == '2'){
+							window.location.href = "xiaoqubaozhuang.html";
+						}else if(ind == '3'){
+							window.location.href = "qiyebaozhuang.html";
+						}else if(ind == '4'){
+							window.location.href = "shuibiaokuojing.html";
+						}	
+					}else if(mes == 'search'){
+						window.location.href = "query.html";
+					}else if(mes == 'coach'){
+						window.location.href = "agreement.html";
+					}
+				}
+			}
+		})
+  </script>
+</html>

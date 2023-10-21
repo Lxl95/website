@@ -1,0 +1,10 @@
+/**
+* element-ui自定义主题，参考官网主题修改对应变量
+**/
+
+$--button-font-weight: 400;
+
+/* icon font path, required */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
