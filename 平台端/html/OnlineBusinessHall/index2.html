@@ -1,0 +1,1011 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>网上营业厅</title>
+<script src="../../js/jquery.js"></script>
+
+
+<link rel="stylesheet" href="../../css/personalCenter-css/public.css">
+<link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css">
+<link rel="stylesheet" href="../../css/personalCenter-css/customrt-center.css">
+<link rel="stylesheet" href="../../js/layui/css/layui.css" />
+<style>
+#box {
+	height: 365px;
+	/*width: 778px !important;*/
+	overflow: hidden;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #f3f3f3;
+}
+
+#consNoSelectDiv .customerid-top .select2-container--default .select2-selection--single{
+	border: 0!important;
+	background: #f2f9ff!important;
+}
+</style>
+</head>
+
+<body>
+	<!--页面top导航-->
+	
+
+<div id="header" >
+	<div class="header-left" align="center">
+		<img  :ng-src="{{imageUrl+ info.logo}}" alt="logo">
+	</div>
+	<ul class="nav nav-pills">
+		<li role="presentation"><a href="/home.html">首页</a></li>
+		<li role="presentation"><a href="/index">网上营业厅</a></li>
+	</ul>
+	<div class="header-right">
+		<div>
+			<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
+			<ul class="header-right-more ">
+				<li><a href="/user/logout.htm">退出</a></li>
+				<li><a href="/user/index">个人中心</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="bg"></div>
+
+	<div id="head-phone">
+		<div class="head-phone">
+			<p class="head-phone-left glyphicon glyphicon-th-list"></p>
+			<p id="page-title">水务集团</p>
+			<p class="head-phone-right glyphicon glyphicon-user clickshow"></p>
+			<ul class="header-right-more " onblur="$(this).fadeToggle()">
+				<li><a href="/user/index">个人中心</a></li>
+				<li><a href="/user/logout.htm">退出</a></li>
+			</ul>
+		</div>
+	</div>
+
+<script>
+	function setMobileTitle(title) {
+		if (document.getElementById("page-title")) {
+			document.getElementById("page-title").innerHTML = title;
+		}
+	}
+	setMobileTitle(document.title);
+</script>
+	<div id="main">
+		<!--页面left导航 start -->
+    <div id="aside" >
+        <div class="indentation">
+            <a href="home.html" style="color: #000;"><p class="glyphicon glyphicon-home left-home"></p></a>
+            <p class="glyphicon glyphicon-arrow-left left-in"></p>
+        </div>
+        <ul class="list-group ul">
+            <li class="list-group-item"><i></i><a href="/index"><span class="asideicon"><img src="/images/1.png" alt=""></span>客户中心</a></li>
+            <li class="list-group-item"><i></i><a href="/waterFee/index"><span class="asideicon"><img src="/images/2.png" alt=""></span>水费查询</a></li>
+            <li class="list-group-item show">
+                <i></i>
+                <a href="javascript:void(0)"><span class="asideicon"><img src="/images/3.png" alt=""></span>快速缴费 <span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="list-group more">
+                    <div class="in">
+                        <li class="list-group-item"><i></i><a href="/payment/index">快速缴费</a></li>
+                        <li class="list-group-item"><i></i><a href="/paymentOrder/initList">支付清单</a></li>
+                    </div>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><i></i><a href="/proof/index"><span class="asideicon"><img src="/images/6.png" alt=""></span>用水证明</a></li>
+            <li class="list-group-item show">
+                <i></i>
+                <a href="javascript:void(0)"><span class="asideicon"><img src="/images/4.png" alt=""></span>增值税业务与票务<span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="list-group more">
+                    <div class="in">
+                        <li class="list-group-item"><i></i><a href="/invoice/initOpenInvoiceList">电子发票</a></li>
+                        <li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceRegistList">专项预约登记</a></li>
+                        <li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceRecordList">已预约列表</a></li>
+                        <li class="list-group-item"><i></i><a href="/bizInvoice/invoicePage">增值税业务</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/invoiceHead/initList">发票信息管理</a></li>
+                        <li class="list-group-item"><i></i><a href="/userAddress/initList">寄送地址管理</a></li>
+                        <li class="list-group-item"><i></i><a href="/invoice/initDivisionList">普通发票分割开票</a></li>
+                        <li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceDivisionList">普通发票分割列表</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/invoice/initOpenAcctRecordList">增值税开户申请列表</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/vatInvoice/splitedList">增值税开票申请列表</a></li>
+
+                    </div>
+                </ul>
+            </li>
+            <li class="list-group-item teshow newshow">
+                <i></i>
+                <a href="javascript:void(0)"><span class="asideicon"><img src="/images/5.png" alt=""></span>业务办理 <span
+                        class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="list-group more biz-group">
+                    <div class="in">
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=2">个人接水</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=3">单位接水（住宅）</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=27">单位接水（非住宅）</a></li>
+
+                        <li class="list-group-item"><i></i><a href="/invoice/initOpenInvoiceList">增值税业务与票务</a></li>
+                            
+                            
+
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=22">水量自报</a></li>
+                        <li class="list-group-item"><i></i><a href="/wxCard/applyWxCard">水费卡补办</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/toCollection">集中代收付</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=25">网银缴费销账</a></li>
+                        <li class="list-group-item"><i></i><a href="/waterFee/index">水费查询</a></li>
+                        <li class="list-group-item"><i></i><a href="/payment/index">水费缴纳</a></li>
+                        <li class="list-group-item"><i></i><a href="/proof/index">用水证明下载</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=8">供水意见征询</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=11">拆表拆管</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=4">补装接水</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=6">户表出户</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=5">抄表到户</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=9">移表</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=10">配合市政项目</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=1">个人过户</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=12">单位过户</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=24">水价类别变更</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=14">阶梯水价人口数调整</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=15">垃圾费调整</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=19">报修</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=20">意见建议</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=21">咨询</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=10000043">违章举报</a></li>
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=91">污水纳管</a></li>
+                            
+                        <li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=93">市政污水管迁改</a></li>
+                            
+                            
+                            
+
+                    </div>
+                </ul>
+            </li>
+
+            <li class="list-group-item"><i></i><a href="/bizApply/index"><span class="asideicon"><img src="/images/7.png" alt=""></span>我的业务</a></li>
+            <li class="list-group-item"><i></i><a href="/userAccount/index"><span class="asideicon"><img src="/images/17.png" alt=""></span>管理账户</a></li>
+            <li class="list-group-item"><i></i><a href="/page/toCollection"><span class="asideicon"><img src="/images/17.png" alt=""></span>集中代收付</a></li>
+
+                
+                
+            <li class="list-group-item show">
+                <i></i><a href="javascript:void(0)"><span class="asideicon"><img src="/images/18.png" alt=""></span>实名认证 <span
+                    class="glyphicon glyphicon-chevron-right"></span></a>
+                <ul class="list-group more">
+                    <div class="in">
+                        
+                            <li class="list-group-item"><i></i><a href="/user/nameAuth4nj">我的南京</a></li>
+                            
+                            <li class="list-group-item"><i></i><a href="/user/nameAuth">个人认证</a></li>
+                            <li class="list-group-item"><i></i><a href="/user/nameAuthEnterprise">企业认证</a></li>
+                        
+                        
+                    </div>
+                </ul>
+            </li>
+
+        </ul>
+        <ul class="list-group newmore">
+            <div class="newin">
+                <div class="business-search">
+                    <p class="searchBtn">搜索</p>
+                    <input type="text" class="search">
+                </div>
+                <ul class="business-ul">
+                    <li class="water title">
+                        <p>新接水申请</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=2">个人接水</a></li>
+                            <li><a href="/page/bizPage?pageConfId=3">单位接水（住宅）</a></li>
+                            <li><a href="/page/bizPage?pageConfId=27">单位接水（非住宅）</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="service title">
+                        <p>供水意见征询</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=8">供水意见征询</a></li>
+                        </ul>
+                    </li>
+                    <li class="service title">
+                        <p>排水</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=91">污水纳管</a></li>
+                                
+                                
+                            <li><a href="/page/bizPage?pageConfId=93">市政污水管迁改</a></li>
+                                
+                                
+                        </ul>
+                    </li>
+                    <li class="service title">
+                        <p>96055</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=19">报修</a></li>
+                            <li><a href="/page/bizPage?pageConfId=21">咨询</a></li>
+                            <li><a href="/page/bizPage?pageConfId=20">意见建议</a></li>
+                            <li><a href="/page/bizPage?pageConfId=10000043">违章举报</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="service title">
+                        <p>用水缴费</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=22">水量自报</a></li>
+                            <li><a href="/wxCard/applyWxCard">水费卡补办</a></li>
+                            <li><a href="/page/toCollection">集中代收付</a></li>
+                                
+                            <li><a href="/page/bizPage?pageConfId=25">网银缴费销账</a></li>
+                            <li><a href="/waterFee/index">水费查询</a></li>
+                            <li><a href="/payment/index">水费缴纳</a></li >
+                            <li><a href="/proof/index">用水证明下载</a></li>
+                            <li><a href="/invoice/initOpenInvoiceList">增值税业务与票务</a></li>
+                                
+                                
+                        </ul>
+                    </li>
+                    <li class="service title">
+                        <p>用户信息变更</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=1">个人过户</a></li>
+                            <li><a href="/page/bizPage?pageConfId=12">单位过户</a></li>
+                            <li><a href="/page/bizPage?pageConfId=11">拆表拆管</a></li>
+                            <li><a href="/page/bizPage?pageConfId=24">水价类别变更</a></li>
+                            <li><a href="/page/bizPage?pageConfId=14">阶梯水价人口数调整</a></li>
+                            <li><a href="/page/bizPage?pageConfId=15">垃圾费调整</a></li>
+                                
+                        </ul>
+                    </li>
+
+
+                        
+                        
+                        
+                        
+                        
+                        
+                    <li class="service title">
+                        <p>改造申请</p>
+                        <ul>
+                            <li><a href="/page/bizPage?pageConfId=4">补装接水</a></li>
+                            <li><a href="/page/bizPage?pageConfId=6">户表出户</a></li>
+                            <li><a href="/page/bizPage?pageConfId=5">抄表到户</a></li>
+                            <li><a href="/page/bizPage?pageConfId=9">移表</a></li>
+                            <li><a href="/page/bizPage?pageConfId=10">配合市政项目</a></li>
+                        </ul>
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </ul>
+            
+
+    </div>
+
+
+		<!--页面left导航 end -->
+		<div class="right">
+			<div class="main-content">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">首页</li>
+						<li class="breadcrumb-item active" aria-current="page">客户中心</li>
+					</ol>
+				</nav>
+				<div class="contents">
+					<div class="contents-left">
+						<div class="contents-top">
+							<div class="title">
+								<h1>基本情况</h1>
+								<a href="javascript:void(0)"
+									onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>更多>></a>
+							</div>
+							<div class="customerid" id="consNoSelectDiv">
+								<div class="customerid-top">
+										<i class=""><img src="/images/11.png" alt=""></i>
+									<p class="">用户编号</p>
+									<span>
+										
+										<a href="/userAccount/toBind">绑定户号</a>
+										
+										
+										</span>
+
+								</div>
+								<div class="customerid-center">
+										<i class=""><img src="/images/12.png" alt=""></i>
+									<p class="">用户名称</p>
+									<i class="i" onclick="layer.tips('用户名称是在水务集团登记的名称', this);"></i>
+									<span id="consName"></span>
+								</div>
+								<div class="customerid-bottom">
+										<i class=""><img src="/images/13.png" alt=""></i>
+									<p class="">用户地址</p>
+									<i class="i" onclick="layer.tips('用户地址是在水务集团登记的地址',this);"></i>
+									<span id="address"></span>
+								</div>
+								<div class="customerid-bottom2">
+									<i class=""><img src="/images/water-14.png" alt=""></i>
+									<p class="">水表编号</p>
+									<span id="meterNum"></span>
+								</div>
+								<div class="customerid-bottom3">
+									<i class=""><img src="/images/water-15.png" alt=""></i>
+									<p class="">水表口径</p>
+									<span id="meterSize"></span>
+								</div>
+								<div class="customerid-bottom4">
+									<i class=""><img src="/images/water-16.png" alt=""></i>
+									<p class="">水价类别</p>
+									<span id="meterCategory"></span>
+								</div>
+							</div>
+							<div class="customer-bottom">
+								<div class="customer-bottoml">
+									<div class="customerid-top">
+										<i class=""><img src="/images/water-17.png" alt=""></i>
+										<p class="" id="cbName"></p>
+										<span id="banzhu"></span>
+									</div>
+									<div class="customerid-center">
+										<i class=""><img src="/images/water-18.png" alt=""></i>
+										<p class=""><a href="" id="cbPhone"></a></p>
+
+									</div>
+									<div class="customerid-bottom">
+										<i class=""><img src="/images/water-19.png" alt=""></i>
+										<p class="" id="cbDate"></p>
+									</div>
+								</div>
+								<div class="customer-bottomr">
+									<img src="/images/gj.png" alt="">
+									<p style="letter-spacing: 2px;">贴心管家</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="contents-bottom" >
+							<div class="title">
+								<h1 class="title-tab">全部公告</h1>
+								<h1>停水公告</h1>
+								<h1>通知公告</h1>
+								<a href="portal/10000012" target="_blank">更多>></a>
+							</div>
+							<div class="tab-content">
+								<ul class="tab-show">
+									
+										<li><a href="10755798.html" target="_blank">南京水务集团2023年二季度公共设施连接项目清单</a>
+											<span class="list-time">2023-06-30</span></li>
+									
+										<li><a href="10756123.html" target="_blank">2023年度上元门水厂西厂斜管、斜板沉淀池排泥改造角式排泥阀、排泥阀膜片采购中标结果公示</a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756122.html" target="_blank">2023年度新开源运维设备采购项目物资采购中标结果公示</a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756121.html" target="_blank">江心洲污水收集系统二通道建设工程（凤台路泵站至西城路段）基坑、沉降监测中标结果公示</a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756120.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-25</span></li>
+									
+								</ul>
+								<ul>
+									
+										<li><a href="10756120.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-25</span></li>
+									
+										<li><a href="10756117.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-22</span></li>
+									
+										<li><a href="10756105.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-20</span></li>
+									
+										<li><a href="10756091.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-18</span></li>
+									
+										<li><a href="10756085.html" target="_blank">停水通知</a>
+											<span class="list-time">2023-09-15</span></li>
+									
+								</ul>
+								<ul>
+									
+										<li><a href="10755798.html" target="_blank"><span>南京水务集团2023年二季度公共设施连接项目清单</span></a>
+											<span class="list-time">2023-06-30</span></li>
+									
+										<li><a href="10756123.html" target="_blank"><span>2023年度上元门水厂西厂斜管、斜板沉淀池排泥改造角式排泥阀、排泥阀膜片采购中标结果公示</span></a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756122.html" target="_blank"><span>2023年度新开源运维设备采购项目物资采购中标结果公示</span></a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756121.html" target="_blank"><span>江心洲污水收集系统二通道建设工程（凤台路泵站至西城路段）基坑、沉降监测中标结果公示</span></a>
+											<span class="list-time">2023-09-26</span></li>
+									
+										<li><a href="10756116.html" target="_blank"><span>闺奁营、三元巷、许家巷供水管线改造工程施工中标结果公示</span></a>
+											<span class="list-time">2023-09-22</span></li>
+									
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="contents-right">
+						<div class="right-one">
+							<div class="arrearage">
+								<p class="right-title">应缴水费</p>
+								<p class="right-center">
+									<span id="feeAmt" class="spanfirst">0</span><span>元</span>
+								</p>
+								<p class="right-bottom">
+									<a href="javascript:void(0)" onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>查看详情</a>
+								</p>
+							</div>
+							<div class="business">
+								<p class="right-title">我的业务</p>
+								<p class="right-center">0</p>
+								<p class="right-bottom">
+									<a href="bizApply/index.htm">查看详情</a>
+								</p>
+							</div>
+							<div class="accountDetail">
+								<div class="detail-top">
+									<p class="detail-main">预存款</p>
+									<p class="detail-content">
+										<span  class="spanfirst" id="ycsfAB">0</span><span>元</span>
+									</p>
+								</div>
+								<div class="detail-bottom">
+									<p class="detail-main">暂收款</p>
+									<p class="detail-content">
+										<span  class="spanfirst" id="zcAB">0</span><span>元</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="right-two">
+							<div class="integral">
+								<div class="img">
+									<img src=""   onerror="this.src='/images/peple.png';this.onerror=null" id="headImg">
+								</div>
+								<div class="num">
+									<p>
+										用户名：<span>SWd0f90c5c469869</span>
+									</p>
+									<p>
+										积分：<span class="bignum">0</span><i>分</i>
+									</p>
+								</div>
+								<div class="right-bottom2">
+									
+									<a href="/userPoints/initList"  >积分详情</a>
+								</div> 
+							</div>
+
+							<div class="dashbord">
+								<div id="dashbord" style="height: 200px;margin-top: 2px;margin-bottom: -68px;width: 100%"></div>
+							</div>
+
+						</div>
+						<div class="tab">
+							<ul>
+
+								
+									<li  class="li-color">
+										2023
+									</li>
+								
+									<li  >
+										2022
+									</li>
+								
+									<li  >
+										2021
+									</li>
+								
+							</ul>
+						</div>
+						<div class="right-three">
+							<ul>
+								<li>
+									<p class="right-title b">总水量</p>
+									<p class="right-center">
+										<span id="waterAmt" class="spanfirst spannum">0</span> <span>吨</span>
+									</p>
+								</li>
+								<li class="border">
+									<p class="right-title b">总水费</p>
+									<p class="right-center">
+										<span id="waterFeeAmt" class="spanfirst spannum">0</span> <span>元</span>
+									</p>
+								</li>
+								<li>
+									<p class="right-title b">总垃圾费</p>
+									<p class="right-center">
+										<span id="garbageAmt" class="spanfirst spannum">0</span> <span>元</span>
+									</p>
+								</li>
+							</ul>
+						</div>
+						<div class="right-four">
+							<div id="box"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</div>
+</body>
+<script src="/plugins/jquery/jquery-1.11.0.min.js"></script>
+<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/plugins/select2/select2.min.css">
+<link rel="stylesheet" href="/plugins/select2/select2-bootstrap.min.css">
+<script src="/plugins/select2/select2.min.js"></script>
+<script src="/plugins/select2/select2tree.js"></script>
+<script src="/plugins/select2/i18n/zh-CN.js"></script>
+<script src="/js/plugins/suypower.common.js?v=234211111"></script>
+<script src="/js/personalCenter-js/personalMain.js?v=234211111"></script>
+<script type="text/javascript" src="/plugins/layer/2.1/layer.js"></script>
+<script type="text/javascript"
+	src="/plugins/echarts/echarts.min.js" charset='utf-8'></script>
+<script type="text/javascript" src="/plugins/echarts/macarons.js"
+	charset='utf-8'></script>
+	<script src="../../js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	//tab切换
+	$('.tab ul li').click(function(){
+	    $(this).addClass('li-color');
+	    $(this).siblings('li').removeClass('li-color');
+        $("select[name=consNo]").change();
+	})
+	$('.contents-bottom .title h1').click(
+			function(event) {
+				$(this).addClass('title-tab');
+				$(this).siblings().removeClass('title-tab');
+				$('.tab-content ul').eq($(this).index()).addClass('tab-show');
+				$('.tab-content ul').eq($(this).index()).siblings()
+						.removeClass('tab-show');
+			})
+
+	// 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('box'));
+	var dashbord = echarts
+			.init(document.getElementById('dashbord'), 'macarons');
+	$("select[name=consNo]")
+			.change(
+					function() {
+						var noConsNo= $("select[name=consNo]").val()==null||$("select[name=consNo]").val()=='';
+						if($("select[name=consNo]").val()==''){
+							return false;
+						}
+						$("#consName").html(
+								$("select[name=consNo] option:selected").attr(
+										"consName"));
+						$("#address").html(
+								$("select[name=consNo] option:selected").attr(
+										"address"));
+                        $("#meterNum").html('');
+                        $("#meterSize").html('');
+                        $("#meterCategory").html('');
+                        $("#cbName").html('');
+                        $("#banzhu").html('');
+                        $("#cbPhone").html('');
+                        $("#cbDate").html('');
+						//切换展示扩展属性
+                        $.ajax({
+                            type : "post",
+                            url : global.basePath + "user/getConsNoWithExtInfo",
+                            data : {
+                                consNo : $("select[name=consNo]").val()
+                            },
+                            dataType : "JSON", //数据格式:JSON
+                            success : function(result) {
+                                if(result.code=='0'){
+                                    var consInfo = result.consInfo;
+                                    $("#meterNum").html(consInfo.meterNo);
+                                    $("#meterSize").html(consInfo.caliberName);
+                                    $("#meterCategory").html(consInfo.jobTypeToString);
+                                    $("#cbName").html(consInfo.reader);
+                                    $("#banzhu").html(consInfo.banzu);
+                                    $("#cbPhone").html(consInfo.cbPhone);
+                                    $("#cbPhone").attr('href','tel:' + consInfo.cbPhone);
+                                    $("#cbDate").html(consInfo.readType+consInfo.cbDate+"日抄表");
+                                    if(consInfo.consAccountBook){
+                                        if(consInfo.consAccountBook.YCSF){
+                                            $("#ycsfAB").html(consInfo.consAccountBook.YCSF);
+                                        }
+                                        if(consInfo.consAccountBook.ZC){
+                                            $("#zcAB").html(consInfo.consAccountBook.ZC);
+                                        }
+                                        $("#zsAB").html(consInfo.consAccountBook.ZS);
+                                        $("#jyAB").html(consInfo.consAccountBook.JY);
+                                    }
+                                }
+                            }
+                        });
+
+						$.ajax({
+							type : "post",
+							url : global.basePath + "waterFee/charts",
+							data : {
+								consNo : $("select[name=consNo]").val(),
+								year : $(".tab ul .li-color").text().trim()
+							},
+							dataType : "JSON", //数据格式:JSON
+							success : function(result) {
+								var xAxisData = [];
+								var seriesData = [];
+								if (result.code = '0') {
+									xAxisData = result.months;
+									seriesData = result.waterSums;
+									
+									$("#waterAmt").html(result.water4Year);
+									$("#waterFeeAmt").html(result.waterFee4Year);
+									$("#garbageAmt").html(result.garbageFee4Year);
+								}
+
+								// 指定图表的配置项和数据
+								option = {
+									title : {
+										text : '年用水量',
+										subtext : '用水量（吨）'
+									},
+									tooltip : {
+										trigger : 'axis'
+									},
+									toolbox : {
+										show : false,
+										feature : {
+											mark : {
+												show : true
+											},
+											dataView : {
+												show : true,
+												readOnly : false
+											},
+											magicType : {
+												show : true,
+												type : [ 'line', 'bar' ]
+											},
+											restore : {
+												show : true
+											},
+											saveAsImage : {
+												show : true
+											}
+										}
+									},
+									calculable : true,
+									xAxis : [ {
+										type : 'category',
+										boundaryGap : false,
+										data : xAxisData
+									} ],
+									yAxis : [ {
+										type : 'value',
+										axisLabel : {
+											formatter : '{value} 吨   '
+										}
+									} ],
+									series : [ {
+										name : '用水量',
+										type : 'line',
+										data : seriesData,
+										markPoint : {
+											data : [ {
+												type : 'max',
+												name : '最大值'
+											}, {
+												type : 'min',
+												name : '最小值'
+											} ]
+										},
+										markLine : {
+											data : [ {
+												type : 'average',
+												name : '平均值'
+											} ]
+										}
+									} ],
+                                    grid : {
+									    top:70,
+                                        left :90,
+                                        right : 60
+                                    }
+								};
+								// 使用刚指定的配置项和数据显示图表。
+								myChart.setOption(option);
+							}
+						})
+
+						$.ajax({
+							type : "post",
+							url : global.basePath + "waterFee/getConsWaterFeeSummary",
+							data : {
+								consNo : $("select[name=consNo]").val()
+							},
+							dataType : "JSON", //数据格式:JSON 
+							success : function(result) {
+							    if(result.code=='0'){
+							    	$("#feeAmt").html(result.feeAmt);
+								}
+							}
+						});
+
+						$.ajax({
+									type : "post",
+									url : global.basePath
+											+ "user/getUserLadderInfo",
+									data : {
+										consNo : $("select[name=consNo]").val()
+									},
+									dataType : "JSON", //数据格式:JSON
+									success : function(result) {
+										
+										var noData=false;
+										var level1= noConsNo?180:result.data.level1;
+										var level2= noConsNo?300:result.data.level2;
+										var level_1_point = Math.floor(level1/120)*60;
+										var level_2_point = Math.floor((level2-level1)/120)*60+level1;
+										var maxCount=level2+60*2;
+										var level_3_point = level2 +60;
+										//var pCount=(result.data.level2-180)/60;
+										var c_1=level1/maxCount;
+										var c_2=level2/maxCount;
+										var splitNumber=(level2+60*2)/60;
+										
+										//console.log(pCount);
+										var beginDate=noConsNo?'':result.data.beginDate;
+										var endDate=noConsNo?'':result.data.endDate;
+										var data = noConsNo?'0':result.data.accuWq;
+										var ladderFlag=noConsNo?'1':result.data.ladderFlag;
+										var dspMsg='累积阶梯水量';
+										if(typeof(data) =='undefined'){
+											noData=true;
+											dspMsg= "无累积数据";
+										}
+										if(ladderFlag!='1'){
+											noData=true;
+											dspMsg="非阶梯用户";
+										}
+										var lastMeterData=noConsNo?'0':result.data.lastMeterData;
+										
+										if(result.code=='501'){
+											noData= true;
+											lastMeterData='无抄见字码'
+										}
+										
+										option = {
+											    tooltip : {
+											        formatter: "{a}:{c}吨",
+											        position: ['50%', '50%'],
+											    },
+											    toolbox: {
+											        show: false
+											        
+											    },
+												graphic : [ {
+													type : 'group',
+													top : 10,
+													left : 5,
+													children : [ {
+														type : 'rect',
+														//left : 30,
+														shape : {
+															width : 20,
+															height : 10,
+														},
+														style : {
+															fill : 'rgb(46, 199, 201)',
+														}
+													}, {
+														type : 'text',
+														left : 30,
+														style : {
+															fill : 'rgb(46, 199, 201)',
+															text : [ '一阶梯' ],
+															font : '14px'
+														}
+													}
+
+													]
+												}, {
+													type : 'group',
+													top : 40,
+													left : 5,
+													children : [ {
+														type : 'rect',
+														//left : 30,
+														shape : {
+															width : 20,
+															height : 10,
+														},
+														style : {
+															fill : 'rgb(90, 177, 239)',
+														}
+													}, {
+														type : 'text',
+														left : 30,
+														style : {
+															fill : 'rgb(90, 177, 239)',
+															text : [ '二阶梯' ],
+															font : '14px'
+														}
+													}
+
+													]
+												}, {
+													type : 'group',
+													left : 5,
+													top : 70,
+													children : [ {
+														type : 'rect',
+														//left : 30,
+														shape : {
+															width : 20,
+															height : 10,
+														},
+														style : {
+															fill : 'rgb(216, 122, 128)',
+														}
+													}, {
+														type : 'text',
+														left : 30, 
+														style : {
+															fill : 'rgb(216, 122, 128)',
+															text : [ '三阶梯' ],
+															font : '14px'
+														}
+													}
+
+													]
+												} ],
+											    series : [
+											        {
+											            name: '累积水量',
+											            type: 'gauge',
+											            z: 3,
+											            min: 0,
+											            max: maxCount,
+											            splitNumber:splitNumber,
+											            startAngle : 180,
+													    endAngle : 0,
+											            radius: 80,
+											            axisLine: {            // 坐标轴线
+											                lineStyle: {       // 属性lineStyle控制线条样式
+											                    width: 20, 
+											                    color : [
+																				[ c_1,
+																						'rgb(46, 199, 201)' ],
+																				[ c_2,
+																						'rgb(90, 177, 239)' ],
+																				[ 1,
+																						'rgb(216, 122, 128)' ] ]
+											                }
+											            },
+											            splitLine: {    
+											                show:false,// 分隔线
+											                length: -25,         // 属性length控制线长
+											                lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+											                    color: 'auto'
+											                }
+											            },
+											            pointer : {
+																	width : 5,
+																	length : '65%'
+														},
+											            axisLabel: {
+											                backgroundColor: 'transparent',
+											                borderRadius: 1,
+											                color: 'black',
+											                fontWeight:'bold',
+											                fontSize :'12',
+											                distance :3, 
+											                padding: 3,
+											                formatter : function(v) {
+																		switch (v) {
+																		case 0:
+																			return beginDate;
+																		case maxCount:
+																			return endDate;
+																		case level_1_point:
+															 				//return '一阶梯';
+																		case level_2_point:
+																			//return '二阶梯';
+																		case level_3_point:
+																			//return '三阶梯';
+																		default:
+																			if (v == level1
+																					|| v == level2) {
+																				return v;
+																			}
+																			return null;
+																		}
+																	},
+											            },
+											            itemStyle :{
+											                //color :'white' 
+											            },
+											            
+											            title : {
+											                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+											                fontWeight: 'bolder',
+											                fontSize: 10,
+											                fontStyle: 'italic'
+											            },
+											            detail : {
+											                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+											                formatter: function (value) {
+											                   
+											                    return  '{a|'+(noData?'':value+'吨')+'}'+'\n{d|'+'最新字码:'+lastMeterData+'}';
+											                },
+											                fontFamily: 'Arial',
+											                width: 50,
+											                offsetCenter : [ 0, 15 ],
+											                rich: { a: {
+											                        color: 'black',
+											                        lineHeight: 20,
+											                      },
+											                      b: {
+											                        color: 'black',
+											                        lineHeight: 5,
+											                        fontSize:12
+											                      },
+											                      d: {
+											                        color: 'orange',
+											                        lineHeight: 5,
+											                        fontSize:12
+											                      }
+											                    
+											                    
+											                }
+											            },
+											            data:[{value: noData?0:data, name: dspMsg}]
+											        } 
+											    ]
+											};
+										dashbord.setOption(option);
+									}
+								});
+                        $("select[name=consNo]").blur();
+					});
+
+	$("select[name=consNo]").change();
+    $("select[name=consNo]").select2();
+	$("#queryAccountBook").click(function(){
+		var html = $("#consAccountBook").html();
+		layer.open({
+			type: 1,
+			offset: '200px',
+			title: false, //不显示标题
+			//skin: 'layui-layer', //加上边框
+			closeBtn: 1, //不显示关闭按钮
+			area: '25%',
+			maxHeight:500,
+			height:'50px',
+			resize: false,
+			shadeClose: true, //开启遮罩关闭
+			content: html
+		});
+	});
+</script>
+
+</html>

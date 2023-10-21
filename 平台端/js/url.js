@@ -1,10 +1,10 @@
 // 本地地址
-// var baseUrl = "http://192.168.2.155:10028";
-// var imageUrl = "http://192.168.2.155:10028/JavaInstall/upload/imgs/";
-// var fileUrl = "http://192.168.2.155:10028/JavaInstall/upload/files/";
-// var videoUrl = "http://192.168.2.155:10028/JavaInstall/upload/video/";
-// var baoZhuangBaseUrl = "http://219.150.181.194:7878/";
-// var baseUrl_API_BZLC = "http://117.139.103.7:20021/bz/";
+var baseUrl = "http://192.168.2.155:10028";
+var imageUrl = "http://192.168.2.155:10028/JavaInstall/upload/imgs/";
+var fileUrl = "http://192.168.2.155:10028/JavaInstall/upload/files/";
+var videoUrl = "http://192.168.2.155:10028/JavaInstall/upload/video/";
+var baoZhuangBaseUrl = "http://219.150.181.194:7878/";
+var baseUrl_API_BZLC = "http://117.139.103.7:20021/bz/";
 
 // 眉山地址
 // var baseUrl = "http://117.139.103.7:20021/gw";
@@ -18,15 +18,15 @@
 
 
 // 208测试地址
-var baseUrl = "http://192.168.2.208:60028";
-var imageUrl = "http://192.168.2.208:60028/JavaInstall/upload/imgs/";
-var fileUrl = "http://192.168.2.208:60028/JavaInstall/upload/files/";
-var videoUrl = "http://192.168.2.208:60028/JavaInstall/upload/video/";
-var baoZhuangBaseUrl = "http://192.168.2.208:60010/";
-var baseUrl_API_BZLC = "http://192.168.2.208:60010/";
-var baseUrl_ys = "http://192.168.2.208:60002/"
-var baseUrl_yth = "http://192.168.2.208:60001/"
-var baseUrl_gis = "http://192.168.2.208:60006/"
+// var baseUrl = "http://192.168.2.208:60028";
+// var imageUrl = "http://192.168.2.208:60028/JavaInstall/upload/imgs/";
+// var fileUrl = "http://192.168.2.208:60028/JavaInstall/upload/files/";
+// var videoUrl = "http://192.168.2.208:60028/JavaInstall/upload/video/";
+// var baoZhuangBaseUrl = "http://192.168.2.208:60010/";
+// var baseUrl_API_BZLC = "http://192.168.2.208:60010/";
+// var baseUrl_ys = "http://192.168.2.208:60002/"
+// var baseUrl_yth = "http://192.168.2.208:60001/"
+// var baseUrl_gis = "http://192.168.2.208:60006/"
 
 // linux测试地址
 // var baseUrl = "http://123.161.164.75:10000/SuntrontOfficialwebAPI";

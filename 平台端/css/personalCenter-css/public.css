@@ -1,0 +1,274 @@
+@charset "utf-8";
+/**后台自定义css*/
+/* @import url(/sys.customer.css?v=20221201); */
+/* CSS Document */
+/*公共样式*/
+* {
+    box-sizing: border-box;
+}
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select,td{margin:0;padding:0;} 
+body{font:14px  ""; word-wrap:break-word;min-width:1240px;
+    min-width:1280px\9;}
+a,u,s,del{color:#666;text-decoration:none !important;} 
+fieldset ,a img,.bor0 {border:0;}
+i,em,b{font-style:normal;font-weight:100;}
+li{list-style:none;}
+img{vertical-align:middle;} 
+table{border-collapse:collapse;}
+.ind2{text-indent:2em;}
+
+.rsDefault .rsFullscreenIcn{background:url('img/rs-default.png') 0 0;}
+.rsDefault .rsArrowIcn{background:url('img/rs-default.png');}
+#gallery-1 {width:100%; -webkit-user-select: none; -moz-user-select: none; user-select: none;}
+.rsDefault .rsThumb{width:200px; height:60px;}
+/*  图片水平垂直对齐*/
+.valign{text-align:center;}
+.valign img{vertical:middle;}
+.valign:after{content:"";display:inline-block;vertical-align:middle;height:100%;}
+
+/*溢出隐藏时出现省略号*/
+.over{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+/*解决高度塌陷问题*/
+
+.clear{zoom:1;}/*解决ie67的高度塌陷问题*/
+.clear:before{content:"";display:table;}/*解决第一个子元素的margin-top向上传递问题*/
+.clear:after{content:"";display:block;clear:both;}
+input,textarea {
+    border: 0;
+  /*  -webkit-appearance: none;*/
+  }
+  input:focus{
+      border-radius: 4px;
+  }
+.Wdate{
+    background-color: #fff;
+    padding-bottom:0;
+}
+.required {
+    color:red;
+}
+.data-form .form-control {
+    width: 220px;
+}
+.reload-btn{
+    width: 80px !important;
+}
+.save-or-update{
+    width: 80px !important;
+}
+.btn-search{
+    border-radius: 4px;
+}
+.layui-layer-loading .layui-layer-content{
+    margin:auto;
+}
+thead{
+    background:#eceaeb;
+}
+.form-control{
+    border-radius: 4px;
+    box-shadow: 0 0 0;
+    padding-right: 0px\9;
+}
+.btn{
+    border-radius: 4px;
+}
+.table-bordered>tbody>tr>td>.btn{
+    background: #d5e7fb;
+    border: 1px solid #348bec;
+    color: #348bec;
+    border-radius: 4px;
+}
+
+.table-bordered>tbody>tr>td{
+    border: 0;
+    max-width: 270px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.table-bordered>thead>tr>th{
+    border: 0
+}
+table.dataTable.dtr-inline.collapsed>tbody>tr>td.child{
+    text-align: left;
+}
+.background{
+    background:#fff;
+    min-height: 95%;
+    width:100%;
+    position: relative;
+
+}
+.data-list .query-form{
+    margin-top:30px;
+}
+
+input:not(input[type=file]){
+    height: 34px !important;
+    border-radius: 4px !important;
+}
+input[type="radio"]{
+    height: 14px !important;
+}
+input:not(input[type=checkbox],input[type=radio]){
+    height: 34px !important;
+    border-radius: 4px !important;
+    -webkit-appearance: none;
+}
+select::-ms-expand{ display: none\9; }
+select{
+    appearance:none\9!important;
+　　-moz-appearance:none\9!important;
+    -webkit-appearance:none\9!important;
+}
+
+.btn{
+    height: 34px !important;
+    padding: 6px 12px !important;
+}
+.btn-primary{
+    background-color: #307dd9;
+    border-color: #307dd9;
+}
+.btn-primary:focus{
+    background-color: #307dd9;
+    border-color: #307dd9;
+}
+.btn-primary:active:focus{
+    background-color: #307dd9;
+    border-color: #307dd9;
+}
+.btn-primary:active{
+    background-color: #337ACB;
+    border:0;
+}
+.btn-primary:hover{
+    background-color: #337ACB;
+    border-color: #337ACB;
+}
+.btn-primary:hover:focus{
+    background-color: #337ACB;
+    border-color: #337ACB;
+}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover{
+    background-color: #337ACB;
+    border-color: #337ACB;
+}
+td>.btn{
+    height: 20px !important;
+    padding: 0px 10px !important;
+}
+table.dataTable thead > tr > th{
+    padding-right: 8px !important;
+}
+.icon-right {
+    margin-right: 5px;
+}
+.table-responsive{
+    overflow:hidden;
+}
+.fillcontent #my-table_wrapper{
+    margin-top: 0;
+}
+select{
+    overflow : hidden !important;
+    text-overflow : ellipsis !important;
+    white-space : nowrap !important;
+}
+.table-responsive tbody>tr:nth-child(odd),.table-responsive tbody>tr:nth-child(odd){background-color:#f9f9f9;}
+#suypowerGrid tbody>tr:nth-child(odd),#suypowerGrid tbody>tr:nth-child(odd){background-color:#f9f9f9;}
+
+.table-responsive table.dataTable>tbody>tr.child ul.dtr-details>li{
+    border: 0;
+    border-bottom: 0 solid #efefef;
+}
+
+.suypower-opacity-hide{
+    filter:alpha(opacity=0); /* IE */
+    -moz-opacity:0; /* 老版Mozilla */
+    -khtml-opacity:0; /* 老版Safari */
+    opacity: 0; /* 支持opacity的浏览器*/
+    position: absolute;
+}
+
+@media screen and (max-width:767px){
+    body{
+        min-width: 100%;
+        background: #fff;
+        overflow-x : hidden; 
+
+    }
+    .main-content{
+        background: #fff;
+    }
+    input:not(input[type=checkbox],input[type=radio]){
+        line-height: normal;
+        -webkit-appearance: none;
+    }
+    table.table-bordered.dataTable{
+        border: 0 !important;
+        margin-top: 0 !important;
+    }
+    .table-responsive{
+        border: 0;
+        margin-top: 0;
+    }
+    .background{
+        overflow: hidden;
+        background:#fff;
+        min-height: 100%;
+        border: 0;
+    }
+    #suypowerGrid .row .col-sm-12 {
+        overflow-x: scroll;
+        padding-right: 0;
+        padding-left: 0;
+        border: 1px solid #ccc;
+        margin-left: 15px;
+        width: 100%;
+    }
+    .pagination{
+        display: flex;
+    }
+    #pageAction .pagination{
+        display: inline-block;
+    }
+
+    table.dataTable.dtr-inline.collapsed>tbody>tr>td.child{
+        text-align: left;
+    }
+    .table-bordered>tbody>tr>td> ul li{
+        display: flex;
+    }
+    .table-bordered>tbody>tr>td> ul li span .btn{
+        background: #d5e7fb;
+        border: 1px solid #348bec;
+        color: #348bec;
+        border-radius: 4px;
+    }
+    .table-bordered>tbody>tr>td{
+        white-space: normal
+    }
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before{
+        top: 0 !important;
+        bottom: 0;
+        margin: auto;
+    }
+    .data-list .query-form{
+        margin-top:0;
+    }
+}
+.nav {
+    margin-bottom: 0;
+}
+.nav-pills>li {
+  float: left;
+  position: relative;
+  display: block;
+}
+.nav-pills>li>a {
+    position: relative;
+    padding: 10px 15px;
+}
