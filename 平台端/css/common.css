@@ -1378,6 +1378,12 @@ ul::-webkit-scrollbar {
     margin-top: 27px;
     color: #1492ff;
 }
+/* 左侧二级导航 */
+.list-group .more {
+    float: none;
+    margin-right: 0;
+    margin-top: 0;
+}
 
 .announcement_left_title_ul .active {
     background: url(../images/active.png) no-repeat;

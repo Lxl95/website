@@ -1,73 +1,148 @@
+<link rel="stylesheet" href="../css/login.css?a=3" />
 <div ng-controller="forgetCtrl">
-    <div id="headerTwo">
-        <div class="margin">
-            <a href="#/"><img :ng-src="{{imageUrl+ info.logo}}" alt="logo" /></a>
-            <div class="h-right">
-                <a href="#/login"> <p ng-click="loginClick()">登录</p> </a> 
-                <a href="#/register"> <p ng-click="registerClick()">注册</p> </a>
-                <a href="#/"> <span>|</span> <p ng-click="goHome()">网站首页</p> </a>
+  <div id="headerTwo">
+    <div class="margin">
+      <a href="#/"><img :ng-src="{{imageUrl+ info.logo}}" alt="logo" /></a>
+      <div class="h-right">
+        <a href="#/login"> <p ng-click="loginClick()">登录</p> </a>
+        <a href="#/register"> <p ng-click="registerClick()">注册</p> </a>
+        <a href="#/">
+          <span>|</span>
+          <p ng-click="goHome()">网站首页</p>
+        </a>
+      </div>
+      <div class="clearboth"></div>
+    </div>
+  </div>
+  <div id="title">
+    <div class="margin">
+      <i
+        class="layui-icon layui-icon-return back-i"
+        onclick="javascript :history.back(-1)"
+      ></i>
+      <p>忘记密码</p>
+      <span></span>
+    </div>
+  </div>
+  <section>
+    <div id="main">
+      <img
+        class="loginbanner show-bimg"
+        onerror="this.src='/images/login/mainBg.png'"
+        src="/images/login/mainBg.png"
+        alt=""
+      />
+      <div class="margin">
+        <div class="register">
+          <div class="title-bg">
+            <img src="images/title-bg1.png" alt="" class="title-bg1" />
+            <img src="images/title-bg2.png" alt="" class="title-bg2" />
+            <img src="images/title-bg3.png" alt="" class="title-bg3" />
+          </div>
+          <div class="title">找回密码</div>
+
+          <form method="post" id="dataFrom">
+            <div class="name">
+              <input
+                type="text"
+                class="user-input"
+                name="phone"
+                id="phone"
+                placeholder="请输入手机号码"
+                required
+                maxlength="11"
+              />
+              <label id="phone-error" class="error-tip" for="phone"></label>
             </div>
-            <div class="clearboth"></div>
-        </div>
-    </div>
-    <div id="title">
-        <div class="margin">
-            <i class="layui-icon layui-icon-return back-i" onclick="javascript :history.back(-1)"></i>
-            <p>忘记密码</p>
-            <span></span>
-        </div>
-    </div>
-    <section>
-        <div id="main">
-            <img class="loginbanner show-bimg" onerror="this.src='/images/login/mainBg.png'" src="/images/login/mainBg.png" alt="">
-            <div class="margin">
-                <div class="register">
-                    <div class="title-bg">
-                        <img src="images/title-bg1.png" alt="" class="title-bg1">
-                        <img src="images/title-bg2.png" alt="" class="title-bg2">
-                        <img src="images/title-bg3.png" alt="" class="title-bg3">
-                    </div>
-                    <div class="title">
-                        找回密码
-                    </div>
-    
-                    <form method="post" id="dataFrom">
-                            <div class="name">
-                                <input type="text" class="user-input" name="phone"  id="phone" placeholder="请输入手机号码"  required maxlength="11">
-                                <label id="phone-error" class="error-tip" for="phone"></label>
-                            </div>
-                            <div class="name">
-                                <input type="text" placeholder="验证码" name="code" class="login-code code-input" id="code" value="" required  maxlength="4" class="smsone">
-                                <img id="codeImg" alt="" src="xx" ng-click="getCodeImg()">
-                                <label id="code-error" class="error-tip" for="code"></label>
-                            </div>
-                            <div class="name">
-                                <input type="text" placeholder="短信验证码" name="smsCode" class="login-code code-input code-input2" id="smsCode" class="sms" value="" required  maxlength="4"> <button id="btnSendCode" type="button" ng-click="sendMessage()" >发送验证码</button>
-                                <label id="smsCode-error" class="error-tip" for="smsCode"></label>
-                            </div>
-                            <div class="name">
-                                <input type="password" class="psd-input" placeholder="新密码" name="password"  id="password" placeholder="请输入6-16位密码" required maxlength="16" minlength="6">
-                                <label id="password-error" class="error-tip" for="password"></label>
-                            </div>
-                            <div class="name">
-                                <input type="password" class="psd-input psd-input2" placeholder="确认密码"  id="confirmPassword" placeholder="请再次输入密码" required maxlength="16" minlength="6">
-                                <label id="confirmPassword-error" class="error-tip" for="confirmPassword"></label>
-                            </div>
-            
-                            <button  type="button" id="save">确定</button>
-                            </form>
-                </div>
+            <div class="name">
+              <input
+                type="text"
+                placeholder="验证码"
+                name="code"
+                class="login-code code-input"
+                id="code"
+                value=""
+                required
+                maxlength="4"
+                class="smsone"
+              />
+              <img id="codeImg" alt="" src="xx" ng-click="getCodeImg()" />
+              <label id="code-error" class="error-tip" for="code"></label>
             </div>
+            <div class="name">
+              <input
+                type="text"
+                placeholder="短信验证码"
+                name="smsCode"
+                class="login-code code-input code-input2"
+                id="smsCode"
+                class="sms"
+                value=""
+                required
+                maxlength="4"
+              />
+              <button id="btnSendCode" type="button" ng-click="sendMessage()">
+                发送验证码
+              </button>
+              <label id="smsCode-error" class="error-tip" for="smsCode"></label>
+            </div>
+            <div class="name">
+              <input
+                type="password"
+                class="psd-input"
+                placeholder="新密码"
+                name="password"
+                id="password"
+                placeholder="请输入6-16位密码"
+                required
+                maxlength="16"
+                minlength="6"
+              />
+              <label
+                id="password-error"
+                class="error-tip"
+                for="password"
+              ></label>
+            </div>
+            <div class="name">
+              <input
+                type="password"
+                class="psd-input psd-input2"
+                placeholder="确认密码"
+                id="confirmPassword"
+                placeholder="请再次输入密码"
+                required
+                maxlength="16"
+                minlength="6"
+              />
+              <label
+                id="confirmPassword-error"
+                class="error-tip"
+                for="confirmPassword"
+              ></label>
+            </div>
+
+            <button type="button" id="save">确定</button>
+          </form>
         </div>
-    </section>
-    <div id="tips">
-        <h1 class="title">温馨提示</h1>
-        <p class="content">若您忘记密码，可以采用手机号+验证码的方式对您的密码进行重置</p>
+      </div>
     </div>
-    <div id="foot">
-        <div class="margin">
-            <p>眉山环天水务集团有限公司版权所有 Copyright@2023-2030 All rights reserved</p>
-            <p>服务热线：028-36313380 <span style="margin-left: 20px;">蜀ICP备20021799号-1</span></p>
-        </div>
+  </section>
+  <div id="tips">
+    <h1 class="title">温馨提示</h1>
+    <p class="content">
+      若您忘记密码，可以采用手机号+验证码的方式对您的密码进行重置
+    </p>
+  </div>
+  <div id="foot">
+    <div class="margin">
+      <p>
+        眉山环天水务集团有限公司版权所有 Copyright@2023-2030 All rights reserved
+      </p>
+      <p>
+        服务热线：028-36313380
+        <span style="margin-left: 20px">蜀ICP备20021799号-1</span>
+      </p>
     </div>
+  </div>
 </div>

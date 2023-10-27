@@ -1,0 +1,233 @@
+#main-content{
+ width: 80%;
+ overflow: hidden;
+ margin-top: 25px;
+ margin-left: 2%;
+ background: #fff;
+ position: absolute;
+ right: 40px;
+
+}
+
+#main-content nav .breadcrumb{
+ background: #fff;
+ border-bottom: 1px solid #ccc;
+}
+.content .changul{
+ margin:auto;
+ width:287px;
+}
+.changeul li .code{
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+ margin: auto;
+}
+.changeul li .code .btn{
+ margin-top:20px;
+}
+.content ul{
+ padding-top: 30px;
+ width: 500px;
+ margin-left:100px;
+}
+.content ul li{
+ display: flex;
+ margin:20px;
+ align-items: center;
+}
+.content ul li>p{
+ width: 115px;
+ text-align: right; 
+ margin-right: 40px;
+ margin-bottom:0;
+}
+.content ul li .right{
+ overflow: hidden;
+}
+.content ul li .right p{
+ float: left;
+ margin-bottom:0;
+}
+.content ul li .right .form-control{
+ width: 200px;
+}
+.content ul li .right .show-panel{
+ margin-left: 30px;
+}
+.content ul li .show-panel img{
+ width: 20px;
+ height: 20px;
+}
+.content ul li .right>img{
+ width: 60px;
+ height: 60px;
+ border-radius: 30px;
+}
+.content ul li .right .email{
+ border: 1px solid #ccc;
+ padding: 0 10px;
+ height: 34px;
+ border-radius: 4px;
+
+}
+
+/*.content{*/
+ /*margin-top: 50px;*/
+/*}*/
+.back,.sub{
+ display: block;
+ margin: 50px auto;
+}
+.content .content-change{
+ overflow: hidden;
+ justify-content: center;
+ width: 500px;
+ margin-left: 135px;
+}
+.content .content-change .btn,.changepwd{
+ margin: 10px 0;
+ width: 90%;
+ height: 40px !important;
+}
+.content .changeul li{
+ margin: 10px 0 ;
+}
+.content .changeul li p{
+ font: 14px/34px "";
+}
+.content>.information{
+ display: block;
+}
+.page-panel{
+ display: none
+}
+.page-panel:first-child{
+ display: block;
+}
+.col-sm-10{
+ display:flex;
+}
+#realName_content .changeul{
+ width: 300px;
+ margin: auto;
+ margin-top: 50px;
+ border: 1px solid #ccc;
+ box-shadow: 0px 3px 10px #999;
+ padding: 50px 0px;
+ padding-top: 70px;
+}
+#realName_content .changeul img{
+ display: block;
+ width: 150px;
+ margin: auto;
+ /* margin: 50px auto; */
+ margin-bottom: 50px;
+}
+#realName_content .changeul li p .iconNj img{
+ width:20px;
+ margin:0;
+ margin-left:10px;
+ margin-right:4px;
+ display: inline;
+ line-height:34px;
+}
+#realName_content .changeul li p .bold{
+ color: #000;
+ font-size: 16px;
+ font-weight: 700;
+ margin-right: 10px;
+ line-height:34px;
+}
+@media screen and (max-width:767px){
+ 
+ .content ul li p:nth-child(1){
+     margin-right: 0px;
+ }
+ .col-sm-10{
+     padding:0;
+     width: 198px;
+ }
+ .content ul li .first-margin{
+     margin-left: 40px;
+ }
+ .content .content-change{
+     overflow: hidden;
+     justify-content: center;
+     display: flex;
+     flex-wrap: wrap;
+     width: 100%;
+     margin-left: 0;
+     margin-top: 40px;
+ }
+ .content .content-change .btn,.changepwd{
+     float: left;
+     margin: 10px 40px;
+ }
+ .code-message{
+     width:107px;
+ }
+ .content .changeul li p{
+     font: 14px/18px "";
+ }
+ .content ul{
+     width: 100%;
+     margin-left:0;
+     padding-top:0;
+     padding-bottom:10px;
+     border-radius: 8px;
+     border: 1px solid #fff;
+ }
+ .content ul li{
+     margin:0;
+     justify-content: space-between;
+     padding: 15px 0px;
+     width:94%;
+     margin:auto;
+     border-bottom:1px solid #efefef;
+ }
+ .content .changeul li{
+     margin:0;
+     justify-content: space-between;
+     padding: 15px 0px;
+     width:94%;
+     margin:auto;
+     border-bottom:1px solid #efefef;
+ }
+ .content ul li>p{
+     text-align: left;
+     width:70px;
+ }
+ .content ul li .right{
+     display: flex;
+     align-items: center;
+ }
+ .content ul li .right p{
+     text-align: right;
+ }
+ .content ul li .right>img{
+     margin:0 5px;
+ }
+ .content>.information{
+     width: 90%;
+     margin:auto;
+     background: #fff;
+     padding-top: 20px;
+ }
+ .page-panel{
+     width: 90%;
+     margin:auto;
+     background: #fff;
+     padding-top: 20px;
+ }
+ .content ul li .right .email{
+     border-radius: 4px;
+     width:180px;
+ }
+ .content ul li .right .form-control{
+     width: 180px;
+ }
+ .content ul li .right .show-panel{
+     margin-bottom:4px;
+ }
+}

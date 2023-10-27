@@ -5,7 +5,7 @@ body .businessMain{
     background: #f5f5f5;
     font-size:14px;
     height: 100%;
-    min-width:1280px;
+    min-width:100%;
 }
 
 .newmore{
@@ -198,12 +198,14 @@ input::-webkit-inner-spin-button {
     min-height:100%;
     float: left;
 }
-#aside .ul li .glyphicon-chevron-right{
+#aside .ul li .layui-icon-right{
     -webkit-transition:0.2s linear;
     transition:0.2s linear;
     position: absolute;
-    top: 13px;
+    top: 0px;
     right: 20px;
+    font-size: 16px;
+    font-weight: 800;
 }
 .btn-group{
     height: 40px;
@@ -1352,7 +1354,7 @@ input[readonly='readonly'],select[readonly='readonly']{
         top: 2px;
     }
     .head-phone-left,.head-phone-right{
-        margin-top: 15px;
+        /* margin-top: 15px; */
     }
     .search-icon{
         top: 2px;

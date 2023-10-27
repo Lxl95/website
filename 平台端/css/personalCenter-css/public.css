@@ -106,14 +106,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.child{
 }
 
 input:not(input[type=file]){
-    height: 34px !important;
+    /* height: 34px !important; */
     border-radius: 4px !important;
 }
 input[type="radio"]{
     height: 14px !important;
 }
 input:not(input[type=checkbox],input[type=radio]){
-    height: 34px !important;
+    /* height: 34px !important; */
     border-radius: 4px !important;
     -webkit-appearance: none;
 }

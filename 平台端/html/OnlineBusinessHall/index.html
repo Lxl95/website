@@ -6,7 +6,7 @@
 	<!--页面top导航-->
 	<div id="header" >
 		<div class="header-left" align="center">
-			<img :ng-src="{{imageUrl+ info.logo}}" alt="logo">
+			<img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo" style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
 		</div>
 		<ul class="nav nav-pills">
 			<li role="presentation"><a href="#/">首页</a></li>
@@ -16,8 +16,8 @@
 			<div>
 				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
 				<ul class="header-right-more">
-					<li><a href="/user/logout.htm">退出</a></li>
-					<li><a href="/user/index">个人中心</a></li>
+					<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+					<li><a href="#/userInfo">个人中心</a></li>
 				</ul>
 			</div>
 		</div>
@@ -26,132 +26,56 @@
 	<div id="bg"></div>
 	<div id="head-phone">
 		<div class="head-phone">
-			<p class="head-phone-left glyphicon glyphicon-th-list"></p>
+			<p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
 			<p id="page-title">水务集团</p>
-			<p class="head-phone-right glyphicon glyphicon-user clickshow"></p>
+			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
 			<ul class="header-right-more " onblur="$(this).fadeToggle()">
-				<li><a href="/user/index">个人中心</a></li>
-				<li><a href="/user/logout.htm">退出</a></li>
+				<li><a href="#/userInfo">个人中心</a></li>
+				<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
 			</ul>
 		</div>
 	</div>
 	<div id="main">
 		<!--页面left导航 start -->
 				<div id="aside" >
-								<div class="indentation">
-												<a href="home.html" style="color: #000;"><p class="glyphicon glyphicon-home left-home"></p></a>
-												<p class="glyphicon glyphicon-arrow-left left-in"></p>
+								<div class="indentation" style="margin-top:10px">
+												<a href="#/OnlineBusinessHall" style="color: #000;"><p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p></a>
+												<p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
 								</div>
 								<ul class="list-group ul">
-												<li class="list-group-item"><i></i><a href="/index"><span class="asideicon"><img src="/images/1.png" alt=""></span>客户中心</a></li>
-												<li class="list-group-item"><i></i><a href="/waterFee/index"><span class="asideicon"><img src="/images/2.png" alt=""></span>水费查询</a></li>
-												<li class="list-group-item show">
+												<li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img src="../../images/business/1.png" alt=""></span>客户中心</a></li>
+												<li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img src="../../images/business/2.png" alt=""></span>水费查询</a></li>
+												<li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
+												<!-- <li class="list-group-item show">
 																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="/images/3.png" alt=""></span>快速缴费 <span
-																								class="glyphicon glyphicon-chevron-right"></span></a>
+																<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/3.png" alt=""></span>快速缴费 <span
+																								class="layui-icon layui-icon-right"></span></a>
 																<ul class="list-group more">
 																				<div class="in">
 																								<li class="list-group-item"><i></i><a href="/payment/index">快速缴费</a></li>
 																								<li class="list-group-item"><i></i><a href="/paymentOrder/initList">支付清单</a></li>
 																				</div>
 																</ul>
-												</li>
+												</li> -->
 
-												<li class="list-group-item"><i></i><a href="/proof/index"><span class="asideicon"><img src="/images/6.png" alt=""></span>用水证明</a></li>
-												<li class="list-group-item show">
-																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="/images/4.png" alt=""></span>增值税业务与票务<span
-																								class="glyphicon glyphicon-chevron-right"></span></a>
-																<ul class="list-group more">
-																				<div class="in">
-																								<li class="list-group-item"><i></i><a href="/invoice/initOpenInvoiceList">电子发票</a></li>
-																								<li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceRegistList">专项预约登记</a></li>
-																								<li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceRecordList">已预约列表</a></li>
-																								<li class="list-group-item"><i></i><a href="/bizInvoice/invoicePage">增值税业务</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/invoiceHead/initList">发票信息管理</a></li>
-																								<li class="list-group-item"><i></i><a href="/userAddress/initList">寄送地址管理</a></li>
-																								<li class="list-group-item"><i></i><a href="/invoice/initDivisionList">普通发票分割开票</a></li>
-																								<li class="list-group-item"><i></i><a href="/invoice/initTaxInvoiceDivisionList">普通发票分割列表</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/invoice/initOpenAcctRecordList">增值税开户申请列表</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/vatInvoice/splitedList">增值税开票申请列表</a></li>
-
-																				</div>
-																</ul>
-												</li>
 												<li class="list-group-item teshow newshow">
 																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="/images/5.png" alt=""></span>业务办理 <span
-																								class="glyphicon glyphicon-chevron-right"></span></a>
+																<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理 <span
+																								class="layui-icon layui-icon-right"></span></a>
 																<ul class="list-group more biz-group">
 																				<div class="in">
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=2">个人接水</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=3">单位接水（住宅）</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=27">单位接水（非住宅）</a></li>
-
-																								<li class="list-group-item"><i></i><a href="/invoice/initOpenInvoiceList">增值税业务与票务</a></li>
-																												
-																												
-
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=22">水量自报</a></li>
-																								<li class="list-group-item"><i></i><a href="/wxCard/applyWxCard">水费卡补办</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/toCollection">集中代收付</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=25">网银缴费销账</a></li>
-																								<li class="list-group-item"><i></i><a href="/waterFee/index">水费查询</a></li>
-																								<li class="list-group-item"><i></i><a href="/payment/index">水费缴纳</a></li>
-																								<li class="list-group-item"><i></i><a href="/proof/index">用水证明下载</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=8">供水意见征询</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=11">拆表拆管</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=4">补装接水</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=6">户表出户</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=5">抄表到户</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=9">移表</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=10">配合市政项目</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=1">个人过户</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=12">单位过户</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=24">水价类别变更</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=14">阶梯水价人口数调整</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=15">垃圾费调整</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=19">报修</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=20">意见建议</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=21">咨询</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=10000043">违章举报</a></li>
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=91">污水纳管</a></li>
-																												
-																								<li class="list-group-item"><i></i><a href="/page/bizPage?pageConfId=93">市政污水管迁改</a></li>
-																												
-																												
-																												
-
+																								<li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+																								<li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+																								<li class="list-group-item"><i></i><a href="#/waterPriceQuery">水费查询</a></li>
+																								<li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+																								<li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+																								<li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
 																				</div>
 																</ul>
 												</li>
 
-												<li class="list-group-item"><i></i><a href="/bizApply/index"><span class="asideicon"><img src="/images/7.png" alt=""></span>我的业务</a></li>
-												<li class="list-group-item"><i></i><a href="/userAccount/index"><span class="asideicon"><img src="/images/17.png" alt=""></span>管理账户</a></li>
-												<li class="list-group-item"><i></i><a href="/page/toCollection"><span class="asideicon"><img src="/images/17.png" alt=""></span>集中代收付</a></li>
-
-																
-																
-												<li class="list-group-item show">
-																<i></i><a href="javascript:void(0)"><span class="asideicon"><img src="/images/18.png" alt=""></span>实名认证 <span
-																				class="glyphicon glyphicon-chevron-right"></span></a>
-																<ul class="list-group more">
-																				<div class="in">
-																								
-																												<li class="list-group-item"><i></i><a href="/user/nameAuth4nj">我的南京</a></li>
-																												
-																												<li class="list-group-item"><i></i><a href="/user/nameAuth">个人认证</a></li>
-																												<li class="list-group-item"><i></i><a href="/user/nameAuthEnterprise">企业认证</a></li>
-																								
-																								
-																				</div>
-																</ul>
-												</li>
+												<li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img src="../../images/business/7.png" alt=""></span>我的业务</a></li>
+												<li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img src="../../images/business/17.png" alt=""></span>管理账户</a></li>
 
 								</ul>
 								<ul class="list-group newmore">
@@ -162,91 +86,28 @@
 																</div>
 																<ul class="business-ul">
 																				<li class="water title">
-																								<p>新接水申请</p>
+																								<p>新报装申请</p>
 																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=2">个人接水</a></li>
-																												<li><a href="/page/bizPage?pageConfId=3">单位接水（住宅）</a></li>
-																												<li><a href="/page/bizPage?pageConfId=27">单位接水（非住宅）</a></li>
+																												<li><a href="#/peopleNewInstallLC">个人报装</a></li>
+																												<li><a href="#/companyNewInstallLC">企事业报装</a></li>
 																								</ul>
 																				</li>
-
-																				<li class="service title">
-																								<p>供水意见征询</p>
-																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=8">供水意见征询</a></li>
-																								</ul>
-																				</li>
-																				<li class="service title">
-																								<p>排水</p>
-																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=91">污水纳管</a></li>
-																																
-																																
-																												<li><a href="/page/bizPage?pageConfId=93">市政污水管迁改</a></li>
-																																
-																																
-																								</ul>
-																				</li>
-																				<li class="service title">
-																								<p>96055</p>
-																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=19">报修</a></li>
-																												<li><a href="/page/bizPage?pageConfId=21">咨询</a></li>
-																												<li><a href="/page/bizPage?pageConfId=20">意见建议</a></li>
-																												<li><a href="/page/bizPage?pageConfId=10000043">违章举报</a></li>
-																								</ul>
-																				</li>
-
-
 
 																				<li class="service title">
 																								<p>用水缴费</p>
 																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=22">水量自报</a></li>
-																												<li><a href="/wxCard/applyWxCard">水费卡补办</a></li>
-																												<li><a href="/page/toCollection">集中代收付</a></li>
-																																
-																												<li><a href="/page/bizPage?pageConfId=25">网银缴费销账</a></li>
-																												<li><a href="/waterFee/index">水费查询</a></li>
-																												<li><a href="/payment/index">水费缴纳</a></li >
-																												<li><a href="/proof/index">用水证明下载</a></li>
-																												<li><a href="/invoice/initOpenInvoiceList">增值税业务与票务</a></li>
-																																
-																																
+																												<li><a href="#/waterPriceQuery">水费查询</a></li>
+																												<!-- <li><a href="/payment/index">水费缴纳</a></li > -->
 																								</ul>
 																				</li>
 																				<li class="service title">
 																								<p>用户信息变更</p>
 																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=1">个人过户</a></li>
-																												<li><a href="/page/bizPage?pageConfId=12">单位过户</a></li>
-																												<li><a href="/page/bizPage?pageConfId=11">拆表拆管</a></li>
-																												<li><a href="/page/bizPage?pageConfId=24">水价类别变更</a></li>
-																												<li><a href="/page/bizPage?pageConfId=14">阶梯水价人口数调整</a></li>
-																												<li><a href="/page/bizPage?pageConfId=15">垃圾费调整</a></li>
-																																
+																												<li><a href="#/chooseUserNameLC">用户过户</a></li>
+																												<li><a href="#/cancelUserLC">用户销户</a></li>
+																												<li><a href="#/chooseWaterNature">用水性质变更</a></li>
 																								</ul>
 																				</li>
-
-
-																								
-																								
-																								
-																								
-																								
-																								
-																				<li class="service title">
-																								<p>改造申请</p>
-																								<ul>
-																												<li><a href="/page/bizPage?pageConfId=4">补装接水</a></li>
-																												<li><a href="/page/bizPage?pageConfId=6">户表出户</a></li>
-																												<li><a href="/page/bizPage?pageConfId=5">抄表到户</a></li>
-																												<li><a href="/page/bizPage?pageConfId=9">移表</a></li>
-																												<li><a href="/page/bizPage?pageConfId=10">配合市政项目</a></li>
-																								</ul>
-																				</li>
-
-
 
 																</ul>
 												</div>
@@ -254,9 +115,8 @@
 												
 
 				</div>
-
-
 		<!--页面left导航 end -->
+
 		<div class="right">
 			<div class="main-content">
 				<nav aria-label="breadcrumb">
@@ -270,12 +130,12 @@
 						<div class="contents-top">
 							<div class="title">
 								<h1>基本情况</h1>
-								<a href="javascript:void(0)"
-									onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>更多>></a>
+								<!-- <a href="javascript:void(0)"
+									onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>更多>></a> -->
 							</div>
 							<div class="customerid" id="consNoSelectDiv">
 								<div class="customerid-top">
-										<i class=""><img src="/images/11.png" alt=""></i>
+										<i class=""><img src="../../images/business/11.png" alt=""></i>
 									<p class="">用户编号</p>
 									<span>
 										
@@ -286,62 +146,61 @@
 
 								</div>
 								<div class="customerid-center">
-										<i class=""><img src="/images/12.png" alt=""></i>
+										<i class=""><img src="../../images/business/12.png" alt=""></i>
 									<p class="">用户名称</p>
 									<i class="i" onclick="layer.tips('用户名称是在水务集团登记的名称', this);"></i>
 									<span id="consName"></span>
 								</div>
 								<div class="customerid-bottom">
-										<i class=""><img src="/images/13.png" alt=""></i>
+										<i class=""><img src="../../images/business/13.png" alt=""></i>
 									<p class="">用户地址</p>
 									<i class="i" onclick="layer.tips('用户地址是在水务集团登记的地址',this);"></i>
 									<span id="address"></span>
 								</div>
 								<div class="customerid-bottom2">
-									<i class=""><img src="/images/water-14.png" alt=""></i>
+									<i class=""><img src="../../images/business/water-14.png" alt=""></i>
 									<p class="">水表编号</p>
 									<span id="meterNum"></span>
 								</div>
 								<div class="customerid-bottom3">
-									<i class=""><img src="/images/water-15.png" alt=""></i>
+									<i class=""><img src="../../images/business/water-15.png" alt=""></i>
 									<p class="">水表口径</p>
 									<span id="meterSize"></span>
 								</div>
 								<div class="customerid-bottom4">
-									<i class=""><img src="/images/water-16.png" alt=""></i>
+									<i class=""><img src="../../images/business/water-16.png" alt=""></i>
 									<p class="">水价类别</p>
 									<span id="meterCategory"></span>
 								</div>
 							</div>
-							<!-- <div class="customer-bottom">
-								<div class="customer-bottoml">
-									<div class="customerid-top">
-										<i class=""><img src="/images/water-17.png" alt=""></i>
-										<p class="" id="cbName"></p>
-										<span id="banzhu"></span>
-									</div>
-									<div class="customerid-center">
-										<i class=""><img src="/images/water-18.png" alt=""></i>
-										<p class=""><a href="" id="cbPhone"></a></p>
-
-									</div>
-									<div class="customerid-bottom">
-										<i class=""><img src="/images/water-19.png" alt=""></i>
-										<p class="" id="cbDate"></p>
-									</div>
-								</div>
-								<div class="customer-bottomr">
-									<img src="/images/gj.png" alt="">
-									<p style="letter-spacing: 2px;">贴心管家</p>
-								</div>
-							</div> -->
 						</div>
-						
-						
-						
 					</div>
 
 					<div class="contents-right">
+						<div class="right-two">
+							<div class="integral" style="width: 100%">
+								<div class="img">
+									<img src=""   onerror="this.src='../../images/business/peple.png';this.onerror=null" id="headImg">
+								</div>
+								<div class="num">
+									<p>
+										用户名：<span>SWd0f90c5c469869</span>
+									</p>
+									<p>
+										<!-- 积分：<span class="bignum">0</span><i>分</i> -->
+									</p>
+								</div>
+								<div class="right-bottom2">
+									
+									<!-- <a href="/userPoints/initList"  >积分详情</a> -->
+								</div> 
+							</div>
+
+							<!-- <div class="dashbord">
+								<div id="dashbord" style="height: 200px;margin-top: 2px;margin-bottom: -68px;width: 100%"></div>
+							</div> -->
+
+						</div>
 						<div class="right-one">
 							<div class="arrearage">
 								<p class="right-title">应缴水费</p>
@@ -349,14 +208,14 @@
 									<span id="feeAmt" class="spanfirst">0</span><span>元</span>
 								</p>
 								<p class="right-bottom">
-									<a href="javascript:void(0)" onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>查看详情</a>
+									<a href="#/waterPriceQuery">查看详情</a>
 								</p>
 							</div>
 							<div class="business">
 								<p class="right-title">我的业务</p>
 								<p class="right-center">0</p>
 								<p class="right-bottom">
-									<a href="bizApply/index.htm">查看详情</a>
+									<a href="#/processListLC">查看详情</a>
 								</p>
 							</div>
 							<div class="accountDetail">
@@ -374,30 +233,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="right-two">
-							<div class="integral">
-								<div class="img">
-									<img src=""   onerror="this.src='/images/peple.png';this.onerror=null" id="headImg">
-								</div>
-								<div class="num">
-									<p>
-										用户名：<span>SWd0f90c5c469869</span>
-									</p>
-									<p>
-										<!-- 积分：<span class="bignum">0</span><i>分</i> -->
-									</p>
-								</div>
-								<div class="right-bottom2">
-									
-									<!-- <a href="/userPoints/initList"  >积分详情</a> -->
-								</div> 
-							</div>
-
-							<div class="dashbord">
-								<div id="dashbord" style="height: 200px;margin-top: 2px;margin-bottom: -68px;width: 100%"></div>
-							</div>
-
-						</div>
+						
 						<!-- <div class="tab">
 							<ul>
 
@@ -445,7 +281,7 @@
 				</div>
 			</div>
 		</div>
-		
-
+	
 	</div>
 </div>
+<script src="../../js/personalMain.js">

@@ -99,6 +99,14 @@
             templateUrl: "html/OnlineBusinessHall/index.html"
         }).when("/toBind", {
             templateUrl: "html/OnlineBusinessHall/toBind.html"
+        }).when("/account", {
+            templateUrl: "html/OnlineBusinessHall/account.html"
+        }).when("/userInfo", {
+            templateUrl: "html/OnlineBusinessHall/userInfo.html"
+        }).when("/waterPriceQuery", {
+            templateUrl: "html/OnlineBusinessHall/waterPriceQuery.html"
+        }).when("/paymentQuery", {
+            templateUrl: "html/OnlineBusinessHall/paymentQuery.html"
         }).when("/new", {
             templateUrl: "html/newList.html"
         }).when("/handling", {
@@ -166,10 +174,15 @@
           // 登录页，不加载头部和尾部，使用单独页面
           if(next_path == '/login' || next_path == '/register' || next_path == '/forget' ) {
             $rootScope.pageName = 'user'
-          } else if(next_path == '/OnlineBusinessHall' || next_path == '/toBind') {
-            $rootScope.pageName = 'user'
+          } else if(next_path == '/OnlineBusinessHall' || next_path == '/toBind' || next_path == '/account') {
+            $rootScope.pageName = 'business'
+          } else if(next_path == '/userInfo' || next_path == '/paymentQuery' || next_path == '/waterPriceQuery') {
+            $rootScope.pageName = 'business'
           } else {
             $rootScope.pageName = 'home.html'
+          }
+          if(!getlocalStorage() && $rootScope.pageName == 'business' ) {
+            $location.path('/login')
           }
         }); 
         $rootScope.$on('$routeChangeSuccess', function(evt, current, previous) {
@@ -2185,7 +2198,7 @@
             }
 
         })
-        //尾部
+        //在线支付
     jkApp.controller('onlinePaymentCtrl', function($scope, $location, $routeParams) {
             $scope.imageUrl = imageUrl;
             systeminfo();
@@ -2874,11 +2887,12 @@
                 dataType : "json",
                 contentType: "application/json",
                 success : function(data) {
-                    // $("#codeImg").click();
+                    $("#codeImg").click();
                     layer.close(load);
                     if (data.code == 10000) {
                         top.layer.msg("登录成功" );
                         $location.path("/OnlineBusinessHall");
+                        setlocalStorage(userName)
                     } else {
                         data.message  = data.message || data.msg
                         $("#errorTip").html(data.message);
@@ -2926,11 +2940,12 @@
                 dataType : "json",
                 contentType: "application/json",
                 success : function(data) {
-                    // $("#code4Sms").next().click()
+                    $("#code4Sms").next().click()
                     layer.close(load);
                     if (data.code == 1000) {
                         top.layer.msg("登录成功" );
                         $location.path("/OnlineBusinessHall");
+                        setlocalStorage(phone)
                     } else {
                         $("#errorTip4Sms").html(data.message);
                     }
@@ -2978,7 +2993,7 @@
                 },
                 success : function(result) {
                      layer.close(load);
-                    // $("#code4Sms").after().click();
+                    $("#code4Sms").after().click();
                     if (result.code != 10000) {
                         top.layer.msg(result.message, {
                             icon : 2,
@@ -3197,7 +3212,7 @@
                 error: function (XMLHttpRequest, textStatus, errorThrown) { layer.close(load);   top.layer.msg('服务请求失败！',{icon:2,time:3000});},
                 success: function (result){
                     layer.close(load);
-                    // $("#code").after().click();
+                    $("#code").after().click();
                     if (result.success !=true){
                         top.layer.msg(result.message,{icon:2,time:3000});
                         return;
@@ -3467,7 +3482,7 @@
                 error: function (XMLHttpRequest, textStatus, errorThrown) { layer.close(load);   top.layer.msg('服务请求失败！',{icon:2,time:3000});},
                 success: function (result){
                     layer.close(load);
-                    // $("#code").after().click();
+                    $("#code").after().click();
                     if (result.success !=true){
                         top.layer.msg(result.message,{icon:2,time:3000});
                         return;
@@ -3572,4 +3587,359 @@
                 }
             });
         };
+    })
+    // 绑定户号
+    jkApp.controller('bindCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+    })
+    jkApp.controller('userInfoCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+    })
+    jkApp.controller('accountCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+        layui.use(['form', 'layedit', 'laydate', 'table'], function() {
+            var form = layui.form;
+            var table = layui.table;
+
+            var layer = layui.layer;
+            var layedit = layui.layedit;
+            var laydate = layui.laydate;
+            var table_name = table.render({
+                elem: '#suypowerGrid',
+                id: 'testReload',
+                height: 312,
+                url: baseUrl_API_WeiXin + 'payUser/selectByOpenId' //数据接口
+                    ,
+                // page: true, //开启分页 
+                request: {
+                    pageName: 'page' //页码的参数名称，默认：page
+                        ,
+                    limitName: 'rows' //每页数据量的参数名，默认：limit
+                },
+                where: {
+                    openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
+                },
+                parseData: function(res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.code == 1 ? 0 : '', //解析接口状态
+                        "msg": res.info, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.userList //解析数据列表
+                    };
+                },
+                cols: [
+                    [ //表头
+                        { field: 'userInfoCode', title: '户号', align: "center" },
+                        { field: 'userName', title: '户名', align: "center" }
+                    ]
+                ]
+            });
+
+            //点击查询
+            $scope.searchQuery = function() {
+                var USERNAME = $('.layui-input-userName').val()
+                var TELPHONE = $('.layui-input-phone').val()
+                table.reload('testReload', {
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId' //数据接口
+                        // ,methods:"post"
+                        ,
+                    request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                            ,
+                        limitName: 'rows' //每页数据量的参数名，默认：limit
+                    },
+                    where: {
+                        openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
+                    },
+                    parseData: function(res) { //res 即为原始返回的数据
+                        return {
+                            "code": res.code == 1 ? 0 : '', //解析接口状态
+                            "msg": res.info, //解析提示文本
+                            "count": res.total, //解析数据长度
+                            "data": res.userList //解析数据列表
+                        };
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+
+            }
+        });
+    })
+    jkApp.controller('waterPriceQueryCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+        layui.use(['form', 'layedit', 'laydate', 'table'], function() {
+            var form = layui.form;
+            var table = layui.table;
+
+            var layer = layui.layer;
+            var layedit = layui.layedit;
+            var laydate = layui.laydate;
+            var table_name = table.render({
+                elem: '#suypowerGrid',
+                id: 'testReload',
+                height: 312,
+                url: baseUrl_API_WeiXin + 'netUserInfoController/getWaterRate' //数据接口
+                    ,
+                page: true, //开启分页 
+                request: {
+                    pageName: 'page' //页码的参数名称，默认：page
+                        ,
+                    limitName: 'rows' //每页数据量的参数名，默认：limit
+                },
+                where: {
+                    pagination: JSON.stringify({"page":1,"rows":10,"sidx":"RCVBL_YM","sord":"desc"}),
+                    userInfoCode: '100003'
+                },
+                parseData: function(res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.code == 200 ? 0 : '', //解析接口状态
+                        "msg": res.info, //解析提示文本
+                        "count": res.total, //解析数据长度
+                        "data": res.rows //解析数据列表
+                    };
+                },
+                cols: [
+                    [ //表头
+                        { field: 'RCVBL_YM', title: '账单月份', align: "center" },
+                        { field: 'LAST_MR_NUM', title: '上期读数', align: "center" },
+                        { field: 'THIS_READ', title: '本期读数', align: "center" },
+                        { field: 'T_PQ', title: '水量', align: "center" },
+                        { field: 'RCVBL_AMT', title: '水费', align: "center" },
+                        {
+                            field: 'status',
+                            title: '缴费情况',
+                            align: "center",
+                            templet: function(d) {
+                                if (d.status == 1) {
+                                    return '已缴清'
+                                } else {
+                                    return '未缴清'
+                                } 
+
+                            }
+                        }
+                        // , { title: '照片', align: "center", toolbar: '#barDemo' }
+                    ]
+                ],
+
+                done: function(res, curr, count){
+                    //如果是异步请求数据方式，res即为你接口返回的信息。
+                    console.log(res);
+                    //得到当前页码
+                    console.log(curr); 
+                    
+                  }
+            });
+            //监听工具条
+            table.on('tool(layuiTable)', function(obj){
+                var data = obj.data;
+                if(obj.event === 'edit'){
+                    console.log(table_name.config.page.pages);
+                    
+                } else if(obj.event === 'del'){
+                    //代码
+                }
+            });
+            //监听单元格事件
+            // table.on('tool(test)', function(obj) {
+            //     var data = obj.data;
+            //     if (obj.event === 'openImage') {
+            //         console.log(data);
+            //         var imageList = data.IMAGEURL;
+            //         imageList = imageList.split(',')
+            //         var html = ""
+            //         if (imageList.length > 0) {
+            //             html = '<div style="display:flex;min-width:200px;" >'
+            //             for (var index = 0; index < imageList.length; index++) {
+
+            //                 html += '<img src="' + imageList[index] + '"  class="layui-upload-img">'
+            //             }
+            //             html += '</div>'
+            //         }
+            //         layer.open({
+            //             title: '照片',
+            //             type: 1,
+            //             content: html
+            //         });
+            //     }
+            // });
+
+            //点击查询
+            $scope.searchQuery = function() {
+                var consNo = $("input[name='consNo']").val()
+                table.reload('testReload', {
+                    url: baseUrl_API_WeiXin + 'netUserInfoController/getWaterRate'
+                        // ,methods:"post"
+                        ,
+                    request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                            ,
+                        limitName: 'rows' //每页数据量的参数名，默认：limit
+                    },
+                    where: {
+                        pagination: JSON.stringify({"page":$(".layui-laypage-skip").find('input').val(),"rows":$(".layui-laypage-limits").find("option:selected").val(),"sidx":"RCVBL_YM","sord":"desc"}),
+                        userInfoCode: consNo || '100003'
+                    },
+                    parseData: function(res) { //res 即为原始返回的数据
+                        return {
+                            "code": res.code == 200 ? 0 : '', //解析接口状态
+                            "msg": res.info, //解析提示文本
+                            "count": res.total, //解析数据长度
+                            "data": res.rows //解析数据列表
+                        };
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+                console.log(table_name);
+
+            }
+        });
+    })
+    jkApp.controller('paymentQueryCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+        layui.use(['form', 'layedit', 'laydate', 'table'], function() {
+            var form = layui.form;
+            var table = layui.table;
+
+            var layer = layui.layer;
+            var layedit = layui.layedit;
+            var laydate = layui.laydate;
+            var table_name = table.render({
+                elem: '#my-table',
+                id: 'testReload',
+                height: 312,
+                url: 'https://zhsw.sunaas.com/Xwechat1/netUserInfoController/getPayRecord' //数据接口
+                    ,
+                // page: true, //开启分页 
+                request: {
+                    pageName: 'page' //页码的参数名称，默认：page
+                        ,
+                    limitName: 'rows' //每页数据量的参数名，默认：limit
+                },
+                where: {
+                    pagination: JSON.stringify({"page":1,"rows":20,"sidx":"","sord":"desc"}),
+                    queryJson: JSON.stringify({"UserInfoCode":"S000287"})
+                },
+                parseData: function(res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.code == 200 ? 0 : '', //解析接口状态
+                        "msg": res.info, //解析提示文本
+                        "count": res.data.total, //解析数据长度
+                        "data": res.data.rows //解析数据列表
+                    };
+                },
+                cols: [
+                    [ //表头
+                        { field: 'charge_DATE', title: '缴费日期', align: "center" },
+                        { field: 'rcv_AMT', title: '缴费金额', align: "center" },
+                        { field: 'pay_MODE', title: '缴费方式', align: "center" }
+                    ]
+                ]
+            });
+
+            //点击查询
+            $scope.searchQuery = function() {
+                var USERNAME = $('.layui-input-userName').val()
+                var TELPHONE = $('.layui-input-phone').val()
+                table.reload('testReload', {
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId' //数据接口
+                        // ,methods:"post"
+                        ,
+                    request: {
+                        pageName: 'page' //页码的参数名称，默认：page
+                            ,
+                        limitName: 'rows' //每页数据量的参数名，默认：limit
+                    },
+                    where: {
+                        openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
+                    },
+                    parseData: function(res) { //res 即为原始返回的数据
+                        return {
+                            "code": res.code == 1 ? 0 : '', //解析接口状态
+                            "msg": res.info, //解析提示文本
+                            "count": res.total, //解析数据长度
+                            "data": res.userList //解析数据列表
+                        };
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+
+            }
+        });
     })

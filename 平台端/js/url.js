@@ -5,6 +5,8 @@ var fileUrl = "http://192.168.2.155:10028/JavaInstall/upload/files/";
 var videoUrl = "http://192.168.2.155:10028/JavaInstall/upload/video/";
 var baoZhuangBaseUrl = "http://219.150.181.194:7878/";
 var baseUrl_API_BZLC = "http://117.139.103.7:20021/bz/";
+// var baseUrl_API_WeiXin = "https://zhsw.sunaas.com/Xwechat1";
+var baseUrl_API_WeiXin = "http://39.103.180.221:10016/";
 
 // 眉山地址
 // var baseUrl = "http://117.139.103.7:20021/gw";
