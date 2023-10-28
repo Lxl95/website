@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-<div ng-controller="bindCtrl" class="businessMain" style="height: calc(100vh - 20px)">
+<div ng-controller="companyNewInstallLCCtrl" class="businessMain" style="height: calc(100vh - 20px)">
   <!--页面top导航-->
 	<div id="header" >
 		<div class="header-left" align="center">
@@ -119,46 +119,70 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">首页</a></li>
-            <li class="breadcrumb-item" aria-current="page">管理账户</li>
+            <li class="breadcrumb-item" aria-current="page">企事业报装</li>
           </ol>
         </nav>
-        <div class="background">
-          <div class="data-form" style="padding-top: 20px">
-            <div class="content">
-              <form class="form-horizontal" id="editForm">
-                <div class="top-back">
-                  <div class="form-group form-border">
-                    <label class="col-sm-1 control-label"><label style="color: #ff0000">*</label>户号</label>
-                    <div class="col-sm-6">
-                      <input id="userCode" class="form-control" type="text" name="consNo" required maxlength="20"
-                        placeholder="请填写户号" />
-                    </div>
-                  </div>
-                </div>
+        <section class="background">
+          <div class="content-box" style="height: calc(100% - 50px);">
+              <div class="content" style="padding-top: 20px; padding-bottom: 20px;width: 600px;">
+                  <form class="layui-form" id="uesrBaozhang" action="">
 
-                <div class="top-backnone">
-                  <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-10">
-                      <!-- <input type="button" class="btn btn-default" onclick="goBack(true)" value="返回" />&nbsp;&nbsp; -->
+                      <div class="layui-form-item">
+                          <label class="layui-form-label layui-required">企业名称:</label>
+                          <div class="layui-input-block">
+                              <input type="text" name="USERNAME" lay-verify="required" lay-reqtext="企业名称不能为空" placeholder="请输入企业名称" autocomplete="off" class="layui-input">
+                          </div>
+                      </div>
 
-                      <input type="button" class="btn btn-primary" onclick="doSubmit();return false;" value="确认绑定" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
+                      <div class="layui-form-item">
+                          <label class="layui-form-label layui-required">企业地址:</label>
+                          <div class="layui-input-block">
+                              <input type="text" name="USERADDRESS" lay-verify="required" lay-reqtext="企业地址不能为空" placeholder="请输入企业地址" autocomplete="off" class="layui-input">
+                          </div>
+                      </div>
+
+                      <div class="layui-form-item">
+                          <label class="layui-form-label layui-required">联系电话:</label>
+                          <div class="layui-input-block">
+                              <input type="text" name="TELPHONE" lay-verify="phone" lay-reqtext="联系电话不能为空" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
+                          </div>
+                      </div>
+
+                      <div class="layui-form-item">
+                          <label class="layui-form-label layui-required">信用代码:</label>
+                          <div class="layui-input-block">
+                              <input type="text" name="CARDNO" lay-reqtext="信用代码不能为空" placeholder="请输入社会信用代码" autocomplete="off" class="layui-input">
+                          </div>
+                      </div>
+                      <input type="hidden" name="images" class="image">
+                      <div class="layui-form-item">
+                          <label class="layui-form-label ">营业执照:</label>
+                          <div class="layui-upload">
+                              <div class="layui-upload-drag" id="test1">
+                                  <i class="layui-icon"></i>
+                                  <p>点击上传，或将图片拖拽到此处</p>
+
+                              </div>
+                              <!-- <button type="button" class="layui-btn" id="test1">上传图片</button> -->
+                              <div class="layui-upload-list" style="padding-left: 130px;">
+                                  <div class="layui-upload-list" id="demo2"></div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="btn-box" style="margin: 20px 120px;">
+                          <button type="button" type="reset" ng-click="reset()" class="layui-btn button1" style="background-color: rgb(204, 204, 204); border-color: rgb(204, 204, 204);">
+                        <span>重 置</span>
+                      </button>
+                          <button type="button" lay-submit lay-filter="formDemo" class="layui-btn button2" style="background-color: rgb(50, 136, 199); border-color: rgb(50, 136, 199);margin-left: 60px;">
+                        <span>提 交</span>
+                      </button>
+                      </div>
+                  </form>
+              </div>
+
+
           </div>
-          <div class="hint-tips">
-            <h1>温馨提示</h1>
-            <div>
-              <p>1.如遇不能户号绑定问题，请到营业厅完善用户资料</p>
-              <p>
-                2.未经许可同意，不得绑定他人客户代码，因侵犯他人权益造成的损失和法律责任由绑定者全部承担
-              </p>
-              <p><br /></p>
-            </div>
-          </div>
-        </div>
+      </section>
       </div>
     </div>
   </div>
@@ -340,18 +364,14 @@
     }
   }
 
-  .main-content .hint-tips {
-    padding-left: 50px;
-    padding-right: 50px;
-    border-radius: 4px;
-    background-color: white;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    position: unset;
-    top: unset;
-    left: unset;
-    width: unset;
+  
+</style>
+<style>
+  .layui-form-label {
+    width: 100px;
+  }
+  .layui-form-label.layui-required:after {
+    top: 10px
   }
 </style>
 <script src="../../js/personalMain.js"></script>
@@ -361,67 +381,38 @@
     if (userCode) {
       var load = layer.load(3)
       $.ajax({
-        type: 'GET',
-        url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + userCode,
-        success: function (res) {
-          // this.userInfoCode = res.userInfoCode; //户号
-          // this.userName = res.userName; //用户名
-          // this.userAddress = res.site; //用户地址
-          // this.accountMoney = res.accountMoney; //余额
-          if (res.userInfoCode) {
-            $.ajax({
-              type: 'Post',
-              url: baseUrl_API_WeiXin + 'payUser/updateUserTablesByOpenId',
-              data: JSON.stringify({
-                openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
-                userInfoCode: res.userInfoCode, //户号
-                userName: res.userName.replace(/\s+/g, ""), //用户名
-                userAddress: res.userAddress, //用户地址
-                contect: '', //用户电话
-                accountMoney: res.accountMoney, //余额
-              }),
-              dataType: 'json',
-              contentType: 'application/json',
-              success: function (res2) {
-                layer.close(load)
-                if (res2.success == true) {
-                  // bindConsAndPhone(res.userInfoCode)
-                  layer.alert('绑定成功~')
-                } else {
-                  layer.alert(res.message || '绑定失败~')
-                }
-              }
-            })
+        type: 'POST',
+        url: baseUrl + '/login/userLogin',
+        data: JSON.stringify({
+          mobileNumber: '',
+          userCode: Encrypt($('#userCode').val())
+        }),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+          layer.close(load)
+          if (data.code == 1000) {
+            layer.alert('保存成功~')
+            // window.location.href =
+            //   global.basePath + 'waterFee/waterWx?showType=list'
+          } else if (data.code == '-2') {
+            // layer.confirm(
+            //   '您还未实名，绑定已到达上限，去实名吧',
+            //   {
+            //     btn: ['现在就去', '在看看'] //按钮
+            //   },
+            //   function () {
+            //     window.location.href = global.basePath + 'user/nameAuth'
+            //   },
+            //   function () {}
+            // )
           } else {
-            layer.close(load)
-            layer.alert(res.message || '未查询到户号信息~')
+            layer.alert(data.message || '保存失败~')
           }
         }
       })
     } else {
       top.layer.msg('请输入户号', { icon: 2, time: 3000 })
     }
-  }
-  function bindConsAndPhone(userInfoCode) {
-    $.ajax({
-        type: 'Post',
-        url: baseUrl + 'ysUser/save',
-        data: JSON.stringify({
-          "id": 0,
-          "mobileNumber": '',
-          "openId": 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
-          "ysCode": [userInfoCode]
-        }),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (res) {
-          layer.close(load)
-          if (res.code == 10000) {
-            layer.alert('绑定成功~')
-          } else {
-            layer.alert(res.message || '绑定失败~')
-          }
-        }
-      })
   }
 </script>

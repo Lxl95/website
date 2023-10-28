@@ -107,6 +107,20 @@
             templateUrl: "html/OnlineBusinessHall/waterPriceQuery.html"
         }).when("/paymentQuery", {
             templateUrl: "html/OnlineBusinessHall/paymentQuery.html"
+        }).when("/bindWeChat", {
+            templateUrl: "html/OnlineBusinessHall/bindWeChat.html"
+        }).when("/peopleNewInstallLC", {
+            templateUrl: "html/OnlineBusinessHall/peopleNewInstallLC.html"
+        }).when("/companyNewInstallLC", {
+            templateUrl: "html/OnlineBusinessHall/companyNewInstallLC.html"
+        }).when("/chooseUserNameLC", {
+            templateUrl: "html/OnlineBusinessHall/chooseUserNameLC.html"
+        }).when("/cancelUserLC", {
+            templateUrl: "html/OnlineBusinessHall/cancelUserLC.html"
+        }).when("/chooseWaterNature", {
+            templateUrl: "html/OnlineBusinessHall/chooseWaterNature.html"
+        }).when("/processListLC", {
+            templateUrl: "html/OnlineBusinessHall/processListLC.html"
         }).when("/new", {
             templateUrl: "html/newList.html"
         }).when("/handling", {
@@ -177,6 +191,12 @@
           } else if(next_path == '/OnlineBusinessHall' || next_path == '/toBind' || next_path == '/account') {
             $rootScope.pageName = 'business'
           } else if(next_path == '/userInfo' || next_path == '/paymentQuery' || next_path == '/waterPriceQuery') {
+            $rootScope.pageName = 'business'
+          } else if(next_path == '/bindWeChat') {
+            $rootScope.pageName = 'business'
+          } else if(next_path == '/processListLC' || next_path == '/companyNewInstallLC' || next_path == '/peopleNewInstallLC') {
+            $rootScope.pageName = 'business'
+          } else if(next_path == '/chooseUserNameLC' || next_path == '/cancelUserLC' || next_path == '/chooseWaterNature') {
             $rootScope.pageName = 'business'
           } else {
             $rootScope.pageName = 'home.html'
@@ -3254,7 +3274,7 @@
                 offset: offset,
                 area: ['90%', '90%'],
                 shadeClose: true, //开启遮罩关闭
-                content: '尊敬的客户: <p class="agreement">感谢您注册使用我公司网上营业厅。网上营业厅的所有权和运作权，以及受理具体业务的经营权归水务集团有限公司所有。在注册使用本网站之前，您必须完全同意以下所有服务条款：</p> <p class="agreement"> 一、定义 </p> <p class="agreement">1、 本网站：指水务集团有限公司网站，网址为www.jlwater.com。</p> <p class="agreement"> 2、 用户/您：指同意并遵守本协议，完成本网站所有注册程序并经本网站确认，拥有本网站登录帐号和密码的自然人、法人、其他组织。</p> ' +
+                content: '尊敬的客户: <p class="agreement">感谢您注册使用我公司网上营业厅。网上营业厅的所有权和运作权，以及受理具体业务的经营权归水务集团有限公司所有。在注册使用本网站之前，您必须完全同意以下所有服务条款：</p> <p class="agreement"> 一、定义 </p> <p class="agreement">1、 本网站：指水务集团有限公司网站，网址为。</p> <p class="agreement"> 2、 用户/您：指同意并遵守本协议，完成本网站所有注册程序并经本网站确认，拥有本网站登录帐号和密码的自然人、法人、其他组织。</p> ' +
                 '<p class="agreement">3、 用户信息：指用户注册信息以及用户使用本网站用户服务时提交的、被本网站所知悉的交易信息。</p>'+
                 '<p class="agreement">4、 用户注册信息：指用户在本网站注册的各项信息，包括其后通过身份验证后修改所填写的内容。</p>'+
                 '<p class="agreement">5、 用户指令：本协议中，除非专门指明或声明，均指用户以数据电文形式向本网站提出的申请、要求，包括但不限于用户要求本网站提供、变更或取消其依据本网站业务流程可享有的各项服务的申请、要求。</p>'+
@@ -3942,4 +3962,517 @@
 
             }
         });
+    })
+    // 关联微信
+    jkApp.controller('bindWeChatCtrl', function($scope, $location) {
+        $scope.imageUrl = imageUrl;
+        systeminfo();
+        //获取基本信息
+        function systeminfo() {
+            $.ajax({
+                url: baseUrl + "/systeminfo/queryAll",
+                success: function(result) {
+                    $scope.$apply(function() {
+                        $scope.info = result.data[0];
+                        // 动态配置客网页头名称
+                        document.title = $scope.info.companyname
+                    });
+                }
+            });
+        };
+    })
+    // 个人报装申请
+    jkApp.controller('peopleNewInstallLCCtrl', function($scope, $location, $routeParams, $sce) {
+        layui.use(['form', 'upload'], function() {
+            var form = layui.form;
+            var $ = layui.jquery,
+                upload = layui.upload;
+            var IMAGEURL = [];
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: baseUrl + '/upload/imgUpload',
+                accept: 'images',
+                size: 50000,
+                before: function(obj) {
+
+                    obj.preview(function(index, file, result) {
+
+                        $('#demo2').append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                    });
+                },
+                done: function(res) {
+                    // //如果上传失败
+                    // if (res.code == 10000) {
+                    //     return layer.msg('上传失败');
+                    // }
+                    //上传成功
+                    if (res.code == 10000) {
+                        layer.msg('上传成功');
+                    }
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");
+                    fileupload.attr("value", res.data);
+                    IMAGEURL.push(imageUrl + res.data)
+                    console.log(fileupload.attr("value"));
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                // layer.msg(JSON.stringify(data.field));
+                var param = data.field;
+
+
+                $.ajax({                    
+                    type:   "POST",
+                    url: baoZhuangBaseUrl + "/ArchivesManage/User/WebAPI/OfficiaWebsite.ashx",
+                    contentType:   "application/x-www-form-urlencoded",
+                    dataType: 'JSON',
+                             
+                    data: {
+                        "OPType": "ADDUSER",
+                        "USERNAME": filterXSS(param.USERNAME),
+                        "USERADDRESS": filterXSS(param.USERADDRESS),
+                        "TELPHONE": filterXSS(param.TELPHONE),
+                        "CARDNO": filterXSS(param.CARDNO),
+                        "IMAGEURL": filterXSS(IMAGEURL.toString()),
+                        "USERTYPE": 2,
+                        "SOURCE": "PC"
+                    },
+
+                    success:   function (jsonResult)  {                        
+                        layer.msg("提交成功!!!", {
+                            icon: 6,
+                            time: 500
+                        }, function() {
+                            $("#uesrBaozhang")[0].reset();
+                            $('#demo2').html('');
+                            layui.form.render();
+                        });                                
+                    },
+                    error:   function (data)  {                      
+                        alert("请求失败");                    
+                    }                
+                });
+                return false;
+            });
+
+            //点击重置
+            $scope.reset = function() {
+                $("#uesrBaozhang")[0].reset();
+                $('#demo2').html('');
+                layui.form.render();
+
+            }
+        });
+
+
+
+    })
+    // 企事业报装申请
+    jkApp.controller('companyNewInstallLCCtrl', function($scope, $location, $routeParams, $sce) {
+        layui.use(['form', 'upload'], function() {
+            var form = layui.form;
+            var $ = layui.jquery,
+                upload = layui.upload;
+            var IMAGEURL = [];
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: baseUrl + '/upload/imgUpload',
+                accept: 'images',
+                size: 50000,
+                before: function(obj) {
+
+                    obj.preview(function(index, file, result) {
+
+                        $('#demo2').append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                    });
+                },
+                done: function(res) {
+                    // //如果上传失败
+                    // if (res.code == 10000) {
+                    //     return layer.msg('上传失败');
+                    // }
+                    //上传成功
+                    if (res.code == 10000) {
+                        layer.msg('上传成功');
+                    }
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");
+                    fileupload.attr("value", res.data);
+                    IMAGEURL.push(imageUrl + res.data)
+                    console.log(fileupload.attr("value"));
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                // layer.msg(JSON.stringify(data.field));
+                var param = data.field;
+
+
+                $.ajax({                    
+                    type:   "POST",
+                    url: baoZhuangBaseUrl + "/ArchivesManage/User/WebAPI/OfficiaWebsite.ashx",
+                    contentType:   "application/x-www-form-urlencoded",
+                    dataType: 'JSON',
+                             
+                    data: {
+                        "OPType": "ADDUSER",
+                        "USERNAME": filterXSS(param.USERNAME),
+                        "USERADDRESS": filterXSS(param.USERADDRESS),
+                        "TELPHONE": filterXSS(param.TELPHONE),
+                        "CARDNO": filterXSS(param.CARDNO),
+                        "IMAGEURL": filterXSS(IMAGEURL.toString()),
+                        "USERTYPE": 2,
+                        "SOURCE": "PC"
+                    },
+
+                    success:   function (jsonResult)  {                        
+                        layer.msg("提交成功!!!", {
+                            icon: 6,
+                            time: 500
+                        }, function() {
+                            $("#uesrBaozhang")[0].reset();
+                            $('#demo2').html('');
+                            layui.form.render();
+                        });                                
+                    },
+                    error:   function (data)  {                      
+                        alert("请求失败");                    
+                    }                
+                });
+                return false;
+            });
+
+            //点击重置
+            $scope.reset = function() {
+                $("#uesrBaozhang")[0].reset();
+                $('#demo2').html('');
+                layui.form.render();
+
+            }
+        });
+
+
+
+    })
+    // 更名/过户
+    jkApp.controller('chooseUserNameLCCtrl', function($scope, $location, $routeParams, $sce) {
+        layui.use(['form', 'upload'], function() {
+            var form = layui.form;
+            var $ = layui.jquery,
+                upload = layui.upload;
+            var IMAGEURL = [];
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: baseUrl + '/upload/imgUpload',
+                accept: 'images',
+                size: 50000,
+                before: function(obj) {
+
+                    obj.preview(function(index, file, result) {
+
+                        $('#demo2').append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                    });
+                },
+                done: function(res) {
+                    // //如果上传失败
+                    // if (res.code == 10000) {
+                    //     return layer.msg('上传失败');
+                    // }
+                    //上传成功
+                    if (res.code == 10000) {
+                        layer.msg('上传成功');
+                    }
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");
+                    fileupload.attr("value", res.data);
+                    IMAGEURL.push(imageUrl + res.data)
+                    console.log(fileupload.attr("value"));
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                // layer.msg(JSON.stringify(data.field));
+                var param = data.field;
+
+
+                $.ajax({                    
+                    type:   "POST",
+                    url: baoZhuangBaseUrl + "/ArchivesManage/User/WebAPI/OfficiaWebsite.ashx",
+                    contentType:   "application/x-www-form-urlencoded",
+                    dataType: 'JSON',
+                             
+                    data: {
+                        "OPType": "ADDUSER",
+                        "USERNAME": filterXSS(param.USERNAME),
+                        "USERADDRESS": filterXSS(param.USERADDRESS),
+                        "TELPHONE": filterXSS(param.TELPHONE),
+                        "CARDNO": filterXSS(param.CARDNO),
+                        "IMAGEURL": filterXSS(IMAGEURL.toString()),
+                        "USERTYPE": 2,
+                        "SOURCE": "PC"
+                    },
+
+                    success:   function (jsonResult)  {                        
+                        layer.msg("提交成功!!!", {
+                            icon: 6,
+                            time: 500
+                        }, function() {
+                            $("#uesrBaozhang")[0].reset();
+                            $('#demo2').html('');
+                            layui.form.render();
+                        });                                
+                    },
+                    error:   function (data)  {                      
+                        alert("请求失败");                    
+                    }                
+                });
+                return false;
+            });
+
+            //点击重置
+            $scope.reset = function() {
+                $("#uesrBaozhang")[0].reset();
+                $('#demo2').html('');
+                layui.form.render();
+
+            }
+        });
+
+
+
+    })
+    // 销户
+    jkApp.controller('cancelUserLCCtrl', function($scope, $location, $routeParams, $sce) {
+        layui.use(['form', 'upload'], function() {
+            var form = layui.form;
+            var $ = layui.jquery,
+                upload = layui.upload;
+            var IMAGEURL = [];
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: baseUrl + '/upload/imgUpload',
+                accept: 'images',
+                size: 50000,
+                before: function(obj) {
+
+                    obj.preview(function(index, file, result) {
+
+                        $('#demo2').append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                    });
+                },
+                done: function(res) {
+                    // //如果上传失败
+                    // if (res.code == 10000) {
+                    //     return layer.msg('上传失败');
+                    // }
+                    //上传成功
+                    if (res.code == 10000) {
+                        layer.msg('上传成功');
+                    }
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");
+                    fileupload.attr("value", res.data);
+                    IMAGEURL.push(imageUrl + res.data)
+                    console.log(fileupload.attr("value"));
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                // layer.msg(JSON.stringify(data.field));
+                var param = data.field;
+
+
+                $.ajax({                    
+                    type:   "POST",
+                    url: baoZhuangBaseUrl + "/ArchivesManage/User/WebAPI/OfficiaWebsite.ashx",
+                    contentType:   "application/x-www-form-urlencoded",
+                    dataType: 'JSON',
+                             
+                    data: {
+                        "OPType": "ADDUSER",
+                        "USERNAME": filterXSS(param.USERNAME),
+                        "USERADDRESS": filterXSS(param.USERADDRESS),
+                        "TELPHONE": filterXSS(param.TELPHONE),
+                        "CARDNO": filterXSS(param.CARDNO),
+                        "IMAGEURL": filterXSS(IMAGEURL.toString()),
+                        "USERTYPE": 2,
+                        "SOURCE": "PC"
+                    },
+
+                    success:   function (jsonResult)  {                        
+                        layer.msg("提交成功!!!", {
+                            icon: 6,
+                            time: 500
+                        }, function() {
+                            $("#uesrBaozhang")[0].reset();
+                            $('#demo2').html('');
+                            layui.form.render();
+                        });                                
+                    },
+                    error:   function (data)  {                      
+                        alert("请求失败");                    
+                    }                
+                });
+                return false;
+            });
+
+            //点击重置
+            $scope.reset = function() {
+                $("#uesrBaozhang")[0].reset();
+                $('#demo2').html('');
+                layui.form.render();
+
+            }
+        });
+
+
+
+    })
+    // 用水性质变更
+    jkApp.controller('chooseWaterNatureCtrl', function($scope, $location, $routeParams, $sce) {
+        layui.use(['form', 'upload'], function() {
+            var form = layui.form;
+            var $ = layui.jquery,
+                upload = layui.upload;
+            var IMAGEURL = [];
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: baseUrl + '/upload/imgUpload',
+                accept: 'images',
+                size: 50000,
+                before: function(obj) {
+
+                    obj.preview(function(index, file, result) {
+
+                        $('#demo2').append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                    });
+                },
+                done: function(res) {
+                    // //如果上传失败
+                    // if (res.code == 10000) {
+                    //     return layer.msg('上传失败');
+                    // }
+                    //上传成功
+                    if (res.code == 10000) {
+                        layer.msg('上传成功');
+                    }
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");
+                    fileupload.attr("value", res.data);
+                    IMAGEURL.push(imageUrl + res.data)
+                    console.log(fileupload.attr("value"));
+                },
+                error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function() {
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+            //监听提交
+            form.on('submit(formDemo)', function(data) {
+                // layer.msg(JSON.stringify(data.field));
+                var param = data.field;
+
+
+                $.ajax({                    
+                    type:   "POST",
+                    url: baoZhuangBaseUrl + "/ArchivesManage/User/WebAPI/OfficiaWebsite.ashx",
+                    contentType:   "application/x-www-form-urlencoded",
+                    dataType: 'JSON',
+                             
+                    data: {
+                        "OPType": "ADDUSER",
+                        "USERNAME": filterXSS(param.USERNAME),
+                        "USERADDRESS": filterXSS(param.USERADDRESS),
+                        "TELPHONE": filterXSS(param.TELPHONE),
+                        "CARDNO": filterXSS(param.CARDNO),
+                        "IMAGEURL": filterXSS(IMAGEURL.toString()),
+                        "USERTYPE": 2,
+                        "SOURCE": "PC"
+                    },
+
+                    success:   function (jsonResult)  {                        
+                        layer.msg("提交成功!!!", {
+                            icon: 6,
+                            time: 500
+                        }, function() {
+                            $("#uesrBaozhang")[0].reset();
+                            $('#demo2').html('');
+                            layui.form.render();
+                        });                                
+                    },
+                    error:   function (data)  {                      
+                        alert("请求失败");                    
+                    }                
+                });
+                return false;
+            });
+
+            //点击重置
+            $scope.reset = function() {
+                $("#uesrBaozhang")[0].reset();
+                $('#demo2').html('');
+                layui.form.render();
+
+            }
+        });
+
+
+
     })

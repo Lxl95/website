@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-<div ng-controller="bindCtrl" class="businessMain" style="height: calc(100vh - 20px)">
+<div ng-controller="bindWeChatCtrl" class="businessMain" style="height: calc(100vh - 20px)">
   <!--页面top导航-->
 	<div id="header" >
 		<div class="header-left" align="center">
@@ -115,52 +115,30 @@
 		<!--页面left导航 end -->
 
     <div class="right">
-      <div class="main-content" id="headListDiv">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">首页</a></li>
-            <li class="breadcrumb-item" aria-current="page">管理账户</li>
-          </ol>
-        </nav>
-        <div class="background">
-          <div class="data-form" style="padding-top: 20px">
-            <div class="content">
-              <form class="form-horizontal" id="editForm">
-                <div class="top-back">
-                  <div class="form-group form-border">
-                    <label class="col-sm-1 control-label"><label style="color: #ff0000">*</label>户号</label>
-                    <div class="col-sm-6">
-                      <input id="userCode" class="form-control" type="text" name="consNo" required maxlength="20"
-                        placeholder="请填写户号" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="top-backnone">
-                  <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-10">
-                      <!-- <input type="button" class="btn btn-default" onclick="goBack(true)" value="返回" />&nbsp;&nbsp; -->
-
-                      <input type="button" class="btn btn-primary" onclick="doSubmit();return false;" value="确认绑定" />
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
+      <div class="main-content">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">首页</a></li>
+                  <li class="breadcrumb-item">关联微信</li>
+              </ol>
+          </nav>
+          <div class="background">
+              <form id="formMyNj" method="post" class="form-horizontal" enctype="multipart/form-data"
+                    action= "">
+                  <ul class="list">
+                      <li>
+                          <div id="qrcode" style="width: 328.4px; height: 200px"></div>
+                          <p><span>*</span>请扫描此二维码进行<span class="iconNj"><img src="../../images/login/login-wx.png" alt=""></span><span class="bold">微信公众号</span>认证</p></li>
+                          </ul>
+                          <!-- <div class="button">
+                              <input type="button" id="back" class="btn btn-default"  onclick="goBack();" value="返回">
+                              
+                          </div> -->
+                      </form>
+         
           </div>
-          <div class="hint-tips">
-            <h1>温馨提示</h1>
-            <div>
-              <p>1.如遇不能户号绑定问题，请到营业厅完善用户资料</p>
-              <p>
-                2.未经许可同意，不得绑定他人客户代码，因侵犯他人权益造成的损失和法律责任由绑定者全部承担
-              </p>
-              <p><br /></p>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+  </div>
   </div>
 </div>
 <style type="text/css">
@@ -340,88 +318,207 @@
     }
   }
 
-  .main-content .hint-tips {
-    padding-left: 50px;
-    padding-right: 50px;
-    border-radius: 4px;
-    background-color: white;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 20px;
-    position: unset;
-    top: unset;
-    left: unset;
-    width: unset;
+  
+</style>
+<style>
+  .magnify-modal {
+      box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .magnify-header .magnify-toolbar {
+      background-color: rgba(0, 0, 0, .5);
+  }
+
+  .magnify-stage {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-width: 0;
+  }
+
+  .magnify-footer .magnify-toolbar {
+      background-color: rgba(0, 0, 0, .5);
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+  }
+
+  .magnify-header,
+  .magnify-footer {
+      pointer-events: none;
+  }
+
+  .magnify-button {
+      pointer-events: auto;
   }
 </style>
+<style>
+  .img{
+      width: 280px;
+      height: 200px;
+      float: left;
+      margin-bottom: 25px;
+      margin-left: 10px;
+  }
+  .list .img .error{
+      margin-left: 10px;
+  }
+  .img img{
+      border: 1px solid #ccc;
+  }
+  #main .main-content .list li p{
+      min-height:34px;
+  }
+  #main .main-content #form .list{
+      width:680px;
+  }
+  #main .main-content #form .list>li{
+      width:640px;
+  }
+  #main .main-content #formMyNj .list li p{
+      float: none;
+
+      width: 100%;
+      text-align: center;
+      line-height: 34px;
+  }
+  #main .main-content #formMyNj .list li p .iconNj img{
+      width:20px;
+      margin:0;
+      margin-left:10px;
+      margin-right:4px;
+      display: inline;
+      line-height:34px;
+  }
+  #main .main-content #formMyNj .list li p .bold{
+      color: #000;
+      font-size: 16px;
+      font-weight: 700;
+      margin-right: 10px;
+      line-height:34px;
+  }
+  #formMyNj .list{
+      width: 330px;
+      margin: auto;
+      margin-top: 50px;
+      border: 1px solid #ccc;
+      box-shadow: 0px 3px 10px #999;
+      padding: 70px 0px;
+  }
+  #formMyNj .list img{
+      display: block;
+      width: 170px;
+      margin: auto;
+      /* margin: 50px auto; */
+      margin-bottom: 50px;
+  }
+  @media screen and (max-width:767px){
+      .img{
+          width: 220px;
+          margin-left: 0;
+          margin-left: 10px;
+          height:160px;
+      }
+      #main .main-content #formMyNj .list li p{
+          margin-left:0;
+      }
+
+      #main .main-content .list .te label{
+          margin-left:160px;
+      }
+      #main .main-content #form .list{
+          width:100%;
+      }
+      #main .main-content #form .list>li{
+          width:100%;
+      }
+      .img img{
+          display: block;
+          margin: auto;
+          border: 1px solid #ccc;
+          width: 220px;
+          height:160px;
+      }
+      .list .img .error{
+          margin-left:100px;
+      }
+      .img{
+          margin-left:10%;
+      }
+  }
+  @media screen and (max-width:320px){
+      .img{
+          width: 175px;
+          margin-left: 0;
+          margin-left: 10px;
+          height:130px;
+      }
+      .img img{
+          display: block;
+          margin: auto;
+          border: 1px solid #ccc;
+          width: 175px;
+          height:130px;
+      }
+      #main .main-content .list .te label{
+          margin-left:125px;
+      }
+      #main .main-content .list li p{
+          width: 115px;
+      }
+      #main .main-content .list li input{
+          width: 175px;
+      }
+  }
+  </style>
 <script src="../../js/personalMain.js"></script>
+<script src="../../js/qrcode.min.js"></script>
 <script>
+  var wxqrcode;
+  var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e0c5b86007e391f&redirect_uri=http://www.xzbdxsw.com/?websitePhone=&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
+  $(document).ready(function() {
+     if(getlocalStorage()) {
+       wxqrcode = new QRCode(document.getElementById('qrcode'),wx_url.replace('websitePhone=', 'websitePhone=' + getlocalStorage() ))
+     }
+                        
+  });
   function doSubmit() {
     var userCode = $('#userCode').val()
     if (userCode) {
       var load = layer.load(3)
       $.ajax({
-        type: 'GET',
-        url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + userCode,
-        success: function (res) {
-          // this.userInfoCode = res.userInfoCode; //户号
-          // this.userName = res.userName; //用户名
-          // this.userAddress = res.site; //用户地址
-          // this.accountMoney = res.accountMoney; //余额
-          if (res.userInfoCode) {
-            $.ajax({
-              type: 'Post',
-              url: baseUrl_API_WeiXin + 'payUser/updateUserTablesByOpenId',
-              data: JSON.stringify({
-                openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
-                userInfoCode: res.userInfoCode, //户号
-                userName: res.userName.replace(/\s+/g, ""), //用户名
-                userAddress: res.userAddress, //用户地址
-                contect: '', //用户电话
-                accountMoney: res.accountMoney, //余额
-              }),
-              dataType: 'json',
-              contentType: 'application/json',
-              success: function (res2) {
-                layer.close(load)
-                if (res2.success == true) {
-                  // bindConsAndPhone(res.userInfoCode)
-                  layer.alert('绑定成功~')
-                } else {
-                  layer.alert(res.message || '绑定失败~')
-                }
-              }
-            })
+        type: 'POST',
+        url: baseUrl + '/login/userLogin',
+        data: JSON.stringify({
+          mobileNumber: '',
+          userCode: Encrypt($('#userCode').val())
+        }),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+          layer.close(load)
+          if (data.code == 1000) {
+            layer.alert('保存成功~')
+            // window.location.href =
+            //   global.basePath + 'waterFee/waterWx?showType=list'
+          } else if (data.code == '-2') {
+            // layer.confirm(
+            //   '您还未实名，绑定已到达上限，去实名吧',
+            //   {
+            //     btn: ['现在就去', '在看看'] //按钮
+            //   },
+            //   function () {
+            //     window.location.href = global.basePath + 'user/nameAuth'
+            //   },
+            //   function () {}
+            // )
           } else {
-            layer.close(load)
-            layer.alert(res.message || '未查询到户号信息~')
+            layer.alert(data.message || '保存失败~')
           }
         }
       })
     } else {
       top.layer.msg('请输入户号', { icon: 2, time: 3000 })
     }
-  }
-  function bindConsAndPhone(userInfoCode) {
-    $.ajax({
-        type: 'Post',
-        url: baseUrl + 'ysUser/save',
-        data: JSON.stringify({
-          "id": 0,
-          "mobileNumber": '',
-          "openId": 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
-          "ysCode": [userInfoCode]
-        }),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (res) {
-          layer.close(load)
-          if (res.code == 10000) {
-            layer.alert('绑定成功~')
-          } else {
-            layer.alert(res.message || '绑定失败~')
-          }
-        }
-      })
   }
 </script>
