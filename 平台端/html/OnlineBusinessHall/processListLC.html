@@ -13,7 +13,7 @@
 			<div>
 				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
 				<ul class="header-right-more">
-					<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+					<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 					<li><a href="#/userInfo">个人中心</a></li>
 				</ul>
 			</div>
@@ -28,7 +28,7 @@
 			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
 			<ul class="header-right-more " onblur="$(this).fadeToggle()">
 				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+				<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 			</ul>
 		</div>
 	</div>
@@ -128,7 +128,7 @@
               <form class="form-horizontal" id="editForm">
                 <div class="top-back">
                   <div class="form-group form-border">
-                    <label class="col-sm-2 control-label"><label style="color: #ff0000">*</label>户号</label>
+                    <label class="col-sm-1 control-label"><label style="color: #ff0000">*</label>户号</label>
                     <div class="col-sm-6">
                       <input id="userCode" class="form-control" type="text" name="consNo" required maxlength="20"
                         placeholder="请填写户号" />
@@ -138,8 +138,8 @@
 
                 <div class="top-backnone">
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <input type="button" class="btn btn-default" onclick="goBack(true)" value="返回" />&nbsp;&nbsp;
+                    <div class="col-sm-offset-1 col-sm-10">
+                      <!-- <input type="button" class="btn btn-default" onclick="goBack(true)" value="返回" />&nbsp;&nbsp; -->
 
                       <input type="button" class="btn btn-primary" onclick="doSubmit();return false;" value="确认绑定" />
                     </div>
@@ -339,6 +339,7 @@
       margin-top: 6px;
     }
   }
+
   .main-content .hint-tips {
     padding-left: 50px;
     padding-right: 50px;
@@ -352,8 +353,6 @@
     left: unset;
     width: unset;
   }
-
-  
 </style>
 <script src="../../js/personalMain.js"></script>
 <script>
@@ -362,38 +361,67 @@
     if (userCode) {
       var load = layer.load(3)
       $.ajax({
-        type: 'POST',
-        url: baseUrl + '/login/userLogin',
-        data: JSON.stringify({
-          mobileNumber: '',
-          userCode: Encrypt($('#userCode').val())
-        }),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-          layer.close(load)
-          if (data.code == 1000) {
-            layer.alert('保存成功~')
-            // window.location.href =
-            //   global.basePath + 'waterFee/waterWx?showType=list'
-          } else if (data.code == '-2') {
-            // layer.confirm(
-            //   '您还未实名，绑定已到达上限，去实名吧',
-            //   {
-            //     btn: ['现在就去', '在看看'] //按钮
-            //   },
-            //   function () {
-            //     window.location.href = global.basePath + 'user/nameAuth'
-            //   },
-            //   function () {}
-            // )
+        type: 'GET',
+        url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + userCode,
+        success: function (res) {
+          // this.userInfoCode = res.userInfoCode; //户号
+          // this.userName = res.userName; //用户名
+          // this.userAddress = res.site; //用户地址
+          // this.accountMoney = res.accountMoney; //余额
+          if (res.userInfoCode) {
+            $.ajax({
+              type: 'Post',
+              url: baseUrl_API_WeiXin + 'payUser/updateUserTablesByOpenId',
+              data: JSON.stringify({
+                openId: getlocalStorage('openId'),
+                userInfoCode: res.userInfoCode, //户号
+                userName: res.userName.replace(/\s+/g, ""), //用户名
+                userAddress: res.userAddress, //用户地址
+                contect: '', //用户电话
+                accountMoney: res.accountMoney, //余额
+              }),
+              dataType: 'json',
+              contentType: 'application/json',
+              success: function (res2) {
+                layer.close(load)
+                if (res2.success == true) {
+                  // bindConsAndPhone(res.userInfoCode)
+                  layer.alert('绑定成功~')
+                } else {
+                  layer.alert(res.message || '绑定失败~')
+                }
+              }
+            })
           } else {
-            layer.alert(data.message || '保存失败~')
+            layer.close(load)
+            layer.alert(res.message || '未查询到户号信息~')
           }
         }
       })
     } else {
       top.layer.msg('请输入户号', { icon: 2, time: 3000 })
     }
+  }
+  function bindConsAndPhone(userInfoCode) {
+    $.ajax({
+        type: 'Post',
+        url: baseUrl + '/ysUser/save',
+        data: JSON.stringify({
+          "id": 0,
+          "mobileNumber": '',
+          "openId": getlocalStorage('openId'),
+          "ysCode": [userInfoCode]
+        }),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (res) {
+          layer.close(load)
+          if (res.code == 10000) {
+            layer.alert('绑定成功~')
+          } else {
+            layer.alert(res.message || '绑定失败~')
+          }
+        }
+      })
   }
 </script>

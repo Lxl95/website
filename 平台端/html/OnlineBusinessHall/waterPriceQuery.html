@@ -15,7 +15,7 @@
          <div>
             <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
             <ul class="header-right-more">
-               <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+               <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
                <li><a href="#/userInfo">个人中心</a></li>
             </ul>
          </div>
@@ -30,7 +30,7 @@
          <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
          <ul class="header-right-more " onblur="$(this).fadeToggle()">
             <li><a href="#/userInfo">个人中心</a></li>
-            <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+            <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
          </ul>
       </div>
    </div>
@@ -133,30 +133,24 @@
             </nav>
             <div class="background">
                <div class="content data-list">
-                  <div class="row">
-                     <div class="col-sm-2 pay-btnFather">
-                        <a class="btn btn-primary pay-btn" id="batchPay" style="display: none">缴费</a>
-                     </div>
-                     <div class="col-sm-10 text-right">
-                        <!-- 自定义查询条件 START -->
-                        <form class="form-inline query-form quick-query-form form-padding" id="quickQueryFormId">
-                           <div class="form-group">
-                              <label class="control-label">户号：</label>
-                              <input type="text" class="form-control query-input-style" name="consNo"
-                                 style="width: 220px;">
-                           </div>
-                           <!-- <div class="form-group">
-          <label class="control-label">标签：</label>
-          <input type="text" class="form-control query-input-style" name="tag" style="width: 220px;">
-         </div> -->
-                           <div class="form-group">
-                              <a class="btn btn-primary quick-query-btn btn-search" id="quickQueryId"
-                                 ng-click="searchQuery()"><i
-                                    class="layui-icon layui-icon-search search-icon icon-right"></i>查询</a>
-                           </div>
-                        </form>
-                        <!-- 自定义查询条件 END -->
-                     </div>
+                  <div class="row" style="padding-top:20px">
+                     <form class="layui-form" action="" lay-filter="testCons">
+                        <div class="layui-form-item">
+                          <label class="layui-form-label">户号</label>
+                          <div class="layui-input-inline">
+                            <select id="consSelect" ng-model="myConsNo" style="width:170px;height:38px;display:block">
+                              <!-- <option value="">请选择</option> -->
+                              <option ng-repeat="cons in consList" value="{{cons.userInfoCode}}">{{cons.userInfoCode}}</option>
+                            </select>
+      
+                          </div>
+                          <div class="layui-input-inline">
+                            <button type="button" class="layui-btn" ng-click="searchQuery()">
+                              <i class="layui-icon layui-icon-search"></i>查询</button>
+                          </div>
+                        </div>
+                       
+                      </form>
                   </div>
 
                   <div class="fillcontent">

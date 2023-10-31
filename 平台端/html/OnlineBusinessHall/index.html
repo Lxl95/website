@@ -16,7 +16,7 @@
 			<div>
 				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
 				<ul class="header-right-more">
-					<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+					<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 					<li><a href="#/userInfo">个人中心</a></li>
 				</ul>
 			</div>
@@ -31,7 +31,7 @@
 			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
 			<ul class="header-right-more " onblur="$(this).fadeToggle()">
 				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+				<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 			</ul>
 		</div>
 	</div>
@@ -129,37 +129,33 @@
 				</nav>
 				<div class="contents">
 					<div class="contents-left">
-						<div class="contents-top">
+						<div class="contents-top" style="min-height: 300px">
 							<div class="title">
 								<h1>基本情况</h1>
 								<!-- <a href="javascript:void(0)"
 									onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>更多>></a> -->
 							</div>
-							<div class="customerid" id="consNoSelectDiv">
+							<div class="customerid" id="consNoSelectDiv" >
 								<div class="customerid-top">
 										<i class=""><img src="../../images/business/11.png" alt=""></i>
 									<p class="">用户编号</p>
-									<span>
-										
-										<a href="#/toBind">绑定户号</a>
-										
-										
-										</span>
+									<span ng-if="myConsNo">{{ myConsNo }}</span>
+									<span ng-if="!myConsNo"> <a href="#/toBind">绑定户号</a> </span>
 
 								</div>
 								<div class="customerid-center">
 										<i class=""><img src="../../images/business/12.png" alt=""></i>
 									<p class="">用户名称</p>
 									<i class="i" onclick="layer.tips('用户名称是在水务集团登记的名称', this);"></i>
-									<span id="consName"></span>
+									<span id="consName">{{ consInfo.userName || ''}}</span>
 								</div>
 								<div class="customerid-bottom">
 										<i class=""><img src="../../images/business/13.png" alt=""></i>
 									<p class="">用户地址</p>
 									<i class="i" onclick="layer.tips('用户地址是在水务集团登记的地址',this);"></i>
-									<span id="address"></span>
+									<span id="address">{{ consInfo.site || ''}}</span>
 								</div>
-								<div class="customerid-bottom2">
+								<!-- <div class="customerid-bottom2">
 									<i class=""><img src="../../images/business/water-14.png" alt=""></i>
 									<p class="">水表编号</p>
 									<span id="meterNum"></span>
@@ -173,12 +169,12 @@
 									<i class=""><img src="../../images/business/water-16.png" alt=""></i>
 									<p class="">水价类别</p>
 									<span id="meterCategory"></span>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
 
-					<div class="contents-right">
+					<div class="contents-right" style="min-height: 300px" >
 						<div class="right-two">
 							<div class="integral" style="width: 100%">
 								<div class="img">
@@ -186,7 +182,7 @@
 								</div>
 								<div class="num">
 									<p>
-										用户名：<span>SWd0f90c5c469869</span>
+										用户名：<span>{{ websitePhone || ''}}</span>
 									</p>
 									<p>
 										<!-- 积分：<span class="bignum">0</span><i>分</i> -->
@@ -205,9 +201,9 @@
 						</div>
 						<div class="right-one">
 							<div class="arrearage">
-								<p class="right-title">应缴水费</p>
+								<p class="right-title">账户余额</p>
 								<p class="right-center">
-									<span id="feeAmt" class="spanfirst">0</span><span>元</span>
+									<span id="feeAmt" class="spanfirst">{{ rcvblAmt && rcvblAmt > 0 ? '-' + rcvblAmt : consInfo.accountMoney ? consInfo.accountMoney :  0}}</span><span>元</span>
 								</p>
 								<p class="right-bottom">
 									<a href="#/waterPriceQuery">查看详情</a>
@@ -220,7 +216,7 @@
 									<a href="#/processListLC">查看详情</a>
 								</p>
 							</div>
-							<div class="accountDetail">
+							<!-- <div class="accountDetail">
 								<div class="detail-top">
 									<p class="detail-main">预存款</p>
 									<p class="detail-content">
@@ -233,7 +229,7 @@
 										<span  class="spanfirst" id="zcAB">0</span><span>元</span>
 									</p>
 								</div>
-							</div>
+							</div> -->
 						</div>
 						
 						<!-- <div class="tab">
@@ -254,7 +250,7 @@
 								
 							</ul>
 						</div> -->
-						<div class="right-three">
+						<!-- <div class="right-three">
 							<ul>
 								<li>
 									<p class="right-title b">总水量</p>
@@ -275,7 +271,7 @@
 									</p>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 						<div class="right-four">
 							<div id="box"></div>
 						</div>

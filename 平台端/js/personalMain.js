@@ -329,7 +329,7 @@ function goBack(flag){
                     window.history.go( -1 );
                     return
                 }
-                    window.location.href = "about:blank";                    //关键是这句话
+                    window.location.href = "about:blank";//关键是这句话
                     window.close();
             }
         }else{ //未知的浏览器
@@ -342,6 +342,26 @@ function goBack(flag){
         }
     }
 }
+// getWXopenId()
+// // 重新扫码，获取手机号新绑定的openId
+// function getWXopenId() {
+//     if(getlocalStorage('phone')) {
+//       $.ajax({
+//         type: 'Post',
+//         url: baseUrl + '/ysUser/selectByNumber',
+//         data: JSON.stringify({
+//           "mobileNumber": getlocalStorage('phone')
+//         }),
+//         dataType: 'json',
+//         contentType: 'application/json',
+//         success: function (res) {
+//           if (res.code == 10000) {
+//             setlocalStorage('openId', res.data.openId)
+//           } 
+//         }
+//       })
+//     }
+//   }
 
 
 

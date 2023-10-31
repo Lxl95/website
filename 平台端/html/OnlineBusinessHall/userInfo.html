@@ -15,7 +15,7 @@
       <div>
         <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
         <ul class="header-right-more">
-          <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+          <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
           <li><a href="#/userInfo">个人中心</a></li>
         </ul>
       </div>
@@ -30,7 +30,7 @@
       <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
       <ul class="header-right-more " onblur="$(this).fadeToggle()">
         <li><a href="#/userInfo">个人中心</a></li>
-        <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+        <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
       </ul>
     </div>
   </div>
@@ -133,7 +133,7 @@
         </nav>
         <div class="background">
           <div class="content">
-            <div class="information">
+            <div class="information" style="min-height: 500px">
               <form action="" method="post" id="userInfo">
                 <ul>
                   <li>
@@ -145,14 +145,14 @@
                   <li>
                     <p>用户名</p>
                     <div class="right">
-                      <p>SWd0f90c5c469869</p>
+                      <p>{{ websitePhone }}</p>
                     </div>
 
                   </li>
                   <li>
                     <p>手机号</p>
                     <div class="right">
-                      <p>182****8187</p>
+                      <p>{{ websitePhone }}</p>
                     </div>
                   </li>
 
@@ -184,7 +184,7 @@
                     </div>
                   </li>
 
-                  <li>
+                  <!-- <li>
                     <p>是否接收短信</p>
                     <div class="right">
                       <p>
@@ -206,7 +206,7 @@
 
                       </p>
                     </div>
-                  </li>
+                  </li> -->
                   <li style="border: 0;">
                     <p>证件号码</p>
                     <div class="right">
@@ -215,8 +215,8 @@
                   </li>
                 </ul>
                 <div class="content-change">
-                  <button type="button" class="btn-search btn btn-primary show-panel"
-                    data-target="edit_valid">编辑</button>
+                  <!-- <button type="button" class="btn-search btn btn-primary show-panel"
+                    data-target="edit_valid">编辑</button> -->
 
                 </div>
               </form>

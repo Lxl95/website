@@ -33,20 +33,19 @@ function Decrypt(word) {
 }
 console.log(Encrypt('qaz123'))
 console.log(Decrypt('Se+Dq+6gzN/+zIpa3jdOpw=='))
-//设置cookie中的phone
-const companyName = 'XT'
-function setlocalStorage(token) {
-  let seconds = 3600; //设置有效时间
+//设置cookie中的phone和openId
+function setlocalStorage(stringName,value) {
+  let seconds = 3600; //设置有效时间1个小时
   let expires = new Date(new Date() * 1 + seconds * 1000);
-  return Cookies.set("website-" + companyName + "-phone", token, {
+  return Cookies.set("website-" + stringName, value, {
     expires: expires
   });
 }
 //获取cookie中的phone
-function getlocalStorage() {
-  return Cookies.get("website-" + companyName + "-phone");
+function getlocalStorage(stringName) {
+  return Cookies.get("website-" + stringName);
 }
 //清空cookie中的phone
-function removelocalStorage() {
-  return Cookies.remove("website-" + companyName + "-phone");
+function removelocalStorage(stringName) {
+  return Cookies.remove("website-" + stringName);
 }

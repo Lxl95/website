@@ -14,7 +14,7 @@
             <div>
                 <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
                 <ul class="header-right-more">
-                    <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+                    <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
                     <li><a href="#/userInfo">个人中心</a></li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
             </p>
             <ul class="header-right-more " onblur="$(this).fadeToggle()">
                 <li><a href="#/userInfo">个人中心</a></li>
-                <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+                <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
             </ul>
         </div>
     </div>
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-10 text-right">
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label class="control-label">户号：</label>
                                         <input type="text" class="form-control query-input-style" name="consNo"
                                             style="width: 120px;">
@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <a class="btn btn-primary quick-query-btn btn-search" id="quickQueryId"><i
                                                 class="layui-icon layui-icon-search search-icon"></i>查询</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </form>
                             <!-- 自定义查询条件 END -->
@@ -160,7 +160,7 @@
 
 
                         <div class="fillcontent">
-                            <div class="table-responsive" id="suypowerGrid"></div>
+                            <div class="table-responsive" id="suypowerGrid" lay-filter="test"></div>
                         </div>
                     </div>
                     <div class="data-form" style="margin-top:20px;"></div>
@@ -396,4 +396,7 @@
             top.layer.msg('请输入户号', { icon: 2, time: 3000 })
         }
     }
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="update">切换户号</a>
 </script>

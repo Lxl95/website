@@ -13,7 +13,7 @@
 			<div>
 				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
 				<ul class="header-right-more">
-					<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+					<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 					<li><a href="#/userInfo">个人中心</a></li>
 				</ul>
 			</div>
@@ -28,7 +28,7 @@
 			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
 			<ul class="header-right-more " onblur="$(this).fadeToggle()">
 				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+				<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 			</ul>
 		</div>
 	</div>
@@ -364,16 +364,12 @@
         type: 'GET',
         url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + userCode,
         success: function (res) {
-          // this.userInfoCode = res.userInfoCode; //户号
-          // this.userName = res.userName; //用户名
-          // this.userAddress = res.site; //用户地址
-          // this.accountMoney = res.accountMoney; //余额
           if (res.userInfoCode) {
             $.ajax({
               type: 'Post',
               url: baseUrl_API_WeiXin + 'payUser/updateUserTablesByOpenId',
               data: JSON.stringify({
-                openId: 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
+                openId: getlocalStorage('openId'),
                 userInfoCode: res.userInfoCode, //户号
                 userName: res.userName.replace(/\s+/g, ""), //用户名
                 userAddress: res.userAddress, //用户地址
@@ -385,8 +381,8 @@
               success: function (res2) {
                 layer.close(load)
                 if (res2.success == true) {
-                  // bindConsAndPhone(res.userInfoCode)
-                  layer.alert('绑定成功~')
+                  bindConsAndPhone(res.userInfoCode)
+                  // layer.alert('绑定成功~')
                 } else {
                   layer.alert(res.message || '绑定失败~')
                 }
@@ -405,17 +401,16 @@
   function bindConsAndPhone(userInfoCode) {
     $.ajax({
         type: 'Post',
-        url: baseUrl + 'ysUser/save',
+        url: baseUrl + '/ysUser/save',
         data: JSON.stringify({
           "id": 0,
-          "mobileNumber": '',
-          "openId": 'oEU0R6bJPxb_9OSETi8hOj2WQBHU',
+          "mobileNumber": getlocalStorage('phone'),
+          "openId": getlocalStorage('openId'),
           "ysCode": [userInfoCode]
         }),
         dataType: 'json',
         contentType: 'application/json',
         success: function (res) {
-          layer.close(load)
           if (res.code == 10000) {
             layer.alert('绑定成功~')
           } else {

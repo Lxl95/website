@@ -14,7 +14,7 @@
       <div>
         <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
         <ul class="header-right-more">
-          <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+          <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
           <li><a href="#/userInfo">个人中心</a></li>
         </ul>
       </div>
@@ -29,7 +29,7 @@
       <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
       <ul class="header-right-more " onblur="$(this).fadeToggle()">
         <li><a href="#/userInfo">个人中心</a></li>
-        <li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+        <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
       </ul>
     </div>
   </div>
@@ -135,68 +135,39 @@
             <div class="fillcontent" style="overflow: hidden">
               <form class="form-inline" id="searchFrom">
                 <input type="hidden" id="curr_consNo" />
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label class="control-label">户号：</label>
                   <select class="form-control select select-none" name="consNo">
                     <option value="">全部</option>
                   </select>
-                </div>
-                <!-- <div class="form-group">
-                  <label class="control-label">缴费编号：</label>
-                  <input type="text" class="form-control" name="orderNo" placeholder="" />
-                </div>
-                <div class="form-group">
-                  <label class="control-label">支付类型：</label>
-                  <select class="form-control select select-two" name="payType">
-                    <option value="">全部</option>
-                    <option value="WXPAY">微信</option>
-                    <option value="ALIPAY">支付宝</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">缴费渠道：</label>
-                  <select class="form-control select" name="payChannelType">
-                    <option value="">全部</option>
-                    <option value="0111">微信-网厅扫码</option>
-                    <option value="0121">微信-掌厅</option>
-                    <option value="0122">微信-公众号</option>
-                    <option value="0213">支付宝-网厅扫码</option>
-                    <option value="0220">支付宝-网厅PC版支付宝</option>
-                    <option value="0221">支付宝-掌厅</option>
-                    <option value="0222">支付宝-微信公众号</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">订单状态：</label>
-                  <select class="form-control select" name="status">
-                    <option value="">全部</option>
-                    <option value="1">已支付</option>
-                    <option value="2">已对账</option>
-                    <option value="3">转入退款</option>
-                    <option value="4">刷卡支付已撤销</option>
-                    <option value="5">交易已关闭</option>
-                    <option value="6">支付失败</option>
-                    <option value="7">对账金额不符</option>
-                    <option value="8">重复缴费</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">订单时间：</label>
-                  <input type="text" class="form-control Wdate" id="startDate"
-                    onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" value="2022-10-25"
-                    name="beginYMTime" />
-                  <span>-</span>
-                  <input type="text" class="form-control Wdate" id="endDate"
-                    onfocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startDate\')}',maxDate:'2999-10-31'})"
-                    value="2023-10-25" name="endYMTime" />
                 </div> -->
-                <div class="form-group">
+                
+                <form class="layui-form" action="" lay-filter="testCons">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">户号</label>
+                    <div class="layui-input-inline">
+                      <select id="consSelect" ng-model="myConsNo" style="width:170px;height:38px">
+                        <!-- <option value="">请选择</option> -->
+                        <option ng-repeat="cons in consList" value="{{cons.userInfoCode}}">{{cons.userInfoCode}}</option>
+                      </select>
+
+                    </div>
+                    <div class="layui-input-inline">
+                      <button type="button" class="layui-btn" ng-click="searchQuery()">
+                        <i class="layui-icon layui-icon-search"></i>查询</button>
+                    </div>
+                  </div>
+                 
+                 
+                </form>
+                
+                <!-- <div class="form-group">
                   <div class="button">
                     <button type="button" class="btn btn-primary btn-search" id="search" ng-click="searchQuery()">
                       <i class="layui-icon layui-icon-search search-icon icon-right"></i>查询
                     </button>
                   </div>
-                </div>
+                </div> -->
               </form>
 
               <div id="my-table">

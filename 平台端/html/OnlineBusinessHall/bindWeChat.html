@@ -13,7 +13,7 @@
 			<div>
 				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
 				<ul class="header-right-more">
-					<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+					<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 					<li><a href="#/userInfo">个人中心</a></li>
 				</ul>
 			</div>
@@ -28,7 +28,7 @@
 			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
 			<ul class="header-right-more " onblur="$(this).fadeToggle()">
 				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage()"><a href="#/">退出</a></li>
+				<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
 			</ul>
 		</div>
 	</div>
@@ -477,8 +477,8 @@
   var wxqrcode;
   var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e0c5b86007e391f&redirect_uri=http://www.xzbdxsw.com/?websitePhone=&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
   $(document).ready(function() {
-     if(getlocalStorage()) {
-       wxqrcode = new QRCode(document.getElementById('qrcode'),wx_url.replace('websitePhone=', 'websitePhone=' + getlocalStorage() ))
+     if(getlocalStorage('phone')) {
+       wxqrcode = new QRCode(document.getElementById('qrcode'),wx_url.replace('websitePhone=', 'websitePhone=' + getlocalStorage('phone') ))
      }
                         
   });
