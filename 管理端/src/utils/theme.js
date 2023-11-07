@@ -56,6 +56,25 @@ const themes = {
     borderExtralightColor: "#423f3f",
     hoverBgColor: "#4c4b4b"
   },
+  "starry": {
+    primary: "#2079b1",
+    success: "#4dc0b3",
+    warning: "#e6b067",
+    danger: "#e1886b",
+    primaryText: "#303133",
+    regularText: "#1a1a1a",
+    secondaryText: "#909399",
+    whiteColor: "#FFFFFF",
+    blackColor: "#000000",
+    baseColor: "#F5F7FA",
+    lightColor: "#f4f4f5",
+    secondColor: "#FAFAFA",
+    borderBaseColor: "#DCDFE6",
+    borderLightColor: "#E4E7ED",
+    borderLighterColor: "#D2D2D2",
+    borderExtralightColor: "#F2F6FC",
+    hoverBgColor: "#d6e3f4"
+  },
   "original": { // Element-UI原始情景颜色
     primary: "#409EFF",
     success: "#67C23A",

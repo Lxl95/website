@@ -6,7 +6,7 @@ import "normalize.css/normalize.css"; // a modern alternative to CSS resets
 
 import Element from "element-ui";
 import "element-ui/lib/theme-chalk/display.css";
-import "./styles/element-variables.scss";
+import "element-ui/lib/theme-chalk/index.css";
 
 import supportIE from "./utils/support"; // IE placeholder兼容指令
 
