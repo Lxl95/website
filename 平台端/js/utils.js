@@ -46,6 +46,38 @@ function getlocalStorage(stringName) {
   return Cookies.get("website-" + stringName);
 }
 //清空cookie中的phone
-function removelocalStorage(stringName) {
-  return Cookies.remove("website-" + stringName);
+function removelocalStorage(stringName, stringName2) {
+   if(stringName2) {
+    Cookies.remove("website-" + stringName2);
+   }
+   return Cookies.remove("website-" + stringName);
+}
+function getNowTime() {
+  const mydate = new Date();
+  let year = mydate.getFullYear();
+  let month = mydate.getMonth();
+  let day = mydate.getDate();
+  let hour = mydate.getHours();
+  let minutes = mydate.getMinutes();
+  let seconds = mydate.getSeconds();
+  let milli = mydate.getMilliseconds();
+  if (month < 10) {
+    month = month - 0 + 1;
+    month = "0" + month;
+  } else {
+    month = month - 0 + 1;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  if (hour < 10) {
+    hour = "0" + hour;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  return year + month + day + hour + minutes + seconds + milli;
 }

@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
 <link rel="stylesheet" href="../../css/userInfo.css" />
+
 <div ng-controller="userInfoCtrl" class="businessMain" style="height: calc(100vh - 20px)">
   <!--页面top导航-->
   <div id="header">
@@ -15,7 +17,7 @@
       <div>
         <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
         <ul class="header-right-more">
-          <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
+          <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
           <li><a href="#/userInfo">个人中心</a></li>
         </ul>
       </div>
@@ -30,7 +32,7 @@
       <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
       <ul class="header-right-more " onblur="$(this).fadeToggle()">
         <li><a href="#/userInfo">个人中心</a></li>
-        <li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
+        <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
       </ul>
     </div>
   </div>
@@ -50,27 +52,29 @@
                 src="../../images/business/2.png" alt=""></span>水费查询</a></li>
         <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
                 src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-        <!-- <li class="list-group-item show">
-																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/3.png" alt=""></span>快速缴费 <span
-																								class="layui-icon layui-icon-right"></span></a>
-																<ul class="list-group more">
-																				<div class="in">
-																								<li class="list-group-item"><i></i><a href="/payment/index">快速缴费</a></li>
-																								<li class="list-group-item"><i></i><a href="/paymentOrder/initList">支付清单</a></li>
-																				</div>
-																</ul>
-												</li> -->
-
-        <li class="list-group-item teshow newshow">
+        <li class="list-group-item show">
           <i></i>
           <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理
             <span class="layui-icon layui-icon-right"></span></a>
+          <ul class="list-group more">
+            <div class="in">
+              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+            </div>
+          </ul>
+        </li>
+
+        <li class="list-group-item teshow newshow">
+          <i></i>
+          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+                          alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
           <ul class="list-group more biz-group">
             <div class="in">
               <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
               <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/waterPriceQuery">水费查询</a></li>
               <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
               <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
               <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
@@ -99,13 +103,12 @@
               </ul>
             </li>
 
-            <li class="service title">
-              <p>用水缴费</p>
-              <ul>
-                <li><a href="#/waterPriceQuery">水费查询</a></li>
-                <!-- <li><a href="/payment/index">水费缴纳</a></li > -->
-              </ul>
-            </li>
+            <!-- <li class="service title">
+                      <p>用水缴费</p>
+                      <ul>
+                          <li><a href="#/waterPriceQuery">水费查询</a></li>
+                      </ul>
+                  </li> -->
             <li class="service title">
               <p>用户信息变更</p>
               <ul>

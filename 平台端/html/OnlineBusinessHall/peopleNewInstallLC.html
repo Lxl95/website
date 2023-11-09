@@ -1,190 +1,212 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
+
 <div ng-controller="peopleNewInstallLCCtrl" class="businessMain" style="height: calc(100vh - 20px)">
   <!--页面top导航-->
-	<div id="header" >
-		<div class="header-left" align="center">
-			<img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo" style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
-		</div>
-		<ul class="nav nav-pills">
-			<li role="presentation"><a href="#/">首页</a></li>
-			<li role="presentation"><a href="#/OnlineBusinessHall">网上营业厅</a></li>
-		</ul>
-		<div class="header-right">
-			<div>
-				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
-				<ul class="header-right-more">
-					<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
-					<li><a href="#/userInfo">个人中心</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div id="header">
+    <div class="header-left" align="center">
+      <img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo"
+        style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
+    </div>
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="#/">首页</a></li>
+      <li role="presentation"><a href="#/OnlineBusinessHall">网上营业厅</a></li>
+    </ul>
+    <div class="header-right">
+      <div>
+        <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
+        <ul class="header-right-more">
+          <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+          <li><a href="#/userInfo">个人中心</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-	<div id="bg"></div>
-	<div id="head-phone">
-		<div class="head-phone">
-			<p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
-			<p id="page-title">水务集团</p>
-			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
-			<ul class="header-right-more " onblur="$(this).fadeToggle()">
-				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage('phone')"><a href="#/">退出</a></li>
-			</ul>
-		</div>
-	</div>
-	<div id="main">
-		<!--页面left导航 start -->
-				<div id="aside" >
-								<div class="indentation" style="margin-top:10px">
-												<a href="#/OnlineBusinessHall" style="color: #000;"><p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p></a>
-												<p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
-								</div>
-								<ul class="list-group ul">
-												<li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img src="../../images/business/1.png" alt=""></span>客户中心</a></li>
-												<li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img src="../../images/business/2.png" alt=""></span>水费查询</a></li>
-												<li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-												<!-- <li class="list-group-item show">
-																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/3.png" alt=""></span>快速缴费 <span
-																								class="layui-icon layui-icon-right"></span></a>
-																<ul class="list-group more">
-																				<div class="in">
-																								<li class="list-group-item"><i></i><a href="/payment/index">快速缴费</a></li>
-																								<li class="list-group-item"><i></i><a href="/paymentOrder/initList">支付清单</a></li>
-																				</div>
-																</ul>
-												</li> -->
+  <div id="bg"></div>
+  <div id="head-phone">
+    <div class="head-phone">
+      <p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
+      <p id="page-title">水务集团</p>
+      <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
+      <ul class="header-right-more " onblur="$(this).fadeToggle()">
+        <li><a href="#/userInfo">个人中心</a></li>
+        <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="main">
+    <!--页面left导航 start -->
+    <div id="aside">
+      <div class="indentation" style="margin-top:10px">
+        <a href="#/OnlineBusinessHall" style="color: #000;">
+          <p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p>
+        </a>
+        <p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
+      </div>
+      <ul class="list-group ul">
+        <li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img
+                src="../../images/business/1.png" alt=""></span>客户中心</a></li>
+        <li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img
+                src="../../images/business/2.png" alt=""></span>水费查询</a></li>
+        <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
+                src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
+        <li class="list-group-item show">
+          <i></i>
+          <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理
+            <span class="layui-icon layui-icon-right"></span></a>
+          <ul class="list-group more">
+            <div class="in">
+              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+            </div>
+          </ul>
+        </li>
 
-												<li class="list-group-item teshow newshow">
-																<i></i>
-																<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理 <span
-																								class="layui-icon layui-icon-right"></span></a>
-																<ul class="list-group more biz-group">
-																				<div class="in">
-																								<li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-																								<li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-																								<li class="list-group-item"><i></i><a href="#/waterPriceQuery">水费查询</a></li>
-																								<li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-																								<li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-																								<li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-																				</div>
-																</ul>
-												</li>
+        <li class="list-group-item teshow newshow">
+          <i></i>
+          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+                          alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
+          <ul class="list-group more biz-group">
+            <div class="in">
+              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+            </div>
+          </ul>
+        </li>
 
-												<li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img src="../../images/business/7.png" alt=""></span>我的业务</a></li>
-												<li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img src="../../images/business/17.png" alt=""></span>管理账户</a></li>
+        <li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img
+                src="../../images/business/7.png" alt=""></span>我的业务</a></li>
+        <li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img
+                src="../../images/business/17.png" alt=""></span>管理账户</a></li>
 
-								</ul>
-								<ul class="list-group newmore">
-												<div class="newin">
-																<div class="business-search">
-																				<p class="searchBtn">搜索</p>
-																				<input type="text" class="search">
-																</div>
-																<ul class="business-ul">
-																				<li class="water title">
-																								<p>新报装申请</p>
-																								<ul>
-																												<li><a href="#/peopleNewInstallLC">个人报装</a></li>
-																												<li><a href="#/companyNewInstallLC">企事业报装</a></li>
-																								</ul>
-																				</li>
+      </ul>
+      <ul class="list-group newmore">
+        <div class="newin">
+          <div class="business-search">
+            <p class="searchBtn">搜索</p>
+            <input type="text" class="search">
+          </div>
+          <ul class="business-ul">
+            <li class="water title">
+              <p>新报装申请</p>
+              <ul>
+                <li><a href="#/peopleNewInstallLC">个人报装</a></li>
+                <li><a href="#/companyNewInstallLC">企事业报装</a></li>
+              </ul>
+            </li>
 
-																				<li class="service title">
-																								<p>用水缴费</p>
-																								<ul>
-																												<li><a href="#/waterPriceQuery">水费查询</a></li>
-																												<!-- <li><a href="/payment/index">水费缴纳</a></li > -->
-																								</ul>
-																				</li>
-																				<li class="service title">
-																								<p>用户信息变更</p>
-																								<ul>
-																												<li><a href="#/chooseUserNameLC">用户过户</a></li>
-																												<li><a href="#/cancelUserLC">用户销户</a></li>
-																												<li><a href="#/chooseWaterNature">用水性质变更</a></li>
-																								</ul>
-																				</li>
+            <!-- <li class="service title">
+                      <p>用水缴费</p>
+                      <ul>
+                          <li><a href="#/waterPriceQuery">水费查询</a></li>
+                      </ul>
+                  </li> -->
+            <li class="service title">
+              <p>用户信息变更</p>
+              <ul>
+                <li><a href="#/chooseUserNameLC">用户过户</a></li>
+                <li><a href="#/cancelUserLC">用户销户</a></li>
+                <li><a href="#/chooseWaterNature">用水性质变更</a></li>
+              </ul>
+            </li>
 
-																</ul>
-												</div>
-								</ul>
-												
-
-				</div>
-		<!--页面left导航 end -->
-
-		<div class="right">
-			<div class="main-content" id="headListDiv">
-					<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="#">首页</a></li>
-									<li class="breadcrumb-item" aria-current="page">个人报装</li>
-							</ol>
-					</nav>
-					<section class="background">
-							<div class="content-box" style="height: calc(100% - 50px);">
-											<div class="content" style="padding-top: 20px; padding-bottom: 20px;width: 600px;">
-															<form class="layui-form" id="uesrBaozhang" action="">
-
-																			<div class="layui-form-item">
-																							<label class="layui-form-label layui-required">联系人:</label>
-																							<div class="layui-input-block">
-																											<input type="text" name="USERNAME" lay-verify="required" lay-reqtext="联系人不能为空" placeholder="请输入联系人" autocomplete="off" class="layui-input">
-																							</div>
-																			</div>
-
-																			<div class="layui-form-item">
-																							<label class="layui-form-label layui-required">新装地址:</label>
-																							<div class="layui-input-block">
-																											<input type="text" name="USERADDRESS" lay-verify="required" lay-reqtext="新装地址不能为空" placeholder="请输入新装地址" autocomplete="off" class="layui-input">
-																							</div>
-																			</div>
-
-																			<div class="layui-form-item">
-																							<label class="layui-form-label layui-required">联系电话:</label>
-																							<div class="layui-input-block">
-																											<input type="text" name="TELPHONE" lay-verify="phone" lay-reqtext="联系电话不能为空" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
-																							</div>
-																			</div>
-
-																			<div class="layui-form-item">
-																							<label class="layui-form-label layui-required">身份证号:</label>
-																							<div class="layui-input-block">
-																											<input type="text" name="CARDNO" lay-reqtext="身份证号不能为空" placeholder="请输入身份证号" autocomplete="off" class="layui-input">
-																							</div>
-																			</div>
-																			<input type="hidden" name="images" class="image">
-																			<div class="layui-form-item">
-																							<label class="layui-form-label ">身份证:</label>
-																							<div class="layui-upload">
-																											<div class="layui-upload-drag" id="test1">
-																															<i class="layui-icon"></i>
-																															<p>点击上传，或将图片拖拽到此处</p>
-
-																											</div>
-																											<!-- <button type="button" class="layui-btn" id="test1">上传图片</button> -->
-																											<div class="layui-upload-list" style="padding-left: 130px;">
-																															<div class="layui-upload-list" id="demo2"></div>
-																											</div>
-																							</div>
-																			</div>
-																			<div class="btn-box" style="margin: 20px 120px;">
-																							<button type="button" type="reset" ng-click="reset()" class="layui-btn button1" style="background-color: rgb(204, 204, 204); border-color: rgb(204, 204, 204);">
-																					<span>重 置</span>
-																			</button>
-																							<button type="button" lay-submit lay-filter="formDemo" class="layui-btn button2" style="background-color: rgb(50, 136, 199); border-color: rgb(50, 136, 199);margin-left: 60px;">
-																					<span>提 交</span>
-																			</button>
-																			</div>
-															</form>
-											</div>
+          </ul>
+        </div>
+      </ul>
 
 
-							</div>
-			</section>
-			</div>
-	</div>
+    </div>
+    <!--页面left导航 end -->
+
+    <div class="right">
+      <div class="main-content" id="headListDiv">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">首页</a></li>
+            <li class="breadcrumb-item" aria-current="page">个人报装</li>
+          </ol>
+        </nav>
+        <section class="background">
+          <div class="content-box" style="height: calc(100% - 50px);">
+            <div class="content" style="padding-top: 20px; padding-bottom: 20px;width: 600px;">
+              <form class="layui-form" id="uesrBaozhang" action="">
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label layui-required">联系人:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="USERNAME" lay-verify="required" lay-reqtext="联系人不能为空" placeholder="请输入联系人"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label layui-required">新装地址:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="USERADDRESS" lay-verify="required" lay-reqtext="新装地址不能为空"
+                      placeholder="请输入新装地址" autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label layui-required">联系电话:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="TELPHONE" lay-verify="phone" lay-reqtext="联系电话不能为空" placeholder="请输入联系电话"
+                      autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label layui-required">身份证:</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="CARDNO" lay-reqtext="身份证号不能为空" placeholder="请输入身份证号" autocomplete="off"
+                      class="layui-input">
+                  </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                  <label class="layui-form-label">备注:</label>
+                  <div class="layui-input-block">
+                    <textarea name="ProjectDetail" placeholder="请输入内容" class="layui-textarea"></textarea>
+                  </div>
+                </div>
+                <input type="hidden" name="images" class="image">
+                <div ng-repeat="item in fileMsgList" class="layui-form-item">
+                  <label class="layui-form-label ">{{ item.FileRuleNameA }}</label>
+                  <div class="layui-upload">
+                    <div class="layui-upload-drag" id="{{ 'test' + $index}}">
+                      <i class="layui-icon"></i>
+                      <p>点击上传，或将图片拖拽到此处</p>
+                    </div>
+                    <!-- <button type="button" class="layui-btn" id="test1">上传图片</button> -->
+                    <div class="layui-upload-list" style="padding-left: 130px;">
+                      <div class="layui-upload-list" id="{{ 'demo' + $index}}"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btn-box" style="margin: 20px 120px;">
+                  <button type="button" type="reset" ng-click="reset()" class="layui-btn button1"
+                    style="background-color: rgb(204, 204, 204); border-color: rgb(204, 204, 204);">
+                    <span>重 置</span>
+                  </button>
+                  <button type="button" lay-submit lay-filter="formDemo" class="layui-btn button2"
+                    style="background-color: rgb(50, 136, 199); border-color: rgb(50, 136, 199);margin-left: 60px;">
+                    <span>提 交</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
 </div>
 <style type="text/css">
@@ -363,16 +385,15 @@
       margin-top: 6px;
     }
   }
-
-  
 </style>
 <style>
-	.layui-form-label {
-			width: 100px;
-	}
-	.layui-form-label.layui-required:after {
-			top: 10px
-	}
+  .layui-form-label {
+    width: 100px;
+  }
+
+  .layui-form-label.layui-required:after {
+    top: 10px
+  }
 </style>
 <script src="../../js/personalMain.js"></script>
 <script>

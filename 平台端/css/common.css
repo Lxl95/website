@@ -167,9 +167,13 @@ HTML {
 .hearder_one_two .icon {
     width: 20px;
     height: 20px;
-    position: absolute;
+    /* position: absolute;
     top: 4px;
-    left: -15px;
+    left: -15px; */
+    position: relative;
+    top: 2px;
+    margin-left: 15px;
+    margin-right: 1px;
 }
 
 .head-nav-box {
