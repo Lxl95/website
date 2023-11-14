@@ -49,20 +49,22 @@
 								src="../../images/business/2.png" alt=""></span>水费查询</a></li>
 				<li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
 								src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-				<li class="list-group-item show">
-					<i></i>
-					<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
-								alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
-					<ul class="list-group more">
-						<div class="in">
-							<li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-							<li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-							<li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-							<li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-							<li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-						</div>
-					</ul>
-				</li>
+								<li class="list-group-item show">
+									<i></i>
+									<a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+																					alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
+									<ul class="list-group more">
+													<div class="in">
+																	<!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+																																	<li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+																																	<li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+																																	<li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+																																	<li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+																	<li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
+																									ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
+													</div>
+									</ul>
+					</li>
 
 				<li class="list-group-item teshow newshow">
 					<i></i>
@@ -182,14 +184,17 @@
 
 					<div class="contents-right" style="min-height: 300px">
 						<div class="right-two">
-							<div class="integral" style="width: 100%">
+							<div class="integral" style="width: 100%" ng-click="toUserInfo()">
 								<div class="img">
-									<img src="" onerror="this.src='../../images/business/peple.png';this.onerror=null"
+									<img ng-src="{{ imageUrl + userAvataPath }}" onerror="this.src='../../images/business/peple.png';this.onerror=null"
 										id="headImg">
 								</div>
 								<div class="num">
 									<p>
-										用户名：<span>{{ websitePhone || ''}}</span>
+										手机名：<span>{{ websitePhone || ''}}</span>
+									</p>
+									<p>
+										地址：<span>{{ userAddress || ''}}</span>
 									</p>
 									<p>
 										<!-- 积分：<span class="bignum">0</span><i>分</i> -->
@@ -219,7 +224,7 @@
 							</div>
 							<div class="business">
 								<p class="right-title">我的业务</p>
-								<p class="right-center">0</p>
+								<p class="right-center">{{ businessNumber || 0 }}</p>
 								<p class="right-bottom">
 									<a href="#/processListLC">查看详情</a>
 								</p>
@@ -290,4 +295,4 @@
 
 	</div>
 </div>
-<script src="../../js/personalMain.js">
+<script src="../../js/personalMain.js" />

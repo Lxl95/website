@@ -51,20 +51,22 @@
                 src="../../images/business/2.png" alt=""></span>水费查询</a></li>
         <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
                 src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-        <li class="list-group-item show">
-          <i></i>
-          <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理
-            <span class="layui-icon layui-icon-right"></span></a>
-          <ul class="list-group more">
-            <div class="in">
-              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-            </div>
-          </ul>
-        </li>
+                <li class="list-group-item show">
+                  <i></i>
+                  <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+                              alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
+                  <ul class="list-group more">
+                      <div class="in">
+                          <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+                          <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
+                                  ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
+                      </div>
+                  </ul>
+              </li>
 
         <li class="list-group-item teshow newshow">
           <i></i>
@@ -205,7 +207,7 @@
                   <div class="layui-upload">
                     <div class="layui-upload-drag" id="{{ 'test' + $index}}">
                       <i class="layui-icon"></i>
-                      <p>点击上传，或将图片拖拽到此处</p>
+                      <p>点击上传，或将文件拖拽到此处</p>
                     </div>
                     <!-- <button type="button" class="layui-btn" id="test1">上传图片</button> -->
                     <div class="layui-upload-list" style="padding-left: 130px;">

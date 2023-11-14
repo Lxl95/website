@@ -362,11 +362,9 @@ function getWXopenId() {
       })
     }
   }
-
-
-
-
-
+function isImage(fileUrl){
+    return ['png', 'jpg', 'jpeg', 'bmp', 'gif', 'webp', 'psd', 'svg', 'tiff'].indexOf(fileUrl.substr(fileUrl.lastIndexOf(".") + 1)) !== -1
+}
 
 
 

@@ -3615,6 +3615,19 @@
                 }
             });
         };
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         // 获取手机号绑定的openId
         function getWXopenId() {
             if(getlocalStorage('phone')) {
@@ -3697,6 +3710,54 @@
             })
             }
         }
+        GetUserInfo();
+        //获取账户信息
+        function GetUserInfo() {
+            if(getlocalStorage('phone')) {
+                $.ajax({
+                    url: baseUrl + "/userInfo/getuserInfoByMobleNumber",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                       mobileNumber: getlocalStorage('phone')
+                    }),
+                    success: function(result) {
+                        $scope.$apply(function() {
+                            $scope.userAddress = result.data[0].userAddress;
+                            $scope.userAvataPath = result.data[0].userAvataPath;
+                        });
+                    }
+                });
+            }
+        };
+        $scope.toUserInfo = function() {
+            $location.path("/userInfo")
+        }
+        GetBusinessNumber();
+        //获取业务数量
+        function GetBusinessNumber() {
+            if(getlocalStorage('openId')) {
+                $.ajax({
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage', //数据接口
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "SystemMark":"XtWeChart",
+                        "WeChatOpenId":getlocalStorage("openId"),
+                        "WeChatNickName":"",
+                        "Entity":{},
+                        "PageInfo": {"Sum":0,"PageSize":1000,"CurrPage":1,"Sort":""}
+                    }),
+                    success: function(res) {
+                        $scope.$apply(function() {
+                            if(res.Result == 1 ) {
+                               $scope.businessNumber =  res.Datas.length
+                            }
+                        });
+                    }
+                });
+            }
+        };
     })
     // 绑定户号
     jkApp.controller('bindCtrl', function($scope, $location) {
@@ -3715,10 +3776,37 @@
                 }
             });
         };
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
     })
     jkApp.controller('userInfoCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
+        $scope.userInfo = {}
         $scope.websitePhone = getlocalStorage('phone');
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -3733,9 +3821,171 @@
                 }
             });
         };
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
+        GetUserInfo();
+        //获取账户信息
+        function GetUserInfo() {
+            if(getlocalStorage('phone')) {
+                $.ajax({
+                    url: baseUrl + "/userInfo/getuserInfoByMobleNumber",
+                    method: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                       mobileNumber: getlocalStorage('phone')
+                    }),
+                    success: function(result) {
+                        $scope.$apply(function() {
+                            $scope.userInfo = result.data[0];
+                        });
+                    }
+                });
+            }
+        };
+        $scope.onAddBtn = function(){
+            let addLayerIndex = layer.open({
+                    type: 1,
+                    title:"编辑账户",
+                    closeBtn: false,
+                    shift: 2,
+                    area: ['400px', '500px'],
+                    shadeClose: true,
+                    // btn: ['新增', '取消'],
+                    // btnAlign: 'c',
+                    content: $("#add-main"),
+                    success: function(layero, index){
+                        layui.use(['layer', 'form'], function () {
+                            var layer = layui.layer, 
+                            form = layui.form;
+                            form.val("editUserInfoForm", { // class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                                "mobileNumber": $scope.websitePhone, // "name": "value"
+                                "userAddress":  $scope.userInfo.userAddress || '',
+                                "userHobby":  $scope.userInfo.userHobby || '',
+                                "userAvataPath":  $scope.userInfo.userAvataPath || ''
+                            });
+                         
+                          //提交监听事件
+                           form.on('submit(save)', function (data) {
+                                 params = data.field;
+                                 console.log(JSON.stringify(params))
+                                 submitEditUserInfo(params);
+                                 return false;
+                           }) 
+                             
+                            var obj = document.getElementById('closeBtn');
+                            obj.addEventListener('click', function cancel(){
+                                layer.close(addLayerIndex)
+                            });
+                            //普通图片上传
+                            let uploadInst = layui.upload.render({
+                                elem: '#test',
+                                url: baseUrl + '/upload/imgUpload',
+                                accept: 'images',
+                                auto: false,
+                                size: 50000,
+                                choose: function(obj){
+                                    var that = this;
+                                    obj.preview(function(index, file, result) {
+                                        // console.log(file);
+                                        that.data = {
+                                            FileName: file.name,
+                                            FileLength: file.size  
+                                        };
+                                        obj.upload(index, file);
+                                    });
+                                },
+                                before: function(obj) {
+                                    obj.preview(function(index, file, result) {
+                                        $('#demo').html('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                                    });
+                                },
+                                done: function(res) {
+                                    //上传成功
+                                    if (res.code == 10000) {
+                                        layer.msg('上传成功');
+                                    }
+                                    var demoText = $('#demoText');
+                                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+                
+                                    console.log(res.data);
+                                    $scope.userInfo.userAvataPath = res.data
+                                },
+                                error: function() {
+                                    //演示失败状态，并实现重传
+                                    var demoText = $('#demoText');
+                                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                                    demoText.find('.demo-reload').on('click', function() {
+                                        uploadInst.upload();
+                                    });
+                                }
+                            });
+                         })
+                         
+                         //提交
+                         function submitEditUserInfo(params){
+                            var load = layui.layer.load(3);
+                            $.ajax({                    
+                                type:   "POST",
+                                url: baseUrl + '/userInfo/setuserInfoByMobleNumber',
+                                contentType:   "application/json",
+                                data: JSON.stringify({
+                                    ...$scope.userInfo,
+                                    ...params,
+                                }),
+                                success:   function (jsonResult)  { 
+                                    layer.close(load);                       
+                                    if(jsonResult.code == 10000) {
+                                        layer.msg("提交成功!!!", {
+                                            icon: 6,
+                                            time: 500
+                                        }, function() {
+                                            GetUserInfo();
+                                            layer.close(addLayerIndex)
+                                        });  
+                                    } else {
+                                        layer.msg(jsonResult.Msg || "提交申请失败")
+                                    }                                 
+                                },
+                                error:   function (data)  {    
+                                    layer.close(load);                  
+                                }                
+                            });
+                        }
+                    },
+                    yes:function(){
+                        
+                    }
+                });
+        };
+        
+            
     })
     jkApp.controller('accountCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -3847,6 +4097,19 @@
     })
     jkApp.controller('waterPriceQueryCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -3866,20 +4129,20 @@
         // 获取户号列表和上传操作户号
         function getWXConsList() {
             if(getlocalStorage('openId')) {
-            $.ajax({
-                type: 'GET',
-                url: baseUrl_API_WeiXin + 'payUser/selectByOpenId?openId=' + getlocalStorage('openId'),
-                success: function (res) {
-                if (res.code == 1) {
-                    $scope.$apply(function() {
-                        $scope.lastOperatedTable =  res.msg.lastOperatedTable;
-                        $scope.myConsNo =  res.msg.lastOperatedTable;
-                        $scope.consList =  res.userList;
-                        tableInit()
-                    });
-                } 
-                }
-            })
+                $.ajax({
+                    type: 'GET',
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId?openId=' + getlocalStorage('openId'),
+                    success: function (res) {
+                    if (res.code == 1) {
+                        $scope.$apply(function() {
+                            $scope.lastOperatedTable =  res.msg.lastOperatedTable;
+                            $scope.myConsNo =  res.msg.lastOperatedTable;
+                            $scope.consList =  res.userList;
+                            tableInit()
+                        });
+                    } 
+                    }
+                })
             }
         }
         function tableInit() {
@@ -4019,6 +4282,19 @@
     jkApp.controller('paymentQueryCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
         $scope.myConsNo = '';
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4133,6 +4409,19 @@
     // 关联微信
     jkApp.controller('bindWeChatCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4154,6 +4443,19 @@
         $scope.imageUrl = imageUrl;
         $scope.fileMsgList = [];
         var IMAGEURL = [];
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4210,11 +4512,10 @@
                 var form = layui.form;
                 var $ = layui.jquery,
                     upload = layui.upload
-                //普通图片上传
                 let uploadInst = upload.render({
                     elem: '#test' + uploadIndex,
                     url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
-                    accept: 'images',
+                    accept: 'file',
                     auto: false,
                     size: 50000,
                     choose: function(obj){
@@ -4234,14 +4535,22 @@
                     },
                     before: function(obj) {
                         obj.preview(function(index, file, result) {
-                            $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
+                            console.log(file);
                         });
                     },
-                    done: function(res) {
+                    done: function(res, index) {
+                        console.log(res);
                         //上传成功
-                        if (res.code == 10000) {
+                        if (res.Result == 1) {
                             layer.msg('上传成功');
+                            if(isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + baseUrl_API_BZLC + res.Data.FilePath + '" alt="' + res.Data.FileName + '" class="layui-upload-img"></div>')
+                            }
+                            if(!isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><a href="' + baseUrl_API_BZLC + res.Data.FilePath + '" target="_blank" class="layui-upload-img">' + res.Data.FileName + '</a></div>')
+                            } 
                         }
+                        // <i class="layui-icon layui-icon-close-fill" style="cursor:pointer" onclick="deleteFile('+index+')"/>
                         var demoText = $('#demoText');
                         demoText.html('<span style="color: #4cae4c;">上传成功</span>');
 
@@ -4260,13 +4569,15 @@
                         });
                     }
                 });
+                
+                
 
                 //监听提交
                 form.on('submit(formDemo)', function(data) {
                     // layer.msg(JSON.stringify(data.field));
                     var params = data.field;
                     let InsCode = getNowTime();
-
+                    var load = layer.load(3);
                     $.ajax({                    
                         type:   "POST",
                         url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
@@ -4359,7 +4670,8 @@
                                 Files: IMAGEURL
                             }
                         }),
-                        success:   function (jsonResult)  {                        
+                        success:   function (jsonResult)  { 
+                            layer.close(load);                       
                             if(jsonResult.Result == 1) {
                                 layer.msg("提交成功!!!", {
                                     icon: 6,
@@ -4376,7 +4688,8 @@
                                 layer.msg(jsonResult.Msg || "提交申请失败")
                             }                                 
                         },
-                        error:   function (data)  {                      
+                        error:   function (data)  {    
+                            layer.close(load);                  
                             alert("请求失败");                    
                         }                
                     });
@@ -4433,6 +4746,19 @@
     // 企事业报装申请
     jkApp.controller('companyNewInstallLCCtrl', function($scope, $location, $routeParams, $sce) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4451,17 +4777,17 @@
         function getFileMsg() {
             $.ajax({
                 type:   "POST",
-                url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
+                url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
                 contentType:   "application/json",
                 data: JSON.stringify({
                     SystemMark: "XtWeChart",
-                    WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                    WeChatOpenId: getlocalStorage('openId'), //用户openId
                     WeChatNickName: "微信用户", //用户昵称
                     Entity: {
                       FlowId:
-                        liuchengMes2.userNewInstallLC.FlowId,
+                        liuchengMes.userNewInstallLC.FlowId,
                       NodeId:
-                        liuchengMes2.userNewInstallLC.NodeId,
+                        liuchengMes.userNewInstallLC.NodeId,
                     },
                 }),
                 dataType: 'JSON',
@@ -4495,8 +4821,8 @@
                 //普通图片上传
                 let uploadInst = upload.render({
                     elem: '#test' + uploadIndex,
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
-                    accept: 'images',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
+                    accept: 'file',
                     auto: false,
                     size: 50000,
                     choose: function(obj){
@@ -4505,7 +4831,7 @@
                             // console.log(file);
                             that.data = {
                                 SystemMark: "XtWeChart",
-                                WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                                WeChatOpenId: getlocalStorage('openId'), //用户openId
                                 NodeId: liuchengMes.companyNewInstallLC.NodeId,
                                 FileRuleId: item.FileRuleId,
                                 FileName: file.name,
@@ -4515,14 +4841,17 @@
                         });
                     },
                     before: function(obj) {
-                        obj.preview(function(index, file, result) {
-                            $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
-                        });
                     },
-                    done: function(res) {
+                    done: function(res, index) {
                         //上传成功
-                        if (res.code == 10000) {
+                        if (res.Result == 1) {
                             layer.msg('上传成功');
+                            if(isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + baseUrl_API_BZLC + res.Data.FilePath + '" alt="' + res.Data.FileName + '" class="layui-upload-img"></div>')
+                            }
+                            if(!isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><a href="' + baseUrl_API_BZLC + res.Data.FilePath + '" target="_blank" class="layui-upload-img">' + res.Data.FileName + '</a></div>')
+                            } 
                         }
                         var demoText = $('#demoText');
                         demoText.html('<span style="color: #4cae4c;">上传成功</span>');
@@ -4548,15 +4877,15 @@
                     // layer.msg(JSON.stringify(data.field));
                     var params = data.field;
                     let InsCode = getNowTime();
-
+                    var load = layer.load(3);
                     $.ajax({                    
                         type:   "POST",
-                        url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
+                        url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
                         contentType:   "application/json",
                         dataType: 'JSON',
                         data: JSON.stringify({
                             SystemMark: "XtWeChart",
-                            WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                            WeChatOpenId: getlocalStorage('openId'), //用户openId
                             WeChatNickName: "微信用户", //用户昵称
                             Entity: {
                                 FlowId: liuchengMes.companyNewInstallLC.FlowId,
@@ -4631,7 +4960,8 @@
                                 Files: IMAGEURL
                             }
                         }),
-                        success:   function (jsonResult)  {                        
+                        success:   function (jsonResult)  {  
+                            layer.close(load);                      
                             if(jsonResult.Result == 1) {
                                 layer.msg("提交成功!!!", {
                                     icon: 6,
@@ -4648,7 +4978,8 @@
                                 layer.msg(jsonResult.Msg || "提交申请失败")
                             }                              
                         },
-                        error:   function (data)  {                      
+                        error:   function (data)  {
+                            layer.close(load);                      
                             alert("请求失败");                    
                         }                
                     });
@@ -4707,6 +5038,19 @@
     // 更名/过户
     jkApp.controller('chooseUserNameLCCtrl', function($scope, $location, $routeParams, $sce) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4725,11 +5069,11 @@
         function getFileMsg() {
             $.ajax({
                 type:   "POST",
-                url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
+                url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
                 contentType:   "application/json",
                 data: JSON.stringify({
                     SystemMark: "XtWeChart",
-                    WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                    WeChatOpenId: getlocalStorage('openId'), //用户openId
                     WeChatNickName: "微信用户", //用户昵称
                     Entity: {
                       FlowId:
@@ -4769,8 +5113,8 @@
                 //普通图片上传
                 let uploadInst = upload.render({
                     elem: '#test' + uploadIndex,
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
-                    accept: 'images',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
+                    accept: 'file',
                     auto: false,
                     size: 50000,
                     choose: function(obj){
@@ -4779,7 +5123,7 @@
                             // console.log(file);
                             that.data = {
                                 SystemMark: "XtWeChart",
-                                WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                                WeChatOpenId: getlocalStorage('openId'), //用户openId
                                 NodeId: liuchengMes.chooseUserNameLC.NodeId,
                                 FileRuleId: item.FileRuleId,
                                 FileName: file.name,
@@ -4789,14 +5133,17 @@
                         });
                     },
                     before: function(obj) {
-                        obj.preview(function(index, file, result) {
-                            $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
-                        });
                     },
-                    done: function(res) {
+                    done: function(res, index) {
                         //上传成功
-                        if (res.code == 10000) {
+                        if (res.Result == 1) {
                             layer.msg('上传成功');
+                            if(isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + baseUrl_API_BZLC + res.Data.FilePath + '" alt="' + res.Data.FileName + '" class="layui-upload-img"></div>')
+                            }
+                            if(!isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><a href="' + baseUrl_API_BZLC + res.Data.FilePath + '" target="_blank" class="layui-upload-img">' + res.Data.FileName + '</a></div>')
+                            } 
                         }
                         var demoText = $('#demoText');
                         demoText.html('<span style="color: #4cae4c;">上传成功</span>');
@@ -4822,15 +5169,15 @@
                     // layer.msg(JSON.stringify(data.field));
                     var params = data.field;
                     let InsCode = getNowTime();
-
+                    var load = layer.load(3);
                     $.ajax({                    
                         type:   "POST",
-                        url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
+                        url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
                         contentType:   "application/json",
                         dataType: 'JSON',
                         data: JSON.stringify({
                             SystemMark: "XtWeChart",
-                            WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                            WeChatOpenId: getlocalStorage('openId'), //用户openId
                             WeChatNickName: "微信用户", //用户昵称
                             Entity: {
                                 FlowId: liuchengMes.chooseUserNameLC.FlowId,
@@ -4885,7 +5232,8 @@
                                 Files: IMAGEURL
                             }
                         }),
-                        success:   function (jsonResult)  {                        
+                        success:   function (jsonResult)  {    
+                            layer.close(load);                    
                             if(jsonResult.Result == 1) {
                                 layer.msg("提交成功!!!", {
                                     icon: 6,
@@ -4902,7 +5250,8 @@
                                 layer.msg(jsonResult.Msg || "提交申请失败")
                             }                              
                         },
-                        error:   function (data)  {                      
+                        error:   function (data)  {  
+                            layer.close(load);                    
                             alert("请求失败");                    
                         }                
                     });
@@ -4929,7 +5278,7 @@
             if(getlocalStorage('openId')) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'payUser/selectByOpenId?openId=' + 'oqTpFwgKxTZ2AguW5nVVxguGRcBk',
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId?openId=' + getlocalStorage('openId'),
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -4946,7 +5295,7 @@
             if(lastOperatedTable) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
+                    url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -4973,6 +5322,19 @@
     // 销户
     jkApp.controller('cancelUserLCCtrl', function($scope, $location, $routeParams, $sce) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -4991,11 +5353,11 @@
         function getFileMsg() {
             $.ajax({
                 type:   "POST",
-                url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
+                url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
                 contentType:   "application/json",
                 data: JSON.stringify({
                     SystemMark: "XtWeChart",
-                    WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                    WeChatOpenId: getlocalStorage('openId'), //用户openId
                     WeChatNickName: "微信用户", //用户昵称
                     Entity: {
                       FlowId:
@@ -5035,8 +5397,8 @@
                 //普通图片上传
                 let uploadInst = upload.render({
                     elem: '#test' + uploadIndex,
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
-                    accept: 'images',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
+                    accept: 'file',
                     auto: false,
                     size: 50000,
                     choose: function(obj){
@@ -5045,7 +5407,7 @@
                             // console.log(file);
                             that.data = {
                                 SystemMark: "XtWeChart",
-                                WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                                WeChatOpenId: getlocalStorage('openId'), //用户openId
                                 NodeId: liuchengMes.cancelUserLC.NodeId,
                                 FileRuleId: item.FileRuleId,
                                 FileName: file.name,
@@ -5055,14 +5417,17 @@
                         });
                     },
                     before: function(obj) {
-                        obj.preview(function(index, file, result) {
-                            $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
-                        });
                     },
-                    done: function(res) {
+                    done: function(res, index) {
                         //上传成功
-                        if (res.code == 10000) {
+                        if (res.Result == 1) {
                             layer.msg('上传成功');
+                            if(isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + baseUrl_API_BZLC + res.Data.FilePath + '" alt="' + res.Data.FileName + '" class="layui-upload-img"></div>')
+                            }
+                            if(!isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><a href="' + baseUrl_API_BZLC + res.Data.FilePath + '" target="_blank" class="layui-upload-img">' + res.Data.FileName + '</a></div>')
+                            } 
                         }
                         var demoText = $('#demoText');
                         demoText.html('<span style="color: #4cae4c;">上传成功</span>');
@@ -5088,15 +5453,15 @@
                     // layer.msg(JSON.stringify(data.field));
                     var params = data.field;
                     let InsCode = getNowTime();
-
+                    var load = layer.load(3);
                     $.ajax({                    
                         type:   "POST",
-                        url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
+                        url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
                         contentType:   "application/json",
                         dataType: 'JSON',
                         data: JSON.stringify({
                             SystemMark: "XtWeChart",
-                            WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                            WeChatOpenId: getlocalStorage('openId'), //用户openId
                             WeChatNickName: "微信用户", //用户昵称
                             Entity: {
                                 FlowId: liuchengMes.cancelUserLC.FlowId,
@@ -5156,7 +5521,8 @@
                                 Files: IMAGEURL
                             }
                         }),
-                        success:   function (jsonResult)  {                        
+                        success:   function (jsonResult)  { 
+                            layer.close(load);                       
                             if(jsonResult.Result == 1) {
                                 layer.msg("提交成功!!!", {
                                     icon: 6,
@@ -5173,7 +5539,8 @@
                                 layer.msg(jsonResult.Msg || "提交申请失败")
                             }                              
                         },
-                        error:   function (data)  {                      
+                        error:   function (data)  {
+                            layer.close(load);                      
                             alert("请求失败");                    
                         }                
                     });
@@ -5200,7 +5567,7 @@
             if(getlocalStorage('openId')) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'payUser/selectByOpenId?openId=' + 'oqTpFwgKxTZ2AguW5nVVxguGRcBk',
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId?openId=' + getlocalStorage('openId'),
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -5217,7 +5584,7 @@
             if(lastOperatedTable) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
+                    url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -5244,6 +5611,19 @@
     // 用水性质变更
     jkApp.controller('chooseWaterNatureCtrl', function($scope, $location, $routeParams, $sce) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -5262,11 +5642,11 @@
         function getFileMsg() {
             $.ajax({
                 type:   "POST",
-                url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
+                url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Query/Node/Node",
                 contentType:   "application/json",
                 data: JSON.stringify({
                     SystemMark: "XtWeChart",
-                    WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                    WeChatOpenId: getlocalStorage('openId'), //用户openId
                     WeChatNickName: "微信用户", //用户昵称
                     Entity: {
                       FlowId:
@@ -5306,8 +5686,8 @@
                 //普通图片上传
                 let uploadInst = upload.render({
                     elem: '#test' + uploadIndex,
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
-                    accept: 'images',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
+                    accept: 'file',
                     auto: false,
                     size: 50000,
                     choose: function(obj){
@@ -5316,7 +5696,7 @@
                             // console.log(file);
                             that.data = {
                                 SystemMark: "XtWeChart",
-                                WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                                WeChatOpenId: getlocalStorage('openId'), //用户openId
                                 NodeId: liuchengMes.NatureOfWaterChange.NodeId,
                                 FileRuleId: item.FileRuleId,
                                 FileName: file.name,
@@ -5326,14 +5706,17 @@
                         });
                     },
                     before: function(obj) {
-                        obj.preview(function(index, file, result) {
-                            $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + result + '" alt="' + file.name + '" class="layui-upload-img"></div>')
-                        });
                     },
-                    done: function(res) {
+                    done: function(res, index) {
                         //上传成功
-                        if (res.code == 10000) {
+                        if (res.Result == 1) {
                             layer.msg('上传成功');
+                            if(isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><img src="' + baseUrl_API_BZLC + res.Data.FilePath + '" alt="' + res.Data.FileName + '" class="layui-upload-img"></div>')
+                            }
+                            if(!isImage(res.Data.FileName)) {
+                                $('#demo' + uploadIndex).append('<div class="upload_div" id="upload_' + index + '"><a href="' + baseUrl_API_BZLC + res.Data.FilePath + '" target="_blank" class="layui-upload-img">' + res.Data.FileName + '</a></div>')
+                            } 
                         }
                         var demoText = $('#demoText');
                         demoText.html('<span style="color: #4cae4c;">上传成功</span>');
@@ -5359,15 +5742,15 @@
                     // layer.msg(JSON.stringify(data.field));
                     var params = data.field;
                     let InsCode = getNowTime();
-
+                    var load = layer.load(3);
                     $.ajax({                    
                         type:   "POST",
-                        url: baseUrl_API_BZLC2 + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
+                        url: baseUrl_API_BZLC + "/Wfms/Overt/WeChart/PublicAccount/Handle/Submit/QuickStart",
                         contentType:   "application/json",
                         dataType: 'JSON',
                         data: JSON.stringify({
                             SystemMark: "XtWeChart",
-                            WeChatOpenId: 'oqTpFwgKxTZ2AguW5nVVxguGRcBk', //用户openId
+                            WeChatOpenId: getlocalStorage('openId'), //用户openId
                             WeChatNickName: "微信用户", //用户昵称
                             Entity: {
                                 FlowId: liuchengMes.NatureOfWaterChange.FlowId,
@@ -5423,6 +5806,7 @@
                             }
                         }),
                         success:   function (jsonResult)  {                        
+                            layer.close(load);                              
                             if(jsonResult.Result == 1) {
                                 layer.msg("提交成功!!!", {
                                     icon: 6,
@@ -5437,10 +5821,11 @@
                                 });  
                             } else {
                                 layer.msg(jsonResult.Msg || "提交申请失败")
-                            }                              
+                            }
                         },
                         error:   function (data)  {                      
-                            alert("请求失败");                    
+                            layer.close(load);                    
+                            alert("请求失败");
                         }                
                     });
                     return false;
@@ -5466,7 +5851,7 @@
             if(getlocalStorage('openId')) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'payUser/selectByOpenId?openId=' + 'oqTpFwgKxTZ2AguW5nVVxguGRcBk',
+                    url: baseUrl_API_WeiXin + 'payUser/selectByOpenId?openId=' + getlocalStorage('openId'),
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -5483,7 +5868,7 @@
             if(lastOperatedTable) {
                 $.ajax({
                     type: 'GET',
-                    url: baseUrl_API_WeiXin2 + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
+                    url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable,
                     success: function (res) {
                     if (res.code == 1) {
                         $scope.$apply(function() {
@@ -5508,6 +5893,19 @@
     // 我的业务列表
     jkApp.controller('processListLCCtrl', function($scope, $location) {
         $scope.imageUrl = imageUrl;
+        getSysMenu()
+        // 报装菜单
+        $scope.SysMenuList = []
+        function getSysMenu() {
+            $.ajax({
+                url: baseUrl + '/SysMenu/list?isShow=1',
+                success: function (res) {
+                if (res.code == 10000) {
+                    $scope.SysMenuList = res.data.rows
+                } 
+                }
+            })
+        }
         systeminfo();
         //获取基本信息
         function systeminfo() {
@@ -5533,7 +5931,7 @@
                 elem: '#suypowerGrid',
                 id: 'testReload',
                 height: 462,
-                url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage' //数据接口
+                url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage' //数据接口
                     ,
                 // page: true, //开启分页 
                 request: {
@@ -5542,7 +5940,7 @@
                 contentType: 'application/json',
                 where: {
                     "SystemMark":"XtWeChart",
-                    "WeChatOpenId":"oqTpFwgKxTZ2AguW5nVVxguGRcBk",
+                    "WeChatOpenId":getlocalStorage("openId"),
                     "WeChatNickName":"",
                     "Entity":{},
                     "PageInfo": {"Sum":0,"PageSize":1000,"CurrPage":1,"Sort":""}
@@ -5582,7 +5980,7 @@
                 var USERNAME = $('.layui-input-userName').val()
                 var TELPHONE = $('.layui-input-phone').val()
                 table.reload('testReload', {
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage' //数据接口
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage' //数据接口
                     ,
                     request: {
                     },
@@ -5590,7 +5988,7 @@
                     contentType: 'application/json',
                     where: {
                         "SystemMark":"XtWeChart",
-                        "WeChatOpenId":"oqTpFwgKxTZ2AguW5nVVxguGRcBk",
+                        "WeChatOpenId":getlocalStorage("openId"),
                         "WeChatNickName":"",
                         "Entity":{},
                         "PageInfo": {"Sum":0,"PageSize":1000,"CurrPage":1,"Sort":""}
@@ -5615,11 +6013,11 @@
             if(BZObj.CreateActId) {
                 $.ajax({
                     type: 'post',
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/WeChart/PublicAccount/Query/Act/Run',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Query/Act/Run',
                     contentType: 'application/json',
                     data: JSON.stringify({
                         "SystemMark":"XtWeChart",
-                        "WeChatOpenId":"oqTpFwgKxTZ2AguW5nVVxguGRcBk",
+                        "WeChatOpenId":getlocalStorage("openId"),
                         "WeChatNickName":"微信用户",
                         "Entity":{"ActId": BZObj.CreateActId} 
                     }),
@@ -5637,7 +6035,7 @@
                                 success: function () {
                                     layui.table.render({
                                         elem: '#transfer',  // 弹出层表格id , 
-                                        url: baseUrl_API_BZLC2 + '/Wfms/Overt/IntegrationApp/Query/File/List',
+                                        url: baseUrl_API_BZLC + '/Wfms/Overt/IntegrationApp/Query/File/List',
                                         // page: true, //开启分页 
                                         request: {
                                         },
@@ -5645,7 +6043,7 @@
                                         contentType: 'application/json',
                                         where: {
                                             "SystemMark":"XtWeChart",
-                                            "WeChatOpenId":"oqTpFwgKxTZ2AguW5nVVxguGRcBk",
+                                            "WeChatOpenId":getlocalStorage("openId"),
                                             "WeChatNickName":"微信用户",
                                             "Entity":{"InsId":BZObj.InsId}
                                         },
@@ -5674,19 +6072,20 @@
                                         var data = obj.data;
                                         if (obj.event === 'openImage') {
                                             console.log(data);
-                                            var imageList = baseUrl_API_BZLC2 + data.FilePath;
+                                            var imageList = baseUrl_API_BZLC + data.FilePath;
                                             imageList = imageList.split(',')
                                             var html = ""
                                             if (imageList.length > 0) {
                                                 html = '<div style="display:flex;min-width:200px;" >'
                                                 for (var index = 0; index < imageList.length; index++) {
                         
-                                                    html += '<img src="' + imageList[index] + '"  class="layui-upload-img">'
+                                                    html += '<img src="' + imageList[index] + '" style="object-fit:none;width:auto" class="layui-upload-img">'
                                                 }
                                                 html += '</div>'
                                             }
                                             layer.open({
-                                                title: '照片',
+                                                area: ['50%', '50%'],
+                                                title: '查看',
                                                 type: 1,
                                                 content: html
                                             });
@@ -5694,31 +6093,6 @@
                                     });
                                 }
                             });
-                            $scope.previewImg = function(obj) {
-                                console.log(obj);
-                                var img = new Image();
-                                img.src = baseUrl_API_BZLC2+obj;
-                                var height=img.height,width=img.width;
-                                if(img.height > 600) {
-                                    height = '600px';
-                                    width=(600/(img.height))*(img.width);
-                                }
-                            
-                                var imgHtml = "<img src='" + baseUrl_API_BZLC2+obj + "' height='"+height+"' width='"+width+"' />";
-                                //弹出层
-                                layer.open({
-                                    type: 1,
-                                    offset: 'auto',
-                                    area: [width,'auto'],
-                                    shadeClose:true,//点击外围关闭弹窗
-                                    scrollbar: false,//不现实滚动条
-                                    title: "图片预览", //不显示标题
-                                    content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-                                    cancel: function () {
-                                       
-                                    }
-                                });
-                            }
 
                         } 
                     }
@@ -5727,11 +6101,11 @@
             if(BZObj.InsId) {
                 $.ajax({
                     type: 'post',
-                    url: baseUrl_API_BZLC2 + '/Wfms/Overt/IntegrationApp/Query/File/List',
+                    url: baseUrl_API_BZLC + '/Wfms/Overt/IntegrationApp/Query/File/List',
                     contentType: 'application/json',
                     data: JSON.stringify({
                         "SystemMark":"XtWeChart",
-                        "WeChatOpenId":"oqTpFwgKxTZ2AguW5nVVxguGRcBk",
+                        "WeChatOpenId":getlocalStorage("openId"),
                         "WeChatNickName":"微信用户",
                         "Entity":{"InsId":BZObj.InsId}
                     }),

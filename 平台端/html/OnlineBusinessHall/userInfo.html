@@ -52,20 +52,22 @@
                 src="../../images/business/2.png" alt=""></span>水费查询</a></li>
         <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
                 src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-        <li class="list-group-item show">
-          <i></i>
-          <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理
-            <span class="layui-icon layui-icon-right"></span></a>
-          <ul class="list-group more">
-            <div class="in">
-              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-            </div>
-          </ul>
-        </li>
+                <li class="list-group-item show">
+                  <i></i>
+                  <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+                              alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
+                  <ul class="list-group more">
+                      <div class="in">
+                          <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+                                          <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+                          <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
+                                  ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
+                      </div>
+                  </ul>
+              </li>
 
         <li class="list-group-item teshow newshow">
           <i></i>
@@ -142,7 +144,8 @@
                   <li>
                     <p>头像</p>
                     <div class="right">
-                      <img src="" onerror="this.src='../../images/business/peple.png';this.onerror=null" id="headImg">
+                      <img ng-src="{{ imageUrl + userInfo.userAvataPath}}"
+                        onerror="this.src='../../images/business/peple.png';this.onerror=null" id="headImg">
                     </div>
                   </li>
                   <li>
@@ -180,9 +183,9 @@
            </div>
           </li> -->
                   <li>
-                    <p>邮箱</p>
+                    <p>爱好</p>
                     <div class="right">
-                      <p> </p>
+                      <p>{{ userInfo.userHobby }} </p>
 
                     </div>
                   </li>
@@ -211,15 +214,15 @@
                     </div>
                   </li> -->
                   <li style="border: 0;">
-                    <p>证件号码</p>
+                    <p>地址</p>
                     <div class="right">
-                      <p></p>
+                      <p>{{ userInfo.userAddress }}</p>
                     </div>
                   </li>
                 </ul>
                 <div class="content-change">
-                  <!-- <button type="button" class="btn-search btn btn-primary show-panel"
-                    data-target="edit_valid">编辑</button> -->
+                  <button type="button" class="btn-search btn btn-primary show-panel" data-target="edit_valid"
+                    ng-click="onAddBtn()">编辑</button>
 
                 </div>
               </form>
@@ -259,7 +262,7 @@
                   <div class="code">
                     <div id="qrcode"></div>
                     <p><span>*</span>请扫描此二维码进行<span class="iconNj"><img src="/images/login-nj.png" alt=""></span><span
-                        class="bold">我的南京</span>实名认证</p>
+                        class="bold">我的</span>实名认证</p>
                     <button type="button" class="btn btn-default btn-search hide-panel">返回</button>
                   </div>
 
@@ -267,6 +270,54 @@
               </ul>
             </div>
           </div>
+        </div>
+        <div id="add-main" style="display: none;">
+          <form class="layui-form" id="add-form" action="" lay-filter="editUserInfoForm">
+            <!-- <div class="layui-form-item center">
+              <label class="layui-form-label" style="width: 100px">手机号</label>
+              <div class="layui-input-block">
+                <input type="text" name="mobileNumber" required value="" style="width: 240px" lay-verify="required"
+                  placeholder="请输入手机号" disabled="true" autocomplete="off" class="layui-input">
+              </div>
+            </div> -->
+            <input type="hidden" name="images" class="image">
+            <div class="layui-form-item" style="margin-top:10px">
+              <label class="layui-form-label" style="width: 100px">头像</label>
+              <div class="layui-upload">
+                <div class="layui-upload-drag" id="test" style="margin-left: 10px">
+                  <!-- <i class="layui-icon"></i> -->
+                  <p ng-if="!userInfo.userAvataPath">点击上传，或将图片拖拽到此处</p>
+                  <div ng-if="userInfo.userAvataPath" class="layui-upload-list" id="demo">
+                    <div class="upload_div" id="upload_1"><img ng-src="{{imageUrl + userInfo.userAvataPath}}" alt="' + file.name + '" class="layui-upload-img"></div>
+                  </div>
+                </div>
+                <!-- <button type="button" class="layui-btn" id="test">上传图片</button> -->
+                <!-- <div class="layui-upload-list" style="padding-left: 130px;">
+                  <div class="layui-upload-list" id="demo"></div>
+                </div> -->
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label" style="width: 100px">爱好</label>
+              <div class="layui-input-block">
+                <input type="text" name="userHobby" required style="width: 240px" lay-verify="required"
+                  placeholder="请输入爱好" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label" style="width: 100px">地址</label>
+              <div class="layui-input-block">
+                <input type="text" name="userAddress" required style="width: 240px" lay-verify="required"
+                  placeholder="请输入地址" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block" style="margin-left: 135px">
+                <button class="layui-btn" lay-submit lay-filter="save">确定</button>
+                <button type="reset" class="layui-btn layui-btn-primary" id="closeBtn">取消</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -307,46 +358,13 @@
     top: -5px;
     display: none;
   }
+  #demo img {
+    width: 150px;
+    height: 150px;
+  }
 </style>
 <script src="../../js/personalMain.js"></script>
-<script>
-  function doSubmit() {
-    var userCode = $('#userCode').val()
-    if (userCode) {
-      var load = layer.load(3)
-      $.ajax({
-        type: 'POST',
-        url: baseUrl + '/login/userLogin',
-        data: JSON.stringify({
-          mobileNumber: '',
-          userCode: Encrypt($('#userCode').val())
-        }),
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-          layer.close(load)
-          if (data.code == 1000) {
-            layer.alert('保存成功~')
-            // window.location.href =
-            //   global.basePath + 'waterFee/waterWx?showType=list'
-          } else if (data.code == '-2') {
-            // layer.confirm(
-            //   '您还未实名，绑定已到达上限，去实名吧',
-            //   {
-            //     btn: ['现在就去', '在看看'] //按钮
-            //   },
-            //   function () {
-            //     window.location.href = global.basePath + 'user/nameAuth'
-            //   },
-            //   function () {}
-            // )
-          } else {
-            layer.alert(data.message || '保存失败~')
-          }
-        }
-      })
-    } else {
-      top.layer.msg('请输入户号', { icon: 2, time: 3000 })
-    }
-  }
+<script type="text/javascript">
+
+
 </script>

@@ -57,11 +57,13 @@
                                 alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
                     <ul class="list-group more">
                         <div class="in">
-                            <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-                            <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-                            <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-                            <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-                            <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+                            <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+                                            <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+                                            <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+                                            <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+                                            <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+                            <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
+                                    ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
                         </div>
                     </ul>
                 </li>

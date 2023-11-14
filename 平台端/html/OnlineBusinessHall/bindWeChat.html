@@ -3,154 +3,157 @@
 
 <div ng-controller="bindWeChatCtrl" class="businessMain" style="height: calc(100vh - 20px)">
   <!--页面top导航-->
-	<div id="header" >
-		<div class="header-left" align="center">
-			<img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo" style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
-		</div>
-		<ul class="nav nav-pills">
-			<li role="presentation"><a href="#/">首页</a></li>
-			<li role="presentation"><a href="#/OnlineBusinessHall">网上营业厅</a></li>
-		</ul>
-		<div class="header-right">
-			<div>
-				<p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
-				<ul class="header-right-more">
-					<li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
-					<li><a href="#/userInfo">个人中心</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div id="header">
+    <div class="header-left" align="center">
+      <img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo"
+        style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
+    </div>
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="#/">首页</a></li>
+      <li role="presentation"><a href="#/OnlineBusinessHall">网上营业厅</a></li>
+    </ul>
+    <div class="header-right">
+      <div>
+        <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
+        <ul class="header-right-more">
+          <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+          <li><a href="#/userInfo">个人中心</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-	<div id="bg"></div>
-	<div id="head-phone">
-		<div class="head-phone">
-			<p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
-			<p id="page-title">水务集团</p>
-			<p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
-			<ul class="header-right-more " onblur="$(this).fadeToggle()">
-				<li><a href="#/userInfo">个人中心</a></li>
-				<li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
-			</ul>
-		</div>
-	</div>
-	<div id="main">
-		<!--页面left导航 start -->
+  <div id="bg"></div>
+  <div id="head-phone">
+    <div class="head-phone">
+      <p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
+      <p id="page-title">水务集团</p>
+      <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
+      <ul class="header-right-more " onblur="$(this).fadeToggle()">
+        <li><a href="#/userInfo">个人中心</a></li>
+        <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="main">
+    <!--页面left导航 start -->
     <div id="aside">
       <div class="indentation" style="margin-top:10px">
-          <a href="#/OnlineBusinessHall" style="color: #000;">
-              <p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p>
-          </a>
-          <p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
+        <a href="#/OnlineBusinessHall" style="color: #000;">
+          <p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p>
+        </a>
+        <p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
       </div>
       <ul class="list-group ul">
-          <li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img
-                          src="../../images/business/1.png" alt=""></span>客户中心</a></li>
-          <li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img
-                          src="../../images/business/2.png" alt=""></span>水费查询</a></li>
-          <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
-                          src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-          <li class="list-group-item show">
-              <i></i>
-              <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
-                          alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
-              <ul class="list-group more">
-                  <div class="in">
-                      <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-                      <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-                      <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-                      <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-                      <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-                  </div>
-              </ul>
-          </li>
+        <li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img
+                src="../../images/business/1.png" alt=""></span>客户中心</a></li>
+        <li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img
+                src="../../images/business/2.png" alt=""></span>水费查询</a></li>
+        <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
+                src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
+        <li class="list-group-item show">
+          <i></i>
+          <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png" alt=""></span>业务办理
+            <span class="layui-icon layui-icon-right"></span></a>
+          <ul class="list-group more">
+            <div class="in">
+              <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+                                                    <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+                                                    <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+                                                    <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+                                                    <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+              <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
+                  ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
+            </div>
+          </ul>
+        </li>
 
-          <li class="list-group-item teshow newshow">
-              <i></i>
-              <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+        <li class="list-group-item teshow newshow">
+          <i></i>
+          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
                           alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
-              <ul class="list-group more biz-group">
-                  <div class="in">
-                      <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-                      <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-                      <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-                      <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-                      <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
-                  </div>
-              </ul>
-          </li>
+          <ul class="list-group more biz-group">
+            <div class="in">
+              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+            </div>
+          </ul>
+        </li>
 
-          <li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img
-                          src="../../images/business/7.png" alt=""></span>我的业务</a></li>
-          <li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img
-                          src="../../images/business/17.png" alt=""></span>管理账户</a></li>
+        <li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img
+                src="../../images/business/7.png" alt=""></span>我的业务</a></li>
+        <li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img
+                src="../../images/business/17.png" alt=""></span>管理账户</a></li>
 
       </ul>
       <ul class="list-group newmore">
-          <div class="newin">
-              <div class="business-search">
-                  <p class="searchBtn">搜索</p>
-                  <input type="text" class="search">
-              </div>
-              <ul class="business-ul">
-                  <li class="water title">
-                      <p>新报装申请</p>
-                      <ul>
-                          <li><a href="#/peopleNewInstallLC">个人报装</a></li>
-                          <li><a href="#/companyNewInstallLC">企事业报装</a></li>
-                      </ul>
-                  </li>
+        <div class="newin">
+          <div class="business-search">
+            <p class="searchBtn">搜索</p>
+            <input type="text" class="search">
+          </div>
+          <ul class="business-ul">
+            <li class="water title">
+              <p>新报装申请</p>
+              <ul>
+                <li><a href="#/peopleNewInstallLC">个人报装</a></li>
+                <li><a href="#/companyNewInstallLC">企事业报装</a></li>
+              </ul>
+            </li>
 
-                  <!-- <li class="service title">
+            <!-- <li class="service title">
                       <p>用水缴费</p>
                       <ul>
                           <li><a href="#/waterPriceQuery">水费查询</a></li>
                       </ul>
                   </li> -->
-                  <li class="service title">
-                      <p>用户信息变更</p>
-                      <ul>
-                          <li><a href="#/chooseUserNameLC">用户过户</a></li>
-                          <li><a href="#/cancelUserLC">用户销户</a></li>
-                          <li><a href="#/chooseWaterNature">用水性质变更</a></li>
-                      </ul>
-                  </li>
-
+            <li class="service title">
+              <p>用户信息变更</p>
+              <ul>
+                <li><a href="#/chooseUserNameLC">用户过户</a></li>
+                <li><a href="#/cancelUserLC">用户销户</a></li>
+                <li><a href="#/chooseWaterNature">用水性质变更</a></li>
               </ul>
-          </div>
+            </li>
+
+          </ul>
+        </div>
       </ul>
 
 
-  </div>
-		<!--页面left导航 end -->
+    </div>
+    <!--页面left导航 end -->
 
     <div class="right">
       <div class="main-content">
-          <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">首页</a></li>
-                  <li class="breadcrumb-item">关联微信</li>
-              </ol>
-          </nav>
-          <div class="background">
-              <form id="formMyNj" method="post" class="form-horizontal" enctype="multipart/form-data"
-                    action= "">
-                  <ul class="list">
-                      <li>
-                          <div id="qrcode" style="width: 328.4px; height: 200px"></div>
-                          <p><span>*</span>请使用微信扫一扫进行<span class="iconNj"><img src="../../images/login/login-wx.png" alt=""></span><span class="bold">微信公众号</span>关联</p>
-                          <p>二维码有效期 <span class="bold">60</span>秒</p>
-                      </li>
-                          </ul>
-                          <!-- <div class="button">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">首页</a></li>
+            <li class="breadcrumb-item">关联微信</li>
+          </ol>
+        </nav>
+        <div class="background">
+          <form id="formMyNj" method="post" class="form-horizontal" enctype="multipart/form-data" action="">
+            <ul class="list">
+              <li>
+                <div id="qrcode" style="width: 328.4px; height: 200px"></div>
+                <p><span>*</span>请使用微信扫一扫进行<span class="iconNj"><img src="../../images/login/login-wx.png"
+                      alt=""></span><span class="bold">微信公众号</span>关联</p>
+                <p class="ERMTips">二维码有效期 <span class="bold seconds">30</span>秒</p>
+              </li>
+            </ul>
+            <!-- <div class="button">
                               <input type="button" id="back" class="btn btn-default"  onclick="goBack();" value="返回">
                               
                           </div> -->
-                      </form>
-         
-          </div>
+          </form>
+
+        </div>
       </div>
-  </div>
+    </div>
   </div>
 </div>
 <style type="text/css">
@@ -329,170 +332,241 @@
       margin-top: 6px;
     }
   }
-
-  
 </style>
 <style>
   .magnify-modal {
-      box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.3);
   }
 
   .magnify-header .magnify-toolbar {
-      background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .5);
   }
 
   .magnify-stage {
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-width: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-width: 0;
   }
 
   .magnify-footer .magnify-toolbar {
-      background-color: rgba(0, 0, 0, .5);
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
+    background-color: rgba(0, 0, 0, .5);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 
   .magnify-header,
   .magnify-footer {
-      pointer-events: none;
+    pointer-events: none;
   }
 
   .magnify-button {
-      pointer-events: auto;
+    pointer-events: auto;
   }
 </style>
 <style>
-  .img{
-      width: 280px;
-      height: 200px;
-      float: left;
-      margin-bottom: 25px;
-      margin-left: 10px;
+  .img {
+    width: 280px;
+    height: 200px;
+    float: left;
+    margin-bottom: 25px;
+    margin-left: 10px;
   }
-  .list .img .error{
-      margin-left: 10px;
-  }
-  .img img{
-      border: 1px solid #ccc;
-  }
-  #main .main-content .list li p{
-      min-height:34px;
-  }
-  #main .main-content #form .list{
-      width:680px;
-  }
-  #main .main-content #form .list>li{
-      width:640px;
-  }
-  #main .main-content #formMyNj .list li p{
-      float: none;
 
+  .list .img .error {
+    margin-left: 10px;
+  }
+
+  .img img {
+    border: 1px solid #ccc;
+  }
+
+  #main .main-content .list li p {
+    min-height: 34px;
+  }
+
+  #main .main-content #form .list {
+    width: 680px;
+  }
+
+  #main .main-content #form .list>li {
+    width: 640px;
+  }
+
+  #main .main-content #formMyNj .list li p {
+    float: none;
+
+    width: 100%;
+    text-align: center;
+    line-height: 34px;
+  }
+
+  #main .main-content #formMyNj .list li p .iconNj img {
+    width: 20px;
+    margin: 0;
+    margin-left: 10px;
+    margin-right: 4px;
+    display: inline;
+    line-height: 34px;
+  }
+
+  #main .main-content #formMyNj .list li p .bold {
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 10px;
+    line-height: 34px;
+  }
+
+  #formMyNj .list {
+    width: 330px;
+    margin: auto;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 3px 10px #999;
+    padding: 70px 0px;
+  }
+
+  #formMyNj .list img {
+    display: block;
+    width: 170px;
+    margin: auto;
+    /* margin: 50px auto; */
+    margin-bottom: 50px;
+  }
+
+  @media screen and (max-width:767px) {
+    .img {
+      width: 220px;
+      margin-left: 0;
+      margin-left: 10px;
+      height: 160px;
+    }
+
+    #main .main-content #formMyNj .list li p {
+      margin-left: 0;
+    }
+
+    #main .main-content .list .te label {
+      margin-left: 160px;
+    }
+
+    #main .main-content #form .list {
       width: 100%;
-      text-align: center;
-      line-height: 34px;
-  }
-  #main .main-content #formMyNj .list li p .iconNj img{
-      width:20px;
-      margin:0;
-      margin-left:10px;
-      margin-right:4px;
-      display: inline;
-      line-height:34px;
-  }
-  #main .main-content #formMyNj .list li p .bold{
-      color: #000;
-      font-size: 16px;
-      font-weight: 700;
-      margin-right: 10px;
-      line-height:34px;
-  }
-  #formMyNj .list{
-      width: 330px;
-      margin: auto;
-      margin-top: 50px;
-      border: 1px solid #ccc;
-      box-shadow: 0px 3px 10px #999;
-      padding: 70px 0px;
-  }
-  #formMyNj .list img{
-      display: block;
-      width: 170px;
-      margin: auto;
-      /* margin: 50px auto; */
-      margin-bottom: 50px;
-  }
-  @media screen and (max-width:767px){
-      .img{
-          width: 220px;
-          margin-left: 0;
-          margin-left: 10px;
-          height:160px;
-      }
-      #main .main-content #formMyNj .list li p{
-          margin-left:0;
-      }
+    }
 
-      #main .main-content .list .te label{
-          margin-left:160px;
-      }
-      #main .main-content #form .list{
-          width:100%;
-      }
-      #main .main-content #form .list>li{
-          width:100%;
-      }
-      .img img{
-          display: block;
-          margin: auto;
-          border: 1px solid #ccc;
-          width: 220px;
-          height:160px;
-      }
-      .list .img .error{
-          margin-left:100px;
-      }
-      .img{
-          margin-left:10%;
-      }
+    #main .main-content #form .list>li {
+      width: 100%;
+    }
+
+    .img img {
+      display: block;
+      margin: auto;
+      border: 1px solid #ccc;
+      width: 220px;
+      height: 160px;
+    }
+
+    .list .img .error {
+      margin-left: 100px;
+    }
+
+    .img {
+      margin-left: 10%;
+    }
   }
-  @media screen and (max-width:320px){
-      .img{
-          width: 175px;
-          margin-left: 0;
-          margin-left: 10px;
-          height:130px;
-      }
-      .img img{
-          display: block;
-          margin: auto;
-          border: 1px solid #ccc;
-          width: 175px;
-          height:130px;
-      }
-      #main .main-content .list .te label{
-          margin-left:125px;
-      }
-      #main .main-content .list li p{
-          width: 115px;
-      }
-      #main .main-content .list li input{
-          width: 175px;
-      }
+
+  @media screen and (max-width:320px) {
+    .img {
+      width: 175px;
+      margin-left: 0;
+      margin-left: 10px;
+      height: 130px;
+    }
+
+    .img img {
+      display: block;
+      margin: auto;
+      border: 1px solid #ccc;
+      width: 175px;
+      height: 130px;
+    }
+
+    #main .main-content .list .te label {
+      margin-left: 125px;
+    }
+
+    #main .main-content .list li p {
+      width: 115px;
+    }
+
+    #main .main-content .list li input {
+      width: 175px;
+    }
   }
-  </style>
+</style>
 <script src="../../js/personalMain.js"></script>
 <script src="../../js/qrcode.min.js"></script>
 <script>
   var wxqrcode;
-  var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e0c5b86007e391f&redirect_uri=http://www.xzbdxsw.com/&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
-  $(document).ready(function() {
-     if(getlocalStorage('phone')) {
-       wxqrcode = new QRCode(document.getElementById('qrcode'),wx_url.replace('state=123', 'state=' + getlocalStorage('phone') ))
-     }
-                        
+  // 保德
+  // var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e0c5b86007e391f&redirect_uri=http://www.xzbdxsw.com/&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
+  // 泉港
+  var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd9eece7a23b4dd6&redirect_uri=http://sw.suntront.com/WXnew/weixin-quangang/index.html&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
+  $(document).ready(function () {
+    if (getlocalStorage('phone')) {
+      wxqrcode = new QRCode(document.getElementById('qrcode'), wx_url.replace('state=123', 'state=' + getlocalStorage('phone')))
+    }
+
   });
-  
+  var InterValObj; //timer变量，控制时间
+  var count = 30; //间隔函数，1秒执行
+  var curCount;//当前剩余秒数
+  InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+  curCount = count;
+  //timer处理函数
+  function SetRemainTime() {
+    if (curCount % 5 == 0) {
+      getWXopenId(InterValObj)
+    }
+    if (curCount == 0) {
+      window.clearInterval(InterValObj);//停止计时器
+      InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+      curCount = count;
+      wxqrcode.clear();
+      // 生成新的二维码
+      // setTimeout(function() {
+      //   wxqrcode.makeCode(wx_url.replace('state=123', 'state=' + getlocalStorage('phone')))
+      // }, 3000)
+    }
+    else {
+      curCount--;
+      $(".seconds").html(curCount);
+    }
+  }
+
+  // 重新扫码，获取手机号新绑定的openId
+  function getWXopenId(InterValObj) {
+    if (getlocalStorage('phone')) {
+      $.ajax({
+        type: 'Post',
+        url: baseUrl + '/ysUser/selectByNumber',
+        data: JSON.stringify({
+          "mobileNumber": getlocalStorage('phone')
+        }),
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (res) {
+          if (res.code == 10000 && res.data && res.data.openId) {
+            setlocalStorage('openId', res.data.openId)
+            window.clearInterval(InterValObj);//停止计时器
+            $('.ERMTips').html('已关联微信')
+            // window.location.href = '#/OnlineBusinessHall'
+          }
+        }
+      })
+    }
+  }
+
 </script>

@@ -4,40 +4,40 @@ var imageUrl = "http://192.168.2.155:10028/JavaInstall/upload/imgs/";
 var fileUrl = "http://192.168.2.155:10028/JavaInstall/upload/files/";
 var videoUrl = "http://192.168.2.155:10028/JavaInstall/upload/video/";
 var baoZhuangBaseUrl = "http://219.150.181.194:7878/";
-//保德
-var baseUrl_API_BZLC = "http://39.103.180.221:10000/bz/";
-var baseUrl_API_WeiXin = "http://39.103.180.221:10016/";
+// //保德
+// var baseUrl_API_BZLC = "http://39.103.180.221:10000/bz/";
+// var baseUrl_API_WeiXin = "http://39.103.180.221:10016/";
 //泉港
-var baseUrl_API_BZLC2 = "http://183.250.254.69:10010/";
-var baseUrl_API_WeiXin2 = "http://183.250.254.69:10016/";
+var baseUrl_API_BZLC = "http://183.250.254.69:10010/";
+var baseUrl_API_WeiXin = "http://183.250.254.69:10016/";
 var liuchengMes = {
-  // 保德
+  // 泉港
   "userNewInstallLC": {
-      "FlowId": 195,
-      "NodeId": 2,
-      "FileRuleId": 0,
-      "ProjectType": 1,
-      "FlowName": "个人报装",
-      "formList": [{ "Name": "联系人", "Value": "", "Code": "UserName" },
-          { "Name": "联系电话", "Value": "", "Code": "UserContact" },
-          { "Name": "身份证号", "Value": "", "Code": "UserIdCard" },
-          { "Name": "新装地址", "Value": "", "Code": "UserAddress" },
-          { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
-      ]
-  },
-  "peopleNewInstallLC": {
-      "FlowId": 1755,
-      "NodeId": 2628,
-      "FileRuleId": 0,
-      "ProjectType": 1,
-      "FlowName": "个人报装",
-      "formList": [{ "Name": "联系人", "Value": "", "Code": "UserName" },
-          { "Name": "联系电话", "Value": "", "Code": "UserContact" },
-          { "Name": "身份证号", "Value": "", "Code": "UserIdCard" },
-          { "Name": "新装地址", "Value": "", "Code": "UserAddress" },
-          { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
-      ]
-  },
+    "FlowId": 415,
+    "NodeId": 1001,
+    "FileRuleId": 0,
+    "ProjectType": 1,
+    "FlowName": "用户新装",
+    "formList": [{ "Name": "联系人", "Value": "", "Code": "UserLiaison" },
+        { "Name": "联系电话", "Value": "", "Code": "UserLiaisonContact" },
+        { "Name": "身份证号", "Value": "", "Code": "UserLiaisonIdCard" },
+        { "Name": "新装地址", "Value": "", "Code": "ProjectAddress" },
+        { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
+    ]
+},
+"peopleNewInstallLC": {
+    "FlowId": 635,
+    "NodeId": 9,
+    "FileRuleId": 0,
+    "ProjectType": "GRAN",
+    "FlowName": "个人报装",
+    "formList": [{ "Name": "联系人", "Value": "", "Code": "UserName" },
+        { "Name": "联系电话", "Value": "", "Code": "UserContact" },
+        { "Name": "身份证号", "Value": "", "Code": "UserIdCard" },
+        { "Name": "新装地址", "Value": "", "Code": "UserAddress" },
+        { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
+    ]
+},
   // 泉港
     "companyNewInstallLC": {
       "FlowId": 415,
@@ -96,35 +96,6 @@ var liuchengMes = {
           ]
       }
 }
-var liuchengMes2 = {
-    // 泉港
-    "userNewInstallLC": {
-        "FlowId": 415,
-        "NodeId": 1001,
-        "FileRuleId": 0,
-        "ProjectType": 1,
-        "FlowName": "用户新装",
-        "formList": [{ "Name": "联系人", "Value": "", "Code": "UserLiaison" },
-            { "Name": "联系电话", "Value": "", "Code": "UserLiaisonContact" },
-            { "Name": "身份证号", "Value": "", "Code": "UserLiaisonIdCard" },
-            { "Name": "新装地址", "Value": "", "Code": "ProjectAddress" },
-            { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
-        ]
-    },
-    "peopleNewInstallLC": {
-        "FlowId": 635,
-        "NodeId": 9,
-        "FileRuleId": 0,
-        "ProjectType": "GRAN",
-        "FlowName": "个人报装",
-        "formList": [{ "Name": "联系人", "Value": "", "Code": "UserName" },
-            { "Name": "联系电话", "Value": "", "Code": "UserContact" },
-            { "Name": "身份证号", "Value": "", "Code": "UserIdCard" },
-            { "Name": "新装地址", "Value": "", "Code": "UserAddress" },
-            { "Name": "备注", "Value": "", "Code": "ProjectDetail" }
-        ]
-    }
-  }
 
 
 // 眉山地址
