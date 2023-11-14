@@ -5,30 +5,13 @@
     <el-main>
       <div ref="formBox" class="formBox">
         <el-form ref="params" :inline="true" :model="params" size="small">
-          <el-form-item label="活动名称" prop="title">
-            <el-input
-              v-model="params.title"
-              clearable
-              placeholder="请输入活动名称"
-            />
+          <el-form-item label="模块名称" prop="name">
+            <el-input v-model="params.name" clearable placeholder="请输入模块名称"/>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="searchClick"
-              >查询</el-button
-            >
-            <el-button
-              type="primary"
-              plain
-              icon="el-icon-refresh"
-              @click="resetClick('params')"
-              >重 置</el-button
-            >
-            <el-button
-              type="success"
-              icon="el-icon-circle-plus"
-              @click="activityModuleAdd"
-              >新增</el-button
-            >
+            <el-button type="primary" icon="el-icon-search" @click="searchClick">查询</el-button >
+            <el-button type="primary" plain icon="el-icon-refresh" @click="resetClick('params')">重 置</el-button >
+            <el-button type="success" icon="el-icon-circle-plus" @click="SysMenuAdd">新增</el-button >
           </el-form-item>
         </el-form>
       </div>
@@ -40,32 +23,23 @@
         :data="tableData"
         border
         style="width: 100%"
-        :header-cell-style="{ background: '#F8F8F9', color: '#606266' }"
         :height="tableHeight"
       >
-        <el-table-column type="index" align="center" label="序号" width="60" />
+        <el-table-column type="index" align="center" label="序号" width="80" />
         <el-table-column
           align="left"
           show-overflow-tooltip
-          prop="title"
-          label="活动标题"
+          prop="name"
+          label="模块名称"
           width="200"
         />
-        <el-table-column
+        <!-- <el-table-column
           align="left"
           show-overflow-tooltip
-          prop="content"
-          label="活动内容"
-          width="300"
-        />
-        <el-table-column
-          align="left"
-          show-overflow-tooltip
-          label="活动封面"
+          label="模块封面"
           width="180"
         >
           <template slot-scope="scope">
-            <!-- <el-image style="width: 140px; height: 70px;border-radius: 8px;" :src="imgBaseUrl + scope.row.coverpic" fit="cover" /> -->
             <vviewer
               :options="
                 scope.row.coverpic ? [imgBaseUrl + scope.row.coverpic] : []
@@ -75,35 +49,30 @@
               style="width: 140px; height: 70px;"
             ></vviewer>
           </template>
-        </el-table-column>
+        </el-table-column> -->
+        <el-table-column align="left" prop="menuUrl" label="模块路径" show-overflow-tooltip />
         <el-table-column
           align="left"
-          prop="urlpath"
-          label="活动链接"
-          show-overflow-tooltip
-        >
-          <template slot-scope="scope">
-            <el-link :href="scope.row.urlpath" target="_blank" type="primary">{{
-              scope.row.urlpath
-            }}</el-link>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="left"
-          :formatter="dateFormatter"
-          label="是否启用"
+          label="是否展示"
         >
           <template slot-scope="scope">
             <el-switch
-              v-model="scope.row.isenable"
+              v-model="scope.row.isShow"
               active-text="是"
               inactive-text="否"
-              :active-value="1"
-              :inactive-value="2"
-              @change="isenable(scope.row.id, scope.row.isenable)"
+              active-value="1"
+              inactive-value="2"
+              @change="isenable(scope.row.id, scope.row.isShow)"
             />
           </template>
         </el-table-column>
+        <el-table-column
+          align="left"
+          show-overflow-tooltip
+          prop="serial"
+          label="排序"
+          width="100"
+        />
         <el-table-column label="操作" align="left" width="200">
           <template slot-scope="scope">
             <el-button
@@ -144,16 +113,16 @@
       @close="close"
     >
       <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-        <el-form-item label="活动标题" prop="title">
+        <el-form-item label="模块名称" prop="name">
           <el-input
-            v-model="form.title"
+            v-model="form.name"
             maxlength="30"
             show-word-limit
             style="width: 300px;"
           />
         </el-form-item>
 
-        <el-form-item label="活动封面" prop="coverpic">
+        <!-- <el-form-item label="模块封面" prop="coverpic">
           <el-upload
             class="avatar-uploader"
             :action="uploadUrl"
@@ -173,32 +142,27 @@
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
           <span style="color:red">只能上传图片文件，图片大小为200*300</span>
-        </el-form-item>
-        <el-form-item label="活动内容" prop="content">
+        </el-form-item> -->
+        <el-form-item label="模块路径" prop="category">
           <el-input
-            v-model="form.content"
-            type="textarea"
-            :rows="4"
-            maxlength="200"
-            show-word-limit
-            style="width: 300px;"
-          />
-        </el-form-item>
-        <el-form-item label="活动链接" prop="category">
-          <el-input
-            placeholder="请输入内容"
-            v-model="form.urlpath"
+            placeholder="请输入模块路径"
+            v-model="form.menuUrl"
             class="input-with-select"
             style="width: 300px;"
           >
           </el-input>
         </el-form-item>
+        <el-form-item label="排序" prop="sort">
+            <el-input-number
+              v-model="form.serial"
+              controls-position="right"
+              :min="0"
+            />
+          </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button :loading="loading" type="primary" @click="onSubmit('form')"
-          >保 存</el-button
-        >
+        <el-button :loading="loading" type="primary" @click="onSubmit('form')">保 存</el-button >
       </span>
     </el-dialog>
     <!--主要引用页面结束-->
@@ -209,34 +173,27 @@
 import { getToken } from "@/utils/auth";
 import uploadUrl from "@/api/upload.js";
 import {
-  activityQueryBy,
-  activitySave,
-  activityUpdate,
-  activityDel,
-  isenable
-} from "@/api/columnCategory.js";
+  SysMenuList,
+  insertSysMenu,
+  updateSysMenu,
+  delSysMenu
+} from "@/api/OnlineBusinessHall.js";
 import { msgAutoClose, msgNoClose } from "@/utils/element";
 import vviewer from "@/components/VViewer/vviewer";
 export default {
-  name: "activityModule",
+  name: "moduleConfig",
   components: { vviewer },
   data() {
     return {
       form: {
         id: "",
-        title: "",
-        coverpic: "",
-        content: "",
-        urlpath: "",
-        isenable: 2
+        name: "",
+        isShow: ""
       },
       rules: {
-        title: [{ required: true, trigger: "blur", message: "请输入活动标题" }],
-        coverpic: [
-          { required: true, trigger: "blur", message: "请上传活动封面" }
-        ],
-        content: [
-          { required: true, trigger: "blur", message: "请输入活动内容" }
+        name: [{ required: true, trigger: "blur", message: "请输入模块名称" }],
+        menuUrl: [
+          { required: true, trigger: "blur", message: "请输入模块路径" }
         ]
       },
       loading: false,
@@ -247,7 +204,7 @@ export default {
       tableHeight: null,
       tableData: [],
       params: {
-        title: "",
+        name: "",
         page: 1,
         size: 15
       },
@@ -257,18 +214,10 @@ export default {
     };
   },
   mounted() {
-    this.tableHeight =
-      window.innerHeight -
-      this.$refs.formBox.offsetHeight -
-      92 -
-      document.getElementsByClassName("fixed-header")[0].clientHeight;
+    this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
     window.onresize = () => {
       return (() => {
-        this.tableHeight =
-          window.innerHeight -
-          this.$refs.formBox.offsetHeight -
-          92 -
-          document.getElementsByClassName("fixed-header")[0].clientHeight;
+        this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
       })();
     };
   },
@@ -282,7 +231,11 @@ export default {
     },
     getList() {
       this.listLoading = true;
-      activityQueryBy(this.params)
+      SysMenuList({
+        name: this.params.name,
+        pageNum: this.params.page,
+        pageSize: this.params.size
+      })
         .then(res => {
           this.listLoading = false;
           if (res.success && res.data) {
@@ -298,23 +251,16 @@ export default {
           this.listLoading = false;
         });
     },
-    dateFormatter(row, column) {
-      if (row.time) {
-        return parseTime(row.time);
-      } else {
-        return "";
-      }
-    },
     resetClick() {
-      this.params.title = "";
+      this.params.name = "";
       this.getList();
     },
     isenable(id, type) {
       var params = {
         id: id,
-        isenable: type
+        isShow: type
       };
-      isenable(params).then(res => {
+      updateSysMenu(params).then(res => {
         if (res.success) {
           this.getList();
           msgAutoClose({
@@ -334,7 +280,7 @@ export default {
         if (valid) {
           this.loading = true;
           if (this.form.id) {
-            activityUpdate(this.form)
+            updateSysMenu(this.form)
               .then(res => {
                 this.loading = false;
                 if (res.success) {
@@ -356,7 +302,7 @@ export default {
                 this.loading = false;
               });
           } else {
-            activitySave(this.form)
+            insertSysMenu(this.form)
               .then(res => {
                 this.loading = false;
                 if (res.success) {
@@ -429,28 +375,22 @@ export default {
       this.form.coverpic = res.data;
     },
     // 新增
-    activityModuleAdd() {
-      this.title = "新增活动";
+    SysMenuAdd() {
+      this.title = "新增模块";
       this.dialogVisible = true;
       this.form = {
-        title: "",
-        coverpic: "",
-        content: "",
-        urlpath: "",
-        isenable: 2
+        name: "",
+        menuUrl: "",
+        serial: 1,
+        isShow: "2"
       };
     },
     //编辑
     handleEdit(row) {
-      this.title = "编辑活动";
+      this.title = "编辑模块";
       this.dialogVisible = true;
       this.form = {
-        id: row.id,
-        title: row.title,
-        coverpic: row.coverpic,
-        content: row.content,
-        urlpath: row.urlpath,
-        isenable: row.isenable
+        ...row
       };
     },
     handleCurrentChange(val) {
@@ -462,12 +402,14 @@ export default {
       this.getList();
     },
     handleDelete(id) {
-      this.$confirm("此操作将永久删除该条活动内容, 是否继续?", "提示", {
+      this.$confirm("此操作将永久删除该模块内容, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        activityDel(id).then(res => {
+        delSysMenu({
+          id: id
+        }).then(res => {
           msgAutoClose({
             message: "删除成功！",
             type: "success"

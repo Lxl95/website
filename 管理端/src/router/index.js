@@ -187,6 +187,39 @@ export const asyncRoutes = [{
         }]
     },
     {
+        id: 8,
+        path: '/OnlineBusinessHall',
+        component: Layout,
+        redirect: '/OnlineBusinessHall/loginLog',
+        name: '网上营业厅',
+        meta: {
+            title: '网上营业厅',
+            icon: 'international'
+        },
+        children: [{
+            id: 801,
+            path: 'loginLog',
+            component: () =>
+                import ('@/views/OnlineBusinessHall/loginLog'),
+            name: '登录日志',
+            meta: { title: '登录日志', noCache: true }
+        }, {
+            id: 802,
+            path: 'loginAccount',
+            component: () =>
+                import ('@/views/OnlineBusinessHall/loginAccount'),
+            name: '登录账户',
+            meta: { title: '登录账户', noCache: true }
+        }, {
+            id: 803,
+            path: 'moduleConfig',
+            component: () =>
+                import ('@/views/OnlineBusinessHall/moduleConfig'),
+            name: '业务模块',
+            meta: { title: '业务模块', noCache: true }
+        }]
+    },
+    {
         id: 5,
         path: '/announcements',
         component: Layout,

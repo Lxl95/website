@@ -307,18 +307,10 @@ export default {
     };
   },
   mounted() {
-    this.tableHeight =
-      window.innerHeight -
-      this.$refs.formBox.offsetHeight -
-      92 -
-      document.getElementsByClassName("fixed-header")[0].clientHeight;
+    this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
     window.onresize = () => {
       return (() => {
-        this.tableHeight =
-          window.innerHeight -
-          this.$refs.formBox.offsetHeight -
-          92 -
-          document.getElementsByClassName("fixed-header")[0].clientHeight;
+        this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
       })();
     };
   },
