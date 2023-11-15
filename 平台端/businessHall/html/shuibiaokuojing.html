@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>水表扩径</title>
+		<link rel="stylesheet" href="../css/base.css" type="text/css">
+		<link rel="stylesheet" type="text/css" href="../css/emailHSBA.css" />
+		<link rel="stylesheet" type="text/css" href="../css/element-ui/lib/theme-chalk/index.css"/>
+		<style type="text/css">
+
+			#contentBox {
+				width: 100%;
+				height: 100%;
+			}
+
+			main>section>.content-box {
+				padding: 0px 50px;
+			}
+
+			.el-message-box__headerbtn {
+				width: 20px;
+				height: 20px;
+			}
+
+			.el-message-box__headerbtn: hover {
+				background: #fff;
+			}
+
+			.content-box>.content .form-item {
+				margin-bottom: 25px;
+			}
+
+			.el-message-box__headerbtn .el-message-box__close {
+				vertical-align: middle !important;
+				margin-top: -17px;
+			}
+		.uploads {
+			width: 110px;
+			height: 110px;
+			border: 1px solid rgb(242 241 241);
+			background: rgb(239 238 238);
+			text-align: center;
+			line-height: 133px;
+			position: relative;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="contentBox" v-cloak>
+			<header class="head-nav-up">
+				<div class="head-logo">
+				  	<img src="../images/xingcheng.png" />
+				</div>   
+			</header>
+			<div class="main">
+			<main>
+				<section>
+					<p>水表扩径</p>
+					<div class="content-box" style="height: calc(100% - 50px);">
+						<div class="content">
+							<el-form ref="form" :model="form" label-width="200px" style="margin-top: 40px;">
+								<el-form-item label="企业名称：" prop="companyName"
+								:rules="[
+									{ required: true, message: '请输入企业名称', trigger: 'blur' }
+								]">
+									<el-input v-model="form.companyName" placeholder="请输入企业名称" style="width:50%;"/>
+								</el-form-item>
+								<el-form-item label="企业地址：" prop="site" 
+								:rules="[
+									{ required: true, message: '请输入企业地址', trigger: 'blur' }
+								]">
+									<el-input v-model="form.site" placeholder="请输入企业地址" style="width:50%;"/>
+								</el-form-item>
+								<el-form-item label="联系人：" prop="contacts" 
+								:rules="[
+									{ required: true, message: '请输入联系人', trigger: 'blur' }
+								]">
+									<el-input v-model="form.contacts" placeholder="请输入联系人" style="width:50%;"/>
+								</el-form-item>
+								<el-form-item label="联系电话：" prop="phone" 
+								:rules="[
+									{ required: true, message: '请输入联系电话', trigger: 'blur' }
+								]">
+									<el-input v-model="form.phone" placeholder="请输入联系电话" style="width:50%;"/>
+								</el-form-item>
+								<el-form-item label="企业信用代码：" prop="number" 
+								:rules="[
+									{ required: true, message: '请输入企业信用代码', trigger: 'blur' }
+								]">
+									<el-input v-model="form.number" placeholder="请输入企业信用代码" style="width:50%;"/>
+								</el-form-item>
+								<el-form-item label="附件上传：">
+									<el-upload
+											class="avatar-uploader"
+											:action="uploadUrl"
+											:show-file-list="false"
+											style="width: 80%"
+											:data="uploadData"
+											:on-success="uploadSuccess"
+											:on-error="uploadError"
+											:on-progress="uploadProgress"
+											:before-upload="uploadBefore"
+										>
+											<img v-if="imageUrl !==''" :src="imageUrl" class="avatar" style="width: 110px; height: 110px;margin-right:10px;" />
+											<div v-if="imageUrl ===''" class="uploads" style="float: right;">
+												<img src="../images/upload.png" style="width:40px;height:33px;"/>
+											</div>
+										</el-upload>
+								</el-form-item>
+							</el-form>
+						</div>
+						<div class="btn-box" style="width: 600px;">
+							<el-button type="primary" @click="cancel" style="background-color: #ccc;border-color: #ccc;">取 消</el-button>
+							<el-button type="primary" @click="submit('form')" style="background-color:#3288C7;border-color:#3288C7;" :loading="loading">提
+								交</el-button>
+						</div>
+					</div>
+				</section>
+			</main>
+			</div>
+			<footer>
+				<section>
+					<img src="../images/logo1.png" style="float: left;padding-right: 20px;margin-top: 20px;width:92px;"/>
+					<br><br>
+					<p>版权所有 兴城市水务集团有限公司 Copyright @ 2019-{{dateYear}} All Rights Reserved.</p>
+					<p>地址：辽宁省兴城市兴海南街93号 联系电话：0429-5895555</p>
+					<p><span style="color:#F7EB27;">新天科技股份有限公司</span>提供技术支持</p>
+				</section>
+			</footer>
+		</div>
+		<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.js"></script>
+		<script src="../css/element-ui/lib/index.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script src="../js/webuploader.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/uploadPhoto.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/baseUrl.js"></script>
+		<script type="text/javascript">
+			var vuedata = new Vue({
+				el: '#contentBox',
+				data: {
+				uploadUrl: baseUrl+'/Wfms/Overt/Project/XianTao/ZhengWu/Handle/UploadAsyncNoInsId',
+        uploadData:{
+          SystemMark:'XtWeChart',
+					OtherOperId:'',
+            NodeId:'',
+            FileName:'',
+            FileLength:''
+        },
+        uploadFileDatas:[],
+        uploadListLoading:false,
+        uploadListTableHeight:null,
+					dateYear: 2020,
+					loading: false,
+					form: {
+						SystemMark:'XianTaoZw',
+            OtherOperId:'',
+					  companyName: '', //企业名称
+            contacts: '', //联系人
+            site: '', //企业地址
+            phone: '', //联系电话
+            number: '', //企业信用代码
+          fileList:[],//上传文件列表
+          NodeId:230
+					},
+          guid:'',
+        imageUrl:'',
+        OtherOperId:''
+				},
+				created: function() {
+          this.newGuid()
+				},
+				methods: {
+					cancel:function cancel() {
+						this.form = {
+							companyName: '', //企业名称
+              contacts: '', //联系人
+              site: '', //企业地址
+              phone: '', //联系电话
+              number: '', //企业信用代码
+						}
+					},
+          newGuid:function newGuid(){
+						for ( var i = 1; i <= 32 ; i++ ){
+							var n = Math.floor(Math.random() * 16.0 ).toString( 16 );
+							this.form.OtherOperId += n;
+							if ((i == 8 ) || (i == 12 ) || (i == 16 ) || (i == 20 ))
+							this.form.OtherOperId += "-" ;
+						}
+          this.OtherOperId= this.form.OtherOperId
+						return this.form.OtherOperId
+          },
+					nowTime() {
+						const mydate = new Date()
+						let year = mydate.getFullYear()
+						let month = mydate.getMonth()
+						let day = mydate.getDate()
+						let hour = mydate.getHours()
+						let minutes = mydate.getMinutes()
+						let seconds = mydate.getSeconds()
+						let milli = mydate.getMilliseconds()
+						if(month < 10){
+							month = month - 0 + 1
+							month = '0' + month
+						}else{
+							month = month - 0 + 1
+						}
+						if(day < 10){
+							day = '0' + day
+						}
+						if(hour < 10){
+							hour = '0' + hour
+						}
+						if(minutes < 10){
+							minutes = '0' + minutes
+						}
+						if(seconds < 10){
+							seconds = '0' + seconds
+						}
+						return year + month + day + hour + minutes + seconds + milli
+					},
+					submit:function submit(formName) {
+						let self = this
+						this.$refs[formName].validate((valid) => {
+              if (valid) {
+                let InsCode = this.nowTime() 
+								self.$http.post(baseUrl + '/Wfms/Overt/Project/XianTao/ZhengWu/Handle/QuickStart', {
+									SystemMark:self.form.SystemMark,
+				          OtherOperId:self.OtherOperId,
+									Entity:{
+                    FlowId:8,
+                    NodeId:230,
+                    Datas:[
+                      {
+                        DataCode:"InsCode",
+                        DataGroup:0,
+                        DataValue:InsCode//项目ID
+                      },
+                      {
+                        DataCode:"ProjectType",
+                        DataGroup:0,
+                        DataValue:103//项目类型
+                      },
+                      {
+                        DataCode:"UserAddress",
+                        DataGroup:1,
+                        DataValue:self.form.site//地址
+                      },
+                      {     
+                        DataCode:"UserName",
+                        DataGroup:1,
+                        DataValue:self.form.companyName//企业名称
+                      },
+                      {
+                        DataCode:"UserLiaison",
+                        DataGroup:0,
+                        DataValue:self.form.contacts//联系人
+                      },
+                      {
+                        DataCode:"ProjectAddress",
+                        DataGroup:0,
+                        DataValue:self.form.site//企业地址
+                      },
+                      {
+                        DataCode:"UserLiaisonContact",
+                        DataGroup:0,
+                        DataValue:self.form.phone//联系电话
+                      },
+                      {
+                        DataCode:"UserTaxId",
+                        DataGroup:0,
+                        DataValue:self.form.number//企业信用代码
+                      }
+                    ],
+                 		Files:this.form.fileList.map(el => el.FileId)
+									}
+								}).then(function(res) {
+									//提交成功清空数据
+									if(res.data.Result == 1){
+                    self.form ={
+                      SystemMark:'XianTaoZw',
+                      companyName: '', //企业名称
+                      contacts: '', //联系人
+                      site: '', //企业地址
+                      phone: '', //联系电话
+                      number: '', //企业信用代码
+                     fileList:[],//上传文件列表
+                     NodeId:230
+                    }
+                    self.imageUrl=''
+                    self.$message({
+                      type: 'success',
+                      message: res.data.Msg
+                    });
+                  }else {
+                    self.$message({
+                      type: 'error',
+                      message: res.data.Msg
+                    });
+                  }
+								})
+				      }
+			      })
+					},
+					uploadProgress:function uploadProgress(event,file,fileList) {},
+					uploadBefore:function uploadBefore(file) {
+						let self = this
+            self.uploadData.SystemMark=self.form.SystemMark
+            self.uploadData.OtherOperId=self.OtherOperId
+						self.uploadData.NodeId=self.form.NodeId
+						self.uploadData.FileRuleId=24
+						self.uploadData.FileName=file.name
+						self.uploadData.FileLength=file.size
+						self.uploadData.Text='上传中...'
+				  },
+					uploadSuccess:function uploadSuccess(res,file) {
+						let self = this
+						if(res.Result ===1) {
+							this.form.fileList.push({FileId:res.Data.FileId});
+							this.imageUrl = URL.createObjectURL(file.raw);
+							self.$message({
+								type: 'success',
+								message: res.Msg
+							});
+						}
+					},
+					uploadError :function uploadError () {
+						let self = this
+						self.$message({
+							type: 'warning',
+							message: '上传失败'
+						});
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

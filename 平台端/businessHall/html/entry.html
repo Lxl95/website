@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>网上营业厅</title>
+	<link rel="stylesheet" type="text/css" href="../css/element-ui/lib/theme-chalk/index.css" />
+	<link href="../css/common.css" type="text/css" rel="stylesheet">
+	</link>
+	<link href="../css/product.css" type="text/css" rel="stylesheet">
+	</link>
+	<link href="../css/entry.css" type="text/css" rel="stylesheet">
+	</link>
+	<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/vue-resource.js"></script>
+	<script type="text/javascript" src="../css/element-ui/lib/index.js"></script>
+	<script type="text/javascript" src="../../js/js-cookie.js"></script>
+	<script type="text/javascript" src="../../js/url.js"></script>
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<style type="text/css">
+		#contentBox {
+			width: 100%;
+			height: 100%;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: auto;
+		}
+
+		main {
+			position: relative;
+			min-width: 1300px;
+		}
+
+		.lineLo {
+			position: absolute;
+			top: 20px;
+			margin-left: calc(50% - 142.5px);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="contentBox">
+		<!--header开始-->
+		<div class="top ie">
+			<div class="nav-content">
+				<a class="logo" href="../../index.html"></a>
+				<ul class="nav-list">
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">首页</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">客户中心</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">水费查询</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">缴费查询</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">管理账户</a>
+					</li>
+
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">业务办理</a>
+						<div class="dropdown js-drdown">
+							<div class="arrow-up pr">
+								<div class="nei-arrow-up"></div>
+							</div>
+							<dl>
+								<dd>
+									<a class="dd" href="../waterService/PipeNetwork.html">个人报装</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/OneMap.html">企业报装</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/KPIshow.html">用户过户</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/DataVisual.html">用户销户</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/Bigdata.html">用水性质变更</a>
+								</dd>
+							</dl>
+						</div>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">我的业务</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="top-header"></div>
+		<!--header结束-->
+		<main>
+			<img src="../images/lineLo.png" class="lineLo" />
+			<section>
+				<div>
+					<div class="img-box xzjs" @click="jump('1','sure')"></div>
+					个人报装
+				</div>
+				<div>
+					<div class="img-box sgls" @click="jump('2','sure')"></div>
+					小区报装
+				</div>
+				<div>
+					<div class="img-box lhys" @click="jump('3','sure')"></div>
+					企业报装
+				</div>
+				<div>
+					<div class="img-box fhgz" @click="jump('4','sure')"></div>
+					水表扩径
+				</div>
+				<div>
+					<div class="img-box bzcx" @click="jump('5','search')"></div>
+					报装查询
+				</div>
+				<!-- <div>
+				<div class="img-box bzfd" @click="jump('6','coach')"></div>
+				报装辅导
+      </div> -->
+			</section>
+		</main>
+		<!--center开始-->
+		<div class="paging-main oh">
+			<div class="paging-main-left fl">
+				<h1>客户中心</h1>
+				<h1>水费查询</h1>
+				<h1>缴费查询</h1>
+				<h1>管理账户</h1>
+				<h1>业务办理<i class="icon el-icon-caret-bottom"></i></h1>
+				<div class="paging-left-nav">
+					<a href="../hardwareProducts/RTU.html">个人报装</a>
+					<a href="../hardwareProducts/IstrelAnalysis.html">企业报装</a>
+					<a href="../hardwareProducts/shenshuijing.html">用户过户</a>
+					<a href="../hardwareProducts/sunElentr.html">用户销户</a>
+					<a href="../hardwareProducts/KentWaterMeter.html">用水性质变更</a>
+				</div>
+				<h1>我的业务</h1>
+
+			</div>
+			<div class="paging-main-right fr">
+				<!--标题开始-->
+				<div class="product-title">
+					<p class="content_box_right_title">用水性质变更<i></i></p>
+				</div>
+				<!--标题结束-->
+				<el-form ref="form" :model="form" label-width="200px" style="margin-top: 40px;">
+					<el-form-item label="户号：" prop="userInfoCode" :rules="[
+						{ required: true, message: '请输入户号', trigger: 'blur' }
+						]">
+						<el-select v-model="form.userInfoCode" placeholder="请选择户号" style="width:65%;" @change="getUserInfo">
+							<el-option v-for="item in consList" :key="item.userInfoCode" :label="item.userInfoCode"
+								:value="item.userInfoCode">
+							</el-option>
+						</el-select>
+					</el-form-item>
+					<el-form-item label="原用户名：" prop="UserName" :rules="[
+						{ required: true, message: '请输入用户名', trigger: 'blur' }
+						]">
+						<el-input v-model="form.UserName" placeholder="请输入原用户名" disabled style="width:65%;" />
+					</el-form-item>
+					<el-form-item label="原联系电话：" prop="UserContact" :rules="[
+						{ required: true, message: '请输入联系电话', trigger: 'blur' }
+						]">
+						<el-input v-model="form.UserContact" disabled placeholder="请输入联系电话" style="width:65%;" />
+					</el-form-item>
+					<el-form-item label="原用户地址：" prop="userAddress" :rules="[
+						{ required: true, message: '请输入用户地址', trigger: 'blur' }
+						]">
+						<el-input v-model="form.userAddress" disabled placeholder="请输入用户地址" style="width:65%;" />
+					</el-form-item>
+					<el-form-item label="变更原因：" prop="ChangeReason" :rules="[
+					{ required: true, message: '请输入变更原因', trigger: 'blur' }
+					]">
+						<el-input v-model="form.ChangeReason" type="textarea" :rows="3" placeholder="请输入变更原因"
+							style="width:65%;" />
+					</el-form-item>
+					<el-form-item label="附件上传：">
+						<el-upload class="avatar-uploader" :action="uploadUrl" drag multiple :show-file-list="true"
+							style="width: 80%" :data="uploadData" :on-success="uploadSuccess" :on-error="uploadError"
+							:on-progress="uploadProgress" :before-upload="uploadBefore">
+						  	<i class="el-icon-upload"></i>
+         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+						</el-upload>
+					</el-form-item>
+					<el-form-item>
+						<el-button type="primary" @click="cancel" style="background-color: #ccc;border-color: #ccc;">取
+							消</el-button>
+						<el-button type="primary" @click="submit('form')"
+							style="background-color:#3288C7;border-color:#3288C7;" :loading="loading">提 交</el-button>
+					</el-form-item>
+				</el-form>
+
+			</div>
+
+		</div>
+	</div>
+	<!--center结束-->
+	</div>
+</body>
+<script type="text/javascript">
+	var vuedata = new Vue({
+		el: '#contentBox',
+		data: {
+			consList: [],
+			uploadUrl: baseUrl_API_BZLC + '/Wfms/Overt/WeChart/PublicAccount/Handle/File/UploadNoInsId',
+			uploadData: {
+				SystemMark: 'XianTaoZw',
+				OtherOperId: '',
+				NodeId: '',
+				FileName: '',
+				FileLength: ''
+			},
+			uploadFileDatas: [],
+			uploadListLoading: false,
+			uploadListTableHeight: null,
+			dateYear: 2020,
+			loading: false,
+			form: {
+				SystemMark: 'XianTaoZw',
+				OtherOperId: '',
+				userInfoCode: '', //联系人
+				UserName: '', //原用户名
+				UserContact: '', //联系电话
+				number: '', //身份证号
+				ChangeReason: '', //房产证号
+				fileList: [], //上传文件列表
+				NodeId: 230
+			},
+			guid: '',
+			imageUrl: '',
+			OtherOperId: '',
+			consInfo: {},
+			myConsNo: '',
+			imageUrl: '',
+			userAvataPath: '',
+			webUserNamePhone: '',
+			userAddress: '',
+			businessNumber: '',
+			rcvblAmt: ''
+		},
+		created: function () {
+			var date = new Date;
+			var y = date.getFullYear();
+			this.dateYear = y;
+			this.getConsList()
+		},
+		methods: {
+			jump: function jump(ind, mes) {
+				if (mes == 'sure') {
+					//window.location.href = "agreement.html?type=" + ind;  //跳转同意用户须知
+					if (ind == '1') {
+						window.location.href = "gerenbaozhuang.html";
+					} else if (ind == '2') {
+						window.location.href = "xiaoqubaozhuang.html";
+					} else if (ind == '3') {
+						window.location.href = "qiyebaozhuang.html";
+					} else if (ind == '4') {
+						window.location.href = "shuibiaokuojing.html";
+					}
+				} else if (mes == 'search') {
+					window.location.href = "query.html";
+				} else if (mes == 'coach') {
+					window.location.href = "agreement.html";
+				}
+			},
+			cancel: function cancel() {
+				this.form = {
+					userInfoCode: '', //联系人
+					UserName: '', //原用户名
+					UserContact: '', //联系电话
+					number: '', //身份证号
+					ChangeReason: '', //房产证号
+					fileList: [], //上传文件列表
+				}
+			},
+			getConsList() {
+				let self = this
+				self.$http.get(baseUrl_API_WeiXin + '/payUser/selectByOpenId?openId=' + getlocalStorage('openId')).then(function ({ data : res}) {
+							console.log(res);
+							if (res.code == 1) {
+								 self.consList = res.userList
+									// self.lastOperatedTable =  res.msg.lastOperatedTable;
+									self.getUserInfo(res.msg.lastOperatedTable)
+							}
+						})
+			},
+			getUserInfo(lastOperatedTable) {
+				let self = this
+				self.$http.get(baseUrl_API_WeiXin + '/netUserInfoController/findAllUser?userInfoCode=' + lastOperatedTable).then(function ({ data : res}) {
+							console.log(res);
+							if (res.code == 1) {
+								 self.form.userInfoCode = res.userInfoCode
+								 self.form.UserName = res.userName
+								 self.form.UserContact = res.userPhone
+								 self.form.userAddress = res.site
+							}
+						})
+			},
+			newGuid: function newGuid() {
+				for (var i = 1; i <= 32; i++) {
+					var n = Math.floor(Math.random() * 16.0).toString(16);
+					this.form.OtherOperId += n;
+					if ((i == 8) || (i == 12) || (i == 16) || (i == 20))
+						this.form.OtherOperId += "-";
+				}
+				this.OtherOperId = this.form.OtherOperId
+				return this.form.OtherOperId
+			},
+			nowTime() {
+				const mydate = new Date()
+				let year = mydate.getFullYear()
+				let month = mydate.getMonth()
+				let day = mydate.getDate()
+				let hour = mydate.getHours()
+				let minutes = mydate.getMinutes()
+				let seconds = mydate.getSeconds()
+				let milli = mydate.getMilliseconds()
+				if (month < 10) {
+					month = month - 0 + 1
+					month = '0' + month
+				} else {
+					month = month - 0 + 1
+				}
+				if (day < 10) {
+					day = '0' + day
+				}
+				if (hour < 10) {
+					hour = '0' + hour
+				}
+				if (minutes < 10) {
+					minutes = '0' + minutes
+				}
+				if (seconds < 10) {
+					seconds = '0' + seconds
+				}
+				return year + month + day + hour + minutes + seconds + milli
+			},
+			submit: function submit(formName) {
+				let self = this
+				this.$refs[formName].validate((valid) => {
+					if (valid) {
+						let InsCode = this.nowTime()
+						self.$http.post(baseUrl + '/Wfms/Overt/Project/XianTao/ZhengWu/Handle/QuickStart', {
+							SystemMark: self.form.SystemMark,
+							OtherOperId: self.OtherOperId,
+							Entity: {
+								FlowId: 8,
+								NodeId: 230,
+								Datas: [{
+									DataCode: "InsCode",
+									DataGroup: 0,
+									DataValue: InsCode //项目ID
+								}, {
+									DataCode: "ProjectType",
+									DataGroup: 0,
+									DataValue: 101 //项目类型
+								}, {
+									DataCode: "UserAddress",
+									DataGroup: 1,
+									DataValue: this.form.UserName //地址
+								}, {
+									DataCode: "ProjectAddress",
+									DataGroup: 0,
+									DataValue: this.form.UserName //项目地址
+								}, {
+									DataCode: "UserName",
+									DataGroup: 1,
+									DataValue: this.form.userInfoCode //联系人
+								}, {
+									DataCode: "UserLiaison",
+									DataGroup: 0,
+									DataValue: this.form.userInfoCode //用户联系人
+								}, {
+									DataCode: "ProjectName",
+									DataGroup: 0,
+									DataValue: this.form.userInfoCode //项目联系人
+								}, {
+									DataCode: "UserLiaisonContact",
+									DataGroup: 0,
+									DataValue: this.form.UserContact //用户联系电话
+								}, {
+									DataCode: "UserIdCard",
+									DataGroup: 1,
+									DataValue: this.form.number //用户身份证号
+								}, {
+									DataCode: "UserLiaisonIdCard",
+									DataGroup: 0,
+									DataValue: this.form.number //用户联络人身份证号
+								}, {
+									DataCode: "UserHouseCertificateNo",
+									DataGroup: 0,
+									DataValue: this.form.ChangeReason //用户房屋产权证编号
+								}],
+								Files: this.form.fileList.map(el => el.FileId)
+							}
+						}).then(function (res) {
+							//提交成功清空数据
+							if (res.data.Result == 1) {
+								self.form = {
+									SystemMark: 'XianTaoZw',
+									userInfoCode: '', //联系人
+									UserName: '', //原用户名
+									UserContact: '', //联系电话
+									number: '', //身份证号
+									ChangeReason: '', //房产证号
+									fileList: [], //上传文件列表
+									NodeId: 230
+								}
+								self.imageUrl = ''
+								self.$message({
+									type: 'success',
+									message: res.data.Msg
+								});
+							} else {
+								self.$message({
+									type: 'error',
+									message: res.data.Msg
+								});
+							}
+						})
+					}
+				})
+			},
+			uploadProgress: function uploadProgress(event, file, fileList) { },
+			uploadBefore: function uploadBefore(file) {
+				let self = this
+				self.uploadData.SystemMark = self.form.SystemMark
+				self.uploadData.OtherOperId = self.OtherOperId
+				self.uploadData.NodeId = self.form.NodeId
+				self.uploadData.FileRuleId = 24
+				self.uploadData.FileName = file.name
+				self.uploadData.FileLength = file.size
+				self.uploadData.Text = '上传中...'
+			},
+			uploadSuccess: function uploadSuccess(res, file) {
+				let self = this
+				if (res.Result === 1) {
+					this.form.fileList.push({
+						FileId: res.Data.FileId
+					});
+					this.imageUrl = URL.createObjectURL(file.raw);
+					self.$message({
+						type: 'success',
+						message: res.Msg
+					});
+				}
+			},
+			uploadError: function uploadError() {
+				let self = this
+				self.$message({
+					type: 'warning',
+					message: '上传失败'
+				});
+			}
+		},
+	})
+</script>
+<style>
+
+</style>
+
+</html>
