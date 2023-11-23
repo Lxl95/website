@@ -1,0 +1,429 @@
+<link href="../../businessHall/css/common.css" type="text/css" rel="stylesheet">
+</link>
+<link href="../../businessHall/css/product.css" type="text/css" rel="stylesheet">
+</link>
+<link href="../../businessHall/css/entry.css" type="text/css" rel="stylesheet">
+</link>
+<style type="text/css">
+  #contentBox {
+    width: 100%;
+    height: 100%;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+  }
+
+  main {
+    position: relative;
+    min-width: 1300px;
+  }
+
+  .lineLo {
+    position: absolute;
+    top: 20px;
+    margin-left: calc(50% - 142.5px);
+  }
+</style>
+<div
+  ng-controller="businessCtrl"
+  class="businessMain"
+  style="height: calc(100vh - 20px)"
+>
+<div id="contentBox">
+		<!--header开始-->
+		<div class="top ie">
+			<div class="nav-content">
+				<a class="logo" href="#/"></a>
+				<ul class="nav-list">
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">首页</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">客户中心</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">水费查询</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">缴费查询</a>
+					</li>
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">管理账户</a>
+					</li>
+
+					<li class="js-dropdwn-name">
+						<a class="li" href="#">业务办理</a>
+						<div class="dropdown js-drdown">
+							<div class="arrow-up pr">
+								<div class="nei-arrow-up"></div>
+							</div>
+							<dl>
+								<dd>
+									<a class="dd" href="../waterService/PipeNetwork.html">个人报装</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/OneMap.html">企业报装</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/KPIshow.html">用户过户</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/DataVisual.html">用户销户</a>
+								</dd>
+								<dd>
+									<a class="dd" href="../waterService/Bigdata.html">用水性质变更</a>
+								</dd>
+							</dl>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="top-header"></div>
+		<!--header结束-->
+		<!--center开始-->
+    <div id="main">
+      <!--页面left导航 start -->
+      <div id="aside">
+        <div class="indentation" style="margin-top: 10px">
+          <a href="#/OnlineBusinessHall" style="color: #000">
+            <p class="left-home">
+              <i class="layui-icon layui-icon-home" style="font-size: 25px"></i>
+            </p>
+          </a>
+          <p class="left-in">
+            <i
+              class="layui-icon layui-icon-spread-left"
+              style="font-size: 25px"
+            ></i>
+          </p>
+        </div>
+        <ul class="list-group ul">
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/OnlineBusinessHall"
+              ><span class="asideicon"
+                ><img src="../../images/business/1.png" alt="" /></span
+              >客户中心</a
+            >
+          </li>
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/waterPriceQuery"
+              ><span class="asideicon"
+                ><img src="../../images/business/2.png" alt="" /></span
+              >水费查询</a
+            >
+          </li>
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/paymentQuery"
+              ><span class="asideicon"
+                ><img src="../../images/business/3.png" alt="" /></span
+              >缴费查询</a
+            >
+          </li>
+          <li class="list-group-item show">
+            <i></i>
+            <a href="javascript:void(0)"
+              ><span class="asideicon"
+                ><img src="../../images/business/5.png" alt="" /></span
+              >业务办理 <span class="layui-icon layui-icon-right"></span
+            ></a>
+            <ul class="list-group more">
+              <div class="in">
+                <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+                                                                    <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
+                                                                    <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
+                                                                    <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
+                                                                    <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
+                <li ng-repeat="item in SysMenuList" class="list-group-item">
+                  <i></i><a ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+  
+          <li class="list-group-item teshow newshow">
+            <i></i>
+            <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+                                                alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
+            <ul class="list-group more biz-group">
+              <div class="in">
+                <li class="list-group-item">
+                  <i></i><a href="#/peopleNewInstallLC">个人报装</a>
+                </li>
+                <li class="list-group-item">
+                  <i></i><a href="#/companyNewInstallLC">企事业报装</a>
+                </li>
+                <li class="list-group-item">
+                  <i></i><a href="#/chooseUserNameLC">用户过户</a>
+                </li>
+                <li class="list-group-item">
+                  <i></i><a href="#/cancelUserLC">用户销户</a>
+                </li>
+                <li class="list-group-item">
+                  <i></i><a href="#/chooseWaterNature">用水性质变更</a>
+                </li>
+              </div>
+            </ul>
+          </li>
+  
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/processListLC"
+              ><span class="asideicon"
+                ><img src="../../images/business/7.png" alt="" /></span
+              >我的业务</a
+            >
+          </li>
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/account"
+              ><span class="asideicon"
+                ><img src="../../images/business/17.png" alt="" /></span
+              >管理账户</a
+            >
+          </li>
+          <li class="list-group-item">
+            <i></i
+            ><a href="#/bindWeChat"
+              ><span class="asideicon"
+                ><img src="../../images/business/1.png" alt="" /></span
+              >关联微信</a
+            >
+          </li>
+        </ul>
+        <ul class="list-group newmore">
+          <div class="newin">
+            <div class="business-search">
+              <p class="searchBtn">搜索</p>
+              <input type="text" class="search" />
+            </div>
+            <ul class="business-ul">
+              <li class="water title">
+                <p>新报装申请</p>
+                <ul>
+                  <li><a href="#/peopleNewInstallLC">个人报装</a></li>
+                  <li><a href="#/companyNewInstallLC">企事业报装</a></li>
+                </ul>
+              </li>
+  
+              <!-- <li class="service title">
+                                        <p>用水缴费</p>
+                                        <ul>
+                                                <li><a href="#/waterPriceQuery">水费查询</a></li>
+                                        </ul>
+                                </li> -->
+              <li class="service title">
+                <p>用户信息变更</p>
+                <ul>
+                  <li><a href="#/chooseUserNameLC">用户过户</a></li>
+                  <li><a href="#/cancelUserLC">用户销户</a></li>
+                  <li><a href="#/chooseWaterNature">用水性质变更</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+      <!--页面left导航 end -->
+  
+      <div class="right">
+        <div class="main-content">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">首页</li>
+              <li class="breadcrumb-item active" aria-current="page">客户中心</li>
+            </ol>
+          </nav>
+          <div class="contents">
+            <div class="contents-left">
+              <div class="contents-top" style="min-height: 500px">
+                <div class="title">
+                  <h1>基本情况</h1>
+                  <!-- <a href="javascript:void(0)"
+                    onclick='top.location.href= "waterFee/detail?consNo="+$("select[name=consNo]").val()+"&mainEntanceType=YHZX"'>更多>></a> -->
+                </div>
+                <div class="customerid" id="consNoSelectDiv">
+                  <div class="customerid-top">
+                    <i class=""
+                      ><img src="../../images/business/11.png" alt=""
+                    /></i>
+                    <p class="">用户编号</p>
+                    <span ng-if="myConsNo">{{ myConsNo }}</span>
+                    <span ng-if="!myConsNo">
+                      <a href="#/toBind">绑定户号</a>
+                    </span>
+                  </div>
+                  <div class="customerid-center">
+                    <i class=""
+                      ><img src="../../images/business/12.png" alt=""
+                    /></i>
+                    <p class="">用户名称</p>
+                    <i
+                      class="i"
+                      onclick="layer.tips('用户名称是在水务集团登记的名称', this);"
+                    ></i>
+                    <span id="consName">{{ consInfo.userName || ''}}</span>
+                  </div>
+                  <div class="customerid-bottom">
+                    <i class=""
+                      ><img src="../../images/business/13.png" alt=""
+                    /></i>
+                    <p class="">用户地址</p>
+                    <i
+                      class="i"
+                      onclick="layer.tips('用户地址是在水务集团登记的地址',this);"
+                    ></i>
+                    <span id="address">{{ consInfo.site || ''}}</span>
+                  </div>
+                  <!-- <div class="customerid-bottom2">
+                    <i class=""><img src="../../images/business/water-14.png" alt=""></i>
+                    <p class="">水表编号</p>
+                    <span id="meterNum"></span>
+                  </div>
+                  <div class="customerid-bottom3">
+                    <i class=""><img src="../../images/business/water-15.png" alt=""></i>
+                    <p class="">水表口径</p>
+                    <span id="meterSize"></span>
+                  </div>
+                  <div class="customerid-bottom4">
+                    <i class=""><img src="../../images/business/water-16.png" alt=""></i>
+                    <p class="">水价类别</p>
+                    <span id="meterCategory"></span>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+  
+            <div class="contents-right" style="min-height: 500px">
+              <div class="right-two">
+                <div class="integral" style="width: 100%" ng-click="toUserInfo()">
+                  <div class="img">
+                    <img
+                      ng-src="{{ imageUrl + userAvataPath }}"
+                      onerror="this.src='../../images/business/peple.png';this.onerror=null"
+                      id="headImg"
+                    />
+                  </div>
+                  <div class="num">
+                    <p>手机名：<span>{{ websitePhone || ''}}</span></p>
+                    <p>地址：<span>{{ userAddress || ''}}</span></p>
+                    <p>
+                      <!-- 积分：<span class="bignum">0</span><i>分</i> -->
+                    </p>
+                  </div>
+                  <div class="right-bottom2">
+                    <!-- <a href="/userPoints/initList"  >积分详情</a> -->
+                  </div>
+                </div>
+  
+                <!-- <div class="dashbord">
+                  <div id="dashbord" style="height: 200px;margin-top: 2px;margin-bottom: -68px;width: 100%"></div>
+                </div> -->
+              </div>
+              <div class="right-one">
+                <div class="arrearage">
+                  <p class="right-title">账户余额</p>
+                  <p class="right-center">
+                    <span id="feeAmt" class="spanfirst"
+                      >{{ rcvblAmt && rcvblAmt > 0 ? '-' + rcvblAmt :
+                      consInfo.accountMoney ? consInfo.accountMoney : 0}}</span
+                    ><span>元</span>
+                  </p>
+                  <p class="right-bottom">
+                    <a href="#/waterPriceQuery">查看详情</a>
+                  </p>
+                </div>
+                <div class="business">
+                  <p class="right-title">我的业务</p>
+                  <p class="right-center">{{ businessNumber || 0 }}</p>
+                  <p class="right-bottom">
+                    <a href="#/processListLC">查看详情</a>
+                  </p>
+                </div>
+                <!-- <div class="accountDetail">
+                  <div class="detail-top">
+                    <p class="detail-main">预存款</p>
+                    <p class="detail-content">
+                      <span  class="spanfirst" id="ycsfAB">0</span><span>元</span>
+                    </p>
+                  </div>
+                  <div class="detail-bottom">
+                    <p class="detail-main">暂收款</p>
+                    <p class="detail-content">
+                      <span  class="spanfirst" id="zcAB">0</span><span>元</span>
+                    </p>
+                  </div>
+                </div> -->
+              </div>
+  
+              <!-- <div class="tab">
+                <ul>
+  
+                  
+                    <li  class="li-color">
+                      2023
+                    </li>
+                  
+                    <li  >
+                      2022
+                    </li>
+                  
+                    <li  >
+                      2021
+                    </li>
+                  
+                </ul>
+              </div> -->
+              <!-- <div class="right-three">
+                <ul>
+                  <li>
+                    <p class="right-title b">总水量</p>
+                    <p class="right-center">
+                      <span id="waterAmt" class="spanfirst spannum">0</span> <span>吨</span>
+                    </p>
+                  </li>
+                  <li class="border">
+                    <p class="right-title b">总水费</p>
+                    <p class="right-center">
+                      <span id="waterFeeAmt" class="spanfirst spannum">0</span> <span>元</span>
+                    </p>
+                  </li>
+                  <li>
+                    <p class="right-title b">总垃圾费</p>
+                    <p class="right-center">
+                      <span id="garbageAmt" class="spanfirst spannum">0</span> <span>元</span>
+                    </p>
+                  </li>
+                </ul>
+              </div> -->
+              <div class="right-four">
+                <div id="box"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<!--center结束-->
+	</div>
+  
+</div>
+<script src="../../js/personalMain.js" />
+<script>
+  // function goNewPage() {
+  //   window.location.href =
+  //     '../../businessHall/html/entry.html?openId=' +
+  //     getlocalStorage('openId') +
+  //     '&phone=' +
+  //     getlocalStorage('phone')
+  // }
+</script>

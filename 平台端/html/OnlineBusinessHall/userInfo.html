@@ -2,12 +2,26 @@
 <link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
 <link rel="stylesheet" href="../../css/userInfo.css" />
 
-<div ng-controller="userInfoCtrl" class="businessMain" style="height: calc(100vh - 20px)">
+<div
+  ng-controller="userInfoCtrl"
+  class="businessMain"
+  style="height: calc(100vh - 20px)"
+>
   <!--页面top导航-->
   <div id="header">
     <div class="header-left" align="center">
-      <img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo"
-        style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
+      <img
+        ng-if="info.logo"
+        :ng-src="{{imageUrl+ info.logo}}"
+        onerror="this.src='../../images/logo.png'"
+        alt="logo"
+        style="
+          width: 300px;
+          height: 52px;
+          border-radius: 10px;
+          background-color: #fff;
+        "
+      />
     </div>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="#/">首页</a></li>
@@ -15,10 +29,48 @@
     </ul>
     <div class="header-right">
       <div>
-        <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
+        <p>
+          <i
+            class="layui-icon layui-icon-username"
+            style="font-size: 30px; color: #fff"
+          ></i>
+        </p>
         <ul class="header-right-more">
-          <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+          <li onclick="removelocalStorage('phone', 'openId')">
+            <a href="#/">退出</a>
+          </li>
           <li><a href="#/userInfo">个人中心</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="header-right" style="margin-right: 0px">
+      <div>
+        <p>
+          <i
+            class="layui-icon layui-icon-theme"
+            style="font-size: 30px; color: #fff"
+          ></i>
+        </p>
+        <ul class="header-right-more">
+          <li onclick="changeNavTheme(1)">
+            <a
+              href="javascript:void(0)"
+              style="background-color: #0a7be0; color: #0a7be0"
+              >主题1</a
+            >
+          </li>
+          <li onclick="changeNavTheme(2)">
+            <a href="javascript:void(0)" style="background-color: #1e1e1e"
+              >主题2</a
+            >
+          </li>
+          <li onclick="changeNavTheme(3)">
+            <a
+              href="javascript:void(0)"
+              style="background-color: #4dc0b3; color: #4dc0b3"
+              >主题3</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -27,47 +79,85 @@
   <div id="bg"></div>
   <div id="head-phone">
     <div class="head-phone">
-      <p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
+      <p class="head-phone-left">
+        <i
+          class="layui-icon layui-icon-shrink-right"
+          style="font-size: 30px"
+        ></i>
+      </p>
       <p id="page-title">水务集团</p>
-      <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
-      <ul class="header-right-more " onblur="$(this).fadeToggle()">
+      <p class="head-phone-right clickshow">
+        <i class="layui-icon layui-icon-user" style="font-size: 30px"></i>
+      </p>
+      <ul class="header-right-more" onblur="$(this).fadeToggle()">
         <li><a href="#/userInfo">个人中心</a></li>
-        <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+        <li onclick="removelocalStorage('phone', 'openId')">
+          <a href="#/">退出</a>
+        </li>
       </ul>
     </div>
   </div>
   <div id="main">
     <!--页面left导航 start -->
     <div id="aside">
-      <div class="indentation" style="margin-top:10px">
-        <a href="#/OnlineBusinessHall" style="color: #000;">
-          <p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p>
+      <div class="indentation" style="margin-top: 10px">
+        <a href="#/OnlineBusinessHall" style="color: #000">
+          <p class="left-home">
+            <i class="layui-icon layui-icon-home" style="font-size: 25px"></i>
+          </p>
         </a>
-        <p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
+        <p class="left-in">
+          <i
+            class="layui-icon layui-icon-spread-left"
+            style="font-size: 25px"
+          ></i>
+        </p>
       </div>
       <ul class="list-group ul">
-        <li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img
-                src="../../images/business/1.png" alt=""></span>客户中心</a></li>
-        <li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img
-                src="../../images/business/2.png" alt=""></span>水费查询</a></li>
-        <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
-                src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-                <li class="list-group-item show">
-                  <i></i>
-                  <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
-                              alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
-                  <ul class="list-group more">
-                      <div class="in">
-                          <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/OnlineBusinessHall"
+            ><span class="asideicon"
+              ><img src="../../images/business/1.png" alt="" /></span
+            >客户中心</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/waterPriceQuery"
+            ><span class="asideicon"
+              ><img src="../../images/business/2.png" alt="" /></span
+            >水费查询</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/paymentQuery"
+            ><span class="asideicon"
+              ><img src="../../images/business/3.png" alt="" /></span
+            >缴费查询</a
+          >
+        </li>
+        <li class="list-group-item show">
+          <i></i>
+          <a href="javascript:void(0)"
+            ><span class="asideicon"
+              ><img src="../../images/business/5.png" alt="" /></span
+            >业务办理 <span class="layui-icon layui-icon-right"></span
+          ></a>
+          <ul class="list-group more">
+            <div class="in">
+              <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
                                           <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
                                           <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
                                           <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
                                           <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
-                          <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
-                                  ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
-                      </div>
-                  </ul>
+              <li ng-repeat="item in SysMenuList" class="list-group-item">
+                <i></i><a ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a>
               </li>
+            </div>
+          </ul>
+        </li>
 
         <li class="list-group-item teshow newshow">
           <i></i>
@@ -75,26 +165,47 @@
                           alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
           <ul class="list-group more biz-group">
             <div class="in">
-              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+              <li class="list-group-item">
+                <i></i><a href="#/peopleNewInstallLC">个人报装</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/companyNewInstallLC">企事业报装</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/chooseUserNameLC">用户过户</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/cancelUserLC">用户销户</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/chooseWaterNature">用水性质变更</a>
+              </li>
             </div>
           </ul>
         </li>
 
-        <li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img
-                src="../../images/business/7.png" alt=""></span>我的业务</a></li>
-        <li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img
-                src="../../images/business/17.png" alt=""></span>管理账户</a></li>
-
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/processListLC"
+            ><span class="asideicon"
+              ><img src="../../images/business/7.png" alt="" /></span
+            >我的业务</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/account"
+            ><span class="asideicon"
+              ><img src="../../images/business/17.png" alt="" /></span
+            >管理账户</a
+          >
+        </li>
       </ul>
       <ul class="list-group newmore">
         <div class="newin">
           <div class="business-search">
             <p class="searchBtn">搜索</p>
-            <input type="text" class="search">
+            <input type="text" class="search" />
           </div>
           <ul class="business-ul">
             <li class="water title">
@@ -119,12 +230,9 @@
                 <li><a href="#/chooseWaterNature">用水性质变更</a></li>
               </ul>
             </li>
-
           </ul>
         </div>
       </ul>
-
-
     </div>
     <!--页面left导航 end -->
 
@@ -144,8 +252,11 @@
                   <li>
                     <p>头像</p>
                     <div class="right">
-                      <img ng-src="{{ imageUrl + userInfo.userAvataPath}}"
-                        onerror="this.src='../../images/business/peple.png';this.onerror=null" id="headImg">
+                      <img
+                        ng-src="{{ imageUrl + userInfo.userAvataPath}}"
+                        onerror="this.src='../../images/business/peple.png';this.onerror=null"
+                        id="headImg"
+                      />
                     </div>
                   </li>
                   <li>
@@ -153,7 +264,6 @@
                     <div class="right">
                       <p>{{ websitePhone }}</p>
                     </div>
-
                   </li>
                   <li>
                     <p>手机号</p>
@@ -185,8 +295,7 @@
                   <li>
                     <p>爱好</p>
                     <div class="right">
-                      <p>{{ userInfo.userHobby }} </p>
-
+                      <p>{{ userInfo.userHobby }}</p>
                     </div>
                   </li>
 
@@ -213,7 +322,7 @@
                       </p>
                     </div>
                   </li> -->
-                  <li style="border: 0;">
+                  <li style="border: 0">
                     <p>地址</p>
                     <div class="right">
                       <p>{{ userInfo.userAddress }}</p>
@@ -221,9 +330,14 @@
                   </li>
                 </ul>
                 <div class="content-change">
-                  <button type="button" class="btn-search btn btn-primary show-panel" data-target="edit_valid"
-                    ng-click="onAddBtn()">编辑</button>
-
+                  <button
+                    type="button"
+                    class="btn-search btn btn-primary show-panel"
+                    data-target="edit_valid"
+                    ng-click="onAddBtn()"
+                  >
+                    编辑
+                  </button>
                 </div>
               </form>
             </div>
@@ -235,44 +349,73 @@
                   <li>
                     <h4>请完成以下验证</h4>
                   </li>
-                  <li>
-                    请输入 182****8187 收到的短信验证码
-                  </li>
+                  <li>请输入 182****8187 收到的短信验证码</li>
                   <li>
                     <p class="new-phone">短信验证码</p>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control code-message" name="smsCode" autocomplete="off"
-                        placeholder="输入验证码" maxlength="4">
-                      <button id="btnSendCode" type="button" class="btn btn-primary radius btn-xs"
-                        style="margin: 0px 0px 0px 5px; height: 32px;" onclick="sendMessage4EditValid()">发送验证码</button>
+                      <input
+                        type="text"
+                        class="form-control code-message"
+                        name="smsCode"
+                        autocomplete="off"
+                        placeholder="输入验证码"
+                        maxlength="4"
+                      />
+                      <button
+                        id="btnSendCode"
+                        type="button"
+                        class="btn btn-primary radius btn-xs"
+                        style="margin: 0px 0px 0px 5px; height: 32px"
+                        onclick="sendMessage4EditValid()"
+                      >
+                        发送验证码
+                      </button>
                     </div>
                   </li>
                 </ul>
                 <div class="content-change">
-                  <button type="submit" class="btn btn-primary btn-search">提交</button>
-                  <button type="button" class="btn btn-default btn-search hide-panel ">返回</button>
-
+                  <button type="submit" class="btn btn-primary btn-search">
+                    提交
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-default btn-search hide-panel"
+                  >
+                    返回
+                  </button>
                 </div>
               </form>
             </div>
 
             <div class="page-panel" id="realName_content">
               <ul class="changeul">
-                <li style="border: 0;width: 100%;">
+                <li style="border: 0; width: 100%">
                   <div class="code">
                     <div id="qrcode"></div>
-                    <p><span>*</span>请扫描此二维码进行<span class="iconNj"><img src="/images/login-nj.png" alt=""></span><span
-                        class="bold">我的</span>实名认证</p>
-                    <button type="button" class="btn btn-default btn-search hide-panel">返回</button>
+                    <p>
+                      <span>*</span>请扫描此二维码进行<span class="iconNj"
+                        ><img src="/images/login-nj.png" alt="" /></span
+                      ><span class="bold">我的</span>实名认证
+                    </p>
+                    <button
+                      type="button"
+                      class="btn btn-default btn-search hide-panel"
+                    >
+                      返回
+                    </button>
                   </div>
-
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div id="add-main" style="display: none;">
-          <form class="layui-form" id="add-form" action="" lay-filter="editUserInfoForm">
+        <div id="add-main" style="display: none">
+          <form
+            class="layui-form"
+            id="add-form"
+            action=""
+            lay-filter="editUserInfoForm"
+          >
             <!-- <div class="layui-form-item center">
               <label class="layui-form-label" style="width: 100px">手机号</label>
               <div class="layui-input-block">
@@ -280,15 +423,31 @@
                   placeholder="请输入手机号" disabled="true" autocomplete="off" class="layui-input">
               </div>
             </div> -->
-            <input type="hidden" name="images" class="image">
-            <div class="layui-form-item" style="margin-top:10px">
+            <input type="hidden" name="images" class="image" />
+            <div class="layui-form-item" style="margin-top: 10px">
               <label class="layui-form-label" style="width: 100px">头像</label>
               <div class="layui-upload">
-                <div class="layui-upload-drag" id="test" style="margin-left: 10px">
+                <div
+                  class="layui-upload-drag"
+                  id="test"
+                  style="margin-left: 10px"
+                >
                   <!-- <i class="layui-icon"></i> -->
-                  <p ng-if="!userInfo.userAvataPath">点击上传，或将图片拖拽到此处</p>
-                  <div ng-if="userInfo.userAvataPath" class="layui-upload-list" id="demo">
-                    <div class="upload_div" id="upload_1"><img ng-src="{{imageUrl + userInfo.userAvataPath}}" alt="' + file.name + '" class="layui-upload-img"></div>
+                  <p ng-if="!userInfo.userAvataPath">
+                    点击上传，或将图片拖拽到此处
+                  </p>
+                  <div
+                    ng-if="userInfo.userAvataPath"
+                    class="layui-upload-list"
+                    id="demo"
+                  >
+                    <div class="upload_div" id="upload_1">
+                      <img
+                        ng-src="{{imageUrl + userInfo.userAvataPath}}"
+                        alt="' + file.name + '"
+                        class="layui-upload-img"
+                      />
+                    </div>
                   </div>
                 </div>
                 <!-- <button type="button" class="layui-btn" id="test">上传图片</button> -->
@@ -300,21 +459,45 @@
             <div class="layui-form-item">
               <label class="layui-form-label" style="width: 100px">爱好</label>
               <div class="layui-input-block">
-                <input type="text" name="userHobby" required style="width: 240px" lay-verify="required"
-                  placeholder="请输入爱好" autocomplete="off" class="layui-input">
+                <input
+                  type="text"
+                  name="userHobby"
+                  required
+                  style="width: 240px"
+                  lay-verify="required"
+                  placeholder="请输入爱好"
+                  autocomplete="off"
+                  class="layui-input"
+                />
               </div>
             </div>
             <div class="layui-form-item">
               <label class="layui-form-label" style="width: 100px">地址</label>
               <div class="layui-input-block">
-                <input type="text" name="userAddress" required style="width: 240px" lay-verify="required"
-                  placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input
+                  type="text"
+                  name="userAddress"
+                  required
+                  style="width: 240px"
+                  lay-verify="required"
+                  placeholder="请输入地址"
+                  autocomplete="off"
+                  class="layui-input"
+                />
               </div>
             </div>
             <div class="layui-form-item">
               <div class="layui-input-block" style="margin-left: 135px">
-                <button class="layui-btn" lay-submit lay-filter="save">确定</button>
-                <button type="reset" class="layui-btn layui-btn-primary" id="closeBtn">取消</button>
+                <button class="layui-btn" lay-submit lay-filter="save">
+                  确定
+                </button>
+                <button
+                  type="reset"
+                  class="layui-btn layui-btn-primary"
+                  id="closeBtn"
+                >
+                  取消
+                </button>
               </div>
             </div>
           </form>
@@ -364,7 +547,4 @@
   }
 </style>
 <script src="../../js/personalMain.js"></script>
-<script type="text/javascript">
-
-
-</script>
+<script type="text/javascript"></script>

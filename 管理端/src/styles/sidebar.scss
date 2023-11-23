@@ -2,7 +2,7 @@
   overflow: hidden;
   .main-container {
     min-height: 100%;
-    transition: margin-left .28s;
+    transition: margin-left 0.28s;
     margin-left: $sideBarWidth;
     position: relative;
   }
@@ -11,10 +11,11 @@
     transition: width 0.28s;
     width: $sideBarWidth !important;
     @include background_color("menuBg");
-    height: calc(100% - 50px);
+    // height: calc(100% - 50px);
+    height: 100%;
     position: fixed;
     font-size: 0px;
-    top: 50px;
+    // top: 50px;
     bottom: 0;
     left: 0;
     z-index: 2001;
@@ -22,7 +23,8 @@
 
     // reset element-ui css
     .horizontal-collapse-transition {
-      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out,
+        0s padding-right ease-in-out;
     }
 
     .scrollbar-wrapper {
@@ -71,7 +73,7 @@
       }
     }
 
-    .is-active>.el-submenu__title {
+    .is-active > .el-submenu__title {
       color: #fff;
     }
 
@@ -89,7 +91,7 @@
         @include background_color("subMenuHover");
       }
     }
-    & .el-menu .el-submenu.is-active>.el-submenu__title {
+    & .el-menu .el-submenu.is-active > .el-submenu__title {
       color: #fff !important;
     }
   }
@@ -127,7 +129,7 @@
     .el-submenu {
       overflow: hidden;
 
-      &>.el-submenu__title {
+      & > .el-submenu__title {
         padding: 0 !important;
 
         .svg-icon {
@@ -142,8 +144,8 @@
 
     .el-menu--collapse {
       .el-submenu {
-        &>.el-submenu__title {
-          &>span {
+        & > .el-submenu__title {
+          & > span {
             height: 0;
             width: 0;
             overflow: hidden;
@@ -155,7 +157,8 @@
     }
   }
   // 去掉导航的样式在这里控制
-  .noLayout,.noLayout.hideSidebar {
+  .noLayout,
+  .noLayout.hideSidebar {
     .hasTagsView .fixed-header + .app-warp {
       padding-top: 0;
     }
@@ -175,7 +178,7 @@
     }
 
     .sidebar-container {
-      transition: transform .28s;
+      transition: transform 0.28s;
       width: $sideBarWidth !important;
     }
 
@@ -189,7 +192,6 @@
   }
 
   .withoutAnimation {
-
     .main-container,
     .sidebar-container {
       transition: none;
@@ -199,13 +201,13 @@
 
 // when menu collapsed
 .el-menu--vertical {
-  &>.el-menu {
+  & > .el-menu {
     .svg-icon {
       margin-right: 16px;
     }
   }
 
-  .nest-menu .el-submenu>.el-submenu__title,
+  .nest-menu .el-submenu > .el-submenu__title,
   .el-menu-item {
     @include background_color("menuBg");
     &:hover {
@@ -214,7 +216,7 @@
   }
 
   // the scroll bar appears when the subMenu is too long
-  >.el-menu--popup {
+  > .el-menu--popup {
     max-height: 100vh;
 
     &::-webkit-scrollbar-track-piece {

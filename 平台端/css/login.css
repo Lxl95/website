@@ -1,18 +1,18 @@
 /* 首页的登录和注册 */
 .hearder_one .hearder_login {
- margin-right:15px;
+  margin-right: 15px;
 }
 .hearder_one_two .icon {
- position: relative;
- top: 2px;
- left: 0px;
+  position: relative;
+  top: 2px;
+  left: 0px;
 }
 /*登录页*/
 .hearder_right span {
- cursor: pointer;
+  cursor: pointer;
 }
-.login-head{
-  margin: 20px 0 0 10px
+.login-head {
+  margin: 20px 0 0 10px;
 }
 /*登录页*/
 input {
@@ -20,1044 +20,1033 @@ input {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.margin{
- width: 1120px;
- margin: auto;
+.margin {
+  width: 1120px;
+  margin: auto;
 }
-body{
- background: #fff;
- position:absolute;
- width:100%;
- min-height:100%;
+body {
+  background: #fff;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
 }
-.clearboth{
- clear: both;
-}
-
-
-
-#headerTwo .h-right{
- overflow: hidden;
- float: right;
- margin-top:25px;
-}
-#headerTwo .h-right p{
- float: left;
- margin-left: 10px;
- color: #626262;
- font-size: 14px;
- line-height: 30px;
-}
-#headerTwo .h-right span{
- margin-left: 10px;
- display: block;
- float: left;
- font: 12px/30px "";
- color: #626262;
+.clearboth {
+  clear: both;
 }
 
-
-#headerTwo{
- height: 80px;
- background: #fff;
+#headerTwo .h-right {
+  overflow: hidden;
+  float: right;
+  margin-top: 25px;
 }
-#headerTwo img{
- float: left;
- margin-top: 20px;
+#headerTwo .h-right p {
+  float: left;
+  margin-left: 10px;
+  color: #626262;
+  font-size: 14px;
+  line-height: 30px;
 }
-#headerTwo p{
- float: left;
- color: #626262;
- font: 22px/90px "";
- margin-left: 30px;
-}
-
-
-#title{
- background: #fbfbfb;
- margin-top: 20px;
- margin-bottom: 80px;
- display: none;
-}
-#title .margin{
- overflow: hidden;
-}
-#title .margin p{
- width: 920px;
- font: 700 18px/36px "";
- background: #1c68c0;
- color: #fff;
- padding-left: 20px;
- float: left
-}
-#title .margin span{
- display: block;
- border-left: 18px solid #1c68c0;
- border-top: 18px solid #fbfbfb;
- border-right: 18px solid #fbfbfb;
- border-bottom: 18px solid #fbfbfb;
- float: left;
- height: 0px;
- margin-left: -1px;
-}
-.layui-layer .layui-layer-content .layui-layer-input{
- box-shadow: 0 0 0 0;
- margin-top:15px;
- margin-bottom:15px;
-}
-.layui-layer .layui-layer-content .name-code{
- display: flex;
- justify-content: space-between;
- width: 220px;
- margin: auto;
-}
-.layui-layer .layui-layer-content .name-code .send-code{
- background: #1472df;
- color: #fff;
- border: 0;
- width:100px;
- height:34px;
-}
-.layui-layer .layui-layer-content .name-code>input{
- width:110px;
- margin: 0;
- margin-bottom: 15px;
-}
-.layui-layer .layui-layer-content .name-code #codeSetPassImg{
- width: 100px;
- height: 34px;
-}
-section{
- overflow: hidden;
-}
-#main{
- height: 500px;
- /* background-color: rgb(242, 246, 243); */
- overflow: hidden;
- position: relative;
-}
-#main .left{
- width: 340px;
- height: 400px;
- background: #fff;
- padding: 20px 15px 0 15px;
- position: absolute;
- right:0;
- top: 0px;
- bottom:0;
- margin:auto;
- box-shadow: 1px -1px 20px #282828;
-}
-#main .title-bg{
- width:340px;
- height:30px;
- background: #c11f26;
- position: absolute;
- left:0;
- top: 0px;
- display: none;
-}
-.title-bg1{
- position: absolute;
- width: 90px;
- top: -20px;
- left: -22px;
-}
-.title-bg2{
- position: absolute;
- width: 45px;
- top: -5px;
- left: 146px;
-}
-.title-bg3{
- position: absolute;
- width: 125px;
- top: -40px;
- left: 270px;
-}
-#main .register{
- width: 340px;
- height: 430px;
- background: #fff;
- padding: 20px 15px 0 15px;
- position: absolute;
- left: 815px;
- top: 0px;
- bottom: 0;
- margin: auto;
- box-shadow: 1px -1px 20px #282828;
-}
-.register .title{
- font: 24px/24px "";
- text-align: center;
+#headerTwo .h-right span {
+  margin-left: 10px;
+  display: block;
+  float: left;
+  font: 12px/30px '';
+  color: #626262;
 }
 
-.login-div{
- width: 385px;
- overflow: hidden;
- float: left;
+#headerTwo {
+  height: 80px;
+  background: #fff;
 }
-.form-tab{
- width:100%;
- overflow: hidden;
- font: 14px/14px "";
- border-bottom: 1px solid #ccc;
- padding-bottom: 10px;
- display: flex;
- justify-content: space-between;
+#headerTwo img {
+  float: left;
+  margin-top: 20px;
 }
-.form-tab>span{
- color:#ccc;
-}
-.form-tab .tab-left{
- float: left;
- cursor: pointer;
- width: 50%;
- height: 16px;
- font: 14px/16px "";
- border-right: 1px solid #ccc;
- text-align: center;
-}
-.form-tab .tab-right{
- float:right;
- cursor: pointer;
- width: 50%;
- height: 16px;
- font: 14px/16px "";
- text-align: center;
-}
-#main .code{
- width: 200px;
- height: 200px;
- border: 1px solid #ccc;
- margin-left:100px;
- margin:0 auto;
- float: none;
- margin-top:20px;
- display: none;
-}
-#main form{
- width: 100%;
-}
-#main form .two{
- display: none;
-}
-#main #dataFrom .show{
- display: block;
-}
-.border{
- color: #1472df;
- 
-}
-#main .name{
- position: relative;
- margin-left: 20px;
- margin: 20px 0 20px 0px;
-}
-#main .name .placeholder{
- position: absolute;
- top:10px;
-}
-#main .margin{
- width: 1120px;
- margin: 0;
- position: relative;
- z-index: 100;
- margin:auto;
- height:100%;
-}
-#main .banner{
- position: relative;
- width: 800px;
- height: 500px;
-
-}
-#main .loginbanner{
- width: 100%;
- height: 100%;
- position: absolute;
- opacity: 0;
- transition: 1s ;
-}
-#main .banner .banner-img{
- opacity:0;
- width:100%;
- height:100%;
- position: absolute;
- transition: 1s ;
-}
-#main .banner .bannerImg{
- width: 100%;
- height: 500px;
- position: relative;
-}
-#main .banner .show-img{
- opacity: 1;
-
-
-}
-#main .show-bimg{
- opacity:1;
-
-}
-#main .banner .lr{
- position: absolute;
- right: 15px;
- bottom: 15px;
- overflow: hidden;
-}
-#main .banner .lr p{
- width: 20px;
- height: 20px;
- background: rgba(0, 0, 0, 0.5);
- border-radius: 50%;
- float: left;
- margin-right: 20px;
- cursor: pointer;
- display: none;
+#headerTwo p {
+  float: left;
+  color: #626262;
+  font: 22px/90px '';
+  margin-left: 30px;
 }
 
-#main .banner .lr .next{
- background: #fff;
- transform: 1s;
- display: none;
+#title {
+  background: #fbfbfb;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  display: none;
 }
-#main .name input{
- width: 100%;
- height: 34px;
- border: 1px solid #ccc;
- padding-left: 40px; 
- line-height: 34px;
- border-radius: 4px;
+#title .margin {
+  overflow: hidden;
 }
-#main .name input:focus{
- border-radius: 4px;
+#title .margin p {
+  width: 920px;
+  font: 700 18px/36px '';
+  background: #1c68c0;
+  color: #fff;
+  padding-left: 20px;
+  float: left;
 }
-#main .register .name input{
- width:96%;
- margin-left:2%;
+#title .margin span {
+  display: block;
+  border-left: 18px solid #1c68c0;
+  border-top: 18px solid #fbfbfb;
+  border-right: 18px solid #fbfbfb;
+  border-bottom: 18px solid #fbfbfb;
+  float: left;
+  height: 0px;
+  margin-left: -1px;
 }
-#main .register .name .login-code{
- width:60%;
- margin-left:2%;
+.layui-layer .layui-layer-content .layui-layer-input {
+  box-shadow: 0 0 0 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
-#main .register #register{
- width:96%;
- margin-left:2%;
+.layui-layer .layui-layer-content .name-code {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  margin: auto;
 }
-#main .name .user-input{
- background: url(../images/login/user.png) no-repeat left;
- background-position: 10px 6px;
- background-size: 20px;
+.layui-layer .layui-layer-content .name-code .send-code {
+  background: #1472df;
+  color: #fff;
+  border: 0;
+  width: 100px;
+  height: 34px;
 }
-#main .name .psd-input{
- background: url(../images/login/pwd.png) no-repeat left;
- background-position: 10px 6px;
- background-size: 20px;
+.layui-layer .layui-layer-content .name-code > input {
+  width: 110px;
+  margin: 0;
+  margin-bottom: 15px;
 }
-#main .name .code-input{
- background: url(../images/login/1-code.png) no-repeat left;
- background-position: 10px 6px;
- background-size: 20px;
+.layui-layer .layui-layer-content .name-code #codeSetPassImg {
+  width: 100px;
+  height: 34px;
 }
-#main .name .psd-input2{
- background: url(../images/login/pwd-true.png) no-repeat left;
- background-position: 10px 6px;
- background-size: 20px;
+section {
+  overflow: hidden;
 }
-#main .name .code-input2{
- background: url(../images/login/2-code.png) no-repeat left;
- background-position: 10px 6px;
- background-size: 20px;
+#main {
+  height: 500px;
+  /* background-color: rgb(242, 246, 243); */
+  overflow: hidden;
+  position: relative;
 }
-#main .name .smsone{
- width: 150px;
+#main .left {
+  width: 340px;
+  height: 400px;
+  background: #fff;
+  padding: 20px 15px 0 15px;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 1px -1px 20px #282828;
 }
-#main .name .sms{
- width: 150px
+#main .title-bg {
+  width: 340px;
+  height: 30px;
+  background: #c11f26;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  display: none;
 }
-#main .name .login-code{
- width: 68%;
+.title-bg1 {
+  position: absolute;
+  width: 90px;
+  top: -20px;
+  left: -22px;
 }
-#main .name .login-input{
- width: 150px;
+.title-bg2 {
+  position: absolute;
+  width: 45px;
+  top: -5px;
+  left: 146px;
 }
-#main #btnSendCode{
- margin:0px 0px 0px 10px;
- width:100px;  
- height: 34px;
+.title-bg3 {
+  position: absolute;
+  width: 125px;
+  top: -40px;
+  left: 270px;
 }
-#main #btnSendCode4Binding{
- margin:0px 0px 0px 5px; 
- width:100px;  
- height: 34px;
+#main .register {
+  width: 340px;
+  height: 430px;
+  background: #fff;
+  padding: 20px 15px 0 15px;
+  position: absolute;
+  left: 815px;
+  top: 0px;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 1px -1px 20px #282828;
 }
-#main .name select{
- width: 270px;
- height: 34px;
- border: 1px solid #ccc;
- display: block;
- border-left: 0;
- border-radius: 0 5px 5px 0;
- padding-left: 10px; 
- color: #656565;
+.register .title {
+  font: 24px/24px '';
+  text-align: center;
 }
 
-#main .bottom{
- overflow: hidden;
- margin-left:20px;
+.login-div {
+  width: 385px;
+  overflow: hidden;
+  float: left;
 }
-#main .bottom .span{
- font: 14px/14px "";
- display: block;
- float: left;
- margin-left: 10px;
- line-height: 20px;
- font-weight: 0;
+.form-tab {
+  width: 100%;
+  overflow: hidden;
+  font: 14px/14px '';
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
-#main .bottom input{
- float: left;
- height:14px !important;
+.form-tab > span {
+  color: #ccc;
 }
-#main button{
- width: 100%;
- height: 40px;
- background: #358aed;
- color: #fff;
- border: 0;
- margin: 5px 0 0 0px;
- cursor: pointer;
- border-radius: 4px;
+.form-tab .tab-left {
+  float: left;
+  cursor: pointer;
+  width: 50%;
+  height: 16px;
+  font: 14px/16px '';
+  border-right: 1px solid #ccc;
+  text-align: center;
 }
-#dataFrom .forget{
- display: block;
- margin:10px 0 0 0px;
- float: left;
+.form-tab .tab-right {
+  float: right;
+  cursor: pointer;
+  width: 50%;
+  height: 16px;
+  font: 14px/16px '';
+  text-align: center;
 }
-#dataFrom .toRegister{
- display: block;
- margin:10px 0 0 0px;
- float: right;
- color: #1472df;
+#main .code {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  margin-left: 100px;
+  margin: 0 auto;
+  float: none;
+  margin-top: 20px;
+  display: none;
+}
+#main form {
+  width: 100%;
+}
+#main form .two {
+  display: none;
+}
+#main #dataFrom .show {
+  display: block;
+}
+.border {
+  color: #1472df;
+}
+#main .name {
+  position: relative;
+  margin-left: 20px;
+  margin: 20px 0 20px 0px;
+}
+#main .name .placeholder {
+  position: absolute;
+  top: 10px;
+}
+#main .margin {
+  width: 1120px;
+  margin: 0;
+  position: relative;
+  z-index: 100;
+  margin: auto;
+  height: 100%;
+}
+#main .banner {
+  position: relative;
+  width: 800px;
+  height: 500px;
+}
+#main .loginbanner {
+  position: absolute;
+  opacity: 0;
+  /* transition: 1s; */
+  width: 100%;
+  min-width: 1120px;
+  height: 100%;
+  background: url(../images/login/login-xsy.jpg) no-repeat;
+  background-size: 100% 200%;
+  background-position-y: 33%;
+}
+
+#main .banner .banner-img {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: 1s;
+}
+#main .banner .bannerImg {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+#main .banner .show-img {
+  opacity: 1;
+}
+#main .show-bimg {
+  opacity: 1;
+}
+#main .banner .lr {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  overflow: hidden;
+}
+#main .banner .lr p {
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  float: left;
+  margin-right: 20px;
+  cursor: pointer;
+  display: none;
+}
+
+#main .banner .lr .next {
+  background: #fff;
+  transform: 1s;
+  display: none;
+}
+#main .name input {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #ccc;
+  padding-left: 40px;
+  line-height: 34px;
+  border-radius: 4px;
+}
+#main .name input:focus {
+  border-radius: 4px;
+}
+#main .register .name input {
+  width: 96%;
+  margin-left: 2%;
+}
+#main .register .name .login-code {
+  width: 60%;
+  margin-left: 2%;
+}
+#main .register #register {
+  width: 96%;
+  margin-left: 2%;
+}
+#main .name .user-input {
+  background: url(../images/login/user.png) no-repeat left;
+  background-position: 10px 6px;
+  background-size: 20px;
+}
+#main .name .psd-input {
+  background: url(../images/login/pwd.png) no-repeat left;
+  background-position: 10px 6px;
+  background-size: 20px;
+}
+#main .name .code-input {
+  background: url(../images/login/1-code.png) no-repeat left;
+  background-position: 10px 6px;
+  background-size: 20px;
+}
+#main .name .psd-input2 {
+  background: url(../images/login/pwd-true.png) no-repeat left;
+  background-position: 10px 6px;
+  background-size: 20px;
+}
+#main .name .code-input2 {
+  background: url(../images/login/2-code.png) no-repeat left;
+  background-position: 10px 6px;
+  background-size: 20px;
+}
+#main .name .smsone {
+  width: 150px;
+}
+#main .name .sms {
+  width: 150px;
+}
+#main .name .login-code {
+  width: 68%;
+}
+#main .name .login-input {
+  width: 150px;
+}
+#main #btnSendCode {
+  margin: 0px 0px 0px 10px;
+  width: 100px;
+  height: 34px;
+}
+#main #btnSendCode4Binding {
+  margin: 0px 0px 0px 5px;
+  width: 100px;
+  height: 34px;
+}
+#main .name select {
+  width: 270px;
+  height: 34px;
+  border: 1px solid #ccc;
+  display: block;
+  border-left: 0;
+  border-radius: 0 5px 5px 0;
+  padding-left: 10px;
+  color: #656565;
+}
+
+#main .bottom {
+  overflow: hidden;
+  margin-left: 20px;
+}
+#main .bottom .span {
+  font: 14px/14px '';
+  display: block;
+  float: left;
+  margin-left: 10px;
+  line-height: 20px;
+  font-weight: 0;
+}
+#main .bottom input {
+  float: left;
+  height: 14px !important;
+}
+#main button {
+  width: 100%;
+  height: 40px;
+  background: #358aed;
+  color: #fff;
+  border: 0;
+  margin: 5px 0 0 0px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#dataFrom .forget {
+  display: block;
+  margin: 10px 0 0 0px;
+  float: left;
+}
+#dataFrom .toRegister {
+  display: block;
+  margin: 10px 0 0 0px;
+  float: right;
+  color: #1472df;
 }
 
 #tips {
- width: 750px;
- margin: auto;
- overflow: hidden;
- margin-top: 15px;
- margin-bottom: 15px;
- height:100px;
+  width: 750px;
+  margin: auto;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 100px;
 }
 #tips .title {
- font: 700 16px/24px "";
- float: left;
+  font: 700 16px/24px '';
+  float: left;
 }
 #tips .content {
- font: 12px/24px "";
- width: 645px;
- float: right;
- letter-spacing: 1px;
+  font: 12px/24px '';
+  width: 645px;
+  float: right;
+  letter-spacing: 1px;
 }
-#tips .content span{
- display: block;
-}
-
-.name .code{
- width: 150px;
+#tips .content span {
+  display: block;
 }
 
-
-#foot{
- background: #f6f6f6;
- overflow: hidden;
- padding: 15px 0;
-}
-#foot .second{
- overflow: hidden;
- width: 560px;
- margin: auto;
- margin-top: 20px;
- margin-bottom: 10px;
- display:flex;
- justify-content: center;
- 
-}
-#foot .second li{
- float: left;
- font: 12px/12px "";
- color: #363739;
-}
-#foot .second span{
- float: left;
- font: 10px/10px "";
- margin: 0 20px;
- color: #dcdcdc;
-}
-#foot .margin>p{
- text-align: center;
- font: 12px/24px "";
+.name .code {
+  width: 150px;
 }
 
-.error-tip{
- color: #f00;
- font-size: 14px;
- line-height: 18px;
- height: 18px;
- position: absolute;
- left: 10px;
- bottom: -22px;
+#foot {
+  background: #f6f6f6;
+  overflow: hidden;
+  padding: 15px 0;
 }
-.layui-layer-content{
- padding: 10px 20px;
+#foot .second {
+  overflow: hidden;
+  width: 560px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
-.agreement{
- text-indent: 24px;
- margin: 10px 0;
+#foot .second li {
+  float: left;
+  font: 12px/12px '';
+  color: #363739;
 }
-#qrcode{
- height: 100%;
- width: 100%;
+#foot .second span {
+  float: left;
+  font: 10px/10px '';
+  margin: 0 20px;
+  color: #dcdcdc;
 }
-#qrcode img{
- height: 260px;
- width: 260px;
+#foot .margin > p {
+  text-align: center;
+  font: 12px/24px '';
+}
+
+.error-tip {
+  color: #f00;
+  font-size: 14px;
+  line-height: 18px;
+  height: 18px;
+  position: absolute;
+  left: 10px;
+  bottom: -22px;
+}
+.layui-layer-content {
+  padding: 10px 20px;
+}
+.agreement {
+  text-indent: 24px;
+  margin: 10px 0;
+}
+#qrcode {
+  height: 100%;
+  width: 100%;
+}
+#qrcode img {
+  height: 260px;
+  width: 260px;
 }
 .code .qrcode-error {
- display: none;
- font-size: 14px;
- color: #fbfbfb;
- position: relative;
- z-index: 1;
+  display: none;
+  font-size: 14px;
+  color: #fbfbfb;
+  position: relative;
+  z-index: 1;
 }
-#main .name .login-code{
- width: 64%;
+#main .name .login-code {
+  width: 64%;
 }
 
 .code .qrcode-error .qrcode-error-mask {
- display: block;
- position: absolute;
- width: 220px;
- background: #000;
- filter: alpha(opacity=60);
- -moz-opacity: .6;
- opacity: .6;
- height: 220px;
- left: -10px;
- z-index: 9;
- top: -10px;
- text-align: center;
- line-height: 100px;
+  display: block;
+  position: absolute;
+  width: 220px;
+  background: #000;
+  filter: alpha(opacity=60);
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+  height: 220px;
+  left: -10px;
+  z-index: 9;
+  top: -10px;
+  text-align: center;
+  line-height: 100px;
 }
-#wxqrcode img{
- width:200px;
- height:200px;
+#wxqrcode img {
+  width: 200px;
+  height: 200px;
 }
-#mynjqrcode img{
- width:200px;
- height:200px;
+#mynjqrcode img {
+  width: 200px;
+  height: 200px;
 }
-.other{
- text-align: center;
- position: absolute;
- width: 100%;
- bottom: 42px;
- left: 0;
- font:14px/16px "";
+.other {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 42px;
+  left: 0;
+  font: 14px/16px '';
 }
-.other .other-content{
- position: relative;
+.other .other-content {
+  position: relative;
 }
-.other .other-content .i-left{
- display: block;
- width: 38%;
- height:1px;
- background: #ccc;
- position: absolute;
- top:0;
- bottom:0;
- margin:auto;
- left:0;
+.other .other-content .i-left {
+  display: block;
+  width: 38%;
+  height: 1px;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  left: 0;
 }
-.other .other-content .i-right{
- display: block;
- width: 38%;
- height:1px;
- background: #ccc;
- position: absolute;
- top:0;
- bottom:0;
- margin:auto;
- right:0;
+.other .other-content .i-right {
+  display: block;
+  width: 38%;
+  height: 1px;
+  background: #ccc;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  right: 0;
 }
 .code .qrcode-error .err-cont {
- position: absolute;
- left: 0;
- top: 80px;
- width: 100%;
- z-index: 19;
- font-weight: 700;
- text-align: center;
+  position: absolute;
+  left: 0;
+  top: 80px;
+  width: 100%;
+  z-index: 19;
+  font-weight: 700;
+  text-align: center;
 }
 
 .code .qrcode-error .refresh-btn {
- text-align: center;
- display: block;
- background: #e4393c;
- width: 80px;
- height: 30px;
- position: absolute;
- top: 120px;
- left: 60px;
- line-height: 30px;
- opacity: 1;
- z-index: 19;
- color: #fbfbfb;
- text-decoration: none;
+  text-align: center;
+  display: block;
+  background: #e4393c;
+  width: 80px;
+  height: 30px;
+  position: absolute;
+  top: 120px;
+  left: 60px;
+  line-height: 30px;
+  opacity: 1;
+  z-index: 19;
+  color: #fbfbfb;
+  text-decoration: none;
 }
-#codeImg{
- margin-left: 10px;
- width: 100px; 
- height: 34px;
- cursor: pointer;
- position: absolute;
+#codeImg {
+  margin-left: 10px;
+  width: 100px;
+  height: 34px;
+  cursor: pointer;
+  position: absolute;
 }
-#btnSendCode{
- margin:0px 0px 0px 5px;
- width:100px;  
- height: 34px;
- position: absolute;
+#btnSendCode {
+  margin: 0px 0px 0px 5px;
+  width: 100px;
+  height: 34px;
+  position: absolute;
 }
-#btnSendCode4Binding{
- margin:0px 0px 0px 5px;
- width:100px;  
- height: 34px;
- position: absolute;
+#btnSendCode4Binding {
+  margin: 0px 0px 0px 5px;
+  width: 100px;
+  height: 34px;
+  position: absolute;
 }
-.back-i{
- display: none
+.back-i {
+  display: none;
 }
-.code-left{
- position: absolute;
- bottom: 15px;
- left: 0px;
+.code-left {
+  position: absolute;
+  bottom: 15px;
+  left: 0px;
 }
-.nanjing-right{
- position: absolute;
- bottom: 15px;
- right: 0px;
+.nanjing-right {
+  position: absolute;
+  bottom: 15px;
+  right: 0px;
 }
-@media screen and (max-width:767px) {
- #tips{
-     display: none;
- }
- body{
-     background: #fff;
- }
- #title{
-     display: block;
- }
- .back-i{
-     display: block;
-     z-index: 1000;
-     width: 40px;
-     height: 40px;
-     color: #000;
-     position: absolute;
-     left: 15px;
-     top: 14px;
-     font-size: 20px;
-     color:#fff;
- }
- .margin{
-     width: 100%;
-     overflow: hidden;
- }
- #headerTwo{
-     display: none;
- }
- #title{
-     width: 100%;
-     background: #fbfbfb;
-     margin-top: 0;
-     margin-bottom: 0;
- }
- #title .margin p{
-     width: 100%;
-     text-align: center;
-     font: 18px/50px "";
-     padding: 0;
- }
- #title .margin span{
-     display: none;
-     border: 0;
- }
- #main{
-     width: 100%;
-     margin: auto;
- }
- .login-div{
-     width: 100%;
- }
- #main .code{
-     width: 92%;
-     margin-left: 4%;
- }
- .form-tab .tab-left{
-     margin-left: 8%;
- }
- .form-tab .tab-right{
-     margin-right: 8%;
- }
- #main form{
-     margin: auto;
-     margin-top: 20px;
-     float: none;
-     width: 100%;
-     height: 100%;
- }
- #main .margin{
-     margin-top: 20px;
-     width: 100%;
- }
- #main .margin .name{
-     overflow: hidden;
-     width: 92%;
-     margin: 24px auto;
- }
- #main .margin .name p{
-     font: 16px/34px "";
-     text-align: right;
-     width: 98px;
-     height: 34px;
-     border: 1px solid #ccc;
-     float: left;
-     border-right:0;
-     background: #fff;
- }
- .name .code{
-     width: 130px;
- }
- #main .name .smsone{
-     width: 135px;
- }
+@media screen and (max-width: 767px) {
+  #tips {
+    display: none;
+  }
+  body {
+    background: #fff;
+  }
+  #title {
+    display: block;
+  }
+  .back-i {
+    display: block;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    color: #000;
+    position: absolute;
+    left: 15px;
+    top: 14px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .margin {
+    width: 100%;
+    overflow: hidden;
+  }
+  #headerTwo {
+    display: none;
+  }
+  #title {
+    width: 100%;
+    background: #fbfbfb;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #title .margin p {
+    width: 100%;
+    text-align: center;
+    font: 18px/50px '';
+    padding: 0;
+  }
+  #title .margin span {
+    display: none;
+    border: 0;
+  }
+  #main {
+    width: 100%;
+    margin: auto;
+  }
+  .login-div {
+    width: 100%;
+  }
+  #main .code {
+    width: 92%;
+    margin-left: 4%;
+  }
+  .form-tab .tab-left {
+    margin-left: 8%;
+  }
+  .form-tab .tab-right {
+    margin-right: 8%;
+  }
+  #main form {
+    margin: auto;
+    margin-top: 20px;
+    float: none;
+    width: 100%;
+    height: 100%;
+  }
+  #main .margin {
+    margin-top: 20px;
+    width: 100%;
+  }
+  #main .margin .name {
+    overflow: hidden;
+    width: 92%;
+    margin: 24px auto;
+  }
+  #main .margin .name p {
+    font: 16px/34px '';
+    text-align: right;
+    width: 98px;
+    height: 34px;
+    border: 1px solid #ccc;
+    float: left;
+    border-right: 0;
+    background: #fff;
+  }
+  .name .code {
+    width: 130px;
+  }
+  #main .name .smsone {
+    width: 135px;
+  }
 
- #main .name .sms{
-     width: 135px;
- }
- #main .name input{
-     width: 100%;
-     height: 34px;
-     border: 1px solid #ccc;
-     font-size: 16px;
- }
- #main .name select{
-     width: 250px;
-     height: 34px;
-     border: 1px solid #ccc;
-     display: block;
-     border-left: 0;
-     border-radius: 0 5px 5px 0;
-     padding-left: 10px;
-     color: #656565;
-     font-size: 20px;
- }
- #main button{
-     width: 92%;
-     height: 50px;
-     background: #1472df;
-     color: #fff;
-     border: 0;
-     margin: 30px 20px;
-     margin-left:4%;
-     margin-bottom: 10px;
+  #main .name .sms {
+    width: 135px;
+  }
+  #main .name input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  #main .name select {
+    width: 250px;
+    height: 34px;
+    border: 1px solid #ccc;
+    display: block;
+    border-left: 0;
+    border-radius: 0 5px 5px 0;
+    padding-left: 10px;
+    color: #656565;
+    font-size: 20px;
+  }
+  #main button {
+    width: 92%;
+    height: 50px;
+    background: #1472df;
+    color: #fff;
+    border: 0;
+    margin: 30px 20px;
+    margin-left: 4%;
+    margin-bottom: 10px;
+  }
+  #main #register {
+    font-size: 20px;
+  }
+  #main .button-login {
+    font-size: 20px;
+  }
+  .layui-layer-demo {
+    width: 90%;
+  }
 
- }
- #main #register{
-     font-size: 20px;
- }
- #main .button-login{
-     font-size: 20px;
- }
- .layui-layer-demo{
-     width: 90%;
- }
+  #foot {
+    display: none;
+  }
+  #main .name .login-code {
+    width: 50%;
+  }
+  #main .name .login-input {
+    width: 68%;
+  }
+  #codeImg {
+    margin-left: 10px;
+    width: 100px;
+    height: 34px;
+    cursor: pointer;
+    position: absolute;
+  }
+  #btnSendCode {
+    margin: 0px 0px 0px 5px;
+    width: 100px;
+    height: 34px;
+  }
+  #btnSendCode4Binding {
+    margin: 0px 0px 0px 5px;
+    width: 100px;
+    height: 34px;
+  }
+  .form-tab {
+    width: 100%;
+  }
+  .two-m {
+    display: none;
+  }
+  .form-tab .tab-left {
+    border-right: 0;
+  }
+  #main .name input {
+    width: 100%;
+  }
+  #main .margin {
+    height: 100%;
+  }
+  #main .margin > .left {
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    box-shadow: 0px 0px 1px #fff;
+  }
+  .title-bg {
+    display: none;
+  }
+  #main .margin > .register {
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 0;
+    box-shadow: 0 0 0 #fff;
+  }
+  #main .margin .banner,
+  .lr {
+    display: none;
+  }
+  #main .loginbanner {
+    /* display: none; */
+  }
+  .register .title {
+    display: none;
+  }
 
- 
- #foot{
-     display: none;
- }
- #main .name .login-code{
-     width: 50%;
- }
- #main .name .login-input{
-     width: 68%;
- }
- #codeImg{
-     margin-left: 10px;
-     width: 100px;
-     height: 34px;
-     cursor: pointer;
-     position: absolute;
- }
- #btnSendCode{
-     margin:0px 0px 0px 5px;
-     width:100px;
-     height: 34px;
- }
- #btnSendCode4Binding{
-     margin:0px 0px 0px 5px;
-     width:100px;
-     height: 34px;
- }
- .form-tab{
-     width: 100%;
- }
- .two-m{
-     display: none;
- }
- .form-tab .tab-left{
-     border-right: 0;
- }
- #main .name input{
-     width:100%;
- }
- #main .margin{
-     height: 100%
- }
- #main .margin>.left{
-     width:100%;
-     left: 0;
-     top: 0;
-     margin: 0;
-     box-shadow: 0px 0px 1px #fff;
- }
- .title-bg{
-     display: none;
- }
- #main .margin>.register{
-     width:100%;
-     left: 0;
-     top: 0;
-     padding-top:0;
-     box-shadow: 0 0 0 #fff;
- }
- #main .margin .banner,.lr{
-     display: none;
- }
- #main .loginbanner{
-     display: none;
- }
- .register .title{
-     display: none;
- }
-
- .other{
-     display: none;
- }
- .other .other-content{
-     display: none;
- }
+  .other {
+    display: none;
+  }
+  .other .other-content {
+    display: none;
+  }
 }
-@media screen and (max-width:376px){
- .back-i{
-     display: block;
-     z-index: 1000;
-     width: 40px;
-     height: 40px;
-     color: #000;
-     position: absolute;
-     left: 15px;
-     top: 14px;
-     font-size: 20px;
-     color:#fff;
- }
- .margin{
-     width: 100%;
-     overflow: hidden;
- }
- #headerTwo{
-     display: none;
- }
- #title{
-     width: 100%;
-     background: #fbfbfb;
-     margin-top: 0;
-     margin-bottom: 0;
- }
- #title .margin p{
-     width: 100%;
-     text-align: center;
-     font: 18px/50px "";
-     padding: 0;
- }
- #title .margin span{
-     display: none;
-     border: 0;
- }
- #main{
-     width: 100%;
-     margin: auto;
- }
- .login-div{
-     width: 100%;
- }
- #main .code{
-     width: 92%;
-     margin-left: 4%;
- }
- .form-tab .tab-left{
-     margin-left: 8%;
- }
- .form-tab .tab-right{
-     margin-right: 8%;
- }
- #main form{
-     margin: auto;
-     margin-top: 20px;
-     float: none;
-     width: 100%;
-     height: 100%;
- }
- #main .margin{
-     margin-top: 20px;
-     width: 100%;
- }
- #main .margin .name{
-     overflow: hidden;
-     width: 100%;
-     margin: 24px auto;
- }
- #main .margin .name p{
-     font: 16px/34px "";
-     text-align: right;
-     width: 98px;
-     height: 34px;
-     border: 1px solid #ccc;
-     float: left;
-     border-right:0;
-     background: #fff;
- }
- .name .code{
-     width: 130px;
- }
- #main .name .smsone{
-     width: 135px;
- }
- 
- #main .name .sms{
-     width: 135px;
- }
- #main .name input{
-     width: 100%;
-     height: 34px;
-     border: 1px solid #ccc;
-     font-size: 16px;
- }
- #main .name select{
-     width: 250px;
-     height: 34px;
-     border: 1px solid #ccc;
-     display: block;
-     border-left: 0;
-     border-radius: 0 5px 5px 0;
-     padding-left: 10px; 
-     color: #656565;
-     font-size: 20px;
- }
- #main button{
-     width: 100%;
-     height: 50px;
-     background: #1472df;
-     color: #fff;
-     border: 0;
-     margin: 10px 0px;
-     margin-bottom: 10px;
-     
- }
- #main #register{
-     font-size: 20px;
- }
- #main .button-login{
-     font-size: 20px;
- }
- .layui-layer-demo{
-     width: 90%;
- }
- 
- 
- #foot{
-     display: none;
- }
- #main .name .login-code{
-     width: 50%;
- }
- #main .name .login-input{
-     width: 68%;
- }
- #codeImg{
-     margin-left: 10px;
-     width: 100px; 
-     height: 34px;
-     cursor: pointer;
-     position: absolute;
- }
- #btnSendCode{
-     margin:0px 0px 0px 5px;
-     width:100px;  
-     height: 34px;
- }
- #btnSendCode4Binding{
-     margin:0px 0px 0px 5px;
-     width:100px;  
-     height: 34px;
- }
- .form-tab{
-     width: 100%;
- }
- .two-m{
-     display: none;
- }
- .form-tab .tab-left{
-     border-right: 0;
- }
- #main .register .name .login-code{
-     width:50%;
- }
+@media screen and (max-width: 376px) {
+  .back-i {
+    display: block;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    color: #000;
+    position: absolute;
+    left: 15px;
+    top: 14px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .margin {
+    width: 100%;
+    overflow: hidden;
+  }
+  #headerTwo {
+    display: none;
+  }
+  #title {
+    width: 100%;
+    background: #fbfbfb;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #title .margin p {
+    width: 100%;
+    text-align: center;
+    font: 18px/50px '';
+    padding: 0;
+  }
+  #title .margin span {
+    display: none;
+    border: 0;
+  }
+  #main {
+    width: 100%;
+    margin: auto;
+  }
+  .login-div {
+    width: 100%;
+  }
+  #main .code {
+    width: 92%;
+    margin-left: 4%;
+  }
+  .form-tab .tab-left {
+    margin-left: 8%;
+  }
+  .form-tab .tab-right {
+    margin-right: 8%;
+  }
+  #main form {
+    margin: auto;
+    margin-top: 20px;
+    float: none;
+    width: 100%;
+    height: 100%;
+  }
+  #main .margin {
+    margin-top: 20px;
+    width: 100%;
+  }
+  #main .margin .name {
+    overflow: hidden;
+    width: 100%;
+    margin: 24px auto;
+  }
+  #main .margin .name p {
+    font: 16px/34px '';
+    text-align: right;
+    width: 98px;
+    height: 34px;
+    border: 1px solid #ccc;
+    float: left;
+    border-right: 0;
+    background: #fff;
+  }
+  .name .code {
+    width: 130px;
+  }
+  #main .name .smsone {
+    width: 135px;
+  }
+
+  #main .name .sms {
+    width: 135px;
+  }
+  #main .name input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  #main .name select {
+    width: 250px;
+    height: 34px;
+    border: 1px solid #ccc;
+    display: block;
+    border-left: 0;
+    border-radius: 0 5px 5px 0;
+    padding-left: 10px;
+    color: #656565;
+    font-size: 20px;
+  }
+  #main button {
+    width: 100%;
+    height: 50px;
+    background: #1472df;
+    color: #fff;
+    border: 0;
+    margin: 10px 0px;
+    margin-bottom: 10px;
+  }
+  #main #register {
+    font-size: 20px;
+  }
+  #main .button-login {
+    font-size: 20px;
+  }
+  .layui-layer-demo {
+    width: 90%;
+  }
+
+  #foot {
+    display: none;
+  }
+  #main .name .login-code {
+    width: 50%;
+  }
+  #main .name .login-input {
+    width: 68%;
+  }
+  #codeImg {
+    margin-left: 10px;
+    width: 100px;
+    height: 34px;
+    cursor: pointer;
+    position: absolute;
+  }
+  #btnSendCode {
+    margin: 0px 0px 0px 5px;
+    width: 100px;
+    height: 34px;
+  }
+  #btnSendCode4Binding {
+    margin: 0px 0px 0px 5px;
+    width: 100px;
+    height: 34px;
+  }
+  .form-tab {
+    width: 100%;
+  }
+  .two-m {
+    display: none;
+  }
+  .form-tab .tab-left {
+    border-right: 0;
+  }
+  #main .register .name .login-code {
+    width: 50%;
+  }
 }
 
-@media screen and (max-width:360px){
+@media screen and (max-width: 360px) {
+  #main .name input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
 
- #main .name input{
-     width: 100%;
-     height: 34px;
-     border: 1px solid #ccc;
-     font-size: 16px;
- }
-
- #main .register .name .login-code{
-     width:50%;
- }
- #main .name .login-code {
-     width: 50%;
- }
+  #main .register .name .login-code {
+    width: 50%;
+  }
+  #main .name .login-code {
+    width: 50%;
+  }
 }
-@media screen and (max-width:320px){
+@media screen and (max-width: 320px) {
+  #main .name input {
+    width: 100%;
+    height: 34px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  #main .register .name .login-code {
+    width: 50%;
+  }
 
- #main .name input{
-     width: 100%;
-     height: 34px;
-     border: 1px solid #ccc;
-     font-size: 16px;
- }
- #main .register .name .login-code{
-     width:50%;
- }
-
- #main .name .login-code {
-     width: 50%;
- }
- .form-tab{
-     width: 100%;
- }
+  #main .name .login-code {
+    width: 50%;
+  }
+  .form-tab {
+    width: 100%;
+  }
 }

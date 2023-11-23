@@ -5,13 +5,30 @@
     <el-main>
       <div ref="formBox" class="formBox">
         <el-form ref="params" :inline="true" :model="params" size="small">
-          <el-form-item label="模块名称" prop="name">
-            <el-input v-model="params.name" clearable placeholder="请输入模块名称"/>
+          <el-form-item label="菜单名称" prop="name">
+            <el-input
+              v-model="params.name"
+              clearable
+              placeholder="请输入菜单名称"
+            />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="searchClick">查询</el-button >
-            <el-button type="primary" plain icon="el-icon-refresh" @click="resetClick('params')">重 置</el-button >
-            <el-button type="success" icon="el-icon-circle-plus" @click="SysMenuAdd">新增</el-button >
+            <el-button type="primary" icon="el-icon-search" @click="searchClick"
+              >查询</el-button
+            >
+            <el-button
+              type="primary"
+              plain
+              icon="el-icon-refresh"
+              @click="resetClick('params')"
+              >重 置</el-button
+            >
+            <el-button
+              type="success"
+              icon="el-icon-circle-plus"
+              @click="SysMenuAdd"
+              >新增</el-button
+            >
           </el-form-item>
         </el-form>
       </div>
@@ -30,13 +47,13 @@
           align="left"
           show-overflow-tooltip
           prop="name"
-          label="模块名称"
+          label="菜单名称"
           width="200"
         />
         <!-- <el-table-column
           align="left"
           show-overflow-tooltip
-          label="模块封面"
+          label="菜单封面"
           width="180"
         >
           <template slot-scope="scope">
@@ -50,11 +67,13 @@
             ></vviewer>
           </template>
         </el-table-column> -->
-        <el-table-column align="left" prop="menuUrl" label="模块路径" show-overflow-tooltip />
         <el-table-column
           align="left"
-          label="是否展示"
-        >
+          prop="menuUrl"
+          label="菜单路径"
+          show-overflow-tooltip
+        />
+        <el-table-column align="left" label="是否展示">
           <template slot-scope="scope">
             <el-switch
               v-model="scope.row.isShow"
@@ -113,7 +132,7 @@
       @close="close"
     >
       <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-        <el-form-item label="模块名称" prop="name">
+        <el-form-item label="菜单名称" prop="name">
           <el-input
             v-model="form.name"
             maxlength="30"
@@ -122,7 +141,7 @@
           />
         </el-form-item>
 
-        <!-- <el-form-item label="模块封面" prop="coverpic">
+        <!-- <el-form-item label="菜单封面" prop="coverpic">
           <el-upload
             class="avatar-uploader"
             :action="uploadUrl"
@@ -143,9 +162,9 @@
           </el-upload>
           <span style="color:red">只能上传图片文件，图片大小为200*300</span>
         </el-form-item> -->
-        <el-form-item label="模块路径" prop="category">
+        <el-form-item label="菜单路径" prop="category">
           <el-input
-            placeholder="请输入模块路径"
+            placeholder="请输入菜单路径"
             v-model="form.menuUrl"
             class="input-with-select"
             style="width: 300px;"
@@ -153,16 +172,18 @@
           </el-input>
         </el-form-item>
         <el-form-item label="排序" prop="sort">
-            <el-input-number
-              v-model="form.serial"
-              controls-position="right"
-              :min="0"
-            />
-          </el-form-item>
+          <el-input-number
+            v-model="form.serial"
+            controls-position="right"
+            :min="0"
+          />
+        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button :loading="loading" type="primary" @click="onSubmit('form')">保 存</el-button >
+        <el-button :loading="loading" type="primary" @click="onSubmit('form')"
+          >保 存</el-button
+        >
       </span>
     </el-dialog>
     <!--主要引用页面结束-->
@@ -191,9 +212,9 @@ export default {
         isShow: ""
       },
       rules: {
-        name: [{ required: true, trigger: "blur", message: "请输入模块名称" }],
+        name: [{ required: true, trigger: "blur", message: "请输入菜单名称" }],
         menuUrl: [
-          { required: true, trigger: "blur", message: "请输入模块路径" }
+          { required: true, trigger: "blur", message: "请输入菜单路径" }
         ]
       },
       loading: false,
@@ -214,10 +235,18 @@ export default {
     };
   },
   mounted() {
-    this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
+    this.tableHeight =
+      window.innerHeight -
+      this.$refs.formBox.offsetHeight -
+      92 -
+      document.getElementsByClassName("fixed-header")[0].clientHeight;
     window.onresize = () => {
       return (() => {
-        this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight;
+        this.tableHeight =
+          window.innerHeight -
+          this.$refs.formBox.offsetHeight -
+          92 -
+          document.getElementsByClassName("fixed-header")[0].clientHeight;
       })();
     };
   },
@@ -376,7 +405,7 @@ export default {
     },
     // 新增
     SysMenuAdd() {
-      this.title = "新增模块";
+      this.title = "新增菜单";
       this.dialogVisible = true;
       this.form = {
         name: "",
@@ -387,7 +416,7 @@ export default {
     },
     //编辑
     handleEdit(row) {
-      this.title = "编辑模块";
+      this.title = "编辑菜单";
       this.dialogVisible = true;
       this.form = {
         ...row
@@ -402,7 +431,7 @@ export default {
       this.getList();
     },
     handleDelete(id) {
-      this.$confirm("此操作将永久删除该模块内容, 是否继续?", "提示", {
+      this.$confirm("此操作将永久删除该菜单内容, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"

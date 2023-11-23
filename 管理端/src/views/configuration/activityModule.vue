@@ -70,7 +70,7 @@
               :options="
                 scope.row.coverpic ? [imgBaseUrl + scope.row.coverpic] : []
               "
-              :imgStyle="'cover'"
+              :imgStyle="'contain'"
               :borderRadius="'8px'"
               style="width: 140px; height: 70px;"
             ></vviewer>

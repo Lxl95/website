@@ -1,12 +1,26 @@
 <link rel="stylesheet" href="../../css/bootstrap.min.css" />
 <link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
 
-<div ng-controller="processListLCCtrl" class="businessMain" style="height: calc(100vh - 20px)">
+<div
+  ng-controller="processListLCCtrl"
+  class="businessMain"
+  style="height: calc(100vh - 20px)"
+>
   <!--页面top导航-->
   <div id="header">
     <div class="header-left" align="center">
-      <img ng-if="info.logo" :ng-src="{{imageUrl+ info.logo}}" onerror="this.src='../../images/logo.png'" alt="logo"
-        style="width: 300px;height:52px;border-radius:10px;background-color:#fff">
+      <img
+        ng-if="info.logo"
+        :ng-src="{{imageUrl+ info.logo}}"
+        onerror="this.src='../../images/logo.png'"
+        alt="logo"
+        style="
+          width: 300px;
+          height: 52px;
+          border-radius: 10px;
+          background-color: #fff;
+        "
+      />
     </div>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="#/">首页</a></li>
@@ -14,10 +28,48 @@
     </ul>
     <div class="header-right">
       <div>
-        <p><i class="layui-icon layui-icon-username" style="font-size: 30px; color: #fff;"></i></p>
+        <p>
+          <i
+            class="layui-icon layui-icon-username"
+            style="font-size: 30px; color: #fff"
+          ></i>
+        </p>
         <ul class="header-right-more">
-          <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+          <li onclick="removelocalStorage('phone', 'openId')">
+            <a href="#/">退出</a>
+          </li>
           <li><a href="#/userInfo">个人中心</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="header-right" style="margin-right: 0px">
+      <div>
+        <p>
+          <i
+            class="layui-icon layui-icon-theme"
+            style="font-size: 30px; color: #fff"
+          ></i>
+        </p>
+        <ul class="header-right-more">
+          <li onclick="changeNavTheme(1)">
+            <a
+              href="javascript:void(0)"
+              style="background-color: #0a7be0; color: #0a7be0"
+              >主题1</a
+            >
+          </li>
+          <li onclick="changeNavTheme(2)">
+            <a href="javascript:void(0)" style="background-color: #1e1e1e"
+              >主题2</a
+            >
+          </li>
+          <li onclick="changeNavTheme(3)">
+            <a
+              href="javascript:void(0)"
+              style="background-color: #4dc0b3; color: #4dc0b3"
+              >主题3</a
+            >
+          </li>
         </ul>
       </div>
     </div>
@@ -26,47 +78,85 @@
   <div id="bg"></div>
   <div id="head-phone">
     <div class="head-phone">
-      <p class="head-phone-left"><i class="layui-icon layui-icon-shrink-right" style="font-size: 30px;"></i></p>
+      <p class="head-phone-left">
+        <i
+          class="layui-icon layui-icon-shrink-right"
+          style="font-size: 30px"
+        ></i>
+      </p>
       <p id="page-title">水务集团</p>
-      <p class="head-phone-right clickshow"><i class="layui-icon layui-icon-user" style="font-size: 30px;"></i></p>
-      <ul class="header-right-more " onblur="$(this).fadeToggle()">
+      <p class="head-phone-right clickshow">
+        <i class="layui-icon layui-icon-user" style="font-size: 30px"></i>
+      </p>
+      <ul class="header-right-more" onblur="$(this).fadeToggle()">
         <li><a href="#/userInfo">个人中心</a></li>
-        <li onclick="removelocalStorage('phone', 'openId')"><a href="#/">退出</a></li>
+        <li onclick="removelocalStorage('phone', 'openId')">
+          <a href="#/">退出</a>
+        </li>
       </ul>
     </div>
   </div>
   <div id="main">
     <!--页面left导航 start -->
     <div id="aside">
-      <div class="indentation" style="margin-top:10px">
-        <a href="#/OnlineBusinessHall" style="color: #000;">
-          <p class="left-home"><i class="layui-icon layui-icon-home" style="font-size: 25px;"></i></p>
+      <div class="indentation" style="margin-top: 10px">
+        <a href="#/OnlineBusinessHall" style="color: #000">
+          <p class="left-home">
+            <i class="layui-icon layui-icon-home" style="font-size: 25px"></i>
+          </p>
         </a>
-        <p class="left-in"><i class="layui-icon layui-icon-spread-left" style="font-size: 25px;"></i></p>
+        <p class="left-in">
+          <i
+            class="layui-icon layui-icon-spread-left"
+            style="font-size: 25px"
+          ></i>
+        </p>
       </div>
       <ul class="list-group ul">
-        <li class="list-group-item"><i></i><a href="#/OnlineBusinessHall"><span class="asideicon"><img
-                src="../../images/business/1.png" alt=""></span>客户中心</a></li>
-        <li class="list-group-item"><i></i><a href="#/waterPriceQuery"><span class="asideicon"><img
-                src="../../images/business/2.png" alt=""></span>水费查询</a></li>
-        <li class="list-group-item"><i></i><a href="#/paymentQuery"><span class="asideicon"><img
-                src="../../images/business/3.png" alt=""></span>缴费查询</a></li>
-                <li class="list-group-item show">
-                  <i></i>
-                  <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
-                              alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a>
-                  <ul class="list-group more">
-                      <div class="in">
-                          <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/OnlineBusinessHall"
+            ><span class="asideicon"
+              ><img src="../../images/business/1.png" alt="" /></span
+            >客户中心</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/waterPriceQuery"
+            ><span class="asideicon"
+              ><img src="../../images/business/2.png" alt="" /></span
+            >水费查询</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/paymentQuery"
+            ><span class="asideicon"
+              ><img src="../../images/business/3.png" alt="" /></span
+            >缴费查询</a
+          >
+        </li>
+        <li class="list-group-item show">
+          <i></i>
+          <a href="javascript:void(0)"
+            ><span class="asideicon"
+              ><img src="../../images/business/5.png" alt="" /></span
+            >业务办理 <span class="layui-icon layui-icon-right"></span
+          ></a>
+          <ul class="list-group more">
+            <div class="in">
+              <!-- <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
                                           <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
                                           <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
                                           <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
                                           <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li> -->
-                          <li ng-repeat="item in SysMenuList" class="list-group-item"><i></i><a
-                                  ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a></li>
-                      </div>
-                  </ul>
+              <li ng-repeat="item in SysMenuList" class="list-group-item">
+                <i></i><a ng-href="{{ '#' + item.menuUrl }}">{{ item.name }}</a>
               </li>
+            </div>
+          </ul>
+        </li>
 
         <li class="list-group-item teshow newshow">
           <i></i>
@@ -74,26 +164,47 @@
                           alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
           <ul class="list-group more biz-group">
             <div class="in">
-              <li class="list-group-item"><i></i><a href="#/peopleNewInstallLC">个人报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/companyNewInstallLC">企事业报装</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseUserNameLC">用户过户</a></li>
-              <li class="list-group-item"><i></i><a href="#/cancelUserLC">用户销户</a></li>
-              <li class="list-group-item"><i></i><a href="#/chooseWaterNature">用水性质变更</a></li>
+              <li class="list-group-item">
+                <i></i><a href="#/peopleNewInstallLC">个人报装</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/companyNewInstallLC">企事业报装</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/chooseUserNameLC">用户过户</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/cancelUserLC">用户销户</a>
+              </li>
+              <li class="list-group-item">
+                <i></i><a href="#/chooseWaterNature">用水性质变更</a>
+              </li>
             </div>
           </ul>
         </li>
 
-        <li class="list-group-item"><i></i><a href="#/processListLC"><span class="asideicon"><img
-                src="../../images/business/7.png" alt=""></span>我的业务</a></li>
-        <li class="list-group-item"><i></i><a href="#/account"><span class="asideicon"><img
-                src="../../images/business/17.png" alt=""></span>管理账户</a></li>
-
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/processListLC"
+            ><span class="asideicon"
+              ><img src="../../images/business/7.png" alt="" /></span
+            >我的业务</a
+          >
+        </li>
+        <li class="list-group-item">
+          <i></i
+          ><a href="#/account"
+            ><span class="asideicon"
+              ><img src="../../images/business/17.png" alt="" /></span
+            >管理账户</a
+          >
+        </li>
       </ul>
       <ul class="list-group newmore">
         <div class="newin">
           <div class="business-search">
             <p class="searchBtn">搜索</p>
-            <input type="text" class="search">
+            <input type="text" class="search" />
           </div>
           <ul class="business-ul">
             <li class="water title">
@@ -118,12 +229,9 @@
                 <li><a href="#/chooseWaterNature">用水性质变更</a></li>
               </ul>
             </li>
-
           </ul>
         </div>
       </ul>
-
-
     </div>
     <!--页面left导航 end -->
 
@@ -137,7 +245,11 @@
         </nav>
         <div class="background">
           <div class="fillcontent">
-              <div class="table-responsive" id="suypowerGrid" lay-filter="test"></div>
+            <div
+              class="table-responsive"
+              id="suypowerGrid"
+              lay-filter="test"
+            ></div>
           </div>
         </div>
       </div>
@@ -145,7 +257,7 @@
   </div>
 </div>
 <style type="text/css">
-  table.dataTable thead>tr>th {
+  table.dataTable thead > tr > th {
     padding-right: 8px;
   }
 
@@ -168,7 +280,7 @@
     display: flex;
   }
 
-  .col-sm-6>span {
+  .col-sm-6 > span {
     position: absolute;
     left: 240px;
     top: 2px;
@@ -227,7 +339,7 @@
       display: block;
     }
 
-    .col-sm-6>span {
+    .col-sm-6 > span {
       position: absolute;
       display: block;
       width: 145px;
@@ -258,13 +370,13 @@
       width: 104%;
     }
 
-    .col-sm-6>span {
+    .col-sm-6 > span {
       position: absolute;
       left: 120px;
       top: -4px;
     }
 
-    .col-sm-6>p {
+    .col-sm-6 > p {
       width: 220px;
     }
 
@@ -334,8 +446,8 @@
     left: unset;
     width: unset;
   }
-  .layui-container .layui-table-view .layui-table{
-    width: 100%
+  .layui-container .layui-table-view .layui-table {
+    width: 100%;
   }
   /* .layui-container .layui-table-cell{
     height:100px;
@@ -350,7 +462,10 @@
       var load = layer.load(3)
       $.ajax({
         type: 'GET',
-        url: baseUrl_API_WeiXin + 'netUserInfoController/findAllUser?userInfoCode=' + userCode,
+        url:
+          baseUrl_API_WeiXin +
+          'netUserInfoController/findAllUser?userInfoCode=' +
+          userCode,
         success: function (res) {
           // this.userInfoCode = res.userInfoCode; //户号
           // this.userName = res.userName; //用户名
@@ -363,10 +478,10 @@
               data: JSON.stringify({
                 openId: getlocalStorage('openId'),
                 userInfoCode: res.userInfoCode, //户号
-                userName: res.userName.replace(/\s+/g, ""), //用户名
+                userName: res.userName.replace(/\s+/g, ''), //用户名
                 userAddress: res.userAddress, //用户地址
                 contect: '', //用户电话
-                accountMoney: res.accountMoney, //余额
+                accountMoney: res.accountMoney //余额
               }),
               dataType: 'json',
               contentType: 'application/json',
@@ -395,10 +510,10 @@
       type: 'Post',
       url: baseUrl + '/ysUser/save',
       data: JSON.stringify({
-        "id": 0,
-        "mobileNumber": '',
-        "openId": getlocalStorage('openId'),
-        "ysCode": [userInfoCode]
+        id: 0,
+        mobileNumber: '',
+        openId: getlocalStorage('openId'),
+        ysCode: [userInfoCode]
       }),
       dataType: 'json',
       contentType: 'application/json',
@@ -417,7 +532,6 @@
   <a class="layui-btn layui-btn-xs" lay-event="update">详情</a>
 </script>
 <script type="text/html" id="ImgDemo">
-
   {{# if(d.FilePath){ }}
   <a class="layui-btn layui-btn-xs" lay-event="openImage">查看</a> {{# } }}
 </script>

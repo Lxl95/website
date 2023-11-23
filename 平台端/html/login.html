@@ -1,121 +1,201 @@
 <link rel="stylesheet" href="../css/login.css" />
-<div ng-controller='loginCtrl'>
-    <div id="headerTwo">
-        <div class="margin">
-            <a href="#/"><img :ng-src="{{imageUrl+ info.logo}}" alt="logo" /></a>
-            <div class="h-right">
-                <a href="javascript:void(0)"> <p ng-click="loginReload()">登录</p> </a> 
-                <a href="#/register"> <p>注册</p> </a>
-                <a href="#/"> <span>|</span><p>网站首页</p> </a>
-            </div>
-            <div class="clearboth"></div>
-        </div>
+<div ng-controller="loginCtrl">
+  <div id="headerTwo">
+    <div class="margin">
+      <a href="#/"><img :ng-src="{{imageUrl+ info.logo}}" alt="logo" /></a>
+      <div class="h-right">
+        <a href="javascript:void(0)"> <p ng-click="loginReload()">登录</p> </a>
+        <a href="#/register"> <p>注册</p> </a>
+        <a href="#/">
+          <span>|</span>
+          <p>网站首页</p>
+        </a>
+      </div>
+      <div class="clearboth"></div>
     </div>
-    <section>
-        <div id="main">
-            <img class="loginbanner show-bimg" onerror="this.src='images/login/mainBg.png'" src="/images/login/mainBg.png" alt="">
-            <div id="title">
-                <div class="margin">
-                    <i class="layui-icon layui-icon-return back-i" onclick="javascript :history.back(-1)"></i>
-                    <p>登录账号</p>
-                    <span></span>
-                </div>
+  </div>
+  <section>
+    <div id="main">
+      <div class="loginbanner show-bimg"></div>
+      <div id="title">
+        <div class="margin">
+          <i
+            class="layui-icon layui-icon-return back-i"
+            onclick="javascript :history.back(-1)"
+          ></i>
+          <p>登录账号</p>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="margin">
+        <div class="left">
+          <div class="form-tab">
+            <p class="tab-left two-m code-left" style="width: 100%">
+              <!-- <img src="/images/login/login-wx.png" alt="" style="display: inline-block;width:16px;margin-right:5px">扫码登录 -->
+            </p>
+            <p class="tab-left border" style="font: 16px/24px ''; height: 24px">
+              账号登录
+            </p>
+            <p class="tab-right" style="font: 16px/24px ''; height: 24px">
+              短信登录
+            </p>
+          </div>
+
+          <form method="post" id="dataFrom">
+            <div class="code wx">
+              <div
+                class="qrcode-error"
+                id="qrcode-error"
+                style="left: 0px; display: none"
+              >
+                <div class="qrcode-error-mask"></div>
+                <p class="err-cont" id="err-cont">二维码已失效</p>
+                <a
+                  href="javascript:genWxQRCode();"
+                  class="refresh-btn"
+                  clstag="pageclick|keycount|login_pc_201804112|11"
+                  >刷新</a
+                >
+              </div>
+              <div id="wxqrcode">
+                <img src="../images/login/wxcode2.png" alt="" srcset="" />
+              </div>
+              <div style="margin-top: 10px">
+                打开 手机“<span style="color: orange">微信</span>” 扫描二维码
+              </div>
+              <!-- <div class="other">
+                                <p class="other-content"><i class="i-left"></i>其他方式登录<i class="i-right"></i></p>
+                            </div> -->
             </div>
-    
-            <div class="margin">
-                <div class="left">
-                    <div class="form-tab">
-                        <p class="tab-left two-m code-left" style="width:100%;">
-                            <!-- <img src="/images/login/login-wx.png" alt="" style="display: inline-block;width:16px;margin-right:5px">扫码登录 -->
-                        </p>
-                        <p class="tab-left border" style="font: 16px/24px '';height: 24px">账号登录</p>
-                        <p class="tab-right" style="font: 16px/24px '';height: 24px">短信登录</p>
-                    </div>
-    
-                    <form method="post" id="dataFrom">
-                        <div class="code wx">
-                            <div class="qrcode-error" id="qrcode-error" style="left: 0px; display: none;">
-                                <div class="qrcode-error-mask"></div>
-                                <p class="err-cont" id="err-cont">二维码已失效</p>
-                                <a href="javascript:genWxQRCode();" class="refresh-btn"
-                                    clstag="pageclick|keycount|login_pc_201804112|11">刷新</a>
-                            </div>
-                            <div id="wxqrcode">
-                                <img src="../images/login/wxcode2.png" alt="" srcset="">
-                            </div>
-                            <div style="margin-top: 10px;">
-                                打开 手机“<span style="color: orange;">微信</span>” 扫描二维码
-                            </div>
-                            <!-- <div class="other">
+            <div class="two show">
+              <div class="name">
+                <input
+                  type="text"
+                  name="mobile"
+                  class="user-input"
+                  value=""
+                  placeholder="手机号"
+                />
+              </div>
+              <div class="name">
+                <input
+                  type="password"
+                  name="password"
+                  class="psd-input"
+                  value=""
+                  placeholder="密码"
+                />
+              </div>
+              <div class="name">
+                <input
+                  type="text"
+                  name="code"
+                  value=""
+                  placeholder="验证码"
+                  required
+                  class="login-code code-input"
+                  autocomplete="off"
+                />
+                <img id="codeImg" src="xx" ng-click="getCodeImg()" />
+              </div>
+              <div style="text-align: center; font-weight: bold">
+                <p style="color: red" id="errorTip"></p>
+              </div>
+              <button type="button" class="button-login" ng-click="login()">
+                登录
+              </button>
+              <a href="" class="forget" ng-click="forgetClick()">忘记密码？</a>
+              <a href="" class="toRegister" ng-click="registerClick()"
+                >立即注册></a
+              >
+              <!-- <div class="other">
                                 <p class="other-content"><i class="i-left"></i>其他方式登录<i class="i-right"></i></p>
                             </div> -->
-                        </div>
-                        <div class="two  show">
-                            <div class="name">
-                                <input type="text" name="mobile" class="user-input" value=""
-                                    placeholder="手机号">
-                            </div>
-                            <div class="name">
-                                <input type="password" name="password" class="psd-input" value="" placeholder="密码">
-                            </div>
-                            <div class="name">
-                                <input type="text" name="code" value="" placeholder="验证码" required class="login-code code-input" autocomplete="off">
-                                <img id="codeImg"  src="xx"  ng-click="getCodeImg()" >
-                            </div>
-                            <div style="text-align: center; font-weight: bold;">
-                                <p style="color: red" id="errorTip"></p>
-                            </div>
-                            <button type="button" class="button-login" ng-click="login()">登录</button>
-                            <a href="" class="forget" ng-click="forgetClick()">忘记密码？</a>
-                            <a href="" class="toRegister" ng-click="registerClick()">立即注册></a>
-                            <!-- <div class="other">
-                                <p class="other-content"><i class="i-left"></i>其他方式登录<i class="i-right"></i></p>
-                            </div> -->
-                        </div>
-                        <div class="two">
-                            <div class="name">
-                                <input type="text" class="user-input" name="phone4sms" id="phone4sms" value=""
-                                    placeholder="手机号" >
-                            </div>
-                            <div class="name">
-                                <input type="text" name="code4sms" class="login-code psd-input" id="code4Sms" value=""
-                                    placeholder="验证码" required maxlength="4">
-                                    <img id="codeImg" class="codeImg2" alt="" src="xx"  ng-click="getCodeImg()" >
-                                    <label id="code-error" class="error-tip" for="code"></label>
-                            </div>
-                            <div class="name">
-                                <input type="text" name="smsCode" class="login-code psd-input" id="smsCode" value=""
-                                    placeholder="短信验证码" required maxlength="4">
-                                <button id="btnSendCode" type="button" ng-click="sendMessage()">发送验证码</button>
-                                <label id="smsCode-error" class="error-tip" for="smsCode"></label>
-                            </div>
-                            <div style="text-align: center; font-weight: bold;">
-                                <p style="color: red" id="errorTip4Sms"></p>
-                            </div>
-                            <button type="button" class="button-login" ng-click="smsLogin()">登录</button>
-                            <!-- <div class="other">
+            </div>
+            <div class="two">
+              <div class="name">
+                <input
+                  type="text"
+                  class="user-input"
+                  name="phone4sms"
+                  id="phone4sms"
+                  value=""
+                  placeholder="手机号"
+                />
+              </div>
+              <div class="name">
+                <input
+                  type="text"
+                  name="code4sms"
+                  class="login-code psd-input"
+                  id="code4Sms"
+                  value=""
+                  placeholder="验证码"
+                  required
+                  maxlength="4"
+                />
+                <img
+                  id="codeImg"
+                  class="codeImg2"
+                  alt=""
+                  src="xx"
+                  ng-click="getCodeImg()"
+                />
+                <label id="code-error" class="error-tip" for="code"></label>
+              </div>
+              <div class="name">
+                <input
+                  type="text"
+                  name="smsCode"
+                  class="login-code psd-input"
+                  id="smsCode"
+                  value=""
+                  placeholder="短信验证码"
+                  required
+                  maxlength="4"
+                />
+                <button id="btnSendCode" type="button" ng-click="sendMessage()">
+                  发送验证码
+                </button>
+                <label
+                  id="smsCode-error"
+                  class="error-tip"
+                  for="smsCode"
+                ></label>
+              </div>
+              <div style="text-align: center; font-weight: bold">
+                <p style="color: red" id="errorTip4Sms"></p>
+              </div>
+              <button type="button" class="button-login" ng-click="smsLogin()">
+                登录
+              </button>
+              <!-- <div class="other">
     
                                 <p class="other-content"><i class="i-left"></i>其它方式登录<i class="i-right"></i></p>
     
                             </div> -->
-                        </div>
-                    </form>
-                </div>
             </div>
-            
+          </form>
         </div>
-    </section>
-    <div id="tips">
-        <h1 class="title">温馨提示</h1>
-        <p class="content">
-            <span>1.如您曾经注册过我司网上营业厅，可以通过手机号/用户名+密码的方式登录；也可通过注册手机号+手机验证码的方式登录。</span>
-            <span>2.如您已经关注我司微信公众号并绑定过户号，您可以通过微信扫描二维码的方式登录。</span>
-        </p>
+      </div>
     </div>
-    <div id="foot">
-        <div class="margin">
-            <p>眉山环天水务集团有限公司版权所有 Copyright@2023-2030 All rights reserved</p>
-            <p>服务热线：028-36313380 <span style="margin-left: 20px;">蜀ICP备20021799号-1</span></p>
-        </div>
+  </section>
+  <div id="tips">
+    <h1 class="title">温馨提示</h1>
+    <p class="content">
+      <span
+        >如您曾经注册过我司网上营业厅，可以通过手机号/用户名+密码的方式登录；也可通过注册手机号+手机验证码的方式登录。</span
+      >
+      <!-- <span
+        >2.如您已经关注我司微信公众号并绑定过户号，您可以通过微信扫描二维码的方式登录。</span
+      > -->
+    </p>
+  </div>
+  <div id="foot">
+    <div class="margin">
+      <p>{{info.recordnumber}}</p>
+      <p>{{info.webname}}</p>
     </div>
+  </div>
 </div>

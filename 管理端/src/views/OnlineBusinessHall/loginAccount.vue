@@ -6,11 +6,23 @@
       <div ref="formBox" class="formBox">
         <el-form ref="params" :inline="true" :model="params" size="small">
           <el-form-item label="手机号" prop="mobileNumber">
-            <el-input v-model="params.mobileNumber" clearable placeholder="请输入手机号"/>
+            <el-input
+              v-model="params.mobileNumber"
+              clearable
+              placeholder="请输入手机号"
+            />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="searchClick">查询</el-button >
-            <el-button type="primary" plain icon="el-icon-refresh" @click="resetClick('params')">重 置</el-button >
+            <el-button type="primary" icon="el-icon-search" @click="searchClick"
+              >查询</el-button
+            >
+            <el-button
+              type="primary"
+              plain
+              icon="el-icon-refresh"
+              @click="resetClick('params')"
+              >重 置</el-button
+            >
           </el-form-item>
         </el-form>
       </div>
@@ -25,7 +37,12 @@
         :height="tableHeight"
       >
         <el-table-column type="index" align="center" label="序号" width="80" />
-        <el-table-column align="left" prop="mobileNumber" label="手机号" show-overflow-tooltip />
+        <el-table-column
+          align="left"
+          prop="mobileNumber"
+          label="手机号"
+          show-overflow-tooltip
+        />
         <el-table-column
           align="left"
           show-overflow-tooltip
@@ -35,15 +52,22 @@
           <template slot-scope="scope">
             <vviewer
               :options="
-                scope.row.userAvataPath ? [imgBaseUrl + scope.row.userAvataPath] : []
+                scope.row.userAvataPath
+                  ? [imgBaseUrl + scope.row.userAvataPath]
+                  : []
               "
-              :imgStyle="'cover'"
+              :imgStyle="'contain'"
               :borderRadius="'8px'"
               style="width: 140px; height: 70px;"
             ></vviewer>
           </template>
         </el-table-column>
-        <el-table-column align="left" prop="userHobby" label="兴趣爱好" show-overflow-tooltip />
+        <el-table-column
+          align="left"
+          prop="userHobby"
+          label="兴趣爱好"
+          show-overflow-tooltip
+        />
         <el-table-column
           align="left"
           show-overflow-tooltip
@@ -124,7 +148,9 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button :loading="loading" type="primary" @click="onSubmit('form')">保 存</el-button >
+        <el-button :loading="loading" type="primary" @click="onSubmit('form')"
+          >保 存</el-button
+        >
       </span>
     </el-dialog>
     <!--主要引用页面结束-->
@@ -171,10 +197,20 @@ export default {
     };
   },
   mounted() {
-    this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight + 50;
+    this.tableHeight =
+      window.innerHeight -
+      this.$refs.formBox.offsetHeight -
+      92 -
+      document.getElementsByClassName("fixed-header")[0].clientHeight +
+      50;
     window.onresize = () => {
       return (() => {
-        this.tableHeight = window.innerHeight - this.$refs.formBox.offsetHeight - 92 - document.getElementsByClassName("fixed-header")[0].clientHeight + 50;
+        this.tableHeight =
+          window.innerHeight -
+          this.$refs.formBox.offsetHeight -
+          92 -
+          document.getElementsByClassName("fixed-header")[0].clientHeight +
+          50;
       })();
     };
   },
@@ -189,7 +225,7 @@ export default {
     getList() {
       this.listLoading = true;
       getuserInfoByMobleNumber({
-        mobileNumber: this.params.mobileNumber,
+        mobileNumber: this.params.mobileNumber
         // pageNum: this.params.page,
         // pageSize: this.params.size
       })
@@ -216,25 +252,27 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.loading = true;
-          setuserInfoByMobleNumber(this.form).then(res => {
-             this.loading = false;
-             if (res.success) {
-               msgAutoClose({
-                 message: "保存成功!",
-                 type: "success"
-               });
-             } else {
-               msgAutoClose({
-                 message: res.msg || "保存失败!",
-                 type: "error"
-               });
-             }
-             this.dialogVisible = false;
-             this.getList();
-          }).catch(err => {
-             console.log(err);
-             this.loading = false;
-          });
+          setuserInfoByMobleNumber(this.form)
+            .then(res => {
+              this.loading = false;
+              if (res.success) {
+                msgAutoClose({
+                  message: "保存成功!",
+                  type: "success"
+                });
+              } else {
+                msgAutoClose({
+                  message: res.msg || "保存失败!",
+                  type: "error"
+                });
+              }
+              this.dialogVisible = false;
+              this.getList();
+            })
+            .catch(err => {
+              console.log(err);
+              this.loading = false;
+            });
         } else {
           console.log("error submit!!");
           return false;
@@ -260,7 +298,7 @@ export default {
         });
         return false;
       }
-      return isJPG && isLt3M ;
+      return isJPG && isLt3M;
     },
     iconImgSuccess(res, file) {
       this.form.userAvataPath = res.data;
