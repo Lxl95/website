@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.vip-zpf:jave:1.0.9">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../path/apache-maven-3.6.3/localRespository/com/github/vip-zpf/jave/1.0.9/jave-1.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../path/apache-maven-3.6.3/localRespository/com/github/vip-zpf/jave/1.0.9/jave-1.0.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../../path/apache-maven-3.6.3/localRespository/com/github/vip-zpf/jave/1.0.9/jave-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

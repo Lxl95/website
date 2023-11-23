@@ -1,0 +1,81 @@
+#服务配置
+server:
+  port: 10028
+#spring配置
+spring:
+  #1.应用配置
+  application:
+    name: official_website #指定服务名
+  #2.数据库连接池 username: root  39.98.76.39  password: root  zhsw_official  xt0371 xt_water_cloud
+  datasource:
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#    url: jdbc:oracle:thin:@192.168.0.194:1521:orcl
+#    username: xt_zhsw_yth
+#    password: xt300259
+
+
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.2.121:1521:orcl
+    username: YCYS0824
+    password: xt0371
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/offical_website?useUnicode=true&characterEncoding=utf8
+#    username: root
+#    password: root
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 1000MB
+  #3.JPA
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+    database: ORACLE
+    show-sql: true
+    open-in-view: true
+  #一体化redis
+  redis:
+    host: 192.168.2.208
+    password:
+    database: 2
+    port: 6379
+
+
+#文件路径
+filePath: /JavaInstall/upload/files/
+imgPath: /JavaInstall/upload/imgs/
+videoPath: /JavaInstall/upload/video/
+otherPath: /JavaInstall/upload/other/
+toolPath: /JavaInstall/upload/tool/
+voicePath: /JavaInstall/upload/voice/
+
+#spring集成Mybatis环境
+#pojo别名扫描包
+mybatis:
+  type-aliases-package: com.xintian.common.domain
+  #加载mybatis映射文件
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #会打印详细的sql以及查询到的数据
+pagehelper:
+  # 数据库连接类型
+  helper-dialect: oracle
+  # 支持通过 Mapper 接口参数来传递分页参数
+  support-methods-arguments: true
+  ## 分页合理化参数，默认值为false。当该参数设置为 true 时，pageNum<=0 时会查询第一页， pageNum>pages（超过总数时），会查询最后一页
+  reasonable: true
+configuration:
+  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 在控制台打印SQL
+  map-underscore-to-camel-case: false
+  mapper-locations: classpath:mappers/*.xml
+jwt:
+  config:
+    key: xintian  #用于创建jwt令牌时的秘钥
+    ttl: 360000000   #jwt令牌的过期时间
+
+#过滤不拦截请求
+excludePath: /api/**,/**/queryAll,/**/findById,/**/queryBy
+
+
+

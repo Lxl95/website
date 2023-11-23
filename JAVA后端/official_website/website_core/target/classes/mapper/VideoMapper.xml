@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xintian.dao.VideoMapper">
+
+    <resultMap type="com.xintian.common.domain.Video" id="OfficialwebVideoMap">
+        <result property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="videoTitle" column="VIDEOTITLE" jdbcType="VARCHAR"/>
+        <result property="vpath" column="VPATH" jdbcType="VARCHAR"/>
+        <result property="ppath" column="PPATH" jdbcType="VARCHAR"/>
+        <result property="isIntroduce" column="ISINTRODUCE" jdbcType="VARCHAR"/>
+        <result property="isPublicize" column="ISPUBLICIZE" jdbcType="VARCHAR"/>
+        <result property="vsize" column="VSIZE" jdbcType="VARCHAR"/>
+        <result property="vformat" column="VFORMAT" jdbcType="VARCHAR"/>
+        <result property="resolution" column="RESOLUTION" jdbcType="VARCHAR"/>
+        <result property="creatDate" column="CREATDATE" jdbcType="TIMESTAMP"/>
+        <result property="state" column="STATE" jdbcType="INTEGER"/>
+        <result property="sort" column="SORT" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <!--条件查询-->
+    <select id="queryAllVideos" resultMap="OfficialwebVideoMap">
+        select
+            ID
+         , VIDEOTITLE
+         , VPATH
+         , PPATH
+         , ISINTRODUCE
+         , ISPUBLICIZE
+         , VSIZE
+         , VFORMAT
+         , RESOLUTION
+         , CREATDATE
+         , STATE
+         , SORT
+        from OFFICIALWEB_VIDEO
+        where
+            1=1
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+            <if test="videoTitle != null and videoTitle != ''">
+                AND VIDEOTITLE like '%' || #{videoTitle} || '%'
+            </if>
+            <if test="vpath != null and vpath != ''">
+                and VPATH = #{vpath}
+            </if>
+            <if test="ppath != null and ppath != ''">
+                and PPATH = #{ppath}
+            </if>
+            <if test="isIntroduce != null and isIntroduce != ''">
+                and ISINTRODUCE = #{isIntroduce}
+            </if>
+            <if test="isPublicize != null and isPublicize != ''">
+                and ISPUBLICIZE = #{isPublicize}
+            </if>
+            <if test="vsize != null and vsize != ''">
+                and VSIZE = #{vsize}
+            </if>
+            <if test="vformat != null and vformat != ''">
+                and VFORMAT = #{vformat}
+            </if>
+            <if test="resolution != null and resolution != ''">
+                and RESOLUTION = #{resolution}
+            </if>
+            <if test="creatDate != null">
+                and CREATDATE = #{creatDate}
+            </if>
+            <if test="state != null">
+                and STATE = #{state}
+            </if>
+                 order by SORT
+            <if test="dataSort !=null and dataSort !=''">
+                ,${dataSort} ${dataOrder}
+            </if>
+
+    </select>
+
+    <delete id="deleteByIds">
+        delete from OFFICIALWEB_VIDEO where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

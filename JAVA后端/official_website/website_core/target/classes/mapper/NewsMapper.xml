@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xintian.dao.NewsMapper">
+
+    <resultMap id="newsMap" type="com.xintian.common.domain.News">
+        <id column="id" property="id"/>
+        <result property="time" column="time"></result>
+        <result property="picurl" column="picurl"></result>
+        <result property="title" column="title"></result>
+        <result property="content" column="content"></result>
+        <result property="description" column="description"></result>
+        <result property="plate" column="plate"></result>
+        <result property="year" column="year"></result>
+        <result property="pdfurl" column="pdfurl"></result>
+        <result property="sort" column="SORT"></result>
+
+
+    </resultMap>
+
+    <select id="findPageByCondition" resultMap="newsMap" parameterType="java.util.Map">
+      select * from xt_news
+      <where>
+          <if test=" title!=null and title!='' ">
+              AND title LIKE "%"#{title}"%"
+          </if>
+          <if test=" year !=null and year!='' ">
+              AND year = #{year}
+          </if>
+      </where>
+        order by time DESC
+    </select>
+
+
+
+    <select id="findLastestTenNews" resultMap="newsMap">
+       SELECT * FROM xt_news ORDER BY TIME DESC LIMIT 0,10
+    </select>
+
+
+</mapper>
