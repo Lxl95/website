@@ -199,5 +199,4 @@ public class VideoUtil {
         //获取filePath最后一个.后面的字符串当后缀
         return filePath.substring(filePath.lastIndexOf("."));
     }
-
 }

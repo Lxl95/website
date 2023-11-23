@@ -1,12 +1,18 @@
 package com.xintian;
 
 import com.xintian.common.utils.UpDownFileUtil;
-import com.xintian.common.utils.UploadFileUtil;
+import com.xintian.common.utils.UploadFileUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableAsync;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
+@EnableAsync
+@EnableOpenApi
+@EnableAspectJAutoProxy(exposeProxy = true)
 //1.配置springboot的包扫描
 @SpringBootApplication(scanBasePackages = "com.xintian")
 //2.配置jpa注解的扫描
@@ -27,7 +33,7 @@ public class OfficialApplication {
         return new UpDownFileUtil();
     }
     @Bean
-    public UploadFileUtil uploadFileUtil() {
-        return new UploadFileUtil();
+    public UploadFileUtils uploadFileUtil() {
+        return new UploadFileUtils();
     }
 }

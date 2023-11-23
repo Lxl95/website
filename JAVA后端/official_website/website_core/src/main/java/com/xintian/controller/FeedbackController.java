@@ -1,11 +1,8 @@
 package com.xintian.controller;
 
 import com.xintian.common.domain.Feedback;
-import com.xintian.common.domain.Notice;
 import com.xintian.common.entity.Result;
-import com.xintian.common.entity.ResultCode;
-import com.xintian.service.FeedbackService;
-import com.xintian.service.NoticeService;
+import com.xintian.service.IMPL.FeedbackService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

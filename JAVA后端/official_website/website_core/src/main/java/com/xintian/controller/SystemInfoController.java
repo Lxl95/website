@@ -1,7 +1,7 @@
 package com.xintian.controller;
 import com.xintian.common.domain.SystemInfo;
 import com.xintian.common.entity.Result;
-import com.xintian.service.SystemInfoService;
+import com.xintian.service.IMPL.SystemInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

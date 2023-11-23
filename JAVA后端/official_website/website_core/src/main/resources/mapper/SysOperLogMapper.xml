@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xintian.dao.SysOperLogMapper">
+
+    <resultMap type="com.xintian.common.domain.SysOperLog" id="SysOperLogResult">
+        <id property="operId" column="OPER_ID"/>
+        <result property="title" column="TITLE"/>
+        <result property="businessType" column="BUSINESS_TYPE"/>
+        <result property="method" column="METHOD"/>
+        <result property="requestMethod" column="REQUEST_METHOD"/>
+        <result property="operatorType" column="OPERATOR_TYPE"/>
+        <result property="operName" column="OPER_NAME"/>
+        <result property="deptName" column="DEPT_NAME"/>
+        <result property="operUrl" column="OPER_URL"/>
+        <result property="operIp" column="OPER_IP"/>
+        <result property="operLocation" column="OPER_LOCATION"/>
+        <result property="operParam" column="OPER_PARAM"/>
+        <result property="jsonResult" column="JSON_RESULT"/>
+        <result property="status" column="STATUS"/>
+        <result property="errorMsg" column="ERROR_MSG"/>
+        <result property="operTime" column="OPER_TIME"/>
+    </resultMap>
+
+    <sql id="selectOperLogVo">
+        select OPER_ID,
+               TITLE,
+               BUSINESS_TYPE,
+               METHOD,
+               REQUEST_METHOD,
+               OPERATOR_TYPE,
+               OPER_NAME,
+               DEPT_NAME,
+               OPER_URL,
+               OPER_IP,
+               OPER_LOCATION,
+               OPER_PARAM,
+               JSON_RESULT,
+               "STATUS",
+               ERROR_MSG,
+               OPER_TIME
+        FROM SYS_OPER_LOG
+    </sql>
+
+    <insert id="insertOperlog" parameterType="com.xintian.common.domain.SysOperLog">
+        insert into SYS_OPER_LOG(OPER_ID, TITLE, BUSINESS_TYPE, METHOD, REQUEST_METHOD, OPERATOR_TYPE, OPER_NAME,
+                                 OPER_URL, OPER_IP, OPER_LOCATION, OPER_PARAM, JSON_RESULT, "STATUS", ERROR_MSG,
+                                 OPER_TIME)
+        values (SEQ_SYS_OPER_LOG.NEXTVAL, #{title,jdbcType=VARCHAR}, #{businessType}, #{method,jdbcType=VARCHAR},
+                #{requestMethod,jdbcType=VARCHAR}, #{operatorType}, #{operName,jdbcType=VARCHAR},
+                #{operUrl,jdbcType=VARCHAR}, #{operIp,jdbcType=VARCHAR}, #{operLocation,jdbcType=VARCHAR},
+                #{operParam,jdbcType=VARCHAR}, #{jsonResult,jdbcType=VARCHAR}, #{status}, #{errorMsg,jdbcType=VARCHAR}, sysdate)
+    </insert>
+
+
+
+    <select id="selectOperLogList" parameterType="com.xintian.common.domain.SysOperLog" resultMap="SysOperLogResult">
+        <include refid="selectOperLogVo"/>
+        <where>
+            <if test="title != null and title != ''">
+                AND TITLE like '%' || #{title} || '%'
+            </if>
+            <if test="businessType != null and businessType != ''">
+                AND BUSINESS_TYPE = #{businessType}
+            </if>
+            <if test="businessTypes != null and businessTypes.length > 0">
+                AND BUSINESS_TYPE in
+                <foreach collection="businessTypes" item="businessType" open="(" separator="," close=")">
+                    #{businessType}
+                </foreach>
+            </if>
+            <if test="status != null">
+                AND "STATUS" = #{status}
+            </if>
+            <if test="operUrl != null and operUrl != ''">
+                AND "OPER_URL" LIKE '%' || #{operUrl}
+            </if>
+            <if test="operName != null and operName != ''">
+                AND OPER_NAME like '%' || #{operName} || '%'
+            </if>
+            <if test="beginTime != null and beginTime != ''"><!-- 开始时间检索 -->
+                and to_char(OPER_TIME,'yyyy-MM-dd') &gt;= #{beginTime}
+            </if>
+            <if test="endTime != null and endTime != ''"><!-- 结束时间检索 -->
+                and to_char(OPER_TIME,'yyyy-MM-dd') &lt;= #{endTime}
+            </if>
+        </where>
+        order by OPER_ID desc
+    </select>
+
+    <delete id="deleteOperLogByIds" parameterType="Long">
+        delete from SYS_OPER_LOG where OPER_ID in
+        <foreach collection="array" item="operId" open="(" separator="," close=")">
+            #{operId}
+        </foreach>
+    </delete>
+
+    <select id="selectOperLogById" parameterType="Long" resultMap="SysOperLogResult">
+        <include refid="selectOperLogVo"/>
+        where OPER_ID = #{operId}
+    </select>
+
+    <update id="cleanOperLog">
+        truncate table SYS_OPER_LOG
+    </update>
+
+</mapper>

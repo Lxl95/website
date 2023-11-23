@@ -1,3 +1,7 @@
+#项目配置相关
+xintian:
+  redisUrl: 192.168.2.208
+  messageUrl: http://123.161.164.75:10000/frame/api/smssend/addsms
 #服务配置
 server:
   port: 10028
@@ -15,9 +19,9 @@ spring:
 
 
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@192.168.2.121:1521:orcl
-    username: YCYS0824
-    password: xt0371
+    url: jdbc:oracle:thin:@192.168.2.121:11521:orcl
+    username: XT_ZHSW_WEBSITE
+    password: xt300259
 #    driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/offical_website?useUnicode=true&characterEncoding=utf8
 #    username: root
@@ -58,6 +62,12 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #会打印详细的sql以及查询到的数据
+mybatis-plus:
+  global-config:
+    id-type: 1
+    key-generator: com.xintian.config.MybatisPlusConfig
+  configuration:
+    jdbc-type-for-null: 'null'
 pagehelper:
   # 数据库连接类型
   helper-dialect: oracle
@@ -75,7 +85,9 @@ jwt:
     ttl: 360000000   #jwt令牌的过期时间
 
 #过滤不拦截请求
-excludePath: /api/**,/**/queryAll,/**/findById,/**/queryBy
+excludePath: /api/**,/**/queryAll,/**/findById,/**/queryBy,/swagger*/**
 
+messageSmsPlat:
+  url: http://192.168.2.122:1111/api/smssend/addsms
 
 

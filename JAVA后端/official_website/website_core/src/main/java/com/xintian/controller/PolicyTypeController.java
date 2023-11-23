@@ -2,7 +2,7 @@ package com.xintian.controller;
 
 import com.xintian.common.domain.PolicyType;
 import com.xintian.common.entity.Result;
-import com.xintian.service.PolicyTypeService;
+import com.xintian.service.IMPL.PolicyTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

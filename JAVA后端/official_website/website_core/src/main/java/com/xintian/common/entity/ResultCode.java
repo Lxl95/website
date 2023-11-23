@@ -25,6 +25,11 @@ public enum ResultCode {
     PERSONAL_USER_EXISTS(false,20002,"个人用户已存在!"),
     LOGINUSER_NOT_EXIST(false,20003,"该用户不存在!"),
     LOGINUSER_NOT_ALLOW(false,20004,"用户已被锁定，请联系管理员!"),
+    MISSING_PARAM(false,20005,"缺少参数"),
+    ERROR_IMAGE_CODE(false,20006,"图片验证码错误"),
+    ERROR_SEND(false,20007,"短信验证码发送失败"),
+    ERROR_MESSAGE_CODE(false,20008,"短信验证码验证失败"),
+    PERSONAL_USER_NOT_EXISTS(false,20009,"个人用户不存在!"),
     //---企业操作返回码----  3xxxx
     COMPANY_USER_EXISTS(false,30001,"用户已存在!"),
     COMPANY_USER_UNEXISTS(false,30002,"企业用户不存在!"),

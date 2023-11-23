@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xintian.dao.TYsuserinfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.xintian.common.domain.TYsuserinfo">
+        <id property="id" column="ID" jdbcType="DECIMAL"/>
+        <result property="userId" column="USER_ID" jdbcType="DECIMAL"/>
+        <result property="mobileNumber" column="MOBILE_NUMBER" jdbcType="VARCHAR"/>
+        <result property="ysCode" column="YS_CODE" jdbcType="VARCHAR"/>
+        <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="createUser" column="CREATE_USER" jdbcType="VARCHAR"/>
+        <result property="lastUpdateTime" column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="lastUpdateUser" column="LAST_UPDATE_USER" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,USER_ID,MOBILE_NUMBER,
+        YS_CODE,CREATE_TIME,CREATE_USER,
+        LAST_UPDATE_TIME,LAST_UPDATE_USER
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from T_YSUSERINFO
+        where  ID = #{id,jdbcType=DECIMAL}
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        delete from T_YSUSERINFO
+        where  MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" keyColumn="ID" keyProperty="id" parameterType="com.xintian.common.domain.TYsuserinfo" useGeneratedKeys="true">
+        insert into T_YSUSERINFO
+        ( ID,USER_ID,MOBILE_NUMBER
+        ,YS_CODE,CREATE_TIME,CREATE_USER
+        ,LAST_UPDATE_TIME,LAST_UPDATE_USER)
+        values (#{id,jdbcType=DECIMAL},#{userId,jdbcType=DECIMAL},#{mobileNumber,jdbcType=DECIMAL}
+               ,#{ysCode,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP},#{createUser,jdbcType=VARCHAR}
+               ,#{lastUpdateTime,jdbcType=TIMESTAMP},#{lastUpdateUser,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="ID" keyProperty="id" parameterType="com.xintian.common.domain.TYsuserinfo" useGeneratedKeys="true">
+        insert into T_YSUSERINFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            <if test="userId != null">USER_ID,</if>
+            <if test="mobileNumber != null">MOBILE_NUMBER,</if>
+            <if test="ysCode != null">YS_CODE,</if>
+            <if test="createTime != null">CREATE_TIME,</if>
+            <if test="createUser != null">CREATE_USER,</if>
+            <if test="lastUpdateTime != null">LAST_UPDATE_TIME,</if>
+            <if test="lastUpdateUser != null">LAST_UPDATE_USER,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            t_ysuserinfo_id.nextval,
+            <if test="userId != null">#{userId,jdbcType=DECIMAL},</if>
+            <if test="mobileNumber != null">#{mobileNumber,jdbcType=DECIMAL},</if>
+            <if test="ysCode != null">#{ysCode,jdbcType=VARCHAR},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="createUser != null">#{createUser,jdbcType=VARCHAR},</if>
+            <if test="lastUpdateTime != null">#{lastUpdateTime,jdbcType=TIMESTAMP},</if>
+            <if test="lastUpdateUser != null">#{lastUpdateUser,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xintian.common.domain.TYsuserinfo">
+        update T_YSUSERINFO
+        <set>
+            <if test="userId != null">
+                USER_ID = #{userId,jdbcType=DECIMAL},
+            </if>
+            <if test="mobileNumber != null">
+                MOBILE_NUMBER = #{mobileNumber,jdbcType=DECIMAL},
+            </if>
+            <if test="ysCode != null">
+                YS_CODE = #{ysCode,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                CREATE_USER = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="lastUpdateTime != null">
+                LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastUpdateUser != null">
+                LAST_UPDATE_USER = #{lastUpdateUser,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where   ID = #{id,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.xintian.common.domain.TYsuserinfo">
+        update T_YSUSERINFO
+        set
+            USER_ID =  #{userId,jdbcType=DECIMAL},
+            MOBILE_NUMBER =  #{mobileNumber,jdbcType=DECIMAL},
+            YS_CODE =  #{ysCode,jdbcType=VARCHAR},
+            CREATE_TIME =  #{createTime,jdbcType=TIMESTAMP},
+            CREATE_USER =  #{createUser,jdbcType=VARCHAR},
+            LAST_UPDATE_TIME =  #{lastUpdateTime,jdbcType=TIMESTAMP},
+            LAST_UPDATE_USER =  #{lastUpdateUser,jdbcType=VARCHAR}
+        where   ID = #{id,jdbcType=DECIMAL}
+    </update>
+    <!--  批量新增  -->
+    <insert id="insertBatch"  parameterType="java.util.ArrayList">
+        INSERT INTO T_YSUSERINFO (ID,MOBILE_NUMBER,YS_CODE,OPEN_ID)
+        select t_ysuserinfo_id.nextval, cd.* from (
+        <foreach collection="list" item="info" index="index" separator="UNION ALL ">
+            (select #{info.mobileNumber,jdbcType=VARCHAR},#{info.ysCode,jdbcType=VARCHAR},#{info.openId,jdbcType=VARCHAR}  from dual)
+        </foreach>
+        )cd
+    </insert>
+
+    <select id="getYsCode" resultMap="BaseResultMap">
+        select * from T_YSUSERINFO where  MOBILE_NUMBER = #{mobileNumber}
+    </select>
+</mapper>

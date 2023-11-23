@@ -2,7 +2,7 @@ package com.xintian.controller;
 
 import com.xintian.common.domain.NoticeType;
 import com.xintian.common.entity.Result;
-import com.xintian.service.NoticeTypeService;
+import com.xintian.service.IMPL.NoticeTypeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

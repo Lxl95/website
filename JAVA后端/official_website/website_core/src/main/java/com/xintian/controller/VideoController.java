@@ -9,7 +9,7 @@ import com.xintian.common.entity.Result;
 import com.xintian.common.entity.ResultCode;
 import com.xintian.common.utils.UpDownFileUtil;
 import com.xintian.common.utils.VideoUtil;
-import com.xintian.service.VideoService;
+import com.xintian.service.IMPL.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
