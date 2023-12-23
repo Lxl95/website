@@ -1,0 +1,74 @@
+<div class="new" ng-controller="newCtrl">
+  <div class="newList">
+    <div class="banner">
+      <img src="./images/homePage/bg2.png" alt="" title="" />
+      <div class="article">
+        <div class="chinese">{{title}}</div>
+      </div>
+    </div>
+    <div class="page-content news">
+      <div class="l" title="">
+        <div class="news-list f-mt10">
+          <ul class="f-cb">
+            <li ng-if="dataList.length>0" ng-click="newDetail(dataList[0].id);">
+              <a href="javascript:;" class="f-cb">
+                <img
+                  style="
+                    border-radius: 8px;
+                    object-fit: contain;
+                    object-position: top;
+                  "
+                  ng-if="dataList[0].coverpic"
+                  :ng-src="{{imageUrl+dataList[0].coverpic}}"
+                  alt=""
+                  width="300"
+                  title=""
+                />
+                <img
+                  style="
+                    border-radius: 8px;
+                    object-fit: contain;
+                    object-position: top;
+                  "
+                  ng-if="!dataList[0].coverpic"
+                  src="/images/homePage/nodata.png"
+                  width="300"
+                  title=""
+                />
+                <div class="txt">
+                  <h3>{{dataList[0].title}}</h3>
+                  <span>{{dataList[0].createtime}}</span>
+                  <p>{{dataList[0].summary}}</p>
+                </div>
+              </a>
+            </li>
+            <li ng-repeat="item in dataList" ng-if="$index>0">
+              <a
+                ng-click="newDetail(item.id);"
+                href="javascript:;"
+                class="f-cb no-img"
+              >
+                <div class="txt">
+                  <h3>{{item.title}}</h3>
+                  <span><b>{{item.time2}}</b>{{item.time1}}</span>
+                  <p>{{item.summary}}</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- 分页 -->
+    <div id="page" class="page"></div>
+  </div>
+  <!-- <div class="newLists">
+        <div class="banner">
+            <img src="./images/homePage/bg2.png" alt="" title="">
+            <div class="article">
+                <div class="chinese">{{title}}</div>
+            </div>
+        </div>
+
+    </div> -->
+</div>

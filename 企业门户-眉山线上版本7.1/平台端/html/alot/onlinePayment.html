@@ -1,0 +1,42 @@
+<div class="onlinePayment" ng-controller='onlinePaymentCtrl'>
+
+    <div class="publice-web-protect">
+        <div class="publice-content-ban pr" style="height: auto;">
+            <div class="publice-content-top">
+                <i class="iconfont"></i>
+                <span>在线缴费</span>
+            </div>
+            <span class="pa method">应缴方式 ：</span>
+            <ul class="pay-select">
+                <li>
+                    <img class="fl" src="yewubanli/images/wxzf.png" alt="">
+                    <em class="fl">微信支付</em>
+                    <span class="fr">
+                           <label for="print1" data-scheck="">
+                             <em class="fl font-style">打开微信扫描二维码</em>
+                           </label>
+                    </span>
+
+                </li>
+                <li style="height: auto;text-align: center;">
+                    <div class="wxcode"><img src="images/homePage/wxcode.png" alt="" srcset=""></div>
+                </li>
+                <li>
+                    <img class="fl" src="yewubanli/images/zhifubao-pay.png" alt="">
+                    <em class="fl">支付宝支付</em>
+                    <span class="fr">
+                    <label for="print2" data-scheck="">
+                       <em class="fl font-style">打开支付宝扫描二维码</em>
+                    </label>
+                </span>
+                </li>
+                <li style="height: auto;text-align: center;">
+                    <div class="wxcode"><img src="images/homePage/zfbcode.png" alt="" srcset=""></div>
+                </li>
+                <li class="txt-c font-style">
+                    如有疑问请拨打热线电话:{{info.mobile}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

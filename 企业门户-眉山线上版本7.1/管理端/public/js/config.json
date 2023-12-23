@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://117.139.103.7:20021/gw/",
+  "baseNeiUrl": "http://117.139.103.7:20021/gw/",
+  "ythUrl": "http://117.139.103.7:20021/frame/",
+  "imageUrl": "http://117.139.103.7:20021/gw/JavaInstall/upload/imgs/",
+  "fileUrl": "http://117.139.103.7:20021/gw/JavaInstall/upload/files/",
+  "videoUrl": "http://117.139.103.7:20021/gw/JavaInstall/upload/video/",
+  "layout": true
+}

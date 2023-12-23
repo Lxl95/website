@@ -1,0 +1,30 @@
+<div class="newList2" ng-controller='statutoryCtrl'>
+    <div class="banner">
+        <img src="./images/homePage/bg2.png" alt="" title="">
+        <div class="article">
+            <div class="chinese">{{dataInfo.title}}</div>
+            <div class="english">News Center</div>
+        </div>
+    </div>
+    <div class="wrapper" style="padding-bottom: 68px;">
+        <div class="news-header">
+            <h2 class="xt_news_title" id="title">{{dataInfo.title}}</h2>
+            <p class="xt_news_time" id="time">{{dataInfo.createtime}}</p>
+            <div class="xt_news_line"></div>
+        </div>
+
+        <div ng-bind-html="html"></div>
+        <h2 ng-if='fjData.length>0' class="base-tit" style="text-align: left;margin-top: 20px;">
+            <span>附件下载</span>
+        </h2>
+        <ul class="attach-list" ng-if='fjData.length>0'>
+
+            <li style="text-align: left;" ng-repeat='item in fjData'>
+                <span><a href="javascript:void(0)"ng-click="openDown(item);">点击下载</a></span>附件：<span ng-click="yulan(item);">{{item.url1}}</span>
+                <i></i>
+            </li>
+
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,288 @@
+<div class="home-nav-box" ng-controller="homeCtrl">
+  <!--轮播图-->
+  <div
+    ng-if="swiperData.length>0"
+    class="swiper-container swiper-container1"
+    id="swiper"
+  >
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" ng-repeat="item in swiperData">
+        <img :ng-src="{{imageUrl+item.urlpath}}" />
+      </div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination swiper-pagination1"></div>
+
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- 如果需要滚动条 -->
+    <!--<div class="swiper-scrollbar"></div>-->
+  </div>
+  <!--中上-->
+  <div class="home-center-up">
+    <!-- <div id="mould" ng-if="businessHandlingData.length>0">
+            <div class="mould">
+                <div class="mould_content">
+                    <div class="mould_content_li" style="flex:1" ng-repeat='item in businessHandlingData' ng-if="item.isshow == 1" ng-click="openbusinessHandling(item);">
+                        <div class="mould_content_li_image" style="padding: 0 28px;">
+                            <img :ng-src={{imageUrl+item.coverpic}}>
+                        </div>
+                        <div class="mould_content_li_txt">
+                            <span>{{item.title}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+
+    <!-- 头条 -->
+    <div class="headlines">
+      <div class="headlines_left">
+        <img src="./images/tt.png" />
+      </div>
+      <div class="headlines_right" ng-click="opendetails(recommendData[0].id)">
+        <a href="javascript:;"><h2>{{recommendData[0].title}}</h2></a>
+        <p>{{recommendData[0].summary}}</p>
+      </div>
+    </div>
+
+    <div class="home-lunbo-mes">
+      <div>
+        <!--小轮播图 热点新闻-->
+        <div class="swiper-container smallLun swiper-container2">
+          <div class="swiper-wrapper small-swiper-wrapper">
+            <div
+              class="swiper-slide small-swiper-slide"
+              ng-repeat="item in hotData"
+              ng-click="opendetails(item.id);"
+            >
+              <img
+                :ng-src="{{imageUrl+item.coverpic}}"
+                style="object-fit: contain"
+              />
+            </div>
+          </div>
+          <!-- 如果需要分页器 -->
+          <ul class="pagination"></ul>
+          <div class="small-lun-info" ng-click="opendetailsId();">
+            {{titles}}
+          </div>
+        </div>
+      </div>
+      <!-- 推荐新闻 -->
+      <div class="instant-message" ng-if="recommendData.length>0">
+        <div class="lanmu">
+          <ul>
+            <li><a class="active" href="">新闻资讯</a><i>|</i></li>
+            <!-- <li><a href="">党建动态</a><i>|</i></li> -->
+          </ul>
+          <!-- <span>更多+</span> -->
+        </div>
+        <ul>
+          <li
+            ng-repeat="intmes in recommendData"
+            ng-if="$index>0"
+            ng-click="opendetails(intmes.id)"
+          >
+            <a href="javascript:;"
+              ><i class="icon"></i><span>{{intmes.title}}</span></a
+            >
+            <span class="time">{{intmes.createtime}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 公告	 -->
+  <div class="announcement">
+    <div class="announcement_content">
+      <div class="bannerzy">
+        <img src="./images/banner5.png" alt="" srcset="" />
+      </div>
+      <div class="announcement_left_cc">
+        <div class="announcement_left">
+          <div class="announcement_left_title">
+            <span
+              ng-if="noticeTypeDate.length > 4"
+              class="left-arrow"
+              ng-click="left_click()"
+            >
+              <img src="./images/doubleleft.png" alt="" />
+            </span>
+            <ul class="announcement_left_title_ul">
+              <li
+                ng-click="li_click($index,item.id)"
+                ng-class="{active: $index==focus}"
+                ng-repeat="item in noticeTypeDate"
+              >
+                {{item.name}}<i>|</i>
+              </li>
+            </ul>
+            <span
+              ng-if="noticeTypeDate.length > 4"
+              class="right-arrow"
+              ng-click="right_click()"
+            >
+              <img src="./images/doubleright.png" alt="" />
+            </span>
+          </div>
+          <div
+            ng-if="noticeData.length == 0"
+            style="text-align: center; height: 100%; display: block"
+          >
+            <!-- 暂无数据 -->
+            <img
+              src="./images/noData.png"
+              alt=""
+              srcset=""
+              style="
+                object-fit: scale-down;
+                width: 60%;
+                height: 60%;
+                margin: 20px 10%;
+              "
+            />
+          </div>
+          <div class="announcement_left_content" ng-if="noticeData.length>0">
+            <div class="announcement_left_content_news">
+              <ul class="announcement_left_content_news_ul">
+                <li
+                  ng-repeat="intmes in noticeData"
+                  ng-click="openDetailsNotice(intmes)"
+                  ng-if="$index<7"
+                >
+                  <i class="icon"></i><span>{{intmes.title}}</span
+                  ><span>{{intmes.createtime}}</span>
+                </li>
+                <li ng-if="noticeData.length>7">
+                  <span class="moreBtn" ng-click="openMore(noticeData[0])"
+                    >更多+</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="announcement_right">
+          <div class="announcement_right_title">
+            <img src="./images/homePage/bmfw.png" alt="" srcset="" />
+          </div>
+          <div ng-if="businessHandlingData.length >= 1" class="card">
+            <div
+              class="card_li"
+              ng-repeat="item in businessHandlingData"
+              ng-if="item.isshow == 1"
+              ng-click="openbusinessHandling(item);"
+            >
+              <img :ng-src="{{imageUrl+item.coverpic}}" />
+              <p>{{item.title}}</p>
+            </div>
+            <div>
+              <img
+                src="./images/jqqd.jpg"
+                alt=""
+                srcset=""
+                style="object-fit: scale-down"
+              />
+            </div>
+            <!-- <div class="card_li">
+                            <img src="./images/bman/02.png">
+                            <p>水费查询</p>
+                        </div>
+                        <div class="card_li">
+                            <img src="./images/bman/03.png">
+                            <p>在线缴费</p>
+                        </div>
+                        <div class="card_li">
+                            <img src="./images/bman/04.png">
+                            <p>在线报修</p>
+                        </div>
+                        <div class="card_li">
+                            <img src="./images/bman/05.png">
+                            <p>业务申请</p>
+                        </div>
+                        <div class="card_li">
+                            <img src="./images/bman/06.png">
+                            <p>咨询投诉</p>
+                        </div> -->
+          </div>
+          <div ng-if="businessHandlingData.length < 1" class="card">
+            <img
+              src="./images/jqqd.jpg"
+              alt=""
+              srcset=""
+              style="
+                object-fit: scale-down;
+                width: 60%;
+                height: 80%;
+                margin: 30px 10%;
+              "
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 公司概况 宣传视频1 -->
+    <div class="announcement_content companyProfile">
+      <div class="companyProfile-left">
+        <div class="companyProfile-left-content">
+          <p class="title"><span>{{info.companyname}}</span></p>
+          <p class="content">{{info.companyinfo}}</p>
+          <div class="more" ng-click="learnMore();">更多+</div>
+        </div>
+      </div>
+      <div class="companyProfile-right">
+        <div class="productCenter_center_li">
+          <div class="productCenter_center_li_img">
+            <img src="./images/homePage/companyProfile.jpg" alt="" />
+            <!-- <video id="my-video" style="object-fit:cover;border-radius: 8px;" class="video-js" controls preload="auto" width="618" height="400" poster="./images/05.png" data-setup="{}">
+                    <source src="./video/01.mp4" type="video/mp4">
+                    <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                    <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+                        <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+                    </video> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 宣传视频 2、3、4-->
+    <!-- <div class="xcsp announcement_content">
+            <p>宣传视频</p>
+            <div class="sp">
+                <div class="sp_left">
+                    <div class="sp_left_li">
+                        <video id="my-video" class="video-js" style="object-fit:cover;    border-radius: 8px;" controls preload="auto" poster="./images/02.png" data-setup="{}">
+            <source src="./video/02.mp4" type="video/mp4">
+            <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+            <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+                <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+            </video>
+                    </div>
+                </div>
+                <div class="sp_right">
+                    <div class="sp_left_li">
+                        <video id="my-video" style="object-fit:cover;border-radius: 8px;" class="video-js" controls preload="auto" poster="./images/03.png" data-setup="{}">
+        <source src="./video/03.mp4" type="video/mp4">
+        <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+        <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+            <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+        </video>
+                    </div>
+                    <div class="sp_left_li">
+                        <video id="my-video" style="object-fit:cover;border-radius: 8px;" class="video-js" controls preload="auto" poster="./images/04.png" data-setup="{}">
+      <source src="./video/04.mp4" type="video/mp4">
+      <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+      <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+          <p class="vjs-no-js"> To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a> </p>
+      </video>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+  </div>
+</div>

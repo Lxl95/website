@@ -1,0 +1,8 @@
+{
+  "baseUrl": "http://123.161.164.75:10000/SuntrontOfficialwebAPI/",
+  "baseNeiUrl": "http://123.161.164.75:10000/SuntrontOfficialwebAPI/",
+  "ythurl": "http://123.161.164.75:10000/frame",
+  "imageUrl": "http://123.161.164.75:10000/SuntrontOfficialwebAPI//home/fileUpload/official/imgs/",
+  "fileUrl": "http://123.161.164.75:10000/SuntrontOfficialwebAPI//home/fileUpload/official/files/",
+  "hidden": true
+}

@@ -1,0 +1,60 @@
+<div class="onlinePayment" ng-controller='queryUserCtrl'>
+
+    <div class="publice-web-protect">
+        <div class="publice-content-ban pr">
+            <div class="publice-content-top">
+                <i class="iconfont"></i>
+                <span>用户查询</span>
+            </div>
+            <div class="searchbar" style="padding: 20px; ">
+                <form class="layui-form quert" id="uesrBaozhang" action="" style="display:flex">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="USERNAME" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入用户名称" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户编号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="USERINFOCODE" lay-verify="required" lay-reqtext="用户编号是必填项，岂能为空？" placeholder="请输入用户编号" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block" style="margin-left: 40px;">
+                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">查询</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="nodata" ng-if='!userInfo'>
+                    <img src="../images/companyNews/nodata.png">
+                </div>
+                <div class="layui-bg-gray" ng-if='userInfo' style="padding: 30px;">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">用户信息</div>
+                                <div class="layui-card-body">
+                                    <p>用户名称:{{userInfo.USERNAME}}</p>
+                                    <p>用户编号:{{userInfo.USERINFOCODE}}</p>
+                                    <p>用户地址:{{userInfo.USERADDRESS}}</p>
+                                    <p>用水性质名称:{{userInfo.USEWATERTYPENAME}}</p>
+                                    <p>联系电话:{{userInfo.CONTECT}}</p>
+                                    <p>水表口径名称:{{userInfo.METERCALNAME}}</p>
+                                    <p>证件号码:{{userInfo.IDENTITYVALUE}}</p>
+                                    <div class="layui-btn-container" style="margin-top: 20px;">
+                                        <!-- <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" ng-click="editUserInfo()"><i class="layui-icon"></i>变更用户信息</button>
+                                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius" ng-click="changeName()"><i class="layui-icon layui-icon-username"></i> 过户</button> -->
+                                        <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" ng-click="pinhouseholds()"><i class="layui-icon"></i>销户</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

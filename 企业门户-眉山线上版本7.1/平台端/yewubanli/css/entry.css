@@ -1,0 +1,117 @@
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+* {box-sizing: border-box;}
+header { margin: 0 auto;}
+[v-cloak] {
+    display: none;
+}
+main {
+  height: calc(100% - 105px - 130px);
+  background: url("../images/main_bg.jpg") no-repeat;
+  background-position: center;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+}
+main>section {
+  width: 1300px;
+  height: 280px;
+  margin: 0 auto;
+  padding: 30px 0;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #918C8A;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+main>section>div {
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+main>section>div:hover {
+  color: #0F99E8;
+}
+main>section>div>.img-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 10px solid #E7E7E7;
+  background-position: center;
+  margin-bottom: 10px;
+}
+main>section>div:hover .img-box {
+  border-color:#0F99E8;
+}
+.xzjs {
+  background: url("../images/1.png") no-repeat;
+}
+.sgls {
+  background: url("../images/2.png") no-repeat;
+}
+.lhys {
+  background: url("../images/3.png") no-repeat;
+}
+.fhgz {
+  background: url("../images/4.png") no-repeat;
+}
+.bzcx {
+  background: url("../images/5.png") no-repeat;
+}
+.bzfd {
+  background: url("../images/6.png") no-repeat;
+}
+
+button {
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  color: #fff;
+  text-align: center;
+  background: #CCCCCC;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+button:hover {
+  background: #B7B7B7;
+}
+.btn-primary {
+  background: #3288C7;
+  margin-left: 20px; 
+}
+.btn-primary:hover {
+  background: #80B7DF !important;
+}
+
+footer {height: 130px; background: #4c99ef;}
+footer>section {
+  width: 1100px;
+  height: 100%; 
+  margin: 0 auto;
+  /* background: url('../images/foot.jpg') no-repeat; */
+  background-size:100%;
+  padding-left:68px;
+  line-height: 20px;
+  color: #fff;
+  font-size: 12px;
+}
+footer>section p {margin: 0;}
+.head-nav-up {
+	height: 120px;
+	background: url(../images/top_bg.jpg) repeat;
+}
+.head-logo {
+    width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+    position: relative;
+}
+.head-logo img {
+    margin-top: 23px;
+}

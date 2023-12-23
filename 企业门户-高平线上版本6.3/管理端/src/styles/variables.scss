@@ -1,0 +1,210 @@
+// base color
+$blue: #324157;
+$light-blue: #3a71a8;
+$red: #c03639;
+$pink: #e65d6e;
+$green: #30b08f;
+$tiffany: #4ab7bd;
+$yellow: #fec171;
+$panGreen: #30b08f;
+
+// header
+$headerBg: #fff; // 头部背景色
+$headerTextColor: #000; // 头部字体颜色
+$headerActiveText: #409eff; // 头部字体选中颜色
+$headerActiveBg: #fff; // 导航选中背景颜色
+// sidebar
+$menuBg: #304156;
+$subMenuBg: #1f2d3d;
+// drawer背景色
+$drawerBg: #10263b;
+$sideBarWidth: 210px;
+// sidebar
+$menuText: #bfcbd9;
+$menuActiveText: #409eff; // 导航选中字体颜色
+$subMenuActiveText: #f4f4f5;
+
+$menuHover: #263445;
+
+$subMenuHover: #263445;
+// drawer背景色
+$drawerBg: #10263b;
+// 暗黑主题的四个基准色
+$darkPrimary: #0a7be0;
+$darkSuccess: #4bc376;
+$darkWarning: #e6b61e;
+$darkDanger: #c13737;
+
+$sideBarWidth: 210px;
+
+$themes: (
+  // 白色系
+    white:
+    (
+      borderColor: #e4e8ed,
+      // 主边框色
+        fontColor: #1a1a1a,
+      headerBg: #fff,
+      // 头部背景色
+        dialogBg: #fff,
+      // 头部背景色
+        dialogTitle: #1a1a1a,
+      hamburgerBg: #0174e9,
+      // hamburger按钮背景色
+        headerTextColor: #1a1a1a,
+      // 头部字体颜色
+        headerActiveText: #409eff,
+      // 头部字体选中颜色
+        headerHoverText: #409eff,
+      // 头部字体选中颜色
+        menuBg: #304156,
+      // 导航背景色
+        subMenuBg: #1f2d3d,
+      // 二级导航背景色
+        subMenuHover: #001528,
+      // 二级导航hover色
+        containerBg: #f0f0f2,
+      // el-container背景颜色
+        mainBg: #fff,
+      // el-main背景颜色
+        tagBG: #fff,
+      tagViewBg: #42b983,
+      // 标签页背景颜色
+        tagViewActive: #fff,
+      // 标签页文字选中颜色
+        card-header: #1fa1fd,
+      // 地图标题背景色
+        table-header: #f8f8f9,
+      // 表格表头背景颜色
+        table-color: #56585c,
+      // 表格表头文字颜色
+    ),
+  blue: (
+    borderColor: #e4e8ed,
+    // 主边框色
+      fontColor: #1a1a1a,
+    headerBg: #0a7be0,
+    // 头部背景色
+      dialogBg: #0a7be0,
+    // 头部背景色
+      dialogTitle: #fff,
+    hamburgerBg: #304156,
+    headerTextColor: #fff,
+    headerActiveText: #fff,
+    // 头部字体选中颜色
+      headerHoverText: rgba(255, 255, 255, 0.7),
+    // 头部字体选中颜色
+      menuBg: #304156,
+    // 导航背景色
+      subMenuBg: #1f2d3d,
+    // 二级导航背景色
+      subMenuHover: #001528,
+    // 二级导航hover色
+      containerBg: #f0f0f2,
+    // el-container背景颜色
+      mainBg: #fff,
+    // el-main背景颜色
+      tagBG: #fff,
+    tagViewBg: #0a7be0,
+    // 标签页背景颜色
+      tagViewActive: #fff,
+    // 标签页文字选中颜色
+      card-header: #0a7be0,
+    // 头部背景色
+      table-header: #e3e8f4,
+    // 表格表头背景颜色
+      table-color: #56585c,
+    // 表格表头文字颜色
+  ),
+  dark: (
+    borderColor: #423f3f,
+    // 主边框色
+      fontColor: rgba(255, 255, 255, 0.7),
+    headerBg: #424242,
+    dialogBg: #424242,
+    // 头部背景色
+      dialogTitle: #fff,
+    hamburgerBg: #262626,
+    headerTextColor: #fff,
+    headerActiveText: #fff,
+    headerHoverText: rgba(255, 255, 255, 0.7),
+    // 头部字体选中颜色
+      menuBg: #1e1e1e,
+    // 导航背景色
+      subMenuBg: #151515,
+    // 二级导航背景色
+      subMenuHover: #0a0909,
+    // 二级导航hover色
+      containerBg: #262626,
+    // el-container背景颜色
+      mainBg: #1e1e1e,
+    // el-main背景颜色
+      tagBG: #1f3140,
+    tagViewBg: #0a7be0,
+    // 标签页背景颜色 1ac2c3
+      tagViewActive: #fff,
+    // 标签页文字选中颜色
+      card-header: #383838,
+    // 地图标题背景色
+      table-header: #2c2c2c,
+    // 表格表头背景颜色
+      table-color: rgba(255, 255, 255, 0.8),
+    // 表格表头文字颜色
+  ),
+  starry: (
+    borderColor: #e4e8ed,
+    // 主边框色
+      fontColor: #1a1a1a,
+    headerBg: #d6e6f9,
+    dialogBg: #2079b1,
+    // 头部背景色
+      hamburgerBg: #2079b1,
+    headerTextColor: #3d3d3d,
+    dialogTitle: #fff,
+    headerActiveText: #409eff,
+    headerHoverText: #409eff,
+    // 头部字体选中颜色
+      menuBg: #304156,
+    // 导航背景色
+      subMenuBg: #1f2d3d,
+    // 二级导航背景色
+      subMenuHover: #001528,
+    // 二级导航hover色
+      containerBg: #f0f0f2,
+    // el-container背景颜色
+      mainBg: #fff,
+    // el-main背景颜色
+      tagBG: #1f3140,
+    tagViewBg: #2079b1,
+    // 标签页背景颜色 1ac2c3
+      tagViewActive: #fff,
+    // 标签页文字选中颜色
+      card-header: #2079b1,
+    // 地图标题背景色
+      table-header: #e3e8f4,
+    // 表格表头背景颜色
+      table-color: #1f3140,
+    // 表格表头文字颜色
+  )
+);
+
+// 字号变量
+$font_size_12: 12px;
+$font_size_14: 14px;
+$font_size_16: 16px;
+$font_size_18: 18px;
+$font_size_20: 20px;
+
+// 字号调整差值
+$size_diff_1: 0;
+$size_diff_2: 2px;
+$size_diff_3: 4px;
+
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuHover: $menuHover;
+  subMenuHover: $subMenuHover;
+  sideBarWidth: $sideBarWidth;
+}

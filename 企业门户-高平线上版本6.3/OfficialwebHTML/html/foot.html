@@ -1,0 +1,68 @@
+<div class="foot-nav-box pr" ng-controller="footCtrl">
+  <div class="foot-one">
+    <div class="foot-content">
+      <div class="foot-up">
+        <ul>
+          <!-- 		<div style="width: 600px;">
+						
+					</div> -->
+          <li
+            ng-repeat="item in columnCategoryData"
+            ng-click="openpoliceType(item);"
+          >
+            <h4>{{item.name}}</h4>
+            <ul>
+              <li
+                ng-repeat="lat in item.child"
+                ng-if="lat.isshow"
+                ng-click="newDetail(lat);"
+              >
+                <a href="javascript:;">{{lat.name}}</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="contactUs">
+            <h4>联系我们</h4>
+            <ul>
+              <li>电话：{{info.mobile}}</li>
+              <li>邮箱： {{info.email}}</li>
+              <li>地址：{{info.addresslocation}}</li>
+              <li>邮编：{{info.postcode}}</li>
+            </ul>
+          </li>
+          <li class="followUs">
+            <h4 style="cursor: pointer" ng-click="learnMore();">关注我们</h4>
+            <div>
+              <p id="foot_companyInfo" style="cursor: pointer">
+                {{info.companyinfo}}
+              </p>
+              <div class="foot-code">
+                <img :ng-src="{{imageUrl+ info.qrcode}}" />
+                <div>
+                  <img src="./images/homePage/weixin.png" />
+                  <span>{{info.companyname}}微信公众号</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot-two" style="background: #1c1c1c">
+    <div class="foot-content2">
+      <div class="foot-down">
+        <!-- <img src="./images/homePage/dzjg.png" /> -->
+        <div class="foot-text" style="width: 100%">
+          <p>{{info.recordnumber}}</p>
+          <p>{{info.webname}}</p>
+        </div>
+        <!-- <img src="./images/homePage/zzwj.png" />
+                <img src="./images/homePage/zzzc.png" /> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="rocket pa"></div>
+</div>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>报装查询</title>
+		<link href="../css/base.css" type="text/css" rel="stylesheet">
+		<link href="../css//jqWeUI/css/weui.min.css" type="text/css" rel="stylesheet">
+		<link href="../css/jqWeUI/css/jquery-weui.min.css" type="text/css" rel="stylesheet">
+		<link href="../css/jqWeUI/css/swiper.min.css" type="text/css" rel="stylesheet">
+		<link href="../css/weuix.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../css/jqWeUI/js/jquery-weui.min.js"></script>
+		<script type="text/javascript" src="../js/baseUrl.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/element-ui/lib/theme-chalk/index.css"/>
+		<style type="text/css">
+
+			#contentBox {
+				width: 100%;
+				height: 100%;
+			}
+
+			.btnBox {
+				width: 30%;
+				margin: 1rem auto;
+			}
+
+			.btnBox a {
+				background-color: #3288C7 !important;
+			}
+
+			.seachContent {
+				height: 250px;
+				overflow-y: auto;
+				max-width: 768px;
+				margin: 0 auto;
+			}
+			.weui-btn_disabled {
+				color: rgb(255,255,255);
+				background-color: rgba(81,80,80,0.8);
+			}
+			.weui-btn_disabled:hover {
+				cursor: not-allowed;
+			}
+			.btn-primary{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="contentBox" v-cloak>
+			<header class="head-nav-up">
+				<div class="head-logo">
+				  	<img src="../images/xingcheng.png" />
+				</div>   
+			</header>
+			<div class="main">
+			<main>
+				<section>
+					<p>报装查询</p>
+					<div class="content-box" style="padding:20px 50px;">
+						<div class="serch-box">
+              <el-form ref="params" :model="params" :inline="true" >
+               <el-form-item label="联系人" prop="UserName">
+                  <el-input v-model="params.Entity.UserName" clearable placeholder="请输入联系人" style="width: 125px;"/>
+                </el-form-item>
+                <el-form-item label="手机号" prop="UserPhone">
+                   <el-input v-model="params.Entity.UserPhone" clearable placeholder="请输入手机号" style="width: 125px;"/>
+                 </el-form-item>
+								 <el-form-item label="身份类型" prop="type">
+									<el-select v-model="type" placeholder="请选择" @change="changeCard" style="width: 125px;">
+										<el-option
+											v-for="item in options"
+											:key="item.value"
+											:label="item.label"
+											:value="item.value">
+										</el-option>
+									</el-select>
+									</el-form-item>
+									<el-form-item label="" prop="UserIdCard" v-if="type===1">
+										 <el-input v-model="params.Entity.UserIdCard" clearable placeholder="身份证" style="width: 135px;"/>
+									 </el-form-item>
+                 <el-form-item label="" prop="UserTaxId" v-if="type===2">
+                    <el-input v-model="params.Entity.UserTaxId" clearable placeholder="企业信用代码" style="width: 135px;"/>
+                  </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="getData" icon="el-icon-search">查 询</el-button>
+                </el-form-item>
+              </el-form>
+						</div>
+						<div class="step-box">
+							<el-table
+								v-loading="listLoading"
+								element-loading-text="拼命加载中"
+								:data="tableData"
+								border
+								stripe
+								:header-cell-style="{background:'#F8F8F9',color:'#606266'}"
+								style="width: 100%"
+								:max-height="400"
+							>
+								<el-table-column align="center" type="index" label="序号" width="60" >
+							</el-table-column>
+							<el-table-column align="center" prop="InsCode" label="任务编号">
+						</el-table-column>
+								<el-table-column align="center" prop="InsName" label="名称" >
+							</el-table-column>
+							<el-table-column align="center" prop="ProjectType" label="类型">
+								<template slot-scope="scope">
+									{{scope.row.ProjectType==100?'小区报装':(scope.row.ProjectType==101?'个人报装':(scope.row.ProjectType==102?'企业报装':'水表扩径'))}}
+								</template>
+							</el-table-column>
+								<el-table-column align="center" prop="ProjectAddress" label="地址" show-overflow-tooltip>
+							</el-table-column>
+							<el-table-column align="center" prop="SimNodeName" label="最新进度" >
+						</el-table-column>
+							<el-table-column align="center" prop="CreateTime" label="创建时间">
+						</el-table-column>
+							</el-table>
+							<el-pagination
+								layout="total, sizes, prev, pager, next, jumper"
+								background
+								:total="params.total"
+								:page-size="params.size"
+								:current-page="params.page"
+								:page-sizes="[15, 20, 25, 30]"
+								style="margin-top: 20px"
+								@current-change="handleCurrentChange"
+								@size-change="handleSizeChange"
+							/>
+						</div>
+							<p style="padding-top:10px;">(如果想要了解详细的信息，请使用微信公众号)</p>
+					</div>
+				</section>
+			</main>
+			</div>
+			<footer>
+				<section>
+					<img src="../images/logo1.png" style="float: left;padding-right: 20px;margin-top: 20px;width:92px;"/>
+					<br><br>
+					<p>版权所有 兴城市水务集团有限公司 Copyright @ 2019-{{dateYear}} All Rights Reserved.</p>
+					<p>地址：辽宁省兴城市兴海南街93号 联系电话：0429-5895555</p>
+					<p><span style="color:#F7EB27;">新天科技股份有限公司</span>提供技术支持</p>
+				</section>
+			</footer>
+		</div>
+	</body>
+	<script src="../css/element-ui/lib/index.js"></script>
+	<!-- <script src="../js/index.js"></script> -->
+	<script type="text/javascript">
+		//无时间过滤器
+		Vue.filter("timeNone", function(oDate) {
+			return !oDate ? "暂无" : oDate;
+		})
+		var vuedata = new Vue({
+			el: '#contentBox',
+			data: {
+				dateYear: 2020,
+        tableHeight: null,
+        listLoading:false,
+        params: {
+				  SystemMark:'XianTaoZw',
+          OtherOperId:'',
+				  Entity:{
+					  UserName:'',//用户名
+					  UserPhone:'',//电话
+            UserIdCard:'',//身份证号
+						UserTaxId:'',//企业信用代码
+				  },
+          page: 1,
+          size: 15,
+          total: 0
+        },
+			  tableData:[],
+				type:1,
+        options: [{
+          value: 1,
+          label: '身份证'
+        }, {
+          value: 2,
+          label: '企业信用代码'
+        }],
+			},
+			created: function() {
+          this.newGuid()
+				// this.getData()
+			},
+			methods: {
+				changeCard:function changeCard(val) {
+          // if(val===1) {
+
+					// }
+				},
+				newGuid:function newGuid(){
+						for ( var i = 1; i <= 32 ; i++ ){
+							var n = Math.floor(Math.random() * 16.0 ).toString( 16 );
+							this.params.OtherOperId += n;
+							if ((i == 8 ) || (i == 12 ) || (i == 16 ) || (i == 20 ))
+							this.params.OtherOperId += "-" ;
+						}
+						return this.params.OtherOperId
+				},
+				getData:function getData() {
+					var thisData = this
+          var params={
+				    SystemMark:this.params.SystemMark,
+				    OtherOperId:this.params.OtherOperId,
+				    Entity:{
+					    UserName:this.params.Entity.UserName,//用户名
+					    UserPhone:this.params.Entity.UserPhone,//电话
+              UserIdCard:this.params.Entity.UserIdCard,//身份证号
+							UserTaxId:this.params.Entity.UserTaxId
+				    },
+						PageInfo:{
+							Sum:this.params.total,
+							PageSize:this.params.size,
+							CurrPage:this.params.page,
+							Sort:''
+						}
+          }
+					axios.post(baseUrl + '/Wfms/Overt/Project/XianTao/ZhengWu/Query/InsPage',params).then(function(res) {
+						if (res.data.Result == 1) {
+				    for(const item of res.data.Datas) {
+						   if(item.CreateTime) {
+                 var CreateTime = item.CreateTime.indexOf("T");
+						     item.CreateTime=item.CreateTime.substring(0,CreateTime); //取前部分
+						   }
+				    }
+							thisData.tableData = res.data.Datas
+              thisData.params.total=res.data.PageInfo.Sum
+						} else {
+							thisData.$message({
+								type: 'error',
+								message: res.data.Msg
+							});
+						}
+					})
+				},
+				handleCurrentChange:function handleCurrentChange(val) {
+          this.params.page = val;
+          this.getData();
+        },
+        handleSizeChange:function handleSizeChange(val) {
+          this.params.size = val;
+          this.getData();
+        }
+			}
+		})
+	</script>
+</html>
