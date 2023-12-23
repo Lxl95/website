@@ -1,10 +1,9 @@
-
 {
-    "baseUrl": "http://192.168.2.155:10028/",
-    "baseNeiUrl": "http://192.168.2.155:10028/",
-    "ythUrl": "http://192.168.2.208:60001/",
-    "imageUrl": "http://192.168.2.155:10028/JavaInstall/upload/imgs/",
-    "fileUrl": "http://192.168.2.208:60028/JavaInstall/upload/files/",
-    "videoUrl": "http://192.168.2.208:60028/JavaInstall/upload/video/",
-    "layout": true
+  "baseUrl": "http://123.161.164.68:30000/SuntrontOfficialwebAPI/",
+  "baseNeiUrl": "http://123.161.164.68:30000/SuntrontOfficialwebAPI/",
+  "ythUrl": "http://123.161.164.68:30000/frame",
+  "imageUrl": "http://123.161.164.68:30000/SuntrontOfficialwebAPI/home/fileUpload/official/imgs/",
+  "fileUrl": "http://123.161.164.68:30000/SuntrontOfficialwebAPI/home/fileUpload/official/files/",
+  "videoUrl": "http://123.161.164.68:30000/SuntrontOfficialwebAPI/home/fileUpload/official/video/",
+  "layout": true
 }

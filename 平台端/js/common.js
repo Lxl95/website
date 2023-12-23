@@ -3544,6 +3544,7 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
         layer.close(load)
         if (result.code == 10000) {
           top.layer.msg('注册成功！', { icon: 1, time: 1000 }, function () {})
+          $location.path('/login')
         } else {
           top.layer.msg(result.message, { icon: 2, time: 1000 })
         }

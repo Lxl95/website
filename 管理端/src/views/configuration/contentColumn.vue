@@ -249,24 +249,24 @@
                     </div>
                     <!-- <div style="text-align:center;">
                     </div> -->
-                    
-                      <el-button
-                        type="danger"
-                        class="remove"
-                        size="mini"
-                        icon="el-icon-delete"
-                        @click.stop="openDel(item)"
-                      >
-                      </el-button>
-                      <el-button
-                        type="success"
-                        class="edit"
-                        size="mini"
-                        icon="el-icon-edit"
-                        style="margin-right:10px"
-                        @click.stop="openEdital(item)"
-                      >
-                      </el-button>
+
+                    <el-button
+                      type="danger"
+                      class="remove"
+                      size="mini"
+                      icon="el-icon-delete"
+                      @click.stop="openDel(item)"
+                    >
+                    </el-button>
+                    <el-button
+                      type="success"
+                      class="edit"
+                      size="mini"
+                      icon="el-icon-edit"
+                      style="margin-right:10px"
+                      @click.stop="openEdital(item)"
+                    >
+                    </el-button>
                   </div>
                 </el-card>
               </el-col>
@@ -376,12 +376,12 @@
             </el-upload>
           </el-form-item>
           <el-form-item label="排序编号" prop="sort">
-              <el-input-number
-                v-model="form.sort"
-                controls-position="right"
-                :min="0"
-              />
-            </el-form-item>
+            <el-input-number
+              v-model="form.sort"
+              controls-position="right"
+              :min="0"
+            />
+          </el-form-item>
 
           <div class="form-btn">
             <el-button type="primary" @click="submit('dataFormRef')"
@@ -391,10 +391,11 @@
               >重 置</el-button
             >
             <el-button
+              v-if="form.id"
               size="mini"
               icon="el-icon-delete"
               type="danger"
-              @click="openDel2(listData[0])"
+              @click="openDel2()"
               >删除</el-button
             >
           </div>
@@ -626,7 +627,6 @@ export default {
               }
             });
             this.data = dataInfo2;
-            
           } else {
             this.data = [];
           }
@@ -634,15 +634,15 @@ export default {
             this.handleNodeClick(this.data[0]);
           }
         })
-        .catch((e) => {
+        .catch(e => {
           this.treeLoading = false;
-          console.log(e)
+          console.log(e);
         });
     },
     prepClick() {},
     openEdital2() {
       if (this.listData.length > 0) {
-        console.log(this.listData[0].sort)
+        console.log(this.listData[0].sort);
         this.form = {
           columncategoryid: this.listData[0].columncategoryid,
           title: this.listData[0].title,
@@ -721,13 +721,13 @@ export default {
       this.isList = false;
       this.contentInfo = true;
     },
-    openDel2(data) {
+    openDel2() {
       this.$confirm("此操作将删除该新闻内容, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        var id = data.id;
+        var id = this.form.id;
 
         newsDel({ id }).then(res => {
           if (res.success) {
@@ -735,7 +735,9 @@ export default {
               message: "删除成功!",
               type: "success"
             });
+            this.form.id = "";
             this.resetForm();
+            this.newsQueryBy();
           }
         });
       });
@@ -781,9 +783,9 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.loading = true;
-          var obj = { ...this.form};
+          var obj = { ...this.form };
           // 0 表示新闻未启用排序
-          obj.sort = obj.sort > 0 ? obj.sort : null
+          obj.sort = obj.sort > 0 ? obj.sort : null;
           const getPathString = function(fileList) {
             return JSON.stringify(
               fileList
@@ -816,6 +818,7 @@ export default {
                   type: "success",
                   duration: 1000
                 });
+                this.form.id = res.data.id;
                 this.loading = false;
                 if (this.dataInfo.istabulation == 1) {
                   if (this.content == "新闻列表") {
@@ -957,7 +960,7 @@ export default {
   position: relative;
 }
 .remove {
-  position: absolute;
+  position: absolute !important;
   bottom: 2px;
   right: 5px;
   background-color: #f56c6c;

@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" />
+<link rel="stylesheet" href="./css/personalCenter-css/personalMain.css" />
 
 <div
   ng-controller="bindWeChatCtrl"
@@ -12,7 +12,7 @@
       <img
         ng-if="info.logo"
         :ng-src="{{imageUrl+ info.logo}}"
-        onerror="this.src='../../images/logo.png'"
+        onerror="this.src='./images/logo.png'"
         alt="logo"
         style="
           width: 300px;
@@ -117,7 +117,7 @@
           <i></i
           ><a href="#/OnlineBusinessHall"
             ><span class="asideicon"
-              ><img src="../../images/business/1.png" alt="" /></span
+              ><img src="./images/business/1.png" alt="" /></span
             >客户中心</a
           >
         </li>
@@ -125,7 +125,7 @@
           <i></i
           ><a href="#/waterPriceQuery"
             ><span class="asideicon"
-              ><img src="../../images/business/2.png" alt="" /></span
+              ><img src="./images/business/2.png" alt="" /></span
             >水费查询</a
           >
         </li>
@@ -133,7 +133,7 @@
           <i></i
           ><a href="#/paymentQuery"
             ><span class="asideicon"
-              ><img src="../../images/business/3.png" alt="" /></span
+              ><img src="./images/business/3.png" alt="" /></span
             >缴费查询</a
           >
         </li>
@@ -141,7 +141,7 @@
           <i></i>
           <a href="javascript:void(0)"
             ><span class="asideicon"
-              ><img src="../../images/business/5.png" alt="" /></span
+              ><img src="./images/business/5.png" alt="" /></span
             >业务办理 <span class="layui-icon layui-icon-right"></span
           ></a>
           <ul class="list-group more">
@@ -160,7 +160,7 @@
 
         <li class="list-group-item teshow newshow">
           <i></i>
-          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="./images/business/5.png"
                           alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
           <ul class="list-group more biz-group">
             <div class="in">
@@ -187,7 +187,7 @@
           <i></i
           ><a href="#/processListLC"
             ><span class="asideicon"
-              ><img src="../../images/business/7.png" alt="" /></span
+              ><img src="./images/business/7.png" alt="" /></span
             >我的业务</a
           >
         </li>
@@ -195,7 +195,7 @@
           <i></i
           ><a href="#/account"
             ><span class="asideicon"
-              ><img src="../../images/business/17.png" alt="" /></span
+              ><img src="./images/business/17.png" alt="" /></span
             >管理账户</a
           >
         </li>
@@ -256,7 +256,7 @@
                 <div id="qrcode" style="width: 328.4px; height: 200px"></div>
                 <p>
                   <span>*</span>请使用微信扫一扫进行<span class="iconNj"
-                    ><img src="../../images/login/login-wx.png" alt="" /></span
+                    ><img src="./images/login/login-wx.png" alt="" /></span
                   ><span class="bold">微信公众号</span>关联
                 </p>
                 <p class="ERMTips">
@@ -624,15 +624,17 @@
     }
   }
 </style>
-<script src="../../js/personalMain.js"></script>
-<script src="../../js/qrcode.min.js"></script>
+<script src="./js/personalMain.js"></script>
+<script src="./js/qrcode.min.js"></script>
 <script>
   var wxqrcode
   // 保德
   // var wx_url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6e0c5b86007e391f&redirect_uri=http://www.xzbdxsw.com/&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123';
   // 泉港
+  // var wx_url =
+  //   'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd9eece7a23b4dd6&redirect_uri=http://sw.suntront.com/WXnew/weixin-quangang/index.html&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123'
   var wx_url =
-    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd9eece7a23b4dd6&redirect_uri=http://sw.suntront.com/WXnew/weixin-quangang/index.html&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123'
+    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0ce93852140b6c12&redirect_uri=http://sw.suntront.com/WXnew/weixin-xintian/index.html?&response_type=code&scope=snsapi_userinfo&connect_redirect=1&state=123'
   $(document).ready(function () {
     if (getlocalStorage('phone')) {
       wxqrcode = new QRCode(

@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../../css/bootstrap.min.css" />
-<link rel="stylesheet" href="../../css/personalCenter-css/personalMain.css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" />
+<link rel="stylesheet" href="./css/personalCenter-css/personalMain.css" />
 <div
   ng-controller="accountCtrl"
   class="businessMain"
@@ -11,7 +11,7 @@
       <img
         ng-if="info.logo"
         :ng-src="{{imageUrl+ info.logo}}"
-        onerror="this.src='../../images/logo.png'"
+        onerror="this.src='./images/logo.png'"
         alt="logo"
         style="
           width: 300px;
@@ -116,7 +116,7 @@
           <i></i
           ><a href="#/OnlineBusinessHall"
             ><span class="asideicon"
-              ><img src="../../images/business/1.png" alt="" /></span
+              ><img src="./images/business/1.png" alt="" /></span
             >客户中心</a
           >
         </li>
@@ -124,7 +124,7 @@
           <i></i
           ><a href="#/waterPriceQuery"
             ><span class="asideicon"
-              ><img src="../../images/business/2.png" alt="" /></span
+              ><img src="./images/business/2.png" alt="" /></span
             >水费查询</a
           >
         </li>
@@ -132,7 +132,7 @@
           <i></i
           ><a href="#/paymentQuery"
             ><span class="asideicon"
-              ><img src="../../images/business/3.png" alt="" /></span
+              ><img src="./images/business/3.png" alt="" /></span
             >缴费查询</a
           >
         </li>
@@ -140,7 +140,7 @@
           <i></i>
           <a href="javascript:void(0)"
             ><span class="asideicon"
-              ><img src="../../images/business/5.png" alt="" /></span
+              ><img src="./images/business/5.png" alt="" /></span
             >业务办理 <span class="layui-icon layui-icon-right"></span
           ></a>
           <ul class="list-group more">
@@ -159,7 +159,7 @@
 
         <li class="list-group-item teshow newshow">
           <i></i>
-          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="../../images/business/5.png"
+          <!-- <a href="javascript:void(0)"><span class="asideicon"><img src="./images/business/5.png"
                                 alt=""></span>业务办理 <span class="layui-icon layui-icon-right"></span></a> -->
           <ul class="list-group more biz-group">
             <div class="in">
@@ -186,7 +186,7 @@
           <i></i
           ><a href="#/processListLC"
             ><span class="asideicon"
-              ><img src="../../images/business/7.png" alt="" /></span
+              ><img src="./images/business/7.png" alt="" /></span
             >我的业务</a
           >
         </li>
@@ -194,7 +194,7 @@
           <i></i
           ><a href="#/account"
             ><span class="asideicon"
-              ><img src="../../images/business/17.png" alt="" /></span
+              ><img src="./images/business/17.png" alt="" /></span
             >管理账户</a
           >
         </li>
@@ -471,7 +471,7 @@
     }
   }
 </style>
-<script src="../../js/personalMain.js"></script>
+<script src="./js/personalMain.js"></script>
 <script>
   function doSubmit() {
     var userCode = $('#userCode').val()

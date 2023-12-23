@@ -1,55 +1,102 @@
-<div class="onlinePayment" ng-controller='waterQueryCtrl'>
-
-    <div class="publice-web-protect">
-        <div class="publice-content-ban pr">
-            <div class="publice-content-top">
-                <i class="iconfont"></i>
-                <span>水费查询</span>
+<div class="onlinePayment" ng-controller="waterQueryCtrl">
+  <div class="publice-web-protect">
+    <div class="publice-content-ban pr">
+      <div class="publice-content-top">
+        <i class="iconfont"></i>
+        <span>水费查询</span>
+      </div>
+      <div class="searchbar" style="padding: 20px">
+        <form
+          class="layui-form quert"
+          id="uesrBaozhang"
+          action=""
+          style="display: flex"
+        >
+          <div class="layui-form-item">
+            <label class="layui-form-label layui-required">用户名称</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="USERNAME"
+                lay-verify="required"
+                lay-reqtext="用户名是必填项"
+                placeholder="请输入用户名称"
+                autocomplete="off"
+                class="layui-input"
+              />
             </div>
-            <div class="searchbar" style="padding: 20px; ">
-                <form class="layui-form quert" id="uesrBaozhang" action="" style="display:flex">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label layui-required">用户名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="USERNAME" lay-verify="required" lay-reqtext="用户名是必填项" placeholder="请输入用户名称" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label layui-required">用户户号</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="USERINFOCODE" lay-verify="required" lay-reqtext="用户户号是必填项" placeholder="请输入用户户号" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block" style="margin-left: 40px;">
-                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">查询</button>
-                            <button type="reset" ng-click="reset()" class="layui-btn layui-btn-primary">重置</button>
-
-                        </div>
-                    </div>
-                </form>
-                <div class="nodata" ng-if='!userInfo'>
-                    <img src="../../images/companyNews/nodata.png">
-                </div>
-                <div class="layui-bg-gray" ng-if='userInfo' style="padding: 30px;">
-                    <div class="layui-row layui-col-space15">
-                        <div class="layui-col-md12">
-                            <div class="layui-card">
-                                <div class="layui-card-header">用户信息</div>
-                                <div class="layui-card-body">
-                                    <p>用户名称:{{userInfo.CONS_NAME}}</p>
-                                    <p>用户编号:{{userInfo.CONS_NO}}</p>
-                                    <p>用水地址:{{userInfo.WATER_ADDR}}</p>
-                                    <p>合计总欠费:{{userInfo.OWE_TOTAL}}</p>
-                                    <p>合计违约金:{{userInfo.PENALTY_TOTAL}}</p>
-                                    <p>欠费笔数:{{userInfo.BILL_COUNT}}</p>
-                                    <p>账户余额:{{userInfo.ACCOUNTMONEY }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label layui-required">用户户号</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="USERINFOCODE"
+                lay-verify="required"
+                lay-reqtext="用户户号是必填项"
+                placeholder="请输入用户户号"
+                autocomplete="off"
+                class="layui-input"
+              />
             </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 40px">
+              <button
+                type="submit"
+                class="layui-btn"
+                lay-submit=""
+                lay-filter="formDemo"
+                style="
+                  color: #fff;
+                  background-color: #1890ff;
+                  border-color: #1890ff;
+                "
+              >
+                查询
+              </button>
+              <button
+                type="reset"
+                ng-click="reset()"
+                class="layui-btn layui-btn-primary"
+                style="background: #e8f4ff; border-color: #a3d3ff"
+              >
+                <span style="color: #1890ff !important">重 置</span>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="nodata" ng-if="!userInfo">
+          <img src="./images/companyNews/nodata.png" />
         </div>
+        <div class="layui-bg-gray" ng-if="userInfo" style="padding: 30px">
+          <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-header">用户信息</div>
+                <div class="layui-card-body">
+                  <p>用户名称:{{userInfo.CONS_NAME}}</p>
+                  <p>用户编号:{{userInfo.CONS_NO}}</p>
+                  <p>用水地址:{{userInfo.WATER_ADDR}}</p>
+                  <p>合计总欠费:{{userInfo.OWE_TOTAL}}</p>
+                  <p>合计违约金:{{userInfo.PENALTY_TOTAL}}</p>
+                  <p>欠费笔数:{{userInfo.BILL_COUNT}}</p>
+                  <p>账户余额:{{userInfo.ACCOUNTMONEY }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+<style>
+  .layui-form-label {
+    width: 110px;
+  }
+  .layui-form-label.layui-required:after {
+    top: 10px;
+    left: 27px;
+  }
+</style>
