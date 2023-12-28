@@ -1,7 +1,11 @@
 #项目配置相关
+  #redisPassword reids有密码就配上；messageUrl：短信接口；messageToken：短信接口固定token
 xintian:
   redisUrl: 192.168.2.208
+  redisPort: 6379
+  redisPassword:
   messageUrl: http://123.161.164.75:10000/frame/api/smssend/addsms
+  messageToken: 444843c7c76f410a9fd0e505d2f82d66
 #服务配置
 server:
   port: 10028
@@ -47,12 +51,20 @@ spring:
 
 
 #文件路径
+#(windows)
 filePath: /JavaInstall/upload/files/
 imgPath: /JavaInstall/upload/imgs/
 videoPath: /JavaInstall/upload/video/
 otherPath: /JavaInstall/upload/other/
 toolPath: /JavaInstall/upload/tool/
 voicePath: /JavaInstall/upload/voice/
+##(linux)
+#filePath: /home/fileUpload/official/files/
+#imgPath: /home/fileUpload/official/imgs/
+#videoPath: /home/fileUpload/official/video/
+#otherPath: /home/fileUpload/official/other/
+#toolPath: /home/fileUpload/official/tool/
+#voicePath: /home/fileUpload/official/voice/
 
 #spring集成Mybatis环境
 #pojo别名扫描包

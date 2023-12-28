@@ -80,14 +80,13 @@ public class VideoUtil {
 
 
         try {
-            Map<String, String> videoInformation = getVideoTime(file);
+            file.transferTo(destFile2);
+            Map<String, String> videoInformation = getVideoTime(file,destFile2);
             videoInformation.get("RESOLUTION");
             videoInformation.get("SIZE");
             videoInformation.get("TIME");
             videoInformation.get("VFORMAT");
-
             //transferto()方法，是springmvc封装的方法，用于图片上传时，把内存中图片写入磁盘
-            file.transferTo(destFile2);
             imageShowUrl = format+fileName;//imageShowUrl = /JavaInstall/upload/imgs/a3f1ad3338ac4c61ad5f8aad2d51f0dc.png
             //将图片回显地址放进object中；
 //            Map<String, String> map = new HashMap<>();
@@ -103,13 +102,13 @@ public class VideoUtil {
         }
         return responseBean;
     }
-    public Map<String,String> getVideoTime(MultipartFile multipartFile) throws Exception{
+    public Map<String,String> getVideoTime(MultipartFile multipartFile,File file) throws Exception{
         Map<String,String> map = new HashMap<>();
         //MultipartFile转File
-        File file = MultipartFileToFile(multipartFile);
-        if(null == file){
-            throw new Exception("MultipartFile转File失败");
-        }
+//        File file = MultipartFileToFile(multipartFile);
+//        if(null == file){
+//            throw new Exception("MultipartFile转File失败");
+//        }
         Encoder encoder = new Encoder();
         Long second = null;
         try (FileInputStream fis = new FileInputStream(file)){

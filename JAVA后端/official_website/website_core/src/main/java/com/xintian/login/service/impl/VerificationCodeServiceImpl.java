@@ -27,23 +27,31 @@ import java.util.Map;
 public class VerificationCodeServiceImpl extends BaseServiceImpl<VerificationCodeMapper, VerificationCode> implements VerificationCodeService {
     @Value("${xintian.redisUrl}")
     private String redisUrl;
+    @Value("${xintian.redisPort}")
+    private Integer redisPort;
+    @Value("${xintian.redisPassword}")
+    private String redisPassword;
     @Value("${xintian.messageUrl}")
     private String messageUrl;
+    @Value("${xintian.messageToken}")
+    private String messageToken;
 
 
     @Override
     public boolean getVerificationCode(VerificationCode verificationCode)  {
         try {
         Map map = new HashMap();
-//        String accessToken = "444843c7c76f410a9fd0e505d2f82d66";
-        String accessToken = "565d9cc4-b6a4-4fcd-a065-1755d882214c";
+        String accessToken = messageToken;
         map.put("accessToken",accessToken);
         long id1 = UniqueIdGenerator.generateId();//生成唯一id
         String runNo = String.valueOf(id1);
         //拿到验证码
         String codeStr = generateCode();
         //验证码放到redis
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         jedis.setex(verificationCode.getMobileNumber(),300,codeStr);
         jedis.close();
 
@@ -59,8 +67,7 @@ public class VerificationCodeServiceImpl extends BaseServiceImpl<VerificationCod
         List<SmsInfo> smsInfoList = new ArrayList<>();
         smsInfoList.add(smsInfo);
         map.put("data",smsInfoList);
-        String url = "http://123.161.164.75:10000/frame/api/smssend/addsms";
-//        String url = messageUrl;
+        String url = messageUrl;
         JSONObject jsonObject = (JSONObject) JSONObject.toJSON(map);
         log.info("请求参数："+jsonObject.toJSONString());
         String response = null;
@@ -73,7 +80,6 @@ public class VerificationCodeServiceImpl extends BaseServiceImpl<VerificationCod
                 return true;
             }else{
                 log.error("短信平台返回失败>>>"+"post请求，地址：{}失败，接口返回：{}", url, result.getMessage());
-//                throw new RuntimeException(result.getMessage());
                 return false;
             }
         }

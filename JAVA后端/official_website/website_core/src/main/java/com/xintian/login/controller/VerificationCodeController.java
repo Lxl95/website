@@ -1,9 +1,7 @@
 package com.xintian.login.controller;
 
 
-import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.LineCaptcha;
-import com.baomidou.mybatisplus.extension.api.R;
+
 import com.xintian.common.entity.Result;
 import com.xintian.common.entity.ResultCode;
 import com.xintian.login.entity.VerificationCode;
@@ -23,7 +21,7 @@ import redis.clients.jedis.Jedis;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Locale;
+
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -38,6 +36,10 @@ public class VerificationCodeController {
 	private VerificationCodeService verificationCodeService;
 	@Value("${xintian.redisUrl}")
 	private String redisUrl;
+	@Value("${xintian.redisPort}")
+	private Integer redisPort;
+	@Value("${xintian.redisPassword}")
+	private String redisPassword;
 
 	@GetMapping("getVerificationCode")
 	@ApiOperation(value = "获取短信验证码")
@@ -94,7 +96,10 @@ public class VerificationCodeController {
 			// getRandomCodeImage方法会直接将生成的验证码图片写入response
 			String randomCodeImage = validateCode.getRandomCodeImage(request, response);
 			//验证码放到redis
-			Jedis jedis = new Jedis(redisUrl,6379);
+			Jedis jedis = new Jedis(redisUrl,redisPort);
+			if (!redisPassword.isEmpty()){
+				jedis.auth(redisPassword);
+			}
 			jedis.setex(runNo,300,randomCodeImage.toLowerCase());
 			jedis.close();
 			// System.out.println("session里面存储的验证码为："+session.getAttribute("JCCODE"));

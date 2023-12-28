@@ -34,6 +34,10 @@ public class RegistrationController {
     private VerificationCodeService verificationCodeService;
     @Value("${xintian.redisUrl}")
     private String redisUrl;
+    @Value("${xintian.redisPort}")
+    private Integer redisPort;
+    @Value("${xintian.redisPassword}")
+    private String redisPassword;
 
     @PostMapping("/userRegistration")
     @ApiOperation(value = "用户注册")
@@ -49,7 +53,10 @@ public class RegistrationController {
         }
         //判断短信验证码是否正确
         //redis取验证码
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         String redisCode = jedis.get(requestData.getMobileNumber());
         String verificationCode = requestData.getVerificationCode();//用户验证码
         String userCode = verificationCode.toLowerCase();
@@ -77,7 +84,10 @@ public class RegistrationController {
     @ApiOperation(value = "发送短信验证码")
     public Result SendInformation(@RequestParam("code") String code,@RequestParam("codeId") String codeId,@RequestParam("phoneNumber") String phoneNumber,HttpSession session){
         //判断图片验证码是否正确
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         String redisCodeValue= jedis.get(codeId);
         jedis.close();
         log.info("redis里的图片验证码："+redisCodeValue);
@@ -117,7 +127,10 @@ public class RegistrationController {
         }
         //判断短信验证码是否正确
         //redis取验证码
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         String redisCode = jedis.get(requestData.getMobileNumber());
         String verificationCode = requestData.getVerificationCode();//用户验证码
         String userCode = verificationCode.toLowerCase();

@@ -29,6 +29,10 @@ public class LoginController {
     private UserInfoService userInfoService;
     @Value("${xintian.redisUrl}")
     private String redisUrl;
+    @Value("${xintian.redisPort}")
+    private Integer redisPort;
+    @Value("${xintian.redisPassword}")
+    private String redisPassword;
     /**
      * 登录功能（非短信验证码登录）
      */
@@ -38,7 +42,10 @@ public class LoginController {
     public Result userLogin(@RequestBody RequestData requestData, HttpSession session){
         //判断图片验证码是否正确
 
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         if(requestData.getVerificationCode()==null|| jedis.get(requestData.getCodeId())==null){
             return new Result(ResultCode.FAIL,"登录失败");
         }

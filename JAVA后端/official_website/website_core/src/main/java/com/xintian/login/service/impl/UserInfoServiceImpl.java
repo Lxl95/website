@@ -28,6 +28,10 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfoMapper, UserInf
     private UserInfoService userInfoService;
     @Value("${xintian.redisUrl}")
     private String redisUrl;
+    @Value("${xintian.redisPort}")
+    private Integer redisPort;
+    @Value("${xintian.redisPassword}")
+    private String redisPassword;
 
     public boolean userRegistration(UserInfo userInfo){
         int insert = userInfoMapper.insert(userInfo);
@@ -110,7 +114,10 @@ public class UserInfoServiceImpl extends BaseServiceImpl<UserInfoMapper, UserInf
     public boolean userMessageLogin(RequestData requestData) {
         //判断短信验证码是否正确
         //redis取验证码
-        Jedis jedis = new Jedis(redisUrl,6379);
+        Jedis jedis = new Jedis(redisUrl,redisPort);
+        if (!redisPassword.isEmpty()){
+            jedis.auth(redisPassword);
+        }
         String redisCode = jedis.get(requestData.getMobileNumber());
         String verificationCode = requestData.getVerificationCode();//用户验证码
         String userCode = verificationCode.toLowerCase();

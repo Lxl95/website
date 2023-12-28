@@ -53,6 +53,7 @@ public class VideoService {
      */
     public List<Video> queryAllVideos(VideoVo video) {
         List<Video> videos = videoMapper.queryAllVideos(video);
+        log.info("videos-->"+videos);
         return videos;
     }
 //    /**

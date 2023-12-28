@@ -63,6 +63,7 @@ public class VideoController {
         try {
             Page page = PageHelper.startPage(pageNum, pageSize);
             List<Video> list = videoService.queryAllVideos(video);
+            log.info("list-->"+list);
             return new Result(ResultCode.SUCCESS, new PageResult(page.getTotal(), list));
         } catch (Exception e) {
             e.printStackTrace();
