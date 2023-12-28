@@ -6,7 +6,7 @@
   <!--页面top导航-->
   <div id="header">
     <div class="header-left" align="center">
-      <img
+      <!-- <img
         ng-if="info.logo"
         :ng-src="{{imageUrl+ info.logo}}"
         onerror="this.src='./images/business/yyt.jpg'"
@@ -17,7 +17,10 @@
           border-radius: 10px;
           background-color: #fff;
         "
-      />
+      /> -->
+      <span class="nameStyle"
+        >{{info.companyname || '欢迎进入网上营业厅'}}</span
+      >
     </div>
 
     <ul class="nav nav-pills">
@@ -40,7 +43,7 @@
         </ul>
       </div>
     </div>
-    <div class="header-right" style="margin-right: 0px">
+    <!-- <div class="header-right" style="margin-right: 0px">
       <div>
         <p>
           <i
@@ -70,7 +73,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div id="bg"></div>

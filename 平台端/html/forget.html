@@ -76,7 +76,12 @@
                 required
                 maxlength="4"
               />
-              <button id="btnSendCode" type="button" ng-click="sendMessage()">
+              <button
+                id="btnSendCode"
+                class="forgetSendCode"
+                type="button"
+                ng-click="sendMessage()"
+              >
                 发送验证码
               </button>
               <label id="smsCode-error" class="error-tip" for="smsCode"></label>

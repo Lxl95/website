@@ -31,7 +31,7 @@ function Decrypt(word) {
   return decryptedStr.toString()
 }
 console.log(Encrypt('admin123'))
-console.log(Decrypt('dCjSIUNy9RMJubFmbvNpNA=='))
+console.log(Decrypt('H3wRvcjufQRfBtJBYl8bmg=='))
 //设置cookie中的phone和openId
 function setlocalStorage(stringName, value) {
   let seconds = 3600 //设置有效时间1个小时
@@ -81,6 +81,6 @@ function getNowTime() {
   return year + month + day + hour + minutes + seconds + milli
 }
 function changeNavTheme(theme) {
-  var colorList = ['#0a7be0', '#1e1e1e', '#4dc0b3']
+  var colorList = ['#2d5da7', '#1e1e1e', '#4dc0b3']
   $('#header').css('background', colorList[theme - 1])
 }

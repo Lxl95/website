@@ -11,7 +11,7 @@ var baseUrl_ys = 'http://123.161.164.68:30000/ys'
 var baseUrl_yth = 'http://123.161.164.68:30000/frame/'
 var baseUrl_gis = 'http://123.161.164.68:30000/SuntrontOrderAPI/' //JAVA工单
 
-var baseUrl_API_BZLC = 'http://123.161.164.76:10000/apibz' // A新天智慧水务测试公众号
+var baseUrl_API_BZLC = 'http://123.161.164.76:10000/apibz/api/' // A新天智慧水务测试公众号
 var baseUrl_API_WeiXin = 'http://123.161.164.76:10000/WeChat1/' // A新天智慧水务测试公众号
 // A新天智慧水务测试公众号
 var liuchengMes = {

@@ -1,61 +1,116 @@
-<div class="contactUsss " ng-controller='contactUsCtrl'>
-    <div class='hearder_bg'>
-        <div class="bounceInUp animated" style="visibility: visible; animation-name: bounceInUp;">
-            <h1>联系我们</h1>
-            <!-- <p>HOME/CONTACT</p> -->
-            <div class="t_abouter">
-                奋斗百年路 启航新征程
-            </div>
-        </div>
+<div class="contactUsss" ng-controller="contactUsCtrl">
+  <div class="hearder_bg">
+    <div
+      class="bounceInUp animated"
+      style="visibility: visible; animation-name: bounceInUp"
+    >
+      <h1>联系我们</h1>
+      <!-- <p>HOME/CONTACT</p> -->
+      <div class="t_abouter">奋斗百年路 启航新征程</div>
     </div>
-    <div class="usersNewClothes">
-        <main>
-            <section>
-                <p>联系我们</p>
-                <div class="content-box" style="height: calc(100% - 50px);">
-                    <div class="content" style="padding-top: 20px; width: 600px;">
-                        <form class="layui-form" id="uesrBaozhang" action="">
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label layui-required">姓名:</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="feedbackName" lay-verify="required" lay-reqtext="姓名不能为空" placeholder="请输入姓名" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label layui-required">联系电话:</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="feedbackPhone" lay-verify="phone" lay-reqtext="联系电话不能为空" placeholder="请输入联系电话" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label layui-required">邮箱:</label>
-                                <div class="layui-input-block">
-                                    <input type="text" name="email" lay-verify="required" lay-reqtext="邮箱不能为空" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
-                                </div>
-                            </div>
-                            <div class="layui-form-item">
-                                <label class="layui-form-label layui-required">留言内容:</label>
-                                <div class="layui-input-block">
-                                    <textarea name="content" lay-verify="required" lay-reqtext="留言内容不能为空" placeholder="请输入留言内容" class="layui-textarea"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="btn-box" style="margin: 20px 120px;">
-                                <button type="button" type="reset" ng-click="reset()" class="button1" style="background-color: rgb(204, 204, 204); border-color: rgb(204, 204, 204);">
-                          <span>重 置</span>
-                        </button>
-                                <button type="button" lay-submit lay-filter="formDemo" class="button2" style="background-color: rgb(50, 136, 199); border-color: rgb(50, 136, 199);margin-left: 60px;">
-                          <span>提 交</span>
-                        </button>
-                            </div>
-                        </form>
-                    </div>
-
-
+  </div>
+  <div class="usersNewClothes">
+    <main>
+      <section>
+        <p>联系我们</p>
+        <div class="content-box" style="height: calc(100% - 50px)">
+          <div class="content" style="padding-top: 20px; width: 600px">
+            <form class="layui-form" id="uesrBaozhang" action="">
+              <div class="layui-form-item">
+                <label class="layui-form-label layui-required">姓名:</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
+                    name="feedbackName"
+                    lay-verify="required"
+                    lay-reqtext="姓名不能为空"
+                    placeholder="请输入姓名"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
                 </div>
-            </section>
-        </main>
-    </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label layui-required">联系电话:</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
+                    name="feedbackPhone"
+                    lay-verify="phone"
+                    lay-reqtext="联系电话不能为空"
+                    placeholder="请输入联系电话"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label layui-required">邮箱:</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
+                    name="email"
+                    lay-verify="required"
+                    lay-reqtext="邮箱不能为空"
+                    placeholder="请输入邮箱"
+                    autocomplete="off"
+                    class="layui-input"
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label layui-required">留言内容:</label>
+                <div class="layui-input-block">
+                  <textarea
+                    name="content"
+                    lay-verify="required"
+                    lay-reqtext="留言内容不能为空"
+                    placeholder="请输入留言内容"
+                    class="layui-textarea"
+                  ></textarea>
+                </div>
+              </div>
 
+              <div class="btn-box" style="margin: 20px 120px">
+                <button
+                  type="button"
+                  type="reset"
+                  ng-click="reset()"
+                  class="button1"
+                  style="
+                    background-color: rgb(204, 204, 204);
+                    border-color: rgb(204, 204, 204);
+                  "
+                >
+                  <span>重 置</span>
+                </button>
+                <button
+                  type="button"
+                  lay-submit
+                  lay-filter="formDemo"
+                  class="button2"
+                  style="
+                    background-color: rgb(50, 136, 199);
+                    border-color: rgb(50, 136, 199);
+                    margin-left: 60px;
+                  "
+                >
+                  <span>提 交</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </div>
+<style>
+  .layui-form-label {
+    width: 110px;
+  }
+  .layui-form-label.layui-required:after {
+    top: 10px;
+    left: 27px;
+  }
+</style>

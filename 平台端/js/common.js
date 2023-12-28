@@ -3007,7 +3007,7 @@ jkApp.controller('loginCtrl', function ($scope, $location) {
   $scope.getCodeImg()
   var InterValObj //timer变量，控制时间
   var count = 60 //间隔函数，1秒执行
-  var curCount //当前剩余秒数
+  var curCount = 60 //当前剩余秒数
   var interval
   var wxqrcode
   // $(document).ready(function() {
@@ -3126,11 +3126,11 @@ jkApp.controller('loginCtrl', function ($scope, $location) {
   function SetRemainTime(id) {
     if (curCount == 0) {
       window.clearInterval(InterValObj) //停止计时器
-      $('#' + id).removeAttr('disabled') //启用按钮
-      $('#' + id).html('重新发送')
+      $('.' + id).removeAttr('disabled') //启用按钮
+      $('.' + id).html('重新发送')
     } else {
       curCount--
-      $('#' + id).html(curCount + 's')
+      $('.' + id).html(curCount + 's')
     }
   }
 
@@ -3167,12 +3167,12 @@ jkApp.controller('loginCtrl', function ($scope, $location) {
         }
         top.layer.msg('短信发送成功，请注意查看')
         InterValObj = window.setInterval(function () {
-          SetRemainTime('btnSendCode')
+          SetRemainTime('loginSendCode')
         }, 1000) //启动计时器，1秒执行一次
         curCount = count
         //设置button效果，开始计时
-        $('#btnSendCode').attr('disabled', 'true')
-        $('#btnSendCode').html(curCount + 's')
+        $('.loginSendCode').attr('disabled', 'true')
+        $('.loginSendCode').html(curCount + 's')
       }
     })
   }
@@ -3365,7 +3365,7 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
 
   var InterValObj //timer变量，控制时间
   var count = 60 //间隔函数，1秒执行
-  var curCount //当前剩余秒数
+  var curCount = 60 //当前剩余秒数
   $scope.sendMessage = function () {
     var phone = $('#phone').val()
     if (!checkPhone(phone)) {
@@ -3398,8 +3398,8 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
         InterValObj = window.setInterval(SetRemainTime, 1000) //启动计时器，1秒执行一次
         curCount = count
         //设置button效果，开始计时
-        $('#btnSendCode').attr('disabled', 'true')
-        $('#btnSendCode').html(curCount + 's')
+        $('.registerSendCode').attr('disabled', 'true')
+        $('.registerSendCode').html(curCount + 's')
       }
     })
   }
@@ -3407,11 +3407,11 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
   function SetRemainTime() {
     if (curCount == 0) {
       window.clearInterval(InterValObj) //停止计时器
-      $('#btnSendCode').removeAttr('disabled') //启用按钮
-      $('#btnSendCode').html('重新发送')
+      $('.registerSendCode').removeAttr('disabled') //启用按钮
+      $('.registerSendCode').html('重新发送')
     } else {
       curCount--
-      $('#btnSendCode').html(curCount + 's')
+      $('.registerSendCode').html(curCount + 's')
     }
   }
 
@@ -3640,7 +3640,7 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
 
   var InterValObj //timer变量，控制时间
   var count = 60 //间隔函数，1秒执行
-  var curCount //当前剩余秒数
+  var curCount = 60 //当前剩余秒数
   $scope.sendMessage = function () {
     var phone = $('#phone').val()
     if (!checkPhone(phone)) {
@@ -3673,8 +3673,8 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
         InterValObj = window.setInterval(SetRemainTime, 1000) //启动计时器，1秒执行一次
         curCount = count
         //设置button效果，开始计时
-        $('#btnSendCode').attr('disabled', 'true')
-        $('#btnSendCode').html(curCount + 's')
+        $('.forgetSendCode').attr('disabled', 'true')
+        $('.forgetSendCode').html(curCount + 's')
       }
     })
   }
@@ -3682,11 +3682,11 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
   function SetRemainTime() {
     if (curCount == 0) {
       window.clearInterval(InterValObj) //停止计时器
-      $('#btnSendCode').removeAttr('disabled') //启用按钮
-      $('#btnSendCode').html('重新发送')
+      $('.forgetSendCode').removeAttr('disabled') //启用按钮
+      $('.forgetSendCode').html('重新发送')
     } else {
       curCount--
-      $('#btnSendCode').html(curCount + 's')
+      $('.forgetSendCode').html(curCount + 's')
     }
   }
 
@@ -3763,6 +3763,18 @@ jkApp.controller('businessCtrl', function ($scope, $location) {
       }
     })
   }
+  treeList()
+  //获取栏目内容
+  function treeList() {
+    $.ajax({
+      url: baseUrl + '/columnCategory/tree/list',
+      success: function (result) {
+        $scope.$apply(function () {
+          $scope.treeList = result.data
+        })
+      }
+    })
+  }
   getSysMenu()
   // 报装菜单
   $scope.SysMenuList = []
@@ -3771,7 +3783,9 @@ jkApp.controller('businessCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -3942,7 +3956,9 @@ jkApp.controller('bindCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -3960,7 +3976,9 @@ jkApp.controller('userInfoCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -3987,7 +4005,9 @@ jkApp.controller('userInfoCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -4150,7 +4170,9 @@ jkApp.controller('accountCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -4274,7 +4296,9 @@ jkApp.controller('waterPriceQueryCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -4466,7 +4490,9 @@ jkApp.controller('paymentQueryCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -4605,7 +4631,9 @@ jkApp.controller('bindWeChatCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -4640,7 +4668,9 @@ jkApp.controller(
         url: baseUrl + '/SysMenu/list?isShow=1',
         success: function (res) {
           if (res.code == 10000) {
-            $scope.SysMenuList = res.data.rows
+            $scope.$apply(function () {
+              $scope.SysMenuList = res.data.rows
+            })
           }
         }
       })
@@ -4657,7 +4687,72 @@ jkApp.controller(
         }
       })
     }
-    getFileMsg()
+    layui.form.render()
+    //监听提交
+    layui.form.on('submit(formDemo)', function (data) {
+      // layer.msg(JSON.stringify(data.field));
+      var params = data.field
+      let InsCode = getNowTime()
+      var load = layer.load(3)
+      $.ajax({
+        type: 'POST',
+        url: baseUrl_API_BZLC + '/Bzms/WeChat/Apply/Apply',
+        contentType: 'application/json',
+        dataType: 'JSON',
+        data: JSON.stringify({
+          SystemMark: 'XtBpm',
+          AccessToken: getlocalStorage('openId'), //用户openId
+          WeChatNickName: '微信用户', //用户昵称
+          Data: {
+            ApplyOpenId: getlocalStorage('openId'),
+            ProjectName: params.USERNAME,
+            ProjectAddr: params.USERADDRESS,
+            UserType: params.LawGuarantee,
+            UserName: params.USERNAME, //联系人
+            UserMobile: params.TELPHONE, //报装联系电话
+            UserIdcard: params.CARDNO,
+            VerifyStatus: 0,
+            ProjectType: '1',
+            ApplyType: '1',
+            FilesIdList: IMAGEURL
+          }
+        }),
+        success: function (jsonResult) {
+          layer.close(load)
+          if (jsonResult.Result == 1) {
+            layer.msg(
+              '提交成功!!!',
+              {
+                icon: 6,
+                time: 2000
+              },
+              function () {
+                IMAGEURL = []
+                $('#uesrBaozhang')[0].reset()
+                $scope.fileMsgList.forEach((item, index) => {
+                  $('#demo' + index).html('')
+                })
+                layui.form.render()
+              }
+            )
+          } else {
+            layer.msg(jsonResult.Msg || '提交申请失败')
+          }
+        },
+        error: function (data) {
+          layer.close(load)
+          alert('请求失败')
+        }
+      })
+      return false
+    })
+    //点击重置
+    $scope.reset = function () {
+      $('#uesrBaozhang')[0].reset()
+      $('#demo2').html('')
+      layui.form.render()
+    }
+    // getFileMsg()
     function getFileMsg() {
       $.ajax({
         type: 'POST',
@@ -4975,7 +5070,9 @@ jkApp.controller(
         url: baseUrl + '/SysMenu/list?isShow=1',
         success: function (res) {
           if (res.code == 10000) {
-            $scope.SysMenuList = res.data.rows
+            $scope.$apply(function () {
+              $scope.SysMenuList = res.data.rows
+            })
           }
         }
       })
@@ -5298,7 +5395,9 @@ jkApp.controller(
         url: baseUrl + '/SysMenu/list?isShow=1',
         success: function (res) {
           if (res.code == 10000) {
-            $scope.SysMenuList = res.data.rows
+            $scope.$apply(function () {
+              $scope.SysMenuList = res.data.rows
+            })
           }
         }
       })
@@ -5613,7 +5712,9 @@ jkApp.controller(
         url: baseUrl + '/SysMenu/list?isShow=1',
         success: function (res) {
           if (res.code == 10000) {
-            $scope.SysMenuList = res.data.rows
+            $scope.$apply(function () {
+              $scope.SysMenuList = res.data.rows
+            })
           }
         }
       })
@@ -5933,7 +6034,9 @@ jkApp.controller(
         url: baseUrl + '/SysMenu/list?isShow=1',
         success: function (res) {
           if (res.code == 10000) {
-            $scope.SysMenuList = res.data.rows
+            $scope.$apply(function () {
+              $scope.SysMenuList = res.data.rows
+            })
           }
         }
       })
@@ -6246,7 +6349,9 @@ jkApp.controller('processListLCCtrl', function ($scope, $location) {
       url: baseUrl + '/SysMenu/list?isShow=1',
       success: function (res) {
         if (res.code == 10000) {
-          $scope.SysMenuList = res.data.rows
+          $scope.$apply(function () {
+            $scope.SysMenuList = res.data.rows
+          })
         }
       }
     })
@@ -6276,44 +6381,47 @@ jkApp.controller('processListLCCtrl', function ($scope, $location) {
       elem: '#suypowerGrid',
       id: 'testReload',
       height: 462,
-      url:
-        baseUrl_API_BZLC +
-        '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage', //数据接口
+      url: baseUrl_API_BZLC + '/Bzms/WeChat/ApplyBind/PageByCurr', //数据接口
       // page: true, //开启分页
-      request: {},
+      request: {
+        pageName: 'curr', // 页码的参数名称，默认：page
+        limitName: 'nums' // 每页数据条数的参数名，默认：limit
+      },
       method: 'post',
       contentType: 'application/json',
       where: {
-        SystemMark: 'XtWeChart',
-        WeChatOpenId: getlocalStorage('openId'),
+        SystemMark: 'XtBpm',
+        AccessToken: getlocalStorage('openId'),
         WeChatNickName: '',
-        Entity: {},
-        PageInfo: { Sum: 0, PageSize: 1000, CurrPage: 1, Sort: '' }
+        Data: {},
+        Page: { Sum: 0, PageSize: 1000, CurrPage: 1, Sort: '' }
       },
       parseData: function (res) {
         //res 即为原始返回的数据
         return {
-          code: res.Result == 1 ? 0 : '', //解析接口状态
+          code: res.State == 1 ? 0 : '', //解析接口状态
           msg: res.Msg, //解析提示文本
-          count: res.PageInfo.Sum, //解析数据长度
+          count: res.Page.Sum, //解析数据长度
           data: res.Datas //解析数据列表
         }
       },
       cols: [
         [
           //表头
-          { field: 'SimFlowName', title: '报装类型', align: 'center' },
-          { field: 'InsName', title: '项目名称', align: 'center' },
+          { field: 'ApplyTypeName', title: '报装类型', align: 'center' },
+          { field: 'ProjectName', title: '项目名称', align: 'center' },
+          { field: 'UserMobile', title: '联系方式', align: 'center' },
+          { field: 'ProjectAddr', title: '项目地址', align: 'center' },
           {
-            field: 'CreateTime',
+            field: 'ApplyTime',
             title: '上报时间',
             align: 'center',
             templet: function (d) {
-              return '<span>' + d.CreateTime.replace('T', ' ') + '</span>'
+              return '<span>' + d.ApplyTime.replace('T', ' ') + '</span>'
             }
           },
-          { field: 'SimNodeName', title: '当前进度', align: 'center' },
-          { field: '', title: '操作', align: 'center', toolbar: '#MyBarDemo' }
+          { field: 'VerifyStatusName', title: '当前进度', align: 'center' }
+          // { field: '', title: '操作', align: 'center', toolbar: '#MyBarDemo' }
         ]
       ]
     })
@@ -6330,18 +6438,16 @@ jkApp.controller('processListLCCtrl', function ($scope, $location) {
       var USERNAME = $('.layui-input-userName').val()
       var TELPHONE = $('.layui-input-phone').val()
       table.reload('testReload', {
-        url:
-          baseUrl_API_BZLC +
-          '/Wfms/Overt/WeChart/PublicAccount/Query/Ins/CurrPage', //数据接口
+        url: baseUrl_API_BZLC + '/Bzms/WeChat/ApplyBind/PageByCurr', //数据接口
         request: {},
         method: 'post',
         contentType: 'application/json',
         where: {
-          SystemMark: 'XtWeChart',
-          WeChatOpenId: getlocalStorage('openId'),
+          SystemMark: 'XtBpm',
+          AccessToken: getlocalStorage('openId'),
           WeChatNickName: '',
-          Entity: {},
-          PageInfo: { Sum: 0, PageSize: 1000, CurrPage: 1, Sort: '' }
+          Data: {},
+          Page: { Sum: 0, PageSize: 1000, CurrPage: 1, Sort: '' }
         },
         parseData: function (res) {
           //res 即为原始返回的数据

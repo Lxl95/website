@@ -9,10 +9,10 @@
   <!--页面top导航-->
   <div id="header">
     <div class="header-left" align="center">
-      <img
+      <!-- <img
         ng-if="info.logo"
         :ng-src="{{imageUrl+ info.logo}}"
-        onerror="this.src='./images/logo.png'"
+        onerror="this.src='./images/business/yyt.jpg'"
         alt="logo"
         style="
           width: 300px;
@@ -20,7 +20,10 @@
           border-radius: 10px;
           background-color: #fff;
         "
-      />
+      /> -->
+      <span class="nameStyle"
+        >{{info.companyname || '欢迎进入网上营业厅'}}</span
+      >
     </div>
     <ul class="nav nav-pills">
       <li role="presentation"><a href="#/">首页</a></li>
@@ -42,7 +45,7 @@
         </ul>
       </div>
     </div>
-    <div class="header-right" style="margin-right: 0px">
+    <!-- <div class="header-right" style="margin-right: 0px">
       <div>
         <p>
           <i
@@ -72,7 +75,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <div id="bg"></div>
@@ -312,7 +315,28 @@
                     />
                   </div>
                 </div>
-                <div class="layui-form-item layui-form-text">
+                <div class="layui-form-item">
+                  <label class="layui-form-label layui-required">低保户:</label>
+                  <div class="layui-input-block">
+                    <input
+                      type="radio"
+                      name="LawGuarantee"
+                      value="1"
+                      title="低保户"
+                      lay-filter="demo-radio-filter"
+                      checked
+                    />
+                    <input
+                      type="radio"
+                      name="LawGuarantee"
+                      value="2"
+                      checked
+                      lay-filter="demo-radio-filter"
+                      title="非低保户"
+                    />
+                  </div>
+                </div>
+                <!-- <div class="layui-form-item layui-form-text">
                   <label class="layui-form-label">备注:</label>
                   <div class="layui-input-block">
                     <textarea
@@ -321,7 +345,7 @@
                       class="layui-textarea"
                     ></textarea>
                   </div>
-                </div>
+                </div> -->
                 <input type="hidden" name="images" class="image" />
                 <div ng-repeat="item in fileMsgList" class="layui-form-item">
                   <label class="layui-form-label"
@@ -344,28 +368,31 @@
                 <div class="btn-box" style="margin: 20px 120px">
                   <button
                     type="button"
-                    type="reset"
-                    ng-click="reset()"
-                    class="layui-btn button1"
-                    style="
-                      background-color: rgb(204, 204, 204);
-                      border-color: rgb(204, 204, 204);
-                    "
-                  >
-                    <span>重 置</span>
-                  </button>
-                  <button
-                    type="button"
                     lay-submit
                     lay-filter="formDemo"
                     class="layui-btn button2"
                     style="
-                      background-color: rgb(50, 136, 199);
-                      border-color: rgb(50, 136, 199);
-                      margin-left: 60px;
+                      background-color: #3b95e6;
+                      border-color: #3b95e6;
+                      border-radius: 3px;
                     "
                   >
                     <span>提 交</span>
+                  </button>
+                  <button
+                    type="button"
+                    type="reset"
+                    ng-click="reset()"
+                    class="layui-btn button1"
+                    style="
+                      background: #e8f4ff;
+                      border-color: #a3d3ff;
+                      color: #0a7be0;
+                      border-radius: 3px;
+                      margin-left: 60px;
+                    "
+                  >
+                    <span>重 置</span>
                   </button>
                 </div>
               </form>
