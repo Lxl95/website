@@ -240,6 +240,7 @@ jkApp.run([
   function ($rootScope, $location) {
     /* 监听路由的状态变化 */
     $rootScope.$on('$routeChangeStart', function (evt, next, current) {
+      console.log(2, next)
       let next_path = next ? next.$$route.originalPath : ''
       // 登录页，不加载头部和尾部，使用单独页面
       if (
@@ -3487,8 +3488,10 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
         '<p class="agreement">本协议适用中华人民共和国法律法规，您和本网站一致同意服从相关法律法规以及本协议的规定。如果本协议的部分条款在任何时候变成不合法、无效或不可强制执行而不从根本上影响本协议的效力时，本协议的其它条款不受影响。</p>'
     })
   })
-
-  $('#register').click(function () {
+  $scope.loginClick = function () {
+    $location.path('/login')
+  }
+  $scope.registerClick = function () {
     if ($('#killOrder:checked').val() != '1') {
       layer.alert('请接受《用户协议》')
       return
@@ -3543,8 +3546,9 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
       success: function (result) {
         layer.close(load)
         if (result.code == 10000) {
-          top.layer.msg('注册成功！', { icon: 1, time: 1000 }, function () {})
-          $location.path('/login')
+          top.layer.msg('注册成功！')
+          $location.path('/login') // 在$scope的方法中使用
+          $scope.$apply() // 修复两次才能跳转
         } else {
           top.layer.msg(result.message, { icon: 2, time: 1000 })
         }
@@ -3554,7 +3558,7 @@ jkApp.controller('registerCtrl', function ($scope, $location) {
         top.layer.msg('服务请求失败！', { icon: 2, time: 3000 })
       }
     })
-  })
+  }
 })
 // 忘记密码页
 jkApp.controller('forgetCtrl', function ($scope, $location) {
@@ -3690,7 +3694,7 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
     }
   }
 
-  $('#save').click(function () {
+  $scope.forgetClick = function () {
     $('.error-tip').html('')
     var phone = $('#phone').val()
     var code = $('#code').val()
@@ -3732,9 +3736,9 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
       success: function (result) {
         layer.close(load)
         if (result.code == 10000) {
-          top.layer.msg('保存成功！', { icon: 1, time: 2000 }, function () {
-            $location.path('/login')
-          })
+          top.layer.msg('保存成功！')
+          $location.path('/login')
+          $scope.$apply()
         } else {
           top.layer.msg(result.message, { icon: 2, time: 3000 })
         }
@@ -3744,7 +3748,7 @@ jkApp.controller('forgetCtrl', function ($scope, $location) {
         top.layer.msg('服务请求失败！', { icon: 2, time: 3000 })
       }
     })
-  })
+  }
 })
 // 网上营业厅
 jkApp.controller('businessCtrl', function ($scope, $location) {
