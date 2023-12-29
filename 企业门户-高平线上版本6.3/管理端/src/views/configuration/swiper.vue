@@ -14,11 +14,113 @@
               >添加图片</el-button
             >
           </el-form-item>
+          <el-form-item style="float: right;">
+            <el-button-group class="card-toggle-table">
+              <el-tooltip
+                v-if="cardType"
+                class="item"
+                effect="dark"
+                content="切换成表格"
+                placement="top-start"
+              >
+                <el-button
+                  size="mini"
+                  plain
+                  icon="el-icon-s-grid"
+                  @click="toggle"
+                />
+              </el-tooltip>
+              <el-tooltip
+                v-else
+                class="item"
+                effect="dark"
+                content="切换成卡片"
+                placement="top-start"
+              >
+                <el-button
+                  size="mini"
+                  plain
+                  icon="el-icon-bank-card"
+                  @click="toggle"
+                />
+              </el-tooltip>
+            </el-button-group>
+          </el-form-item>
         </el-form>
+      </div>
+      <div class="listContent" v-if="cardType">
+        <el-row style="margin:10px">
+          <div
+            v-if="tableData.length == 0"
+            style="text-align: center;margin-top: 200px;"
+          >
+            <img
+              src="@/assets/noData3.png"
+              style="width: 400px;height: 366px;"
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div class="listConent">
+            <el-col :span="6" v-for="(item, index) in tableData" :key="item.id">
+              <el-card class="box-list" shadow="hover">
+                <div
+                  @mouseenter="enters(item, index)"
+                  @mouseleave="leaver(item, index)"
+                  style="position: relative;"
+                  :class="{ cover: coverid == index ? 'cover' : 'cover2' }"
+                  @click.stop="handleEdit(item)"
+                >
+                  <div class="imgDiv">
+                    <img
+                      :src="baseUrl + item.urlpath"
+                      class="image"
+                      style="object-fit:cover"
+                    />
+                    <div class="small-lun-info">
+                      {{ item.title }}
+                    </div>
+                  </div>
+                  <!-- <div class="text item zhaiyao">
+                      {{ item.title }}
+                    </div> -->
+
+                  <div class="bottom clearfix">
+                    <p class="time">发布时间:{{ item.createtime }}</p>
+                  </div>
+                  <!-- <div>
+                      <i
+                          class="el-icon-delete"
+                          style="color: red;font-size:30px"
+                          @click.stop="openDel(item)"
+                        />
+                    </div> -->
+                  <el-button
+                    type="danger"
+                    class="remove"
+                    size="mini"
+                    icon="el-icon-delete"
+                    @click.stop="handleDelete(item)"
+                  >
+                  </el-button>
+                  <el-button
+                    type="success"
+                    class="edit"
+                    size="mini"
+                    icon="el-icon-edit"
+                    @click.stop="handleEdit(item)"
+                  >
+                  </el-button>
+                </div>
+              </el-card>
+            </el-col>
+          </div>
+        </el-row>
       </div>
 
       <el-table
         ref="loopImgTable"
+        v-if="!cardType"
         v-loading="listLoading"
         element-loading-text="拼命加载中"
         :data="tableData"
@@ -99,6 +201,7 @@
               <i v-else class="el-icon-plus avatar-uploader-icon" />
             </el-upload>
           </el-form-item>
+          
           <el-form-item label="排序" prop="sort">
             <el-input-number
               v-model="form.sort"
@@ -140,6 +243,7 @@ export default {
       loading: false, // 保存按钮loading
       tableData: [],
       dialogVisible: false,
+      cardType: false,
       title: "",
       type: "add",
       form: { url: "", sort: "" },
@@ -185,6 +289,9 @@ export default {
         url: "",
         sort: 1
       };
+    },
+    toggle() {
+      this.cardType = !this.cardType;
     },
     // 编辑轮播图片
     handleEdit(row) {
@@ -321,5 +428,79 @@ export default {
       margin-bottom: 20px;
     }
   }
+}
+.el-row {
+  height: calc(100% - 170px);
+  overflow: auto;
+}
+.listConent {
+  padding: 20px;
+}
+.box-list {
+  //margin: 5px 10px;
+  margin: 0px 20px 20px 0px !important;
+  height: 258px !important;
+  border-bottom-width: 2px;
+}
+.box-list:hover {
+  -webkit-box-shadow: #666 0px 0px 10px;
+  -moz-box-shadow: #666 0px 0px 10px;
+  box-shadow: #666 0px 0px 10px;
+  border-bottom: 2px solid #1e90ff;
+}
+.cover2 {
+  height: 100%;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+.cover {
+  height: 100%;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  // padding-top: 20px;
+}
+.el-card {
+  height: 100%;
+}
+.el-card__header {
+  padding: 5px 10px;
+  background: #fff;
+  height: 50px;
+  position: relative;
+}
+.el-card /deep/ .el-card__body {
+  height: 100%;
+  padding: 0 !important;
+}
+.el-card__body img {
+  width: 100%;
+  height: 186px;
+  object-fit: fill;
+  object-fit: contain;
+  object-fit: scale-down;
+}
+.time {
+  font-size: 13px;
+  color: #999;
+  position: relative;
+  padding-left: 14px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 28px;
+}
+.bottom {
+  position: relative;
+}
+.remove {
+  position: absolute !important;
+  bottom: 20px;
+  right: 10px;
+  background-color: #f56c6c;
+}
+.edit {
+  position: absolute;
+  bottom: 20px;
+  right: 58px;
+  background-color: #67c23a;
 }
 </style>

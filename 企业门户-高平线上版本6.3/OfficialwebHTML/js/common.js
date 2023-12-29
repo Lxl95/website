@@ -2397,6 +2397,11 @@ jkApp.controller('homeCtrl', function ($scope, $location) {
   policeTypeQueryAll()
   systeminfo()
   $scope.imageUrl = imageUrl
+  $scope.getImgStyle = function (imageUrl) {
+    return {
+      'background-image': 'url(' + imageUrl + ')'
+    }
+  }
 
   //获取轮播图
   function swiper() {

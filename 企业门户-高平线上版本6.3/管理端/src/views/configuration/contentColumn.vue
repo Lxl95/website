@@ -242,6 +242,7 @@
                 :span="6"
                 v-for="(item, index) in listData"
                 :key="item.id"
+                style="min-width: 325px;"
               >
                 <el-card class="box-list" shadow="hover">
                   <div
@@ -526,8 +527,8 @@ export default {
       this.$viewerApi({
         images: [imgUrl],
         options: {
-            zIndex: 9999
-          },
+          zIndex: 9999
+        }
       });
     },
     reloadClick() {
@@ -922,8 +923,9 @@ export default {
   color: #999;
   position: relative;
   padding-left: 14px;
-  margin-top: 25px;
+  margin-top: 20px;
   margin-bottom: 20px;
+  line-height: 28px;
 }
 .el-collapse-item__header {
   font-size: 16px;
@@ -934,13 +936,13 @@ export default {
 }
 .remove {
   position: absolute !important;
-  bottom: 10px;
+  bottom: 20px;
   right: 10px;
   background-color: #f56c6c;
 }
 .edit {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   right: 58px;
   background-color: #67c23a;
 }
@@ -1075,7 +1077,7 @@ export default {
 .box-list {
   //margin: 5px 10px;
   margin: 0px 20px 20px 0px !important;
-  height: 296px !important;
+  height: 258px !important;
   border-bottom-width: 2px;
 }
 .box-list:hover {
@@ -1159,8 +1161,8 @@ body > .el-dropdown-menu {
   position: relative;
   .previewButton {
     position: absolute !important;
-    bottom:10px;
-    left:244px;
+    bottom: 10px;
+    left: 244px;
   }
 }
 </style>
