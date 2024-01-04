@@ -1916,6 +1916,10 @@ jkApp.controller(
 )
 //新闻列表
 jkApp.controller('newCtrl', function ($scope, $location, $routeParams) {
+  $scope.cardType = false
+  $scope.toggle = function () {
+    $scope.cardType = !$scope.cardType
+  }
   //获取栏目类别
   var page = 1
   var total = 1
