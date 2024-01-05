@@ -55,14 +55,14 @@ export default {
       required: false,
       default() {
         return [
-          "removeformat undo redo |  bullist numlist | outdent indent | forecolor | fullscreen code",
+          "removeformat undo redo |  bullist numlist | outdent indent | forecolor | fullscreen code ",
           "bold italic blockquote | h2 p  media link | alignleft aligncenter alignright | fontsizeselect | fontselect"
         ]; // 修改后 第一步
       }
     },
     menubar: {
       type: String,
-      default: "file edit insert view format table"
+      default: "file edit insert view format table newTemplate"
     },
     height: {
       type: [Number, String],
@@ -152,6 +152,32 @@ export default {
     },
     initTinymce() {
       const _this = this;
+      const templates = [
+        {
+          title: "停水通知",
+          description: "",
+          content: "",
+          url: "template/停水通知.html"
+        },
+        {
+          title: "重要提醒",
+          description: "",
+          content: "",
+          url: "template/重要提醒.html"
+        },
+        {
+          title: "节日祝福",
+          description: "",
+          content: "",
+          url: "template/节日祝福.html"
+        },
+        {
+          title: "活动通知",
+          description: "",
+          content: "",
+          url: "template/活动通知.html"
+        }
+      ];
       window.tinymce.init({
         language: this.language,
         convert_urls: false, // 上传图片使用全部路径
@@ -172,6 +198,12 @@ export default {
         min_height: 350,
         toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
         menubar: this.menubar,
+        menu: {
+          newTemplate: {
+            title: "新闻模板",
+            items: "template"
+          }
+        },
         plugins: plugins,
         end_container_on_empty_block: true,
         powerpaste_word_import: "clean",
@@ -182,6 +214,8 @@ export default {
         imagetools_cors_hosts: ["www.tinymce.com", "codepen.io"],
         default_link_target: "_blank",
         link_title: false,
+        templates: templates, // 新闻模板
+        template_selected_content_classes: "selcontent",
         nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
         init_instance_callback: editor => {
           if (_this.value) {
@@ -309,7 +343,7 @@ export default {
   position: absolute;
   right: 4px;
   top: 4px;
-  z-index: 2100;
+  z-index: 2;
 }
 .fullscreen .editor-custom-btn-container {
   z-index: 10000;

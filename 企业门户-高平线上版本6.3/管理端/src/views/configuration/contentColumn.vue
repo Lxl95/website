@@ -26,7 +26,13 @@
         @node-click="handleNodeClick"
       >
         <!-- eslint-disable-next-line vue/no-template-shadow -->
-        <span slot-scope="{ node, data }" class="custom-tree-node">
+        <span
+          slot-scope="{ data }"
+          class="custom-tree-node"
+          :style="{
+            cursor: data.pid == 0 ? 'not-allowed' : ''
+          }"
+        >
           <span>
             <img
               v-if="data.pid == 0"
@@ -58,7 +64,7 @@
           class="selectLm"
           v-if="!isUrl && !isDeatile && !isList && !contentInfo"
         >
-          请选择栏目内容
+          请选择左侧二级菜单
         </div>
         <el-row v-if="isUrl" style="height: 100%;">
           <iframe
@@ -254,7 +260,11 @@
                   >
                     <div class="imgDiv">
                       <img
-                        :src="baseImageUrl + item.coverpic"
+                        :src="
+                          item.coverpic
+                            ? baseImageUrl + item.coverpic
+                            : require('@/assets/companyProfile.jpg')
+                        "
                         class="image"
                         style="object-fit:cover"
                       />
@@ -324,8 +334,14 @@
             v-if="dataInfo.istabulation == 1"
             @back="goBack"
             style="padding: 9px 5px;"
-            :content="category + '——' + content"
           >
+            <template slot="content">
+              <div>
+                {{ category }}
+                <i class="el-breadcrumb__separator el-icon-arrow-right"></i
+                >{{ content }}
+              </div>
+            </template>
           </el-page-header>
           <el-form-item
             label="类别名称"
@@ -343,7 +359,7 @@
               v-model="form.summary"
               type="textarea"
               :rows="5"
-              style="width: 100%;"
+              style="width: 80%;"
             />
           </el-form-item>
 
@@ -835,6 +851,9 @@ export default {
     handleNodeClick(v, e) {
       // this.loading = true;
       // this.isList = true
+      if (v.pid == "0") {
+        return this.$message.warning("请选择二级菜单");
+      }
       this.dataInfo = v;
       this.category = v.name;
       this.form.columncategoryid = v.id;
@@ -923,8 +942,8 @@ export default {
   color: #999;
   position: relative;
   padding-left: 14px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 28px;
 }
 .el-collapse-item__header {
@@ -936,13 +955,13 @@ export default {
 }
 .remove {
   position: absolute !important;
-  bottom: 20px;
+  bottom: 10px;
   right: 10px;
   background-color: #f56c6c;
 }
 .edit {
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   right: 58px;
   background-color: #67c23a;
 }
@@ -1072,12 +1091,12 @@ export default {
   height: calc(100% - 70px);
   overflow: auto;
 }
-.listConent {
-}
+// .listConent {
+// }
 .box-list {
   //margin: 5px 10px;
   margin: 0px 20px 20px 0px !important;
-  height: 258px !important;
+  height: 238px !important;
   border-bottom-width: 2px;
 }
 .box-list:hover {

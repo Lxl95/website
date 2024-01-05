@@ -62,7 +62,7 @@
             />
           </div>
           <div class="listConent">
-            <el-col :span="6" v-for="(item, index) in tableData" :key="item.id">
+            <el-col :span="6" v-for="(item, index) in tableData" :key="item.id" style="min-width: 325px;">
               <el-card class="box-list" shadow="hover">
                 <div
                   @mouseenter="enters(item, index)"
@@ -201,7 +201,7 @@
               <i v-else class="el-icon-plus avatar-uploader-icon" />
             </el-upload>
           </el-form-item>
-          
+
           <el-form-item label="排序" prop="sort">
             <el-input-number
               v-model="form.sort"
@@ -439,7 +439,7 @@ export default {
 .box-list {
   //margin: 5px 10px;
   margin: 0px 20px 20px 0px !important;
-  height: 258px !important;
+  height: 238px !important;
   border-bottom-width: 2px;
 }
 .box-list:hover {
@@ -484,8 +484,8 @@ export default {
   color: #999;
   position: relative;
   padding-left: 14px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   line-height: 28px;
 }
 .bottom {
@@ -493,13 +493,13 @@ export default {
 }
 .remove {
   position: absolute !important;
-  bottom: 20px;
+  bottom: 10px;
   right: 10px;
   background-color: #f56c6c;
 }
 .edit {
-  position: absolute;
-  bottom: 20px;
+  position: absolute !important;
+  bottom: 10px;
   right: 58px;
   background-color: #67c23a;
 }
